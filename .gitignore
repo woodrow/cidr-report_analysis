@@ -1,0 +1,6 @@
+.DS_Store
+*.pyc
+bgp_modules
+rib_dumps
+routeviews
+cidr_env
