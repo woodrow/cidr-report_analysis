@@ -1,0 +1,49 @@
+  AARNET                         Seattle              202.158.192.22     7575
+  ABOVEnet                       notsure              64.125.0.137       6461
+  AMPATH                         Miami                198.32.252.33      20080
+  AOL                            NoVa                 66.185.128.48      1668
+  APAN/tppr-tokyo                ORD                  203.181.248.168    7660
+  ATT                            CA                   12.0.1.63          7018
+  CANARIE                        Ottawa               205.189.32.44      6509
+  CENTAURICOM                    SF                   208.74.64.40       19214
+  France Telecom                 NYC                  193.251.245.74     5511
+  Global Crossing                SJC                  208.51.134.254     3549
+  GLOBIX                         New York             209.10.12.160      4513
+  GLOBIX                         ORD                  209.10.12.125      4513
+  GLOBIX                         PAO                  209.10.12.156      4513
+  Group Telecom Service          ORD                  66.59.190.221      6539
+  Hurricane Electric             SJ                   216.218.252.164    6939
+  IIJ                            Japan                202.232.0.2        2497
+  IP-PLUS                        ZRH                  164.128.32.11      3303
+  KPNE                           AMSIX                134.222.87.1       286
+  Level3                         SEA                  4.69.184.193       3356
+  LINX                           London               195.66.232.239     5459
+  M-Root                         Japan                202.249.2.86       7500
+  MSN                            PAO                  207.46.32.34       8075
+  NLAYER                         NLAYER               69.31.111.244      4436
+  NTT-A                          CA                   129.250.0.11       2914
+  NTT-A                          VA                   129.250.0.171      2914
+  PNWG                           UWASHINGTON          209.124.176.223    101
+  Port80                         STO                  217.75.96.60       16150
+  RCN                            DCA                  207.172.6.1        6079
+  RCN                            DCA                  207.172.6.20       6079
+  RIPE NCC                       Amsterdam            193.0.0.56         3333
+  ROBTEX                         Caymans              194.71.0.1         48285
+  RUNNET                         Russia               194.85.40.15       3267
+  RUSnet                         St Petersburg        194.85.102.33      3277
+  SAVVIS                         SF                   206.24.210.100     3561
+  SAVVIS                         SF                   206.24.210.102     3561
+  Sprint/Canada                  YYZ                  64.71.255.61       812
+  Sprint                         Stockton             144.228.241.130    1239
+  TATA-PDI                       PDI                  66.110.0.124       6453
+  Telefonica                     New York/GRTNYCCC2   213.140.32.146     12956
+  Telstra                        Sydney               203.62.252.186     1221
+  TELUS                          Calgary              154.11.98.225      852
+  TELUS                          Toronto              154.11.11.113      852
+  Tiscali                        PAR                  89.149.178.10      3257
+  TransPAC2                      LA                   192.203.116.253    22388
+  UONET                          Oregon               128.223.253.10     3582
+  UUNET                          Africa               196.7.106.245      2905
+  uunet                          mci                  157.130.10.233     701
+  VOCUS                          SYD                  114.31.199.1       4826
+  XO                             SJC                  65.106.7.139       2828

@@ -1,0 +1,52 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  Accretive                      SEA                  207.246.129.1      11608
+  Accretive                      SEA                  207.246.129.2      11608
+  Asia Netcom                    JP                   202.147.0.142      10026
+  Asia Netcom                    LA                   202.147.61.12      10026
+  ATT                            ATT                  2001:1890:111D::1  7018
+  CTBC                           Brazil               200.160.127.238    27664
+  EASYNET                        EASYNET              87.82.50.207       4589
+  ELI                            MAE-EAST             74.40.7.35         5650
+  ELI                            MAE-WEST             74.40.7.36         5650
+  GBLNETRU                       MOSCOW               95.140.80.253      31500
+  Global Transit                 Malaysia             202.76.224.242     24218
+  HGC                            HK                   218.189.6.129      9304
+  Hurricane Electric             SJ                   216.218.252.164    6939
+  Intermedia                     SG                   203.124.96.1       10075
+  Internet2                      Chicago              64.57.28.241       11537
+  KPNE                           LINX                 134.222.87.4       286
+  Qwest                          SJ                   205.171.202.202    209
+  Qwest                          SJ                   205.171.202.207    209
+  Qwest                          SJ                   205.171.3.22       209
+  SAVVIS                         SF                   206.24.210.100     3561
+  SAVVIS                         SF                   206.24.210.102     3561
+  TDC                            NYC                  195.215.109.252    3292
+  TDC                            ZBT                  195.215.109.254    3292
+  TENET                          Africa               196.13.250.1       2018
+  Tiscali                        PAR                  89.149.178.10      3257
+  UIUC                           Urbana               72.36.126.8        40387

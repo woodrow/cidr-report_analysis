@@ -1,0 +1,27 @@
+route-views.oregon-ix.net ONLY
+- GLOBIX
+- AboveNet
+- RCN
+- XO
+
+route-views2.oregon-ix.net ONLY
+- ESNet
+- Internet2
+- Telia
+
+route-views3.routeviews.org ONLY
+- Qwest
+
+route-views.isc.routeviews.org ONLY
+- Cogent
+
+Tier 1/DFZ ISPs common to route-views.oregon-ix.net AND route-views2.oregon-ix.net:
+- Level 3 / 3356
+- NTT-A / 2914
+- Sprint / 1239
+- VZB / 701
+- ATT / 7018
+- GLBX / 3549
+- SAAVIS / 3561
+- Tiscali / 3257
+- TATA / 6453

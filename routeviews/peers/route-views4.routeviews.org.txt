@@ -1,0 +1,10 @@
+  AARNET                         Seattle              202.158.192.22     7575
+  ESNET                          West                 198.124.216.237    293
+  HEAS                           Oregon               198.58.5.127       3727
+  I2-CPS                         Indiana              64.57.29.241       11537
+  NLR                            LosAngeles           137.164.26.150     19401
+  NTT-ASIA                       Tokyo                129.250.1.248      2914
+  PLIX                           Warsaw               212.162.20.17      8545
+  ROBTEX                         Caymans              194.71.0.1         48285
+  RUNNET                         Russia               194.85.40.15       3267
+  TOPNET                         Italy                82.143.24.1        29449
