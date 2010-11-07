@@ -3,3 +3,4 @@
 bgp_modules
 rib_dumps
 cidr_virtualenv
+*~

@@ -1,10 +1,14 @@
+## Preliminary Notes ##
+
 > MRT RIB and UPDATE files have internal timestamps in the standard Unix format,
-> however the file names are constructed based on the time zone setting of the 
-> collector. The collectors had their time zones set to Pacific Time prior to 
+> however the file names are constructed based on the time zone setting of the
+> collector. The collectors had their time zones set to Pacific Time prior to
 > Feb 3, 2003 at approximately 19:00 UTC
 >
 > Collection timestamps on the original Cisco router route-views.routeviews.org
 > were changed from PDT to UTC on Mar 4, 2003 at ~1:00 PDT.
+
+## Complete Tasks ##
 
 0. Determine sampling frequency for CIDR Report
     - once/week (Friday afternoon -- perhaps generated from Friday Midnight routing table?) since October 1996
@@ -17,12 +21,14 @@
     - `sh ip bgp` since 8 November 1997 --> straightenRV
 
 0. Determine file locations to download (corresponding to once/week on Friday @ midnight?):
-    - MRT: 
+    - MRT:
         - `http://archive.routeviews.org/bgpdata/YYYY.MM/RIBS/rib.YYYYMMDD.HHMM.bz2`
-    
+
     - `sh ip bgp`:
         - `http://archive.routeviews.org/oix-route-views/YYYY.MM/oix-full-YYYY-MM-DD-HHMM.dat.bz2` until 31 December 1999
         - `http://archive.routeviews.org/oix-route-views/YYYY.MM/oix-full-snapshot-YYYY-MM-DD-HHMM.dat.bz2` after 1 January 2000
+
+## Upcoming/Ongoing Tasks ##
 
 0. Identify a consistent peer across the data set
     - 3356? "The Carrier's Carrier"?
@@ -41,5 +47,3 @@
 3. run elements into tree algorithm (C?)
     - output top aggregable ASes based on count
     - output aggregated routing table (for jesse)?
-
-3 
