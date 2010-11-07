@@ -19,7 +19,7 @@ LIB_H	 = bgpdump_attr.h bgpdump_formats.h bgpdump_lib.h bgpdump_mstream.h
 LIB_O	 = bgpdump_lib.o bgpdump_mstream.o cfile_tools.o util.o inet_ntop.o
 OTHER    = *.in configure bgpdump.spec README* ChangeLog License*
 
-all: libbgpdump.so bgpdump 
+all: libbgpdump.so bgpdump
 
 libbgpdump.a: $(LIB_H) $(LIB_O) Makefile cfile_tools.h util.h
 	ar r libbgpdump.a $(LIB_O)
@@ -30,6 +30,9 @@ libbgpdump.so: libbgpdump.a
 
 example: example.c libbgpdump.a
 	$(COMPILE) -o testbgpdump example.c libbgpdump.a $(SYS_LIBS)
+
+example2: example2.c libbgpdump.a
+	$(COMPILE) -o 2testbgpdump example2.c libbgpdump.a $(SYS_LIBS)
 
 bgpdump: bgpdump.c libbgpdump.a
 	$(COMPILE) -o bgpdump bgpdump.c libbgpdump.a $(SYS_LIBS)

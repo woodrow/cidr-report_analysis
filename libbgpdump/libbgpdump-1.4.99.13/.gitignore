@@ -1,4 +1,7 @@
 *~
+*.[oa]
 Makefile
 config.*
-2testbgpdump
+*testbgpdump
+bgpdump-config.h
+bgpdump.spec
