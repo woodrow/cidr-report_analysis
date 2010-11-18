@@ -31,8 +31,8 @@ libbgpdump.so: libbgpdump.a
 example: example.c libbgpdump.a
 	$(COMPILE) -o testbgpdump example.c libbgpdump.a $(SYS_LIBS)
 
-example2: example2.c libbgpdump.a
-	$(COMPILE) -o 2testbgpdump example2.c libbgpdump.a $(SYS_LIBS)
+simpledump: simpledump.c libbgpdump.a
+	$(COMPILE) -o simpledump simpledump.c libbgpdump.a $(SYS_LIBS)
 
 bgpdump: bgpdump.c libbgpdump.a
 	$(COMPILE) -o bgpdump bgpdump.c libbgpdump.a $(SYS_LIBS)
@@ -44,7 +44,7 @@ check: check-clean bgpdump
 	./test.sh
 
 clean: check-clean
-	rm -f libbgpdump.so libbgpdump.a testbgpdump bgpdump $(LIB_O)
+	rm -f libbgpdump.so libbgpdump.a testbgpdump bgpdump simpledump $(LIB_O)
 
 distclean: clean
 	rm -Rf config.log config.status *.dSYM core *.core autom4te.cache bgpdump-config.h Makefile
