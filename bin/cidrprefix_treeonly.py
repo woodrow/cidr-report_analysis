@@ -132,6 +132,10 @@ def add_node_to_tree(root, new):
         test_mask >>= 1
 
 def update_ancestor(ancestor, descendant):
+    """I could do something clever here whereby i keep track of the last AS_PATH
+    seen by a virtual node in the tree, and if no other AS_PATH is added to the
+    subtree, then it could indeed be aggregated at this higher block.
+    """
     if ancestor.as_path is not None and descendant.as_path is not None:
         if ancestor.prefix_class == PREFIX_CLASSES.LONELY:
             ancestor.prefix_class = PREFIX_CLASSES.TOP
@@ -157,21 +161,47 @@ def extract_asn(s):
     else:
         return int(s)
 
-def walk_tree(root_list):
-    agg_prefix_list = []
+def get_prefix_agg_list(root_list):
+    prefix_agg_list = []
     for prefix in (x for x in root_list if x is not None):
-        tree_walk_helper(prefix, agg_prefix_list)
-    return agg_prefix_list
+        _get_prefix_agg_list_helper(prefix, prefix_agg_list)
+    return prefix_agg_list
 
-def tree_walk_helper(prefix, agg_prefix_list):
+def _get_prefix_agg_list_helper(prefix, prefix_agg_list):
     if prefix.is_aggregable:
         if prefix.aggregable_more_specifics > 0:
-            agg_prefix_list.append(prefix)
+            prefix_agg_list.append(prefix)
     else:
         if prefix.ms_0 is not None:
-            tree_walk_helper(prefix.ms_0, agg_prefix_list)
+            _get_prefix_agg_list_helper(prefix.ms_0, prefix_agg_list)
         if prefix.ms_1 is not None:
-            tree_walk_helper(prefix.ms_1, agg_prefix_list)
+            _get_prefix_agg_list_helper(prefix.ms_1, prefix_agg_list)
+
+def get_as_agg_list(prefix_agg_list):
+    as_agg_list = [(str(x), x.aggregable_more_specifics, x.as_path[0])
+        for x in prefix_agg_list]
+    as_agg_list.sort(key=lambda x: x[2])
+    as_aggregates = []
+    for k, g in itertools.groupby(as_agg_list, lambda x: x[2]):
+        as_aggregates.append((k, sum(map(lambda x: x[1], g))))
+    as_aggregates.sort(key=lambda x: x[1])
+    return as_aggregates
+
+def get_as_netsnow_dict(root_list):
+    as_netsnow_dict = {}
+    for prefix in (x for x in root_list if x is not None):
+        _get_as_netsnow_list_helper(prefix, as_netsnow_dict)
+    return as_netsnow_dict
+
+def _get_as_netsnow_list_helper(prefix, as_netsnow_dict):
+    if prefix.as_path is not None:
+        as_netsnow_dict[prefix.as_path[0]] = as_netsnow_dict.get(
+            prefix.as_path[0], 0) + 1
+    if prefix.ms_0 is not None:
+        _get_as_netsnow_list_helper(prefix.ms_0, as_netsnow_dict)
+    if prefix.ms_1 is not None:
+        _get_as_netsnow_list_helper(prefix.ms_1, as_netsnow_dict)
+
 
 """
 What needs to happen:
