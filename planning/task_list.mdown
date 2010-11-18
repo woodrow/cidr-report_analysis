@@ -33,9 +33,13 @@
 0. Identify a consistent peer across the data set
     - 3356? "The Carrier's Carrier"?
     - the provider with the most prefixes?
-    - analyze the routing tables to figure this out?
-        - a second form/purpose for calling the c program
-        - check if it's V2 with Python first -- easily read the peer index table. if not, then crawl with C
+    - more discussion in my notebook
+        - geoff houston uses all routes in 6447
+    - bin/neighbors.py will help with this...
+
+0. Download Cidr Report emails from NANOG archives
+    - look for when the transition from tony bates to geoff huston occured, etc.
+    - look for (and note) methodological differences too
 
 1. generate individual routing table (C)
     - process data using c, taking args: [filename, peer_as]
