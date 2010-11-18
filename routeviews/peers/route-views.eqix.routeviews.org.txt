@@ -1,0 +1,27 @@
+  ALPHARED                       EQIX                 206.223.115.109    19166
+  ATT                            EQIX                 206.223.115.79     7132
+  EASYNET                        EQIX                 2001:504:0:2::4589:1 4589
+  EASYNET                        EQIX                 206.223.115.10     4589
+  HotNic                         EQIX                 2001:504:0:2:0:3:3437:1 33437
+  HurricaneElectric              EQIX                 2001:504:0:2::6939:1 6939
+  IPTP                           EQIX                 206.223.115.120    41095
+  Netifice                       EQIX                 206.223.115.52     4565
+  NEXICOM                        EQIX                 206.223.115.24     11666
+  NLAYER1                        EQIX                 2001:504:0:2::4436:1 4436
+  NLAYER1                        EQIX                 206.223.115.60     4436
+  NLAYER2                        EQIX                 2001:504:0:2::4436:2 4436
+  NLAYER2                        EQIX                 206.223.115.61     4436
+  NTELOS                         EQIX                 206.223.115.156    7795
+  NTT-A                          EQIX                 2001:504:0:2::2914:1 2914
+  NTT-A                          EQIX                 206.223.115.12     2914
+  QTELQA                         EQIX                 2001:504:0:2::8781:1 8781
+  QTELQA                         EQIX                 206.223.115.181    8781
+  RCN                            EQIX                 206.223.115.25     6079
+  RealConnect                    EQIX                 206.223.115.26     16559
+  TATA-AEQ                       EQIX                 2001:504:0:2::6453:1 6453
+  TATA-AEQ                       EQIX                 206.223.115.81     6453
+  TDC Switzerland AG             EQIX                 206.223.115.7      6730
+  Tiscali                        EQIX                 2001:504:0:2::3257:1 3257
+  Tiscali                        EQIX                 206.223.115.19     3257
+  WVFIBER                        EQIX                 2001:504:0:2:0:1:9151:1 19151
+  WVFIBER                        EQIX                 206.223.115.47     19151

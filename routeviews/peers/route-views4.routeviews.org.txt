@@ -1,10 +1,25 @@
+  AARNET                         PaloAlto             2001:388:1::13     7575
+  AARNET                         Seattle              2001:388:1::16     7575
   AARNET                         Seattle              202.158.192.22     7575
+  CNCERNET2                      Beijing              2001:da8:ff:301::1 23910
   ESNET                          West                 198.124.216.237    293
+  FIRENET                        Australia            119.63.216.246     38883
+  FIRENET                        Australia            2402:7400:0:3c::1  38883
   HEAS                           Oregon               198.58.5.127       3727
   I2-CPS                         Indiana              64.57.29.241       11537
+  I2-RE1                         Indiana              2001:468:2::1      11537 
+  I2-RE2                         Indiana              2001:468:ff02::1   11537 
   NLR                            LosAngeles           137.164.26.150     19401
+  NLR                            LosAngeles           2001:468:e00:fa4::2 19401
   NTT-ASIA                       Tokyo                129.250.1.248      2914
+  NTT-ASIAV6                     Tokyo                2001:218:0:1000::f006 2914 
   PLIX                           Warsaw               212.162.20.17      8545
+  PROGON                         Swiss                2001:4B20::fffe:4  34288
+  PROGON                         Swiss                85.158.24.4        34288
   ROBTEX                         Caymans              194.71.0.1         48285
   RUNNET                         Russia               194.85.40.15       3267
+  SCWTELE                        Brazil               189.112.142.61     28138
+  SCWTELE                        Brazil               2001:1291:1501:3::B 28138 
+  TELSON                         SanJose              2001:2000:3018:0015::1 1299 
+  TELSON                         SanJose              213.248.80.244     1299
   TOPNET                         Italy                82.143.24.1        29449

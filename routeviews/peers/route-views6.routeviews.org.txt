@@ -1,0 +1,25 @@
+  APAN/tppr-tokyo                ORD                  2001:200:901::5    7660
+  Asia Netcom                    SJ                   2001:CC8:5101::1   18084
+  ATT                            CA                   2001:1890:111d::1  7018
+  CTBC                           Brazil               2001:1290:0:FFFF:4500::A 27664
+  HE                             SJ                   2001:470:0:1a::1   6939
+  HotNic                         EQIX                 2001:4810::1       33437
+  IIJ                            TYO                  2001:240:100:ff::2497:2 2497
+  INIT7                          Zurich               2001:1620:1::203   13030
+  IP-PLUS                        ZRH                  2001:918:0:8::1    3303
+  LambdaNet                      Frankfurt            2001:7f0::8:86:1640:34 13237
+  NetworkConnection              Toronto              2610:38:1::1       7781
+  NTT-A                          EastCoast            2001:418:0:1000::f000 2914
+  NTT-A                          WestCoast            2001:418:0:1000::f002 2914
+  Port80                         SJC                  217.75.96.60       16150
+  QWEST                          BUR                  2001:428:0:0:205:171:203:140 209
+  QWEST                          DCA                  2001:428:0:0:205:171:203:138 209
+  QWEST                          KCM                  2001:428:0:0:205:171:203:141 209
+  SprintLink6                    UNK                  2001:440:EEEE:FFD4::1 6175
+  TATA-PDI                       PDI                  2001:5A0:D00::24   6453
+  TDC                            ZBT                  2001:6C8:0:1000::2 3292
+  Tiscali                        FRA                  2001:668:0:4::2    3257
+  TowardEX                       DFW                  2001:4830::5       30071
+  TowardEX                       EWR                  2001:4830::e       30071
+  TowardEX                       SFO                  2001:4830::2       30071
+  VZWBIZ                         US                   2600:803::15       701

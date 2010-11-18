@@ -1,0 +1,11 @@
+  AARNET                         EQIXSYD1             2001:de8:6::7575:1 7575
+  AARNET                         EQIXSYD1             202.167.228.46     7575
+  ATU                            EQIXSYD1             202.167.228.38     9266
+  INTERNODE                      EQIXSYD1             2001:de8:6::4739:1 4739
+  INTERNODE                      EQIXSYD1             202.167.228.20     4739
+  NEXTGEN                        EQIXSYD1             202.167.228.37     38809
+  PACNET                         EQIXSYD1             2001:de8:6::1:0026:1 10026
+  PACNET                         EQIXSYD1             202.167.228.44     10026
+  UQEDU                          EQIXSYD1             202.167.228.81     24436
+  VOCUS                          EQIXSYD1             2001:DE8:6::4826:1 4826
+  VOCUS                          EQIXSYD1             202.167.228.74     4826

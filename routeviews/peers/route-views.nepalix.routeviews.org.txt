@@ -1,0 +1,2 @@
+  INFOCOMNP                      Kathmandu            198.32.231.1       38217
+  NEPALIX                        Kathmandu            198.32.231.10      65530

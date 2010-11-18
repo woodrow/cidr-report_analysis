@@ -1,0 +1,56 @@
+  ARCOR                          LINX                 195.66.224.124     3209
+  ARCOR                          LINX                 195.66.224.209     3209
+  CABLEINET                      LINX                 195.66.224.56      5462
+  CLARANET                       LINX                 195.66.224.66      8426
+  CLARANET                       LINX                 195.66.226.66      8426
+  CLARAUK                        LINX                 2001:7f8:4:1::20EA:1 8426
+  CLARAUK                        LINX                 2001:7f8:4::20EA:1 8426
+  EUnet fi                       LINX                 195.66.224.114     6667
+  EUnet fi                       LINX                 195.66.226.114     6667
+  EUnet fi                       LINX                 2001:7F8:4:1::1a0b:1 6667
+  EUnet fi                       LINX                 2001:7F8:4::1a0b:1 6667
+  France Telecom                 LINX                 195.66.224.83      5511
+  GBLNETRU                       LINX                 195.66.224.215     31500
+  HurricaneElectric              LINX                 2001:7f8:4:0::1b1b:1 6939
+  INIT7-A                        LINX                 195.66.224.175     13030
+  INIT7-A                        LINX                 2001:7f8:4::32e6:1 13030
+  INIT7-B                        LINX                 195.66.226.175     13030
+  INIT7-B                        LINX                 2001:7f8:4:1::32e6:1 13030
+  INTERRT                        LINX                 195.66.224.53      8928
+  INTERRT                        LINX                 2001:7f8:4::22e0:1 8928
+  LAMBDANET                      LINX                 195.66.224.99      13237
+  Level3                         LINX                 2001:7F8:4:1::D1C:2 3356
+  Level3                         LINX                 2001:7F8:4::D1C:1  3356
+                                 LINX                 195.66.224.39      3561
+  Mohawk                         LINX                 195.66.224.118     14537
+  NetServices PLC                LINX                 195.66.224.109     15444
+  NetServices PLC                LINX                 195.66.226.109     15444
+  NTT-A                          LINX                 195.66.224.138     2914
+  NTT-A                          LINX                 2001:7f8:4::0b62:1 2914
+  NTT-A                          LINX                 2001:7f8:4:1::0b62:2 2914
+  ONYX                           LINX                 195.66.224.35      6067
+  ONYX                           LINX                 195.66.226.35      6067
+  PACKETX                        LINX                 195.66.227.113     16260
+  PIPEX                          LINX                 195.66.224.29      5413
+  PIPEX                          LINX                 195.66.226.29      5413
+  RMIFL                          LINX                 195.66.224.101     5503
+  RMIFL                          LINX                 195.66.226.101     5503
+  SWISSCOM                       LINX                 195.66.224.110     3303
+  SWISSCOM                       LINX                 2001:7F8:4::CE7:1  3303
+  TATA-LDN                       LINX                 195.66.224.51      6453
+  TATA-LDN                       LINX                 2001:7F8:4::1935:1 6453
+  TDC                            LINX                 195.66.224.64      3292
+  TDC Switzerland AG             LINX                 195.66.224.85      6730
+  TDC Switzerland AG             LINX                 195.66.226.85      6730
+  TELSON                         LINX                 195.66.224.97      1299
+  TELSON                         LINX                 2001:7f8:4::513:1  1299
+  Tiscali                        LINX                 195.66.224.32      3257
+  Tiscali                        LINX                 195.66.226.32      3257
+  Tiscali                        LINX                 2001:7F8:4:0::cb9:1 3257
+  Tiscali                        LINX                 2001:7F8:4:1::cb9:1 3257
+  T-ITALIA                       LINX                 195.66.224.153     6762
+  T-ITALIA                       LINX                 2001:7F8:4::1A6A:1 6762
+  WEBSENSE                       LINX                 195.66.226.170     44444
+  WIDE-DIXIE                     LINX                 2001:200:0:fe00::9c4:11 2500
+  WVFIBER                        LINX                 195.66.224.233     19151
+  WVFIBER                        LINX                 2001:7F8:4::4ACF:1 19151
