@@ -1,13 +1,15 @@
 #!/usr/bin/env python
 
-#import dpkt
-##import pybgpdump  # XXX pybgpdump currently only support IPv4 BGP UPDATEs
-#import pybgptable  # XXX pybgptable only supports IPv4 TABLE_DUMP (not _V2)
+import itertools
 
 class Enumerate(object):
+    """A general-purpose enumerated type class that accepts its types during
+    initialization.
+
+    """
     def __init__(self, *args):
         if len(args) < 1:
-            raise TypeError("Enumerate.__init() takes at least 1 argument "
+            raise TypeError("Enumerate.__init__() takes at least 1 argument "
                 "(0 given)")
         if len(args) == 1:
             if args[0] == str(args[0]):
@@ -21,14 +23,24 @@ class Enumerate(object):
 
 PREFIX_CLASSES = Enumerate('LONELY', 'TOP', 'DEAGG', 'DELEG')
 
-class CidrPrefix:
+class CidrPrefix(object):
+    """An object representing a route to a CIDR prefix, including AS_PATH(s)
+    seen from peers to the observation AS, and metadata about the type of prefix
+    and whether (and how) aggregable this prefix is if it is a covering prefix.
+
+    """
     def __init__(self, prefix=0, prefix_len=0, as_path=None,
         ms_0=None, ms_1=None, is_aggregable=False,
         prefix_class=PREFIX_CLASSES.LONELY):
         self.prefix = prefix
         self.prefix_len = prefix_len
 
-        self.as_path = as_path  # a list of integers with origin in index 0
+        # as_paths is a list of as_path lists
+        # each as_path is list of integers with origin in index 0
+        if as_path:
+            self.as_paths = [as_path]
+        else:
+            self.as_paths = []
 
         self.ms_0 = ms_0
         self.ms_1 = ms_1
@@ -38,7 +50,7 @@ class CidrPrefix:
         self.prefix_class = prefix_class
 
     def __str__(self):
-        if self.as_path is not None:
+        if self.as_paths:
             return int_to_dotquad(self.prefix) + '/' + str(self.prefix_len)
         else:
             return '[' + int_to_dotquad(self.prefix) + '/' + \
@@ -47,7 +59,14 @@ class CidrPrefix:
     def __repr__(self):
         return self.__str__()
 
+    def merge(self, new):
+        self.as_paths += new.as_paths
+
 def dotquad_to_int(ipv4_str):
+    """Convert an IPv4 address in dotted quad string representation to 32-bit
+    integer representation.
+
+    """
     ipv4_int = 0
     byte_str_list = ipv4_str.split('.')
     if len(byte_str_list) != 4:
@@ -57,6 +76,10 @@ def dotquad_to_int(ipv4_str):
     return ipv4_int
 
 def int_to_dotquad(ipv4_int):
+    """Convert an IPv4 address in 32-bit integer representation to
+    dotted quad string representation.
+
+    """
     octets = []
     for i in xrange(4):
         octets.append(str(ipv4_int & 0xFF))
@@ -65,11 +88,21 @@ def int_to_dotquad(ipv4_int):
     return '.'.join(octets)
 
 def process_table(infile, root_list):
+    """Process the contents of the text-formatted routing table and form a
+    prefix tree for later processing, storing the output in root_list which
+    contains the prefix tree corresponding to each /8 in the IPv4 address space.
+
+    Arguments
+    infile -- a file-like object where each line is a routing table entry in
+    PREFIX AS_PATH format
+
+    """
     line_count = 0
     for line in infile:
+        # this needs to change to handle peers with same AS, different IP
         components = line.split(' ')
         [prefix, prefix_len] = components[0].split('/')
-        as_path = map(extract_asn, components[1:])
+        as_path = [extract_asn(asn) for asn in components[1:]]
         as_path.reverse()
         new_prefix = CidrPrefix(dotquad_to_int(prefix), int(prefix_len),
             as_path, is_aggregable=True)
@@ -80,19 +113,24 @@ def process_table(infile, root_list):
             if root_list[new_prefix.prefix >> 24] is None:
                 root_list[new_prefix.prefix >> 24] = new_prefix
             else:
-                print("DANGER: strange ordering may affect classification.")
-                new_prefix.ms_0 = root_list[new_prefix.prefix >> 24].ms_0
-                new_prefix.ms_1 = root_list[new_prefix.prefix >> 24].ms_1
-                root_list[new_prefix.prefix >> 24] = new_prefix
-        else:
+                root_list[new_prefix.prefix >> 24].merge(new_prefix)
+        elif new_prefix.prefix_len > 8:
             if root_list[new_prefix.prefix >> 24] is None:
-                root_list[new_prefix.prefix >> 24] = CidrPrefix(new_prefix.prefix & 0xFF000000, 8)
+                root_list[new_prefix.prefix >> 24] = CidrPrefix(
+                    new_prefix.prefix & 0xFF000000, 8)
             add_node_to_tree(root_list[new_prefix.prefix >> 24], new_prefix)
-        # line_count += 1
-        # if line_count % 1000 == 0:
-            # print line_count
+        else:
+            print("error, prefix bigger than /8 !")
+
+        line_count += 1
+        if line_count % 1000 == 0:
+            print line_count
 
 def add_node_to_tree(root, new):
+    """Add node new to the prefix tree rooted at root. Update all ancestor nodes
+    traversed from root to the proper location of new.
+
+    """
     cursor = root
     test_mask = 0x00800000
 
@@ -103,16 +141,17 @@ def add_node_to_tree(root, new):
                 if i == new.prefix_len:
                     cursor.ms_1 = new
                 else:
-                    cursor.ms_1 = CidrPrefix(prefix=(cursor.prefix | test_mask)
-                    , prefix_len=i)
+                    cursor.ms_1 = CidrPrefix(
+                        prefix=(cursor.prefix | test_mask), prefix_len=i)
             else:
                 if i == new.prefix_len:
-                    if cursor.ms_1.as_path is None:
+                    if not cursor.ms_1.as_paths:
                         new.ms_0 = cursor.ms_1.ms_0
                         new.ms_1 = cursor.ms_1.ms_1
                         cursor.ms_1 = new
                     else:
-                        print("DANGER: apparent overwrite of existing prefix.")
+                        cursor.ms_1.merge(new)
+                        #print("merge with existing prefix.")
             cursor = cursor.ms_1
         else:
             if cursor.ms_0 == None:
@@ -122,25 +161,31 @@ def add_node_to_tree(root, new):
                     cursor.ms_0 = CidrPrefix(prefix=cursor.prefix, prefix_len=i)
             else:
                 if i == new.prefix_len:
-                    if cursor.ms_0.as_path is None:
+                    if not cursor.ms_0.as_paths:
                         new.ms_0 = cursor.ms_0.ms_0
                         new.ms_1 = cursor.ms_0.ms_1
                         cursor.ms_0 = new
                     else:
-                        print("DANGER: apparent overwrite of existing prefix.")
+                        cursor.ms_0.merge(new)
+                        #print("merge with existing prefix.")
             cursor = cursor.ms_0
         test_mask >>= 1
 
 def update_ancestor(ancestor, descendant):
-    """I could do something clever here whereby i keep track of the last AS_PATH
-    seen by a virtual node in the tree, and if no other AS_PATH is added to the
-    subtree, then it could indeed be aggregated at this higher block.
+    """Update ancestor's metadata to be consistent with the fact that descendant
+    is now a descendant of ancestor, which may affect ancestor's aggregation
+    potential, etc.
+
     """
-    if ancestor.as_path is not None and descendant.as_path is not None:
+    """
+    TODO: I could do something clever here whereby i keep track of the last
+    AS_PATH seen by a virtual node in the tree, and if no other AS_PATH is added
+    to the subtree, then it could indeed be aggregated at this higher block.
+    """
+    if ancestor.as_paths and descendant.as_paths:
         if ancestor.prefix_class == PREFIX_CLASSES.LONELY:
             ancestor.prefix_class = PREFIX_CLASSES.TOP
-
-        if ancestor.as_path == descendant.as_path:
+        if as_paths_match(ancestor.as_paths, descendant.as_paths):
             descendant.prefix_class = PREFIX_CLASSES.DEAGG
             if ancestor.is_aggregable:
                 ancestor.aggregable_more_specifics += 1
@@ -150,7 +195,90 @@ def update_ancestor(ancestor, descendant):
                 ancestor.is_aggregable = False
                 ancestor.aggregable_more_specifics = 0
 
+def as_paths_match(anc_paths, des_paths):
+    """Check to see if the ancestor's AS_PATHs and the descendant's AS_PATHs are
+    compatible for aggregation. Returns True if compatible, or False otherwise.
+    We define compatibility as whether the fragment of each of descendant's
+    AS_PATHs from the descendant's origin to the ancestor's origin are equal. If
+    the ancestor is a multiple-origin prefix, this is not compatible.
+
+    Example: (origin is the rightmost asn)
+
+    10.0.0.0/8          3356 3 10
+                        7018 3 10
+    10.128.0.0/9        3356 3 10 30
+                        26 7018 3 10 30
+    10.128.128.0/16     3356 3 10 30
+                        26 7018 50 30
+
+    10/8 and 10.128/9 are aggregable because:
+    - 10/8's (single) origin
+        = AS10
+    - path fragments from 10/8's origin to 10.128/9's origin
+        = 10 30
+        = 10 30
+    - both paths are equal -- aggregable
+
+    10/8 and 10.128.128/16 are NOT aggregable because:
+    - 10/8's (single) origin
+        = AS10
+    - path fragments from 10/8's origin to 10.128.128/16's origin
+        = 10 30
+        = [] (AS10 NOT FOUND in 26 7018 50 30)
+    - paths are not equal -- NOT aggregable
+
+    TODO what about the crazy case of deaggregates corresponding 1-to-1 to each
+    of the the ancestor's MOAS routes?
+
+    """
+    match = True
+    anc_origin_set = set([x[0] for x in anc_paths])
+    if len(anc_origin_set) == 1:
+        anc_origin = anc_origin_set.pop()
+        try:
+            # .index(anc_origin)+1 to include anc_origin in path fragment
+            #
+            # all paths must be equal, so we'll use the first as our yardstick
+            p = des_paths[0]
+            check_path = deprepend_as_path(p[:p.index(anc_origin)])
+            for p in des_paths[1:]:
+                if check_path != deprepend_as_path(p[:p.index(anc_origin)]):
+                    match = False
+                    break
+        except ValueError:
+            match = False
+    else:
+        print("error: ancestor is MOAS")
+        match = False
+    return match
+
+def deprepend_as_path(path):
+    """A helper function to remove AS_PATH prepending while maintaining the
+    order of AS_PATH traversal. This is used to produce a canonical
+    representation of each AS_PATH from a routing policy perspective (but not
+    TE, BGP decision algorithm, etc. perspective0
+
+    Example:
+
+        deprepend_as_path([1, 1, 2, 3, 3, 4, 5, 5]) = [1, 2, 3, 4, 5]
+        deprepend_as_path([1, 1, 2, 3, 3, 1, 1, 1, 2, 1]) = [1, 2, 3, 1, 2, 1]
+
+    """
+    current_as = None
+    new_path = []
+    for asn in path:
+        if asn != current_as:
+            current_as = asn
+            new_path.append(asn)
+    return new_path
+
 def extract_asn(s):
+    """A helper function to extract AS numbers from AS_PATH string elements that
+    may contain AS_SETs (denoted by '{ASN1, ASN2, ...}'). If the string does not
+    contain an AS_SET or if the AS_SET contains only one AS number, the AS
+    number is returned. If the AS_SET contains two or more ASNs, 0 is returned.
+
+    """
     s = s.strip()
     if s.find('{') > -1:
         components = s[1:-1].split(',')
@@ -225,9 +353,9 @@ What needs to happen:
 #def main():
 if __name__ == '__main__':
     print("Starting processing table.")
-    root_list = [None for i in xrange(256)]
+    root_list = [None for x in xrange(256)]
     #f = open('../nov12/3356-rib.20101113.0400.txt')
-    f = open('../oct22/3356_table_out_2.txt')
+    f = open('../nov12/rib.20101113.0400.txt')
     process_table(f, root_list)
     print("Ending processing table.")
 
