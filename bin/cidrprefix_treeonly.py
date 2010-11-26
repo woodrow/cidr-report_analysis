@@ -39,8 +39,10 @@ class CidrPrefix(object):
         # each as_path is list of integers with origin in index 0
         if as_path:
             self.as_paths = [as_path]
+            self.origin_as = as_path[0]
         else:
             self.as_paths = []
+            self.origin_as = None
 
         self.ms_0 = ms_0
         self.ms_1 = ms_1
@@ -59,8 +61,13 @@ class CidrPrefix(object):
     def __repr__(self):
         return self.__str__()
 
-    def merge(self, new):
-        self.as_paths += new.as_paths
+    def add_route(self, as_path):
+        if as_path[0] != self.origin_as:
+            if len(self.as_paths) == 0:
+                self.origin_as = as_path[0]
+            else:
+                self.origin_as = None
+        self.as_paths.append(as_path)
 
 def dotquad_to_int(ipv4_str):
     """Convert an IPv4 address in dotted quad string representation to 32-bit
@@ -104,21 +111,21 @@ def process_table(infile, root_list):
         [prefix, prefix_len] = components[0].split('/')
         as_path = [extract_asn(asn) for asn in components[1:]]
         as_path.reverse()
-        new_prefix = CidrPrefix(dotquad_to_int(prefix), int(prefix_len),
-            as_path, is_aggregable=True)
+        prefix = dotquad_to_int(prefix)
+        prefix_len = int(prefix_len)
+        # new_route_tuple = (prefix, prefix_len, as_path)
+
         # if as_path[0] == 3:
             # print as_path
             # print new_prefix
-        if new_prefix.prefix_len == 8:
-            if root_list[new_prefix.prefix >> 24] is None:
-                root_list[new_prefix.prefix >> 24] = new_prefix
+        if prefix_len >= 8:
+            if root_list[prefix >> 24] is None:
+                root_list[prefix >> 24] = CidrPrefix(prefix & 0xFF000000, 8)
+            if prefix_len > 8:
+                add_route_to_tree(root_list[prefix >> 24],
+                    prefix, prefix_len, as_path)
             else:
-                root_list[new_prefix.prefix >> 24].merge(new_prefix)
-        elif new_prefix.prefix_len > 8:
-            if root_list[new_prefix.prefix >> 24] is None:
-                root_list[new_prefix.prefix >> 24] = CidrPrefix(
-                    new_prefix.prefix & 0xFF000000, 8)
-            add_node_to_tree(root_list[new_prefix.prefix >> 24], new_prefix)
+                root_list[prefix >> 24].add_route(as_path)
         else:
             print("error, prefix bigger than /8 !")
 
@@ -126,7 +133,7 @@ def process_table(infile, root_list):
         if line_count % 1000 == 0:
             print line_count
 
-def add_node_to_tree(root, new):
+def add_route_to_tree(root, prefix, prefix_len, as_path):
     """Add node new to the prefix tree rooted at root. Update all ancestor nodes
     traversed from root to the proper location of new.
 
@@ -134,40 +141,32 @@ def add_node_to_tree(root, new):
     cursor = root
     test_mask = 0x00800000
 
-    for i in xrange(9, new.prefix_len+1):
-        update_ancestor(cursor, new)
-        if test_mask & new.prefix > 0:
+    for i in xrange(9, prefix_len+1):
+        if test_mask & prefix > 0:
             if cursor.ms_1 == None:
-                if i == new.prefix_len:
-                    cursor.ms_1 = new
+                if i == prefix_len:
+                    cursor.ms_1 = CidrPrefix(prefix, prefix_len, as_path)
                 else:
                     cursor.ms_1 = CidrPrefix(
                         prefix=(cursor.prefix | test_mask), prefix_len=i)
             else:
-                if i == new.prefix_len:
-                    if not cursor.ms_1.as_paths:
-                        new.ms_0 = cursor.ms_1.ms_0
-                        new.ms_1 = cursor.ms_1.ms_1
-                        cursor.ms_1 = new
-                    else:
-                        cursor.ms_1.merge(new)
-                        #print("merge with existing prefix.")
+                if i == prefix_len:
+                    cursor.ms_1.add_route(as_path)
+                    #print("merge with existing prefix.")
+            update_ancestor(cursor, cursor.ms_1)
             cursor = cursor.ms_1
         else:
             if cursor.ms_0 == None:
-                if i == new.prefix_len:
-                    cursor.ms_0 = new
+                if i == prefix_len:
+                    cursor.ms_0 = CidrPrefix(prefix, prefix_len, as_path)
                 else:
-                    cursor.ms_0 = CidrPrefix(prefix=cursor.prefix, prefix_len=i)
+                    cursor.ms_0 = CidrPrefix(
+                        prefix=cursor.prefix, prefix_len=i)
             else:
-                if i == new.prefix_len:
-                    if not cursor.ms_0.as_paths:
-                        new.ms_0 = cursor.ms_0.ms_0
-                        new.ms_1 = cursor.ms_0.ms_1
-                        cursor.ms_0 = new
-                    else:
-                        cursor.ms_0.merge(new)
-                        #print("merge with existing prefix.")
+                if i == prefix_len:
+                    cursor.ms_0.add_route(as_path)
+                    #print("merge with existing prefix.")
+            update_ancestor(cursor, cursor.ms_0)
             cursor = cursor.ms_0
         test_mask >>= 1
 
@@ -185,7 +184,7 @@ def update_ancestor(ancestor, descendant):
     if ancestor.as_paths and descendant.as_paths:
         if ancestor.prefix_class == PREFIX_CLASSES.LONELY:
             ancestor.prefix_class = PREFIX_CLASSES.TOP
-        if as_paths_match(ancestor.as_paths, descendant.as_paths):
+        if as_paths_match(ancestor, descendant):
             descendant.prefix_class = PREFIX_CLASSES.DEAGG
             if ancestor.is_aggregable:
                 ancestor.aggregable_more_specifics += 1
@@ -195,13 +194,33 @@ def update_ancestor(ancestor, descendant):
                 ancestor.is_aggregable = False
                 ancestor.aggregable_more_specifics = 0
 
-def as_paths_match(anc_paths, des_paths):
+def as_paths_match(anc, des):
     """Check to see if the ancestor's AS_PATHs and the descendant's AS_PATHs are
     compatible for aggregation. Returns True if compatible, or False otherwise.
     We define compatibility as whether the fragment of each of descendant's
     AS_PATHs from the descendant's origin to the ancestor's origin are equal. If
     the ancestor is a multiple-origin prefix, this is not compatible.
 
+    """
+    match = True
+    if anc.origin_as:
+        try:
+            # .index(anc_origin)+1 to include anc_origin in path fragment
+            #
+            # all paths must be equal, so we'll use the first as our yardstick
+            p = des.as_paths[0]
+            check_path = deprepend_as_path(p[:p.index(anc.origin_as)])
+            for p in des.as_paths[1:]:
+                if check_path != deprepend_as_path(p[:p.index(anc.origin_as)]):
+                    match = False
+                    break
+        except ValueError:
+            match = False
+    else:
+#        print("error: ancestor is MOAS")
+        match = False
+    return match
+    """
     Example: (origin is the rightmost asn)
 
     10.0.0.0/8          3356 3 10
@@ -231,26 +250,6 @@ def as_paths_match(anc_paths, des_paths):
     of the the ancestor's MOAS routes?
 
     """
-    match = True
-    anc_origin_set = set([x[0] for x in anc_paths])
-    if len(anc_origin_set) == 1:
-        anc_origin = anc_origin_set.pop()
-        try:
-            # .index(anc_origin)+1 to include anc_origin in path fragment
-            #
-            # all paths must be equal, so we'll use the first as our yardstick
-            p = des_paths[0]
-            check_path = deprepend_as_path(p[:p.index(anc_origin)])
-            for p in des_paths[1:]:
-                if check_path != deprepend_as_path(p[:p.index(anc_origin)]):
-                    match = False
-                    break
-        except ValueError:
-            match = False
-    else:
-        print("error: ancestor is MOAS")
-        match = False
-    return match
 
 def deprepend_as_path(path):
     """A helper function to remove AS_PATH prepending while maintaining the
@@ -312,7 +311,7 @@ def get_as_agg_list(prefix_agg_list):
     as_aggregates = []
     for k, g in itertools.groupby(as_agg_list, lambda x: x[2]):
         as_aggregates.append((k, sum(map(lambda x: x[1], g))))
-    as_aggregates.sort(key=lambda x: x[1])
+    as_aggregates.sort(key=lambda x: x[1], reverse=True)
     return as_aggregates
 
 def get_as_netsnow_dict(root_list):
@@ -322,9 +321,8 @@ def get_as_netsnow_dict(root_list):
     return as_netsnow_dict
 
 def _get_as_netsnow_list_helper(prefix, as_netsnow_dict):
-    if prefix.as_path is not None:
-        as_netsnow_dict[prefix.as_path[0]] = as_netsnow_dict.get(
-            prefix.as_path[0], 0) + 1
+    for as_path in prefix.as_paths:
+        as_netsnow_dict[as_path[0]] = as_netsnow_dict.get(as_path[0], 0) + 1
     if prefix.ms_0 is not None:
         _get_as_netsnow_list_helper(prefix.ms_0, as_netsnow_dict)
     if prefix.ms_1 is not None:
@@ -350,6 +348,23 @@ What needs to happen:
     - for each subtree rooted at a TOP, determine if
 """
 
+def print_cidr_report(as_agg_list, as_netsnow_dict, top_n=30):
+    """
+    [8     ][     8][4 ][     8][4 ][     8][4 ][     8]
+    ASnum   NetsNow     NetsAggr    NetGain     %Gain
+    19262     340775      208585      132170       38.8%
+    """
+    print(" --- 12Nov10 ---")
+    print("""ASnum   NetsNow     NetsAggr    NetGain     %Gain""")
+    for i in xrange(top_n):
+        as_num = as_agg_list[i][0]
+        netgain = as_agg_list[i][1]
+        netsnow = as_netsnow_dict[as_num]
+        netsaggr = netsnow - netgain
+        pctgain = float(netgain)/float(netsnow)
+    print("{0:<8}{1:>8}    {2:>8}    {3:>8}    {4:>8.3}%".format(
+        as_num, netsnow, netsaggr, netgain, pctgain))
+
 #def main():
 if __name__ == '__main__':
     print("Starting processing table.")
@@ -358,6 +373,10 @@ if __name__ == '__main__':
     f = open('../nov12/rib.20101113.0400.txt')
     process_table(f, root_list)
     print("Ending processing table.")
+    prefix_agg_list = get_prefix_agg_list(root_list)
+    as_agg_list = get_as_agg_list(prefix_agg_list)
+    as_netsnow_dict = get_as_netsnow_dict(root_list)
+    print_cidr_report(as_agg_list, as_netsnow_dict)
 
 #if __name__ == '__main__':
 #    main()
