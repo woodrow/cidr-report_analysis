@@ -120,7 +120,8 @@ def process_table(infile, root_list):
             # print new_prefix
         if prefix_len >= 8:
             if root_list[prefix >> 24] is None:
-                root_list[prefix >> 24] = CidrPrefix(prefix & 0xFF000000, 8)
+                root_list[prefix >> 24] = CidrPrefix(prefix & 0xFF000000, 8,
+                    is_aggregable=(prefix_len == 8))
             if prefix_len > 8:
                 add_route_to_tree(root_list[prefix >> 24],
                     prefix, prefix_len, as_path)
@@ -145,10 +146,11 @@ def add_route_to_tree(root, prefix, prefix_len, as_path):
         if test_mask & prefix > 0:
             if cursor.ms_1 == None:
                 if i == prefix_len:
-                    cursor.ms_1 = CidrPrefix(prefix, prefix_len, as_path)
+                    cursor.ms_1 = CidrPrefix(prefix, prefix_len, as_path,
+                        is_aggregable=True)
                 else:
-                    cursor.ms_1 = CidrPrefix(
-                        prefix=(cursor.prefix | test_mask), prefix_len=i)
+                    cursor.ms_1 = CidrPrefix(prefix=(cursor.prefix | test_mask),
+                        prefix_len=i, is_aggregable=False)
             else:
                 if i == prefix_len:
                     cursor.ms_1.add_route(as_path)
@@ -158,10 +160,11 @@ def add_route_to_tree(root, prefix, prefix_len, as_path):
         else:
             if cursor.ms_0 == None:
                 if i == prefix_len:
-                    cursor.ms_0 = CidrPrefix(prefix, prefix_len, as_path)
+                    cursor.ms_0 = CidrPrefix(prefix, prefix_len, as_path,
+                        is_aggregable=True)
                 else:
                     cursor.ms_0 = CidrPrefix(
-                        prefix=cursor.prefix, prefix_len=i)
+                        prefix=cursor.prefix, prefix_len=i, is_aggregable=False)
             else:
                 if i == prefix_len:
                     cursor.ms_0.add_route(as_path)
@@ -193,6 +196,8 @@ def update_ancestor(ancestor, descendant):
             if ancestor.is_aggregable:
                 ancestor.is_aggregable = False
                 ancestor.aggregable_more_specifics = 0
+#    else:
+#        ancestor.is_aggregable = False
 
 def as_paths_match(anc, des):
     """Check to see if the ancestor's AS_PATHs and the descendant's AS_PATHs are
@@ -305,7 +310,7 @@ def _get_prefix_agg_list_helper(prefix, prefix_agg_list):
             _get_prefix_agg_list_helper(prefix.ms_1, prefix_agg_list)
 
 def get_as_agg_list(prefix_agg_list):
-    as_agg_list = [(str(x), x.aggregable_more_specifics, x.as_path[0])
+    as_agg_list = [(str(x), x.aggregable_more_specifics, x.origin_as)
         for x in prefix_agg_list]
     as_agg_list.sort(key=lambda x: x[2])
     as_aggregates = []
