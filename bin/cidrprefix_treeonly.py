@@ -184,7 +184,14 @@ def update_ancestor(ancestor, descendant):
     AS_PATH seen by a virtual node in the tree, and if no other AS_PATH is added
     to the subtree, then it could indeed be aggregated at this higher block.
     """
+    if ((ancestor.prefix & 0xFFFE0000) == ((174<<24) + (86<<16)) or
+        (ancestor.prefix & 0xFFFE0000) == ((174<<24) + (86<<16))):
+        print ("ancestor", ancestor, ancestor.as_paths)
+        print ("descendant", descendant, descendant.as_paths)
     if len(ancestor.as_paths) > 0 and len(descendant.as_paths) > 0:
+        if ((ancestor.prefix & 0xFFFE0000) == ((174<<24) + (86<<16)) or
+            (ancestor.prefix & 0xFFFE0000) == ((174<<24) + (86<<16))):
+                print("success!")
         if ancestor.prefix_class == PREFIX_CLASSES.LONELY:
             ancestor.prefix_class = PREFIX_CLASSES.TOP
         if as_paths_match(ancestor, descendant):
@@ -375,7 +382,8 @@ if __name__ == '__main__':
     print("Starting processing table.")
     root_list = [None for x in xrange(256)]
     #f = open('../nov12/3356-rib.20101113.0400.txt')
-    f = open('../nov12/rib.20101113.0400.txt')
+    #f = open('../nov12/rib.20101113.0400.txt')
+    f = open('../nov12/rib_174-86.txt')
     process_table(f, root_list)
     print("Ending processing table.")
     prefix_agg_list = get_prefix_agg_list(root_list)
