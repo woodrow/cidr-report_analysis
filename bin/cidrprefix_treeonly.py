@@ -184,7 +184,7 @@ def update_ancestor(ancestor, descendant):
     AS_PATH seen by a virtual node in the tree, and if no other AS_PATH is added
     to the subtree, then it could indeed be aggregated at this higher block.
     """
-    if ancestor.as_paths and descendant.as_paths:
+    if len(ancestor.as_paths) > 0 and len(descendant.as_paths) > 0:
         if ancestor.prefix_class == PREFIX_CLASSES.LONELY:
             ancestor.prefix_class = PREFIX_CLASSES.TOP
         if as_paths_match(ancestor, descendant):
@@ -366,9 +366,9 @@ def print_cidr_report(as_agg_list, as_netsnow_dict, top_n=30):
         netgain = as_agg_list[i][1]
         netsnow = as_netsnow_dict[as_num]
         netsaggr = netsnow - netgain
-        pctgain = float(netgain)/float(netsnow)
-    print("{0:<8}{1:>8}    {2:>8}    {3:>8}    {4:>8.3}%".format(
-        as_num, netsnow, netsaggr, netgain, pctgain))
+        pctgain = 100.0*float(netgain)/float(netsnow)
+        print("{0:<8}{1:>8}    {2:>8}    {3:>8}    {4:>8.3}%".format(
+            as_num, netsnow, netsaggr, netgain, pctgain))
 
 #def main():
 if __name__ == '__main__':
