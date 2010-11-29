@@ -377,8 +377,7 @@ def print_cidr_report(as_agg_list, as_netsnow_dict, top_n=30):
         print("{0:<8}{1:>8}    {2:>8}    {3:>8}    {4:>8.3}%".format(
             as_num, netsnow, netsaggr, netgain, pctgain))
 
-#def main():
-if __name__ == '__main__':
+def main():
     print("Starting processing table.")
     root_list = [None for x in xrange(256)]
     #f = open('../nov12/3356-rib.20101113.0400.txt')
@@ -391,5 +390,5 @@ if __name__ == '__main__':
     as_netsnow_dict = get_as_netsnow_dict(root_list)
     print_cidr_report(as_agg_list, as_netsnow_dict)
 
-#if __name__ == '__main__':
-#    main()
+if __name__ == '__main__':
+    main()
