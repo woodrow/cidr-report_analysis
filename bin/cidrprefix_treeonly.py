@@ -70,6 +70,14 @@ class CidrPrefix(object):
         self.as_paths += new.as_paths
         # is_aggregable, etc. semantics...?
 
+    def add_aspath(self, as_path):
+        if self.origin_as != as_path[0]:
+            if len(self.as_paths):
+                self.origin_as = None
+            else:
+                self.origin_as = as_path[0]
+        self.as_paths.append(as_path)
+
 def dotquad_to_int(ipv4_str):
     """Convert an IPv4 address in dotted quad string representation to 32-bit
     integer representation.
@@ -106,29 +114,37 @@ def process_table(infile, root_list):
 
     """
     line_count = 0
+    prefix_str = ""
+    new_cidrprefix = None
     for line in infile:
-        # this needs to change to handle peers with same AS, different IP
+        # TODO this needs to change to handle peers with same AS, different IP
         components = line.split()
         [prefix, prefix_len] = components[0].split('/')
         as_path = [extract_asn(asn) for asn in components[1:]]
         as_path.reverse()
-        new_prefix = CidrPrefix(dotquad_to_int(prefix), int(prefix_len),
-            as_path, is_aggregable=True)
-        # if as_path[0] == 3:
-            # print as_path
-            # print new_prefix
-        if new_prefix.prefix_len == 8:
-            if root_list[new_prefix.prefix >> 24] is None:
-                root_list[new_prefix.prefix >> 24] = new_prefix
-            else:
-                root_list[new_prefix.prefix >> 24].merge(new_prefix)
-        elif new_prefix.prefix_len > 8:
-            if root_list[new_prefix.prefix >> 24] is None:
-                root_list[new_prefix.prefix >> 24] = CidrPrefix(
-                    new_prefix.prefix & 0xFF000000, 8)
-            add_node_to_tree(root_list[new_prefix.prefix >> 24], new_prefix)
+
+        if prefix_str == components[0]:
+            new_cidrprefix.add_aspath(as_path)
         else:
-            print("error, prefix bigger than /8 !")
+            prefix_str = components[0]
+            # add old prefix to tree
+            if new_cidrprefix:
+                if new_cidrprefix.prefix_len == 8:
+                    if root_list[new_cidrprefix.prefix >> 24] is None:
+                        root_list[new_cidrprefix.prefix >> 24] = new_cidrprefix
+                    else:
+                        root_list[new_cidrprefix.prefix >> 24].merge(new_cidrprefix)
+                elif new_cidrprefix.prefix_len > 8:
+                    if root_list[new_cidrprefix.prefix >> 24] is None:
+                        root_list[new_cidrprefix.prefix >> 24] = CidrPrefix(
+                            new_cidrprefix.prefix & 0xFF000000, 8)
+                    add_node_to_tree(root_list[new_cidrprefix.prefix >> 24],
+                        new_cidrprefix)
+                else:
+                    print("error, prefix bigger than /8 !")
+            # create new prefix
+            new_cidrprefix = CidrPrefix(dotquad_to_int(prefix), int(prefix_len),
+            as_path, is_aggregable=True)
 
         line_count += 1
         if line_count % 1000 == 0:
@@ -373,8 +389,9 @@ def main():
     print("Starting processing table.")
     root_list = [None]*256
     #f = open('../nov12/3356-rib.20101113.0400.txt')
-    f = open('../nov12/rib.20101113.0400.txt')
+    #f = open('../nov12/rib.20101113.0400.txt')
     #f = open('../nov12/rib_174-86.txt')
+    f = open('../nov12/rib_68.txt')
     process_table(f, root_list)
     f.close()
     print("Ending processing table.")
