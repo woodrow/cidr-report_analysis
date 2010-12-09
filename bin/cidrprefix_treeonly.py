@@ -22,6 +22,7 @@ class Enumerate(object):
             setattr(self, name, number)
 
 PREFIX_CLASSES = Enumerate('LONELY', 'TOP', 'DEAGG', 'DELEG')
+DFZ_ASNS = [209, 701, 1239, 1299, 2828, 2914, 3356, 3549, 3561, 6453, 6461, 7018]
 
 class CidrPrefix(object):
     """An object representing a route to a CIDR prefix, including AS_PATH(s)
@@ -107,6 +108,9 @@ def process_table(infile, root_list):
     """Process the contents of the text-formatted routing table and form a
     prefix tree for later processing, storing the output in root_list which
     contains the prefix tree corresponding to each /8 in the IPv4 address space.
+
+    The input text file is assumed to be in contiguous blocks organized by
+    prefix to keep things efficient.
 
     Arguments
     infile -- a file-like object where each line is a routing table entry in
@@ -266,6 +270,19 @@ def as_paths_match(anc, des):
         match = False
     return match
 
+def as_paths_match_exactly(anc, des):
+    match = True
+    if anc.origin_as and des.origin_as:
+        try:
+            if des.as_paths[0].index(anc.origin_as) > 0:
+                match = False
+        except ValueError:
+            match = False
+    else:
+        match = False
+    return match
+
+
 def deprepend_as_path(path):
     """A helper function to remove AS_PATH prepending while maintaining the
     order of AS_PATH traversal. This is used to produce a canonical
@@ -355,7 +372,18 @@ def print_cidr_report(as_agg_list, as_netsnow_dict, top_n=30):
     19262     340775      208585      132170       38.8%
     """
     print(" --- 12Nov10 ---")
-    print("""ASnum   NetsNow     NetsAggr    NetGain     %Gain""")
+    print("ASnum   NetsNow     NetsAggr    NetGain     % Gain")
+
+    tbl_netgain = sum((x[1] for x in as_agg_list))
+    tbl_netsnow = sum(as_netsnow_dict.itervalues())
+    tbl_netsaggr = tbl_netsnow - tbl_netgain
+    tbl_pctgain = 100.0*float(tbl_netgain)/float(tbl_netsnow)
+    print("{0:<8}{1:>8}    {2:>8}    {3:>8}    {4:>8.3}%\n".format(
+        "Table", tbl_netsnow, tbl_netsaggr, tbl_netgain, tbl_pctgain))
+
+    sum_netsnow = 0
+    sum_netsaggr = 0
+    sum_netgain = 0
     for i in xrange(min(len(as_agg_list), top_n)):
         as_num = as_agg_list[i][0]
         netgain = as_agg_list[i][1]
@@ -364,6 +392,14 @@ def print_cidr_report(as_agg_list, as_netsnow_dict, top_n=30):
         pctgain = 100.0*float(netgain)/float(netsnow)
         print("{0:<8}{1:>8}    {2:>8}    {3:>8}    {4:>8.3}%".format(
             as_num, netsnow, netsaggr, netgain, pctgain))
+        sum_netsnow += netsnow
+        sum_netsaggr += netsaggr
+        sum_netgain += netgain
+
+    sum_pctgain = 100.0*float(sum_netgain)/float(sum_netsnow)
+    print("\n{0:<8}{1:>8}    {2:>8}    {3:>8}    {4:>8.3}%".format(
+        "Total", sum_netsnow, sum_netsaggr, sum_netgain, sum_pctgain))
+
 
 """
 What needs to happen:
@@ -384,6 +420,73 @@ What needs to happen:
     - for each subtree rooted at a TOP, determine if
 """
 
+def plot_tree_68(rl):
+    import networkx as nx
+    import matplotlib.pyplot as plt
+    graph = nx.DiGraph()
+    _plot_tree_68_helper(rl[68], rl[68], graph, 0, force=True)
+    #twopi, gvcolor, wc, ccomps, tred, sccmap, fdp, circo, neato, acyclic, nop, gvpr, dot.
+    #nodelist = [v for v in graph.nodes() if v.aggregable_more_specifics > 0]
+    #node_color = [color_func(v.aggregable_more_specifics) for v in graph]
+    #nx.draw_graphviz(graph, prog='dot', nodelist=nodelist, node_color=node_color)
+    #nx.draw_graphviz(graph, nodelist=nodelist, node_color=node_color)
+    nx.write_dot(graph, 'plot.dot')
+    #plt.show()
+
+def color_func(ams):
+    if ams > 0:
+        return 'g'
+    else:
+        return 'r'
+
+def _plot_tree_68_helper(node, parent_node, graph, deep, force=False):
+#    if deep > 8:
+#        return None
+    p = parent_node
+    r = None
+
+    if len(node.as_paths):
+        graph.add_node(node, shape='box', penwidth=2)
+        if node.aggregable_more_specifics > 0:
+            graph.node[node]['style'] = 'filled'
+            graph.node[node]['fillcolor'] = 'palegreen'
+        if node.prefix_class is PREFIX_CLASSES.LONELY:
+            graph.node[node]['color'] = 'black'
+        elif node.prefix_class is PREFIX_CLASSES.TOP:
+            graph.node[node]['color'] = 'blue'
+        elif node.prefix_class is PREFIX_CLASSES.DEAGG:
+            graph.node[node]['color'] = 'green'
+        elif node.prefix_class is PREFIX_CLASSES.DELEG:
+            graph.node[node]['color'] = 'red'
+#        else:
+#            graph.node[node]['color'] = 'red'
+        graph.node[node]['label'] = str(node) + ' ' +  str(node.aggregable_more_specifics) + '\\n' + str(node.origin_as)  + ' ' + str(node.as_paths[0])
+        # annotate
+        p = node
+        r = node
+    elif force:
+        graph.add_node(node, shape='box', color='grey', penwidth=2)
+        p = node
+        r = node
+    else:
+        graph.add_node(node, shape='point')
+        graph.node[node]['label'] = ''
+        p = node
+        r = node
+
+    if node.ms_0:
+        child = _plot_tree_68_helper(node.ms_0, p, graph, deep+1)
+        if child:
+            graph.add_edge(p, child)
+    if node.ms_1:
+        child = _plot_tree_68_helper(node.ms_1, p, graph, deep+1)
+        if child:
+            graph.add_edge(p, child)
+
+    return r
+
+
+
 def main():
     global root_list, prefix_agg_list, as_agg_list, as_netsnow_dict
     print("Starting processing table.")
@@ -399,6 +502,7 @@ def main():
     as_agg_list = get_as_agg_list(prefix_agg_list)
     as_netsnow_dict = get_as_netsnow_dict(root_list)
     print_cidr_report(as_agg_list, as_netsnow_dict)
+    plot_tree_68(root_list)
 
 if __name__ == '__main__':
     main()
