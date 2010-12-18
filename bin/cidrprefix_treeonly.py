@@ -22,7 +22,8 @@ class Enumerate(object):
             setattr(self, name, number)
 
 PREFIX_CLASSES = Enumerate('LONELY', 'TOP', 'DEAGG', 'DELEG')
-DFZ_ASNS = [209, 701, 1239, 1299, 2828, 2914, 3356, 3549, 3561, 6453, 6461, 7018]
+DFZ_ASNS = [209, 701, 1239, 1299, 2828, 2914, 3356, 3549, 3561, 6453, 6461,
+    7018]
 
 class CidrPrefix(object):
     """An object representing a route to a CIDR prefix, including AS_PATH(s)
@@ -202,7 +203,7 @@ def update_ancestor(ancestor, descendant):
         if ancestor.prefix_class == PREFIX_CLASSES.LONELY:
             ancestor.prefix_class = PREFIX_CLASSES.TOP
 #            print(str(ancestor) + " is TOP")
-        if as_paths_match(ancestor, descendant):
+        if as_paths_match_to_dfz(ancestor, descendant):
             descendant.prefix_class = PREFIX_CLASSES.DEAGG
 #            print(str(descendant) + " is DEAGG")
             if ancestor.is_aggregable:
@@ -270,7 +271,7 @@ def as_paths_match(anc, des):
         match = False
     return match
 
-def as_paths_match_exactly(anc, des):
+def as_paths_match_origin(anc, des):
     match = True
     if anc.origin_as and des.origin_as:
         try:
@@ -281,6 +282,52 @@ def as_paths_match_exactly(anc, des):
     else:
         match = False
     return match
+
+def as_paths_match_to_dfz(anc, des):
+    match = True
+    if anc.origin_as and des.origin_as:
+        try:
+            if des.as_paths[0].index(anc.origin_as) > 0:
+                match = False
+        except ValueError:
+            match = False
+        first_des_fragment = None
+        for as_path in des.as_paths:
+            as_path = deprepend_as_path(as_path)
+            for i in xrange(len(as_path)):
+                if as_path[i] in DFZ_ASNS:
+                    first_des_fragment = as_path[:i]
+                    break
+
+        if first_des_fragment:
+            print(int_to_dotquad(des.prefix) + " First fragment: " + str(first_des_fragment))
+        else:
+            match = False
+
+        print("descendants")
+        for as_path in des.as_paths:
+            as_path = deprepend_as_path(as_path)
+            for i in xrange(len(as_path)):
+                if as_path[i] in DFZ_ASNS:
+                    print(as_path[:i])
+                    #print(as_path)
+                    if as_path[:i] != first_des_fragment:
+                        match = False
+                    break
+        print("ancestors")
+        for as_path in anc.as_paths:
+            as_path = deprepend_as_path(as_path)
+            for i in xrange(len(as_path)):
+                if as_path[i] in DFZ_ASNS:
+                    print(as_path[:i])
+                    #print(as_path)
+                    if as_path[:i] != first_des_fragment:
+                        match = False
+                    break
+    else:
+        match = False
+    return match
+
 
 
 def deprepend_as_path(path):
@@ -420,11 +467,11 @@ What needs to happen:
     - for each subtree rooted at a TOP, determine if
 """
 
-def plot_tree_68(rl):
+def plot_tree(rl, classa):
     import networkx as nx
     import matplotlib.pyplot as plt
     graph = nx.DiGraph()
-    _plot_tree_68_helper(rl[68], rl[68], graph, 0, force=True)
+    _plot_tree_helper(rl[classa], rl[classa], graph, 0, force=True)
     #twopi, gvcolor, wc, ccomps, tred, sccmap, fdp, circo, neato, acyclic, nop, gvpr, dot.
     #nodelist = [v for v in graph.nodes() if v.aggregable_more_specifics > 0]
     #node_color = [color_func(v.aggregable_more_specifics) for v in graph]
@@ -439,7 +486,7 @@ def color_func(ams):
     else:
         return 'r'
 
-def _plot_tree_68_helper(node, parent_node, graph, deep, force=False):
+def _plot_tree_helper(node, parent_node, graph, deep, force=False):
 #    if deep > 8:
 #        return None
     p = parent_node
@@ -475,11 +522,11 @@ def _plot_tree_68_helper(node, parent_node, graph, deep, force=False):
         r = node
 
     if node.ms_0:
-        child = _plot_tree_68_helper(node.ms_0, p, graph, deep+1)
+        child = _plot_tree_helper(node.ms_0, p, graph, deep+1)
         if child:
             graph.add_edge(p, child)
     if node.ms_1:
-        child = _plot_tree_68_helper(node.ms_1, p, graph, deep+1)
+        child = _plot_tree_helper(node.ms_1, p, graph, deep+1)
         if child:
             graph.add_edge(p, child)
 
@@ -492,9 +539,9 @@ def main():
     print("Starting processing table.")
     root_list = [None]*256
     #f = open('../nov12/3356-rib.20101113.0400.txt')
-    #f = open('../nov12/rib.20101113.0400.txt')
+    f = open('../nov12/rib.20101113.0400-origin_714.txt')
     #f = open('../nov12/rib_174-86.txt')
-    f = open('../nov12/rib_68.txt')
+    #f = open('../nov12/rib_68.txt')
     process_table(f, root_list)
     f.close()
     print("Ending processing table.")
@@ -502,7 +549,7 @@ def main():
     as_agg_list = get_as_agg_list(prefix_agg_list)
     as_netsnow_dict = get_as_netsnow_dict(root_list)
     print_cidr_report(as_agg_list, as_netsnow_dict)
-    plot_tree_68(root_list)
+    plot_tree(root_list, 17)
 
 if __name__ == '__main__':
     main()
