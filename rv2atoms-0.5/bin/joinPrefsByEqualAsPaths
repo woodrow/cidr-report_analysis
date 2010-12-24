@@ -1,0 +1,164 @@
+#!/usr/bin/perl -w
+
+# Copyright (C) 2002  The Regents of the University of California
+# 
+# Permission to use and install this software is hereby granted.
+# Permission to copy for internal use in testing, training,
+# evaluation and disaster recovery purposes, and for backup and
+# archival purposes is hereby granted. Permission to modify or
+# alter the software, but only to the extent necessary to make the
+# software operate at the site, and as long as this copyright
+# notice shall apply to the software as modified or altered, is
+# hereby granted. Permission to use, copy, modify, and distribute
+# any part of this software for educational, research and non-
+# profit purposes is hereby granted, provided that the above
+# copyright notice, this paragraph and the following three
+# paragraphs appear in all copies. All users of this software must
+# acknowledge in their publications or presentations the
+# University of California San Diego and the San Diego
+# Supercomputer Center as the source of the software.
+# 
+# IN NO EVENT SHALL THE UNIVERSITY OF CALIFORNIA BE LIABLE TO ANY PARTY
+# FOR DIRECT, INDIRECT, SPECIAL, INCIDENTAL, OR CONSEQUENTIAL DAMAGES,
+# INCLUDING LOST PROFITS, ARISING OUT OF THE USE OF THIS SOFTWARE, EVEN
+# IF THE UNIVERSITY OF CALIFORNIA HAS BEEN ADVISED OF THE POSSIBILITY
+# OF SUCH DAMAGE.
+# 
+# THE SOFTWARE PROVIDED HEREIN IS ON AN "AS IS" BASIS, AND THE UNIVERSITY
+# OF CALIFORNIA HAS NO OBLIGATION TO PROVIDE MAINTENANCE, SUPPORT,
+# UPDATES, ENHANCEMENTS, OR MODIFICATIONS.  THE UNIVERSITY OF CALIFORNIA
+# MAKES NO REPRESENTATIONS AND EXTENDS NO WARRANTIES OF ANY KIND, EITHER
+# IMPLIED OR EXPRESS, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
+# OF MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE, OR THAT THE USE
+# OF THE SOFTWARE WILL NOT INFRINGE ANY PATENT, TRADEMARK OR OTHER RIGHTS.
+
+# joinPrefsByEqualAsPaths
+# Authors:
+#   Patrick Verkaik (patrick@caida.org)
+#   Andre Broido: algorithms and scripts before rewrite
+#   Young Hyun: code review
+
+# Usage: gunzip -c fileprefix.pfaspcollsorted.gz |
+#        joinPrefsByEqualAsPaths debug fileprefix.atoms.ccdf |
+#        (etc)
+#
+# Called by findBgpAtoms. Reads prefixes and their collections of AS paths per
+# prefix from standard input (sorted by the collections of AS paths).
+# Aggregates the prefixes into groups with equal AS paths (i.e. per atom), and
+# writes that to standard output. For each atom a line containing the following
+# fields is written (separated by '+') to standard output:
+#   o the number of prefixes in the atom
+#   o the sorted list of prefixes in the atom
+#   o the collection of AS paths for the atom (as copied from standard input).
+#
+# In addition writes a distribution of prefix counts per atom to the
+# .atoms.ccdf file specified on the command line.
+#
+# The debug level of findBgpAtoms is passed as 'debug'.
+
+use strict;
+use FileHandle;
+sub processAtom($$);
+
+die "usage: joinPrefsByEqualAsPaths debug fileprefix.atoms.ccdf\n"
+  if @ARGV != 2;
+my ($debug, $ccdfFile) = (@ARGV);
+
+my $args = join " ", "$0 ", @ARGV;
+print STDERR "\nStarted: $args\n" if $debug;
+
+my %prefCnStats = ();   # distribution of the number of prefixes per atom
+my $totPrefCn = 0;	# total number of prefixes encountered
+
+my $curPrefAcc = "";	# list of prefixes seen for current path collection
+my $prevPaths;          # the path collection of the previous line
+while(<STDIN>){ 
+  next if /^\#/;
+  chomp;
+  next if /^$/;
+  $totPrefCn++;
+  my ($pref, $curPaths) = split ' ', $_;
+
+  if (defined $prevPaths and $curPaths ne $prevPaths ) {
+    # end of atom 
+    processAtom ($curPrefAcc, $prevPaths);
+    # start next atom
+    $curPrefAcc = "";
+  }
+
+  print STDERR "$.) $_\n" if $debug and $. % 25000 == 0;
+  $curPrefAcc .= "$pref ";
+  $prevPaths = $curPaths;
+}
+# end of final atom 
+processAtom($curPrefAcc, $prevPaths) if $curPrefAcc;
+
+### Write the .atoms.ccdf file.
+
+my $ccdfFH = new FileHandle;
+open $ccdfFH, ">$ccdfFile";
+print $ccdfFH "# Distributions of prefix count per atom.\n\n";
+
+print $ccdfFH "#prefs in atom  #atoms    N(>X)   N(>=X)  P(>=X),%\n";
+
+# Where we build up a summarised N(>X) distribution
+my $gXString = "#prefs   N(>X)\n";
+# Where we build up a summarised N(>=X) distribution
+my $geXString = "#prefs   N(>=X)\n"; 
+
+my $totAtomCn = 0;
+foreach my $prefCn (keys %prefCnStats) { 
+  $totAtomCn += $prefCnStats{$prefCn}; 
+}
+
+my $sum = 0;
+foreach my $prefCn (sort {$a<=>$b} keys %prefCnStats) { 
+
+  my $atomCn = $prefCnStats{$prefCn}; 
+  my $prevSum = $sum;
+  $sum += $atomCn;
+
+  printf($ccdfFH "%12d %8d %8d %8d %8.2f\n", $prefCn, $atomCn,
+    $totAtomCn - $sum, $totAtomCn - $prevSum,
+    100*($totAtomCn-$prevSum)/$totAtomCn);
+  $gXString .= sprintf("%6d %6d\n", $prefCn, $totAtomCn - $sum);
+  $geXString .= sprintf("%6d %6d\n", $prefCn, $totAtomCn - $prevSum);
+}
+
+print $ccdfFH "Number of BGP atoms: $totAtomCn\n";
+print $ccdfFH "Number of prefixes : $totPrefCn\n";
+print $ccdfFH "\n$gXString\n$geXString\n";
+
+
+#=========================================================================#
+
+# processAtom ($curPrefAcc, $paths)
+# Writes an atom to standard output, and updates %prefCnStats.
+sub processAtom($$)
+{
+  my ($prefList, $paths) = @_;
+
+  chop $prefList;  # trailing ' '
+  my @prefs = sort byPrefix split ' ', $prefList;
+  my $nprefs = scalar @prefs;
+  print "$nprefs+$prefList+$paths\n";
+  $prefCnStats{$nprefs}++;
+}
+	
+#=========================================================================#
+
+# sort byPrefix @prefixes
+# A well-defined sorting order for prefixes. The prefixes must include a prefix
+# length.
+# MAINTAINER: identical to straightenRV's byPrefix.
+sub byPrefix
+{
+  my @a = split m#[./]#, $a;
+  my @b = split m#[./]#, $b;
+
+  for (my $k = 0; $k < @a; $k++) {
+    my $cmp = $a[$k] <=> $b[$k];
+    return $cmp if $cmp != 0;
+  }
+  return 0;
+}

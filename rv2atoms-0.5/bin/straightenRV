@@ -1,0 +1,2626 @@
+#!/usr/bin/perl -w
+
+# Copyright (C) 2002,2008,2009  The Regents of the University of California
+# 
+# Permission to use and install this software is hereby granted.
+# Permission to copy for internal use in testing, training,
+# evaluation and disaster recovery purposes, and for backup and
+# archival purposes is hereby granted. Permission to modify or
+# alter the software, but only to the extent necessary to make the
+# software operate at the site, and as long as this copyright
+# notice shall apply to the software as modified or altered, is
+# hereby granted. Permission to use, copy, modify, and distribute
+# any part of this software for educational, research and non-
+# profit purposes is hereby granted, provided that the above
+# copyright notice, this paragraph and the following three
+# paragraphs appear in all copies. All users of this software must
+# acknowledge in their publications or presentations the
+# University of California San Diego and the San Diego
+# Supercomputer Center as the source of the software.
+# 
+# IN NO EVENT SHALL THE UNIVERSITY OF CALIFORNIA BE LIABLE TO ANY PARTY
+# FOR DIRECT, INDIRECT, SPECIAL, INCIDENTAL, OR CONSEQUENTIAL DAMAGES,
+# INCLUDING LOST PROFITS, ARISING OUT OF THE USE OF THIS SOFTWARE, EVEN
+# IF THE UNIVERSITY OF CALIFORNIA HAS BEEN ADVISED OF THE POSSIBILITY
+# OF SUCH DAMAGE.
+# 
+# THE SOFTWARE PROVIDED HEREIN IS ON AN "AS IS" BASIS, AND THE UNIVERSITY
+# OF CALIFORNIA HAS NO OBLIGATION TO PROVIDE MAINTENANCE, SUPPORT,
+# UPDATES, ENHANCEMENTS, OR MODIFICATIONS.  THE UNIVERSITY OF CALIFORNIA
+# MAKES NO REPRESENTATIONS AND EXTENDS NO WARRANTIES OF ANY KIND, EITHER
+# IMPLIED OR EXPRESS, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
+# OF MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE, OR THAT THE USE
+# OF THE SOFTWARE WILL NOT INFRINGE ANY PATENT, TRADEMARK OR OTHER RIGHTS.
+
+# straightenRV
+# Authors:
+#   Patrick Verkaik (patrick@caida.org)
+#   Andre Broido: algorithms and scripts before rewrite
+#   Young Hyun: code review
+#   Xenofontas Dimitropoulos: modifications for route servers
+
+use strict;
+use Getopt::Long;
+use FileHandle;
+use Carp;
+
+sub openFiles();
+sub readargs();
+sub selectPeers();
+sub usage(@);
+sub toNonRepASPath(@);
+sub processMRTTable();
+sub processRVTable();
+sub postprocessCheck();
+sub addPrefixLength($);
+sub writePrefixes();
+sub writeLinkFiles();
+sub writeStatsFile();
+sub writeDegreeDistribution($$$);
+sub writePeerFiles();
+sub writePrefixLengthDistrHeader();
+sub writePathLengthStatsHeader();
+sub writeDiversityHeader();
+sub writeGlobalPrefixLengthDistrHeader();
+sub writePeerPrefixDistrHeader();
+
+### command line arguments, see usage() for info
+my $progName;         # 'straightenRV'
+my $argv;
+my $cutoff;           # defined iff -c passed
+my $peerFile;         # defined iff -c passed
+my @inclPeers = ();
+my @exclPeers = ();
+my $largeFraction = 0.9;
+my $logInterval = 125000;
+my $lowMemory;        # defined iff -m passed
+my $infile;	      # full pathname of the rv table to process
+my $mrtInput = 0;     # whether the input file is in MRT format
+my $debug = 1;	      # debug level, see usage()
+my $assert = 0;	      # whether assertions are on
+my $skipInitialLoops = 0;	# skip paths that have AS loops starting at first AS in path (for backward compatibility)
+my $directory;
+
+my $includingPeers;   # true iff a -c or -i was passed.
+my %selpeer = ();     # maps $peer->1 for selected peers (only!)
+my %unselpeer = ();   # maps $peer->1 for unselected peers (only!)
+my $outputFilePrefix;
+
+### current line being processed
+my $text;	      # text of current line
+my $trunc_line;       # text of saved line which was trunctated
+
+# contents of fields of this line
+my $curStatusCode;
+my $curNetwork;
+my $curPeer;          # Next Hop field
+my $curLocPrf;
+my $curMetric;
+my @curPath;
+my $curPath;
+my $curOriginCode;
+my $curPrefix;        # $curNetwork or network from previous line if missing
+
+### statistics
+my $linesSkippedCn = 0;      # excluding unselected peers
+my $barePrefixCn = 0;        # the number of bare (classful) prefixes seen
+my %peerPrefixlengthCn = (); # a count of each peer IP + prefix length
+                             # combination
+my %peerCnPerPrefix = ();    # The number of peers that carry the prefix
+my %prefixCnPerPeer = ();      # number of prefixes seen for each peer IP.
+my %prefix24CnPerPeer = ();    # number of <= /24 prefixes seen for each peer IP
+my $sdhCn = 0;	      # number of Status Code fields containing 's', 'd or 'h'
+my $noOriginCodeCn = 0;  # number of Origin Code fields missing or '?'
+my $localPrefCn = 0;	 # number of non-zero local preference fields
+
+my $totalPathCn = 0;        # Number of paths.
+my $emptyAsPathCn = 0;       # Number of lines with no AS path, e.g. local.
+my $prependedPathCn = 0;  # Number of paths that contain prepending
+my $loopingPathCn = 0;    # number of paths that contain a loop
+my $nonRepAsCn = 0;  # number of AS tokens neither prepended nor part of a loop
+my $prepAsCn = 0;    # number of prepended AS tokens
+my $loopAsCn = 0;    # number of AS tokens that are part of a loop
+
+my $totAsSetCn = 0;  # number of AS sets found
+my %asSetCn = ();    # a count of each normalised AS set
+
+# Times each AS appears as transit in non-repeated paths. It is counted as
+# transit in a path if it is neither in origin (last) position, nor in peer
+# (first) position.
+my %transitAsCn = ();
+my %originAsCn = ();  # Times each AS appears as origin in non-repeated paths
+my %peerAsCn = ();    # Times each AS appears as AS peer in non-repeated paths
+		      # of length greater than one
+
+my %asCn = ();        # Times each AS appears in non-repeated paths
+
+my %prefixOriginAses = (); # For each prefix, a string-list of originating ASes,
+			   # as determined from non-repeated paths. May contain
+			   # duplicates.
+
+my %peer2as = ();        # The AS for each peer, as found in non-repeated paths.
+
+my %asLinkCn = ();   # Times each AS1-AS2 link appears in non-repeated paths
+my %as2LinkCn = ();  # Times each AS1-AS2-AS3 link appears in non-repeated paths
+my $disable_as2LinkCn = 0;   # %as2LinkCn should not be maintained
+
+# For each prefix, a string-list of origin links (first link in each
+# non-repeated AS path), each element of which is of the form
+# "$penultAs-$origAs". This list may contain duplicates.
+my %originLink = ();
+
+my %pathCn = ();      # Count of non-repeated AS paths.
+my %pathTailCn = ();  # Count of non-repeated AS path tails (without peer AS)
+my %peerPathCn =();   # Count of (peer, non-repeated AS path) pairs.
+my $disable_pathCn = 0;     # %pathCn and %pathTailCn should not be maintained
+my $disable_peerPathCn = 0; # %peerPathCn should not be maintained
+
+### writePrefixes() statistics  
+
+my %originCnStats = (); # Distribution of the per-prefix origin counts.
+my $maxOriginCn = 0; # Maximum over the number of distinct origins per prefix.
+
+# Maps each AS that multi-originates a prefix to the number of prefixes it
+# multi-originates.
+my %multiOriginAsCn = ();
+
+# Count per combination of origin ASes that together multi-originate a prefix.
+my %multiOriginAsGroupCn = ();
+
+# Distribution of %peerCnPerPrefix, i.e. of the number of peers that carry a
+# prefix.
+my %peerCnPerPrefixStats = ();
+
+# A distribution of prefix lengths of global prefixes.
+my %globalPrefixLengthStats = ();
+my $globalPrefixCn = 0; # The number of global prefixes seen.
+
+# The number of times each AS occurs in AS paths in any but the first position. 
+my %indegrees = ();
+# The number of times each AS occurs in AS paths in any but the last position.
+my %outdegrees = ();
+
+### file handles
+
+my $inputPipe;                    # decompression used to read $infile through
+my $inFH = new FileHandle;        # reads $infile
+my $fullFH = new FileHandle;      # writes the .full.gz file
+my $pfaspFH = new FileHandle;     # writes the .pfasp.gz file 
+my $prefFH = new FileHandle;      # writes the .pref file
+my $aspFH = new FileHandle;       # writes the .asp file
+my $aslkFH = new FileHandle;      # writes the .aslk file
+my $asFH = new FileHandle;        # writes the .as file
+my $asdegFH = new FileHandle;     # writes the .asdeg file
+my $as2lkFH = new FileHandle;     # writes the .as2lk file
+my $peerstatFH = new FileHandle;  # writes the .peerstat file
+my $peerFH = new FileHandle;      # writes the .peer file
+my $logFH = new FileHandle;       # writes the .log file
+my $statsFH = new FileHandle;     # writes the .stats file
+
+### globals for use by parseRVTableLine
+
+my $started = 0;  # header line was found, start parsing lines
+my $ended = 0;    # terminating line was found, stop parsing lines
+
+# start indexes of various fields as specified in the header
+my ($networkHeader, $nextHopHeader, $metricHeader, $locPrfHeader,
+       $weightHeader, $pathHeader);
+
+# widths weight field as determined by the header
+my $weightHeaderWidth;
+
+readargs();
+selectPeers();
+
+openFiles();
+
+#--------
+#closefiles();
+#-------
+if ($mrtInput) {
+  processMRTTable();
+}
+else {
+  processRVTable();
+}
+postprocessCheck();
+writePrefixes();
+writeLinkFiles();
+writePeerFiles();
+writeStatsFile();
+
+if (! close($inFH)) {
+  if ($inputPipe) {
+    die "could not '$inputPipe $infile': $! $?\n";
+  }
+  else {
+    die "could not close '$infile': $! $?\n";
+  }
+}
+close $fullFH or die "could not 'gzip -c >$outputFilePrefix.full.gz': $! $?\n";
+close $pfaspFH or die "could not 'gzip -c >$outputFilePrefix.pfasp.gz': $! $?\n";
+# XXX close $prefFH or die "could not 'gzip -c >$outputFilePrefix.pref.gz': $! $?\n";
+close $prefFH;
+# XXX close $aspFH or die "could not 'gzip -c >$outputFilePrefix.asp.gz': $! $?\n";
+close $aspFH unless $disable_pathCn;
+close $aslkFH;
+close $asFH;
+close $asdegFH;
+close $as2lkFH unless $disable_as2LinkCn;
+close $peerstatFH;
+close $peerFH;
+close $logFH;
+close $statsFH;
+
+print STDERR "done.\n" if $debug;
+
+#=========================================================================#
+
+sub usage(@)
+{
+  my @msgs = (@_);
+  print STDERR "Error: @msgs\n" if @msgs;
+  print STDERR <<"END";
+
+$progName: Straighten Oregon RouteViews table.
+
+Usage:
+$progName [ -c cutoff:peerfile ] [ -i|-e ip ] ... [ -i|-e ip ] [ -f large-fraction ] [ -l
+log-interval ] [ -m all|2links|paths|peerpaths ] [ -a ] [ -s ] [ -d debug-level ] [-r
+directories ] rvtable
+
+END
+  exit(1);
+}
+
+#=========================================================================#
+
+sub readargs()
+{
+  $0 =~ m#([^/]*)$#;
+  $progName = $1;
+  $argv = join " ", @ARGV;
+
+  my $cutoffOpt;
+  GetOptions(
+    'c=s' => \$cutoffOpt,
+    'i=s@' => \@inclPeers,
+    'e=s@' => \@exclPeers,
+    'f=f' => \$largeFraction,
+    'l=i' => \$logInterval,
+    'm=s' => \$lowMemory,
+    'a'   => \$assert,
+    's' =>   \$skipInitialLoops,
+    'd=i' => \$debug,
+    'r=s'=>\$directory,
+  ) or usage();
+
+  # -d
+  if ($debug > 2) {
+    $debug = 2;
+  }
+  elsif ($debug < 0) {
+    $debug = 0;
+  }
+  print STDERR "debug level: $debug\n" if $debug;
+
+  # -m
+  if (defined $lowMemory) {
+    if ($lowMemory eq "all") {
+      $disable_as2LinkCn = 1;
+      $disable_pathCn = 1;
+      $disable_peerPathCn = 1;
+    }
+    elsif ($lowMemory eq "2links") {
+      $disable_as2LinkCn = 1;
+    }
+    elsif ($lowMemory eq "paths") {
+      $disable_pathCn = 1;
+    }
+    elsif ($lowMemory eq "peerpaths") {
+      $disable_peerPathCn = 1;
+    }
+    else {
+      usage ("invalid -m argument: $lowMemory");
+    }
+    print STDERR "lowMemory=$lowMemory\n" if $debug == 2;
+  }
+  else {
+    if ($debug) {
+      print STDERR "warning: no -m option given!\n";
+      print STDERR "         you may require a lot of memory!\n";
+    }
+  }
+
+  # -a
+  print STDERR "assertions are " . ($assert ? "on\n" : "off\n") if $debug;
+
+  # -s
+  print STDERR "skip lines with AS loops that start at first AS: " .
+    ($skipInitialLoops ? "yes\n" : "no\n") if $debug;
+
+  # -c
+  if (defined $cutoffOpt) {
+    ($cutoff, $peerFile) = split (/:/, $cutoffOpt, 2);
+    if ($cutoff !~ /^\d+$/) {
+      usage ("-c argument must be of the form 'integer:string'");
+    }
+    unless ($peerFile) {
+      usage ("-c argument must be of the form 'integer:string'");
+    }
+    print STDERR "cutoff=$cutoff\n" if $debug == 2;
+    print STDERR "peerFile=$peerFile\n" if $debug == 2;
+  }
+
+  # -i and -e
+  foreach my $i (@inclPeers, @exclPeers) {
+    unless ($i =~ /^\d+\.\d+\.\d+\.\d+$/ ) {
+      usage ("$i is not a valid IP address");
+    }
+  }
+  print STDERR "inclPeers=", join (' ', @inclPeers), "\n" if $debug == 2;
+  print STDERR "exclPeers=", join (' ', @exclPeers), "\n" if $debug == 2;
+
+  print STDERR "largeFraction=$largeFraction\n" if $debug == 2;
+  print STDERR "logInterval=$logInterval\n" if $debug == 2;
+
+  $infile = shift @ARGV or usage("missing rvtable argument");
+  if (@ARGV) {
+    usage("too many arguments");
+  }
+  print STDERR "Running: $progName $argv\n" if $debug;
+
+  # -r ( the directory list)
+  if(defined $directory){
+     print STDERR "directory=$directory\n" if $debug == 2;
+     if(-d $directory){
+        #testing accessability
+        opendir(DIR,$directory) || die "cannnot go into the specified directory";
+        closedir(DIR);
+     }
+     else{
+        #making the directory if the directory does not exist 
+        mkdir($directory) || die "cannot make the specified directory";
+     }
+     unless ($directory =~ /\/$/){
+        $directory = "$directory/";
+     }
+  }
+
+
+}
+
+#=========================================================================#
+
+# Determines which peers are to be selected, and sets $includingPeers,
+# %selpeer, %unselpeer and $outputFilePrefix.
+sub selectPeers()
+{
+  ### extract year / month / day from $infile
+
+  my ($year, $month, $day);
+  # RouteViews snapshots up to Dec 1999 are named oix-full-YYYY-MM-...
+  if ($infile =~ /oix-full-(?:snapshot-)?(\d{4})-(\d\d)-(\d\d)-\d{4}.dat/) {
+    $year = $1; $month = $2; $day = $3;
+  }
+  elsif ($infile =~ /bgp_dump_(\d\d\d\d)(\d\d)(\d\d)/) {
+    $year = $1; $month = $2; $day = $3;
+  }
+  elsif ($infile =~ /(\d\d\d\d)-(\d\d)-(\d\d)_\d\d:\d\d:\d\d_PST/) {
+    $year = $1; $month = $2; $day = $3;
+  }
+  elsif ($infile =~ /rib\.(\d{4})(\d\d)(\d\d)\.\d{4}/) {
+    $year = $1; $month = $2; $day = $3;
+    $mrtInput = 1;
+  }
+  else {
+    usage("RV table name '$infile' incorrectly formatted");
+  }
+  print STDERR "RVtable: $infile\nyear: $year month: $month day: $day\n"
+    if $debug;
+
+  ### determine RV peer selection from -c, -i and -e
+
+  my $includedPeerCn = 0;  # number of peers included by -c and -i
+  my $excludedPeerCn = 0;  # number of peers excluded by -e
+
+  # -c
+
+  my $fh = new FileHandle();
+  if (defined $peerFile) {
+    open $fh, $peerFile or die "$peerFile: $!\n";
+    my %peerCnPerAs = (); # at most one peer per AS is included by -c
+    while (<$fh>) {
+      next unless /^\d/;
+
+      chomp;
+
+      # Select on <= /24 prefix count, and include only one peer per AS.
+      # Only the 'peer ip' field is required.  /24 prefix count and peer AS
+      # criteria are ignored if these fields are missing.
+      my ($peer, $count24, $dummy1, $dummy2, $peerAs) = split;
+
+      die "$peerFile: $.: invalid 'peer ip' field: $peer\n"
+        unless $peer =~ /^\d+\.\d+\.\d+\.\d+$/;
+      die "$peerFile: $.: invalid 'len<=24' field: $count24\n"
+        if defined($count24) and $count24 !~ /^\d+$/;
+      die "$peerFile: $.: invalid 'peer as' field: $peerAs\n"
+        if defined($peerAs) and $peerAs !~ /^[\d,]+$/;
+      next if (defined($count24) and $count24 < $cutoff) or
+              (defined($peerAs) and $peerCnPerAs{$peerAs}++);
+      print STDERR "Including peer $peer (24-count ",
+        (defined($count24) ? $count24: "unspecified"), ") from $peerFile\n"
+        if $debug == 2;
+      $includedPeerCn++;
+      $selpeer{$peer} = 1;
+    }
+    close $fh;
+  }
+
+  # -i
+  foreach my $peer (@inclPeers) {
+    print STDERR "Including peer $peer\n" if $debug == 2; 
+    if ($selpeer{$peer}) {
+      print STDERR "Peer $peer already included\n"; 
+    }
+    else {
+      $includedPeerCn++;
+      $selpeer{$peer} = 1;
+    }
+  }
+
+  # -e
+  foreach my $peer (@exclPeers) {
+    print STDERR "Excluding peer $peer\n" if $debug == 2;
+
+    if ($unselpeer{$peer}) {
+      print STDERR "Peer $peer already excluded\n";
+    }
+    else {
+      $excludedPeerCn++;
+      $unselpeer{$peer} = 1;
+      delete $selpeer{$peer};
+    }
+  }
+
+  ### format the output file name prefix
+
+  $outputFilePrefix = "bgp$year$month$day";
+
+  if (defined ($peerFile) or @inclPeers) {
+    $includingPeers = 1;
+    if (! %selpeer) {
+      die "No peers were selected after processing -c, -i and -e\n";
+    }
+    die if $includedPeerCn == 0; # assert
+  }
+  else {
+    $includingPeers = 0;
+  }
+
+  if (defined ($peerFile) or @inclPeers or @exclPeers) {
+    $outputFilePrefix .= "p$includedPeerCn";
+    $outputFilePrefix .= "e$excludedPeerCn" if $excludedPeerCn > 0;
+  }
+  else {
+    $outputFilePrefix .= "f";
+  }
+  if (scalar (keys %selpeer) == 1) {
+    my $peerOne = (keys %selpeer) [0];
+    $outputFilePrefix .= ".$peerOne";
+  }
+  print STDERR "Output filenames start with: $outputFilePrefix\n" if $debug;
+}
+
+#=========================================================================#
+
+# Parses $text, the current line of the RV table, into $curStatusCode,
+# $curNetwork, $curPeer, $curLocPrf, $curMetric, $curOriginCode, and
+# @curPath. $curNetwork, $curLocPrf, and $curMetric may be
+# undefined when absent; the remaining fields must be present. Returns 0 if
+# this line should be skipped, 1 otherwise.
+sub parseRVTableLine() {
+
+  # clear info from previous line
+  ($curStatusCode, $curNetwork, $curPeer, $curLocPrf, $curMetric, $curPath,
+   $curOriginCode, @curPath) = ();
+
+  printf(STDERR "%10d) %s\n", $., $text) if $debug and $. % $logInterval == 0;
+
+  # *Actual* end index of LocPrf field in this line. Note that this can
+  # differ (be shifted right) from what the header says, due to overruns of 
+  # preceding fields. However we assume that its width is not affected by
+  # this.
+  my $locPrfFieldEnd;
+
+  # Index of the first/last character of some tokens. Note that the
+  # Weight field is right-aligned.
+  my $weightTokenStart;
+  my $pathTokenStart;
+  my $nextHopTokenEnd;
+
+  if ($text =~ /Next Hop/) {
+
+    #   Network          Next Hop            Metric LocPrf Weight Path
+
+    $started = 1;
+    print STDERR "Heading 'Next Hop' found at line $.\n" if $debug == 2;
+    
+    $networkHeader = index($text, 'Network');
+    $nextHopHeader = index($text, 'Next Hop');
+    $metricHeader = index($text, 'Metric');
+    $locPrfHeader = index($text, 'LocPrf');
+    $weightHeader = index($text, 'Weight');
+    $pathHeader = index($text, 'Path');
+
+    $weightHeaderWidth = $pathHeader - $weightHeader - 1; # one for the space
+    print STDERR "weightHeaderWidth=$weightHeaderWidth\n" if $debug == 2;
+
+    return 0;
+  } 
+
+  return 0 if ! $started;
+  #a line that is a string with '>' as the last character
+  # is taken as the end of the file.
+  $ended = 1 if ($text =~ /\>$/ ) ; # skip lines following the data
+  return 0 if $ended;
+
+  print STDERR "\n$.: $text\n" if $debug == 2;
+
+  # First check whether this line is the second part of a split line. See the
+  # example below under 'if (@fields < 3)'
+  if (defined $trunc_line) {
+    my $prev = $trunc_line;
+    $trunc_line = undef;
+    if ($text =~ /^ {$nextHopHeader}\d/o ) {
+      $text =~ s/^\s+/ /;
+      $text = "$prev $text";
+      print $logFH "$infile $.: reconstructing split line to form: $text\n";
+      $linesSkippedCn--;
+      # print STDERR "$infile $.: decreased to $linesSkippedCn\n";
+    }
+    else {
+      print $logFH "$infile $.: skipping: unable to reconstruct split line: $text\n";
+      $linesSkippedCn++;
+      # print STDERR "$infile $.: increased to $linesSkippedCn\n";
+      return 0;
+    }
+  }
+
+  # Parse the line. See the header line above for the fields. Not shown there
+  # is the first field, the Status Code. Examples of lines:
+  # *  1.0.0.0/8        1.2.3.4                                0 99 98 i
+  # *d                  5.6.7.8                 16             0 100 99 98 i
+  # ^---- Status Code
+
+  ### Read Status Code, Network, and Next Hop fields.
+  $curStatusCode = undef;
+  my $iStatusCode = "";
+  #remove 'i' status code if present. When 'i' is present the status code
+  #and the prefix fields are concatinated. Replacing 'i' with ' ' enables
+  #to split appropriately.
+  #the other 'i', which is the origin in the end of the AS path,
+  #if present must be the last character in $text
+  if ($text =~ /i.+/) {
+    $text =~ s/i/ /;
+    $iStatusCode = "i";
+  }
+
+  my @fields = split " ", $text;
+  if (@fields < 3) { # we require Next Hop, Weight and Path at the very least
+    
+    # Lines containing a Network field longer than 16 characters may split as
+    # follows:
+    # *  12.127.255.255/32
+    #                     141.142.12.1                           0 1224 i
+    # Save this line for prepending to the next.
+    print $logFH "$infile $.: skipping: too few fields: $text\n";
+    $linesSkippedCn++;
+    # print STDERR "$infile $.: increased to $linesSkippedCn\n";
+    $trunc_line = $text;
+    return 0;
+  }
+
+  if ($fields[0] !~ /^\d+\.\d+\.\d+\.\d+/ ) {
+    # Status Code code field is present
+    $curStatusCode = shift @fields;
+    $curStatusCode .= $iStatusCode;
+    if ( $curStatusCode =~ /^[sdh*>i]*$/ ) {
+      print STDERR "found Status Code:$curStatusCode\n" if $debug == 2;
+    }
+    else {
+      print $logFH "$infile $.: skipping: bad Status Code: $text\n";
+      $linesSkippedCn++;
+      # print STDERR "$infile $.: increased to $linesSkippedCn\n";
+      return 0;
+    }
+  }
+  else {
+    print $logFH "$infile $.: skipping: no Status Code: $text\n";
+    $linesSkippedCn++;
+    # print STDERR "$infile $.: increased to $linesSkippedCn\n";
+    return 0;
+  }
+
+  if ($fields[1] =~ /^\d+\.\d+\.\d+\.\d+$/ ) {
+    # both Network and Next Hop fields are present
+    $curNetwork = $fields[0];
+    $curPeer = $fields[1];
+    if ($curNetwork !~ m#^(\d+\.\d+\.\d+\.\d+)(/\d+)?$# or
+        $1 =~ /^0\.0\.0\.0$/ ) {
+      print $logFH "$infile $.: skipping: bad Network: $text\n";
+      $linesSkippedCn++;
+      # print STDERR "$infile $.: increased to $linesSkippedCn\n";
+      return 0;
+    }
+    print STDERR "found Network:$curNetwork\n" if $debug == 2;
+    print STDERR "found Next Hop:$curPeer\n" if $debug == 2;
+    
+    $text =~ /$curNetwork\s+$curPeer/;
+    $nextHopTokenEnd = length($`) + length($&) - 1;
+    print STDERR "nextHopTokenEnd=$nextHopTokenEnd\n" if $debug == 2;
+  }
+  else {
+    # Network field is not present
+    $curPeer = $fields[0];
+
+    if ($curPeer !~ m#^\d+\.\d+\.\d+\.\d+$# ) {
+      print $logFH "$infile $.: skipping: bad Next Hop: $text\n";
+      $linesSkippedCn++;
+      # print STDERR "$infile $.: increased to $linesSkippedCn\n";
+      return 0;
+    }
+    print STDERR "no Network\n" if $debug == 2;
+    print STDERR "found Next Hop:$curPeer\n" if $debug == 2;
+
+    $text =~ /$curPeer/;
+    $nextHopTokenEnd = length($`) + length($&) - 1;
+    print STDERR "nextHopTokenEnd=$nextHopTokenEnd\n" if $debug == 2;
+  }
+
+  # we've seen some of these
+  if ($curPeer =~ /^0\.0\.0\.0$/ ) {
+    print $logFH "$infile $.: skipping: bad Next Hop: $text\n";
+    $linesSkippedCn++;
+    # print STDERR "$infile $.: increased to $linesSkippedCn\n";
+    return 0;
+  }
+
+  # Due to possible overruns of the Network field, parsing the following
+  # fields is tricky. However, we can reliably parse the Weight, Path and
+  # Origin Code back to front, and afterwards get the Metric and LocPrf
+  # fields.
+  
+  # We use the Weight as a marker that precedes the Path.  The Weight and the
+  # Path together form a sequence of integers separated by a single space,
+  # followed by an Origin Code.  The Weight is always zero and
+  # is preceded by at least two spaces. Path components cannot be zero.
+
+  # Sets are surrounded by {}, though we have seen an instance of () being
+  # used.
+  my $copyText = $text;  # leave original $text unchanged
+  if ( $copyText =~ tr/()/{}/ ) {
+    print $logFH "$infile $.: replaced () by {} in Path: $text\n";
+  }
+
+  # weight pathcomp    set   empty origin
+  #    v    v           v     path   v
+  #                             
+  #    v   >..<   >..........< v   >...<
+  # /  0(( \d+)|( {(\d+,)*\d+})|)+ [ie?]$/
+  #                >....< >.<
+  #                  ^     ^
+  #            set comp   last set comp
+
+  if ( $copyText !~ /  0(( [\d.]+)|( {([\d.]+[, ])*[\d.]+})|)+ [ie?]$/ ) {
+    print $logFH "$infile $.: skipping: malformed ",
+                 "Weight/ Path/ Origin Code: $text\n";
+    $linesSkippedCn++;
+    # print STDERR "$infile $.: increased to $linesSkippedCn\n";
+    return 0;
+  }
+  $weightTokenStart = length($`) + 2; # two leading spaces
+  $pathTokenStart = $weightTokenStart + 2;
+
+  # Some format have spaces in their AS sets, which requires more specific
+  # parsing than just splitting on space. -rkoga
+  @curPath = substr($copyText, $pathTokenStart) =~ /([\d.]+|{.*?}|[ie?])\s*/g;
+  $curOriginCode = pop @curPath;
+  print STDERR "weightTokenStart=$weightTokenStart\n" if $debug == 2;
+  print STDERR "pathTokenStart=$pathTokenStart\n" if $debug == 2;
+
+  # Check for "0" path components. This is to verify our assumption that we
+  # can use the "0" Weight field to mark the beginning of the path.
+  foreach my $pathComp (@curPath) {
+    if ( $pathComp eq "0" ) {
+
+      print $logFH "$infile $.: skipping: bad Path: $text\n";
+      $linesSkippedCn++;
+      # print STDERR "$infile $.: increased to $linesSkippedCn\n";
+      return 0;
+    }
+  }
+  $curPath = join(' ', @curPath);
+  if ($debug == 2) {
+    print STDERR "found Origin Code:$curOriginCode\n";
+    print STDERR "found Path:$curPath\n";
+  }
+
+  # Finally, get the Metric and LocPrf fields. From the index of the (single
+  # character) Weight token we can reliably determine the actual positions of
+  # the Metric and LocPrf fields in this line, even after an overrun of
+  # preceding fields.
+
+  # check from $nextHopTokenEnd + 1 to $weightTokenStart - 1
+  my $s = substr ($text, $nextHopTokenEnd + 1,
+          ($weightTokenStart - 1) - ($nextHopTokenEnd + 1) + 1);
+  @fields = split (" ", $s);
+  
+  if (@fields > 2) {
+    print $logFH "$infile $.: skipping: bad Metric/LocPref $s: $text\n";
+    $linesSkippedCn++;
+    # print STDERR "$infile $.: increased to $linesSkippedCn\n";
+    return 0;
+  }
+  elsif (@fields == 0) {
+    # simple case: neither Metric nor LocPrf present
+    print STDERR "no Metric\n" if $debug == 2;
+    print STDERR "no LocPrf\n" if $debug == 2;
+  }
+  elsif (@fields == 2) {
+    # simple case: both Metric and LocPrf present
+    ($curMetric, $curLocPrf) = @fields;
+    print STDERR "found Metric:$curMetric\n" if $debug == 2;
+#    print $logFH "$infile $.: found LocPrf $curLocPrf: $text\n";
+  }
+  else {
+    # Determine which field it belongs to by checking the presence of
+    # a non-ws character at the right-most position of the LocPrf field.
+
+    # Weight and LocPrf are right-aligned
+    $locPrfFieldEnd = $weightTokenStart - $weightHeaderWidth - 1;
+    print STDERR "locPrfFieldEnd=$locPrfFieldEnd\n" if $debug == 2;
+
+    if ( substr($text, $locPrfFieldEnd, 1) =~ /^\S$/ ) {
+      $curLocPrf = $fields[0];
+      print STDERR "no Metric\n" if $debug == 2;
+      print $logFH "$infile $.: found LocPrf: $text\n";
+    }
+    else {
+      $curMetric = $fields[0];
+      print STDERR "found Metric:$curMetric\n" if $debug == 2;
+      print STDERR "no LocPrf\n" if $debug == 2;
+    }
+  }
+  return 1;
+}
+
+#=========================================================================#
+
+
+# Opens input and output files. Writes a header describing the file to each
+# output file.
+sub openFiles()
+{
+  # SIGPIPE is generated when writing to a pipe with no reader
+  $SIG{PIPE} = sub { die "problem piping to gzip\n" };
+
+  -r $infile or die "$infile does not exist or is not readable\n";
+
+  if ($mrtInput) {
+    $inputPipe = "bgpdump -m $infile";
+    open $inFH, "$inputPipe |"
+      or die "can't run '$inputPipe': $!\n";
+  }
+  else {
+    if ($infile =~ /\.gz$/ ) {
+      $inputPipe = 'gunzip -c';
+      open $inFH, "gunzip -c $infile |"
+	or die "can't run 'gunzip -c $infile': $!\n";
+    }
+    elsif ($infile =~ /\.bz2$/ ) {
+      $inputPipe = 'bunzip2 -c';
+      open $inFH, "bunzip2 -c $infile |"
+	or die "can't run 'bunzip2 -c $infile': $!\n";
+    }
+    else {
+      $inputPipe = undef;
+      open $inFH, "$infile" or die "can't open '$infile': $!\n";
+    }
+  }
+
+  my $fname = "$outputFilePrefix.full.gz";
+  if(defined $directory){
+    $fname = "$directory$fname";
+  }
+  open $fullFH, "| gzip -c >$fname" or die "can't run 'gzip -c >$fname': $!\n";
+  print $fullFH <<"END";
+# $progName $argv
+# output file: $fname
+
+# linenum |stat |prefix            |peer           |metric    |path + origin
+END
+
+  $fname = "$outputFilePrefix.pfasp.gz";
+  if(defined $directory){
+    $fname = "$directory$fname";
+  }
+  open $pfaspFH, "| gzip -c >$fname" or die "can't run 'gzip -c >$fname': $!\n";
+  print $pfaspFH <<"END";
+# $progName $argv
+# output file: $fname
+
+# prefix          |peer           |path
+END
+  # XXX $fname = "$outputFilePrefix.pref.gz";
+  # XXX open $prefFH, "| gzip -c >$fname" or die "can't run 'gzip -c >$fname': $!\n";
+  $fname = "$outputFilePrefix.pref";
+  if(defined $directory){
+    $fname = "$directory$fname";
+  }
+  open $prefFH, ">$fname" or die "can't open $fname for writing: $!\n";
+  print $prefFH <<"END";
+# $progName $argv
+# output file: $fname
+
+# prefix          |origin ases|nPeers|nOriLks|oriLkstats|oriAsStats
+END
+  $fname = "$outputFilePrefix.log";
+  if(defined $directory){
+    $fname = "$directory$fname";
+  }
+  open $logFH, ">$fname" or die "can't open $fname for writing: $!\n";
+  print $logFH <<"END";
+# $progName $argv
+# output file: $fname
+
+END
+  # snippet of readargs() code that couldn't be performed until now
+  my $str = "peers in selection: ";
+  if ($includingPeers) {
+    foreach my $peer (keys %selpeer) {
+      $str .= "$peer ";
+    }
+  }
+  else {
+    $str .= "all peers";
+    if (scalar keys %unselpeer) {
+      $str .= " except: ";
+      foreach my $peer (keys %unselpeer) {
+        $str .= "$peer ";
+      }
+    }
+  }
+  $str .= "\n";
+  print $logFH "$str";
+  print STDERR "$str" if $debug == 2;
+
+  $fname = "$outputFilePrefix.stats";
+  if(defined $directory){
+    $fname = "$directory$fname";
+  }
+  open $statsFH, ">$fname" or die "can't open $fname for writing: $!\n";
+  print $statsFH <<"END";
+# $progName $argv
+# output file: $fname
+
+END
+
+  $fname = "$outputFilePrefix.aslk";
+  if(defined $directory){
+    $fname = "$directory$fname";
+  }
+  open $aslkFH, ">$fname" or die "can't open $fname for writing: $!\n";
+  print $aslkFH <<"END";
+# $progName $argv
+# output file: $fname
+
+# From|To    |Count
+END
+  $fname = "$outputFilePrefix.as";
+  if(defined $directory){
+    $fname = "$directory$fname";
+  }
+  open $asFH, ">$fname" or die "can't open $fname for writing: $!\n";
+  print $asFH <<"END";
+# $progName $argv
+# output file: $fname
+
+#AS   |Transit+Origin|Peer   |Transit|Origin |Degree   |Indegree |Outdegree
+END
+  $fname = "$outputFilePrefix.asdeg";
+  if(defined $directory){
+    $fname = "$directory$fname";
+  }
+  open $asdegFH, ">$fname" or die "can't open $fname for writing: $!\n";
+  print $asdegFH <<"END";
+# $progName $argv
+# output file: $fname
+
+END
+  # XXX $fname = "$outputFilePrefix.asp.gz";
+  $fname = "$outputFilePrefix.asp";
+  if(defined $directory){
+    $fname = "$directory$fname";
+  }
+  unless ($disable_pathCn) {
+    # XXX open $aspFH, "| gzip -c >$fname" or die "can't run 'gzip -c >$fname': $!\n";
+    open $aspFH, ">$fname" or die "can't open $fname for writing: $!\n";
+    print $aspFH <<"END";
+# $progName $argv
+# output file: $fname
+
+# count|path
+END
+  }
+  else {
+    print STDERR "$fname generation disabled\n" if $debug;
+  }
+
+  $fname = "$outputFilePrefix.as2lk";
+  if(defined $directory){
+    $fname = "$directory$fname";
+  }
+  unless ($disable_as2LinkCn) {
+    open $as2lkFH, ">$fname" or die "can't open $fname for writing: $!\n";
+    print $as2lkFH <<"END";
+# $progName $argv
+# output file: $fname
+
+#                 AS 2-link|count
+END
+  }
+  else {
+    print STDERR "$fname generation disabled\n" if $debug;
+  }
+
+  $fname = "$outputFilePrefix.peerstat";
+  if(defined $directory){
+    $fname = "$directory$fname";
+  }
+  open $peerstatFH, ">$fname" or die "can't open $fname for writing: $!\n";
+  print $peerstatFH <<"END";
+# $progName $argv
+# output file: $fname
+
+END
+  $fname = "$outputFilePrefix.peer";
+  if(defined $directory){
+    $fname = "$directory$fname";
+  }
+  open $peerFH, ">$fname" or die "can't open $fname for writing: $!\n";
+  print $peerFH <<"END";
+# $progName $argv
+# output file: $fname
+
+# peer ip      |len<=24 |len>24  |tot.pfs |peer as|#as paths|avg.plen|std.plen|ent.plen|#origins|#paths/orig
+END
+} 
+#-----------------------------------temp func
+sub closefiles(){
+    close $peerFH;
+    close $peerstatFH;
+    close $as2lkFH;
+    close $aspFH;
+    close $asdegFH;
+    close $asFH;
+    close $aslkFH;
+    close $statsFH;
+    close $logFH;
+    close $prefFH;
+    close $pfaspFH;
+    close $fullFH;
+    exit; 
+}
+#------------------------------------
+
+#=========================================================================#
+
+sub processMRTTable()
+{
+  while ($text = <$inFH>) {
+    $text =~ s/[\r\n]//g;
+
+    if (! parseMRTTableLine()) {
+      next;
+    }
+
+# last if $. > 1000; for debugging occasions
+
+    $curPrefix = $curNetwork;
+    my $prefixLength = (split(/\//, $curNetwork))[1];
+
+    # filter out unselected peers
+    if ( ($includingPeers and ! $selpeer{$curPeer}) or
+         $unselpeer{$curPeer} )
+    {
+      print STDERR "$infile $.: skipping: due to peer filtering: $text\n"
+        if $debug == 2;
+      next;
+    }
+
+    # non-repeated AS path
+    my @nrASPath = toNonRepASPath (@curPath);
+
+    #if empty AS path, dont do processNRAsPath(),
+    #write line to $fullFH
+    if(not scalar @nrASPath) {
+      my $str = sprintf("%10d %-5s %-18s %-15s %-10s %s %s\n",
+			$., $curStatusCode, $curPrefix, $curPeer,
+			(defined $curMetric ? $curMetric : '-'),
+			"-", (defined $curOriginCode ? $curOriginCode : '-'));
+      $emptyAsPathCn++;
+      print $fullFH $str;
+    } else {
+      ### update some statistics
+      ### only for paths that dont have empty AS paths.
+      $peerPrefixlengthCn{"$curPeer $prefixLength"}++;
+      $peerCnPerPrefix{$curPrefix}++;
+      $prefixCnPerPeer{$curPeer}++;
+      $prefix24CnPerPeer{$curPeer}++ if $prefixLength <= 24;
+      $sdhCn++ if $curStatusCode =~ /[sdh]/ ;
+      $noOriginCodeCn++ if ! defined($curOriginCode) or $curOriginCode eq "?";
+      $localPrefCn++ if $curLocPrf;
+
+      processNRAsPath(@nrASPath);
+    }
+  }
+}
+
+
+# Parses $text, the current line of the MRT table, into $curStatusCode,
+# $curNetwork, $curPeer, $curLocPrf, $curMetric, $curOriginCode, and
+# @curPath.
+# Returns 0 if this line should be skipped, 1 otherwise.
+sub parseMRTTableLine() {
+
+  # clear info from previous line
+  ($curStatusCode, $curNetwork, $curPeer, $curLocPrf, $curMetric, $curPath,
+   $curOriginCode, @curPath) = ();
+
+  printf(STDERR "%10d) %s\n", $., $text) if $debug and $. % $logInterval == 0;
+
+  print STDERR "\n$.: $text\n" if $debug == 2;
+
+  my @fields = split(/\|/, $text);
+  return 0 unless $fields[0] eq "TABLE_DUMP" || $fields[0] eq "TABLE_DUMP2";
+
+  $curStatusCode = "*";  # mark all table dump lines as valid
+
+  $curNetwork = $fields[5];
+
+  # we've seen "0.0.0.0/0"
+  if ($curNetwork =~ /^0\.0\.0\.0\//) {
+    print $logFH "$infile $.: skipping: bad Network: $text\n";
+    $linesSkippedCn++;
+    # print STDERR "$infile $.: increased to $linesSkippedCn\n";
+    return 0;
+  }
+
+  $curPeer = $fields[3];
+
+  # we've seen some of these
+  if ($curPeer =~ /^0\.0\.0\.0$/ ) {
+    print $logFH "$infile $.: skipping: bad Next Hop: $text\n";
+    $linesSkippedCn++;
+    # print STDERR "$infile $.: increased to $linesSkippedCn\n";
+    return 0;
+  }
+
+  print STDERR "found Network:$curNetwork\n" if $debug == 2;
+  print STDERR "found Next Hop:$curPeer\n" if $debug == 2;
+
+  # Sets are surrounded by {}, though we have seen an instance of () being
+  # used.
+  if ($fields[6] =~ tr/()/{}/ ) {
+    print $logFH "$infile $.: replaced () by {} in Path: $text\n";
+  }
+
+  $curPath = $fields[6];
+  # Some format have spaces in their AS sets, which requires more specific
+  # parsing than just splitting on space. -rkoga
+  @curPath = $fields[6] =~ /([\d.]+|{.*?})\s*/g;
+  print STDERR "found Path:$curPath\n" if $debug == 2;
+
+  if ($fields[7] eq "IGP") {
+    $curOriginCode = "i";
+  }
+  elsif ($fields[7] eq "EGP") {
+    $curOriginCode = "e";
+  }
+  elsif ($fields[7] eq "INCOMPLETE") {
+    $curOriginCode = "?";
+  }
+  else {
+    print $logFH "$infile $.: skipping: malformed ",
+                 "Origin Code: $text\n";
+    $linesSkippedCn++;
+    # print STDERR "$infile $.: increased to $linesSkippedCn\n";
+    return 0;
+  }
+    
+  $curLocPrf = $fields[9];
+  $curMetric = $fields[10];
+
+  return 1;
+}
+
+
+#=========================================================================#
+
+# performs line-by-line processing of $infile
+sub processRVTable()
+{
+  my $lastNetwork = undef;        # Saved Network field. See below.
+  my $lastPrefix = undef;         # Saved $curPrefix. See below.
+  my $lastPrefixLength = undef;   # Saved $prefixLength. See below.
+
+  while ($text = <$inFH>) {
+    $text =~ s/[\r\n]//g;
+
+    if (! parseRVTableLine()) {
+
+      if (! $trunc_line) { # $trunc_line: split line continues on next line
+
+	# Reset the saved Network-related variables thereby skipping subsequent
+	# lines that don't have a Network field.  Otherwise a parsing error
+	# might lead to subsequent lines referring to an unrelated Network
+	# field.
+        $lastNetwork = undef;
+        $lastPrefix = undef;
+        $lastPrefixLength = undef;
+      }
+      next;
+    }
+
+# last if $. > 1000; for debugging occasions
+
+    my $prefixLength;
+    my $bare; # <=> defined $curNetwork and $curNetwork lacks prefix length
+
+    # Set $curPrefix to the Network field and add a prefix length if necessary.
+    # The Network may be omitted to refer to a previous Network.
+    if (defined $curNetwork) {
+      # add a prefix length to $curPrefix if missing
+      ($curPrefix, $prefixLength, $bare) = addPrefixLength($curNetwork);
+
+      # save for lines without Network
+      $lastNetwork = $curNetwork;
+      $lastPrefix = $curPrefix;
+      $lastPrefixLength = $prefixLength;
+    }
+    else {
+      # Network field is not present
+      unless (defined $lastNetwork) {
+        print $logFH "$infile $.: skipping: unknown network: $text\n";
+        $linesSkippedCn++;
+        # print STDERR "$infile $.: increased to $linesSkippedCn\n";
+        next;
+      }
+      $curPrefix = $lastPrefix;
+      $prefixLength = $lastPrefixLength;
+      print STDERR "$infile $.: Network field '$curPrefix' from earlier line \n"
+        if $debug == 2;
+    }
+
+    # filter out unselected peers
+    if ( ($includingPeers and ! $selpeer{$curPeer}) or
+         $unselpeer{$curPeer} )
+    {
+      print STDERR "$infile $.: skipping: due to peer filtering: $text\n"
+        if $debug == 2;
+      next;
+    }
+
+    print STDERR
+      "$infile $.: got: Status Code=$curStatusCode prefix=$curPrefix; " .
+      "peer=$curPeer\n" if $debug == 2;
+
+    # non-repeated AS path
+    my @nrASPath = toNonRepASPath (@curPath);
+
+    #if empty AS path, dont do processNRAsPath(),
+    #write line to $fullFH
+    if(not scalar @nrASPath) {
+      my $str = sprintf("%10d %-5s %-18s %-15s %-10s %s %s\n",
+			$., $curStatusCode, $curPrefix, $curPeer,
+			(defined $curMetric ? $curMetric : '-'),
+			"-", (defined $curOriginCode ? $curOriginCode : '-'));
+      $emptyAsPathCn++;
+      print $fullFH $str;
+    } else {
+      ### update some statistics
+      ### only for paths that dont have empty AS paths.
+      $barePrefixCn++ if $bare;
+      $peerPrefixlengthCn{"$curPeer $prefixLength"}++;
+      $peerCnPerPrefix{$curPrefix}++;
+      $prefixCnPerPeer{$curPeer}++;
+      $prefix24CnPerPeer{$curPeer}++ if $prefixLength <= 24;
+      $sdhCn++ if $curStatusCode =~ /[sdh]/ ;
+      $noOriginCodeCn++ if ! defined($curOriginCode) or $curOriginCode eq "?";
+      $localPrefCn++ if $curLocPrf;
+
+      processNRAsPath(@nrASPath);
+    }
+  }
+}
+
+
+sub postprocessCheck()
+{
+  if (scalar keys %peerCnPerPrefix == 0) {
+    die "No peers or prefixes found!\n";
+  }
+
+  if ($debug == 2) {
+    print STDERR "\%peerPrefixlengthCn:\n";
+    foreach my $i (keys %peerPrefixlengthCn) {
+      print STDERR "  $i->$peerPrefixlengthCn{$i}\n";
+    }
+    print STDERR "\%peerCnPerPrefix:\n";
+    foreach my $i (keys %peerCnPerPrefix) {
+      print STDERR "  $i->$peerCnPerPrefix{$i}\n";
+    }
+    print STDERR "\%prefixCnPerPeer:\n";
+    foreach my $i (keys %prefixCnPerPeer) {
+      print STDERR "  $i->$prefixCnPerPeer{$i}\n";
+    }
+    print STDERR "\%prefix24CnPerPeer:\n";
+    foreach my $i (keys %prefix24CnPerPeer) {
+      print STDERR "  $i->$prefix24CnPerPeer{$i}\n";
+    }
+    print STDERR "loopingPathCn=$loopingPathCn\n";
+    print STDERR "nonRepAsCn=$nonRepAsCn\n";
+    print STDERR "\%asSetCn:\n";
+    foreach my $i (keys %asSetCn) {
+      print STDERR "  $i->$asSetCn{$i}\n";
+    }
+    print STDERR "\%asCn:\n";
+    foreach my $i (keys %asCn) {
+      print STDERR "  $i->$asCn{$i}\n";
+    }
+    print STDERR "\%transitAsCn:\n";
+    foreach my $i (keys %transitAsCn) {
+      print STDERR "  $i->$transitAsCn{$i}\n";
+    }
+    print STDERR "\%originAsCn:\n";
+    foreach my $i (keys %originAsCn) {
+      print STDERR "  $i->$originAsCn{$i}\n";
+    }
+    print STDERR "\%peerAsCn:\n";
+    foreach my $i (keys %peerAsCn) {
+      print STDERR "  $i->$peerAsCn{$i}\n";
+    }
+    print STDERR "\%prefixOriginAses:\n";
+    foreach my $i (keys %prefixOriginAses) {
+      print STDERR "  $i->$prefixOriginAses{$i}\n";
+    }
+    print STDERR "\%peer2as:\n";
+    foreach my $i (keys %peer2as) {
+      print STDERR "  $i->$peer2as{$i}\n";
+    }
+    print STDERR "\%asLinkCn:\n";
+    foreach my $i (keys %asLinkCn) {
+      print STDERR "  $i->$asLinkCn{$i}\n";
+    }
+    print STDERR "\%as2LinkCn:\n";
+    if ($disable_as2LinkCn) {
+      print STDERR "disabled\n";
+    }
+    else {
+      foreach my $i (keys %as2LinkCn) {
+        print STDERR "  $i->$as2LinkCn{$i}\n";
+      }
+    }
+    print STDERR "\%originLink:\n";
+    foreach my $i (keys %originLink) {
+      print STDERR "  $i->$originLink{$i}\n";
+    }
+    if ($disable_pathCn) {
+      print STDERR "\%pathCn:\n";
+      print STDERR "disabled\n";
+      print STDERR "\%pathTailCn:\n";
+      print STDERR "disabled\n";
+    }
+    else {
+      print STDERR "\%pathCn:\n";
+      foreach my $i (keys %pathCn) {
+        print STDERR "  $i->$pathCn{$i}\n";
+      }
+      print STDERR "\%pathTailCn:\n";
+      foreach my $i (keys %pathTailCn) {
+        print STDERR "  $i->$pathTailCn{$i}\n";
+      }
+    }
+    print STDERR "\%peerPathCn:\n";
+    if ($disable_peerPathCn) {
+      print STDERR "disabled\n";
+    }
+    else {
+      foreach my $i (keys %peerPathCn) {
+        print STDERR "  $i->$peerPathCn{$i}\n";
+      }
+    }
+  }
+
+  if ($assert) {
+    my $peerCn = scalar keys %prefixCnPerPeer;
+    map { die if $_ > $peerCn } values %peerCnPerPrefix;
+  }
+}
+
+#=========================================================================#
+
+# ($prefix, $prefixLength, $bare) = addPrefixLength($prefix)
+# If $prefix does not contain a prefix length, then adds a prefix length and
+# sets $bare to 1. Otherwise $prefix is unchanged and $bare is set to 0. Always
+# sets $prefixLength.
+sub addPrefixLength($)
+{
+  my $prefix = shift;
+
+  my $bare = 0;
+  my ($prefixIP, $prefixLength) = split /\//, $prefix;
+  if( ! $prefixLength ) { 
+  
+    $bare = 1;
+    print STDERR "$infile $.: inferring prefix length for $prefix\n"
+      if $debug == 2;
+  
+    # There are two ways to determine the prefix length of a classful network
+    # number: 1) look at the network class, 2) look at the number of trailing
+    # '0' bytes. We take the longer prefix length of the two.
+  
+    # Method 1.
+    my ($firstByte) = split /\./, $prefix;
+
+    my $len1;
+    if ($firstByte < 128) {     # class A
+      $len1 = 8;
+    }
+    elsif ($firstByte < 192) {  # class B
+      $len1 = 16;
+    }
+    elsif ($firstByte < 224) {  # class C
+      $len1 = 24;
+    }
+    else {
+      $len1 = 32;               # the best we can do
+    }
+    print STDERR "$infile $.: first byte says /$len1\n" if $debug == 2;
+ 
+    # Method 2.
+    my $len2;
+    if ($prefixIP =~ /\.0\.0\.0$/ ) {
+      $len2 = 8;
+    }
+    elsif ($prefixIP =~ /\.0\.0$/ ) {
+      $len2 = 16;
+    }
+    elsif ($prefixIP =~ /\.0$/ ) {
+      $len2 = 24;
+    }
+    else {
+      $len2 = 32;
+    }
+    print STDERR "$infile $.: trailing zeros say /$len2\n" if $debug == 2;
+    $prefixLength = $len1 >= $len2 ? $len1 : $len2;
+    print $logFH "$infile $.: inferred prefix length: $prefix->$prefixIP/$prefixLength\n";
+    print $logFH "$infile $.: note: odd classful Network field '$prefix'\n"
+      if ($len1 != $len2);
+    print $logFH "$infile $.: note: prefix length 32!\n"
+      if ($prefixLength == 32);
+    $prefix = "$prefixIP/$prefixLength";
+  }
+  return ($prefix, $prefixLength, $bare);
+}
+
+#=========================================================================#
+
+# @nrASPath = toNonRepASPath (@asPath);
+# From @asPath creates and returns an AS path that only contains non-repeated
+# ASes. It does so by removing AS prepending and (apparent) loops. Returns ()
+# if the line should be skipped.  Each component in @nrASPath is normalised.
+# Note that AS paths may contain non-numeric components due to AS sets.
+# Updates the following globals:
+#   $totAsSetCn
+#   %asSetCn
+#   $totalPathCn
+#   $prependedPathCn
+#   $loopingPathCn
+#   $nonRepAsCn
+#   $prepAsCn
+#   $loopAsCn
+sub toNonRepASPath(@)
+{
+  my @asPath = @_;
+
+  my $loopingPath = 0;   # whether a loop has been detected in this path
+  my $prependedPath = 0; # whether prepending has been detected in this path
+  my %asOccCn = ();      # count of each AS in this path
+  my @nrASPath = ();     # return value
+  my $nrAScur = 0;       # current index into non-repeated AS path
+  my %asFirstOcc = ();   # indexes first occurrence of each AS in NR-path
+  my $minRepIndex = undef; # index of earliest start of some loop in NR-path
+  my $maxRepIndex = undef; # index of last end of some loop in NR-path
+
+  ### remove prepending, and note looping
+  my $previousAS = undef;
+  foreach my $pathComp (@asPath) { 
+    my ($as, $isSet) = normAs($pathComp); # normalise AS sets so that comparable
+    die if $as eq "0"; # assertion
+
+    if ($isSet) {
+      print $logFH "$infile $.: found AS set $pathComp: $text\n"
+        if ++$totAsSetCn <= 5;
+      print $logFH "(won't print further AS sets)\n" if $totAsSetCn == 5;
+      $asSetCn{$as}++;
+    }
+
+    if($as eq "") {
+      print $logFH "$infile $.: deleting: empty normalised AS set: $text\n";
+      next;
+    }
+    if(defined $previousAS and ($as eq $previousAS)) {
+      $prependedPathCn++ if $prependedPath++ == 0;
+      $prepAsCn++;
+      print STDERR "prepend detected: $as\n" if $debug == 2;
+      next;
+    }
+    $nrASPath[$nrAScur] = $as;
+    if (! defined $asFirstOcc{$as}) {
+      $asFirstOcc{$as} = $nrAScur;
+    }
+    else {
+      # apparent loop (usually typo); prepending is already accounted for.
+      # Example: 0 4006 209 15254 15251 15254 15254 15254 15254 i in 2001-06-25
+      if(! $loopingPath){
+        print STDERR "first loop in this path detected\n" if $debug == 2;
+        $loopingPath = 1;
+        $loopingPathCn++;
+        my $str = "$infile $.: looping path: $text\n";
+        print $logFH $str;
+	print STDERR $str if $debug == 2;
+      }
+      my $repIndex = $asFirstOcc{$as};
+      $minRepIndex = $repIndex
+        if ! defined $minRepIndex or $repIndex < $minRepIndex;
+      $maxRepIndex = $nrAScur;
+      print STDERR "loop: min=$minRepIndex, max=$maxRepIndex\n" if $debug == 2;
+    }
+    $previousAS = $as;
+    $nrAScur++;
+  }
+
+  ### remove looping
+  if(defined $minRepIndex){ 
+    my $nrASPathLen = scalar @nrASPath; # length of non-repeated AS path
+
+    # Kill the path from the first instance of a repeated AS up to (but not
+    # including) the last instance. Note that this truncates only lines with
+    # loops, prepending of the same AS is OK (see above).
+
+    # Lines containing multiple (non-)overlapping loops or (if enabled by
+    # -s option) a loop that starts at the first AS in the path are skipped.
+    my $skip = 0;
+    if ($nrASPath[$minRepIndex] ne $nrASPath[$maxRepIndex]) {
+      print $logFH "$infile $.: skipping: multiple loops: $text\n";
+      $skip = 1;
+    }
+    elsif ($skipInitialLoops and $minRepIndex == 0) {
+      print $logFH "$infile $.: skipping: loop starts at first AS: $text\n";
+      $skip = 1;
+    }
+    if ($skip) {
+      # XXX should undo AS stats changes due to this line
+      $linesSkippedCn++;
+      # print STDERR "$infile $.: increased to $linesSkippedCn\n";
+      return ();
+    }
+    print $logFH "$infile $.: eliminating loop(s) between repeated ASes: $nrASPath[$minRepIndex], $nrASPath[$maxRepIndex]\n";
+
+    print STDERR join " ", "AS path before shrinking: $nrASPathLen ASes",
+      @nrASPath, "\t" if $debug == 2;
+    my $shifttmp = $maxRepIndex - $minRepIndex;
+    my @astmp = ();
+    for (my $k = 0; $k < $minRepIndex; $k++){
+      $astmp[$k] = $nrASPath[$k];
+    } 
+    for (my $k=$minRepIndex; $k<$nrASPathLen-$shifttmp; $k++){
+      $astmp[$k] = $nrASPath[$k+$shifttmp];
+    } 
+    $loopAsCn += $shifttmp;
+    die if $assert and (scalar(@nrASPath) - scalar(@astmp) != $shifttmp);
+    @nrASPath = @astmp;
+    print STDERR join " ", "AS path after shrinking:", @nrASPath, "\n"
+      if $debug == 2;
+  }
+  $nonRepAsCn += @nrASPath;
+  print STDERR "AS path after prepend/loop processing: ",
+    join (" ", @nrASPath), "\n" if $debug == 2;
+  $totalPathCn++;
+  return @nrASPath;
+}
+
+#=========================================================================#
+
+# ($norm, $isSet) = normAs ($pathComp)
+# Normalises a path component by replacing an AS set with an ordered list of
+# the set elements in which each element appears only once. Each '0' AS element
+# is removed. Non-sets are returned unchanged. $isSet is 1 if $pathComp is a
+# set, 0 otherwise.
+# Examples:
+#   "{3,2,1,0,2}" -> "1,2,3"
+#   "3" -> "3"
+#   "{0,0}" -> ""
+sub normAs($)
+{
+  my $pathComp = shift;
+  return ($pathComp, 0) if $pathComp !~ /{/;
+
+  $pathComp =~ s/[{}]//g; 
+  my @orgElts = split /[, ]/, $pathComp;
+  my ($prevElt, $norm) = ("", "");
+  foreach my $elt (sort {$a<=>$b} @orgElts) {
+    next if $elt == 0;
+    $norm .= "$elt," if $elt ne $prevElt; 
+    $prevElt = $elt; 
+  }
+  chop $norm;        # ','
+  return ($norm, 1);
+}
+
+#=========================================================================#
+
+# processNRAsPath(@nrASPath)
+#
+# Processes and writes the current line to $fullFH and $pfaspFH, and updates a
+# number of statistics. @nrASPath is the non-repeated AS path for the current
+# line, and must be non-empty.
+# Updates the following globals:
+#   %asCn
+#   %transitAsCn
+#   %originAsCn
+#   %peerAsCn
+#   %prefixOriginAses
+#   %peer2as
+#   %asLinkCn
+#   %as2LinkCn
+#   %originLink
+#   %pathCn
+#   %pathTailCn
+#   %peerPathCn
+sub processNRAsPath(@)
+{
+  my @nrASPath = @_;
+
+  # $previousAS2 is the AS before $previousAS
+  my ($previousAS, $previousAS2);
+  my $nrASPathLen = scalar @nrASPath;
+
+  foreach my $i (0 .. $nrASPathLen - 1) {
+    my $as = $nrASPath[$i];
+    die if $as eq '0'; # assertion
+
+    $asCn{$as}++;
+    $transitAsCn{$as}++ unless $i == 0 or $i == $nrASPathLen - 1;
+
+    $asLinkCn{"$previousAS $as"}++ if defined $previousAS;
+
+    unless ($disable_as2LinkCn) {
+      if (defined $previousAS and defined $previousAS2) {
+        my $as2Link = "$previousAS2-$previousAS $previousAS-$as";
+        $as2LinkCn{$as2Link}++;
+      }
+    }
+    $previousAS2 = $previousAS;
+    $previousAS = $as; 
+  }
+  $peerAsCn{$nrASPath[0]}++ if $nrASPathLen > 1;
+  my ($originAS, $penultimateAs) = ($previousAS, $previousAS2);
+  $originAsCn{$originAS}++;
+  $prefixOriginAses{$curPrefix} .= "$originAS ";
+
+  $originLink{$curPrefix} .= "$penultimateAs-$originAS " if defined $penultimateAs;
+
+  if (! defined $peer2as{$curPeer}) {
+    $peer2as{$curPeer} = $nrASPath[0]; # note: @nrASPath is non-empty
+  }
+
+  elsif ($peer2as{$curPeer} ne $nrASPath[0]) {
+    print $logFH "$infile $.: peer $curPeer has multiple AS peers ",
+                 "($peer2as{$curPeer} and $nrASPath[0])\n";
+  }
+
+  ### Prepare to print to $fullFH and $pfaspFH
+
+  my $nrHyphenPath = join '-', @nrASPath;
+  my ($head, @tail) = (@nrASPath);
+  my $nrHyphenPathTail = join '-', @tail;
+
+  # check formatting assumptions
+  die if (length($.) > 10 or
+          length($curStatusCode) > 5 or
+          length($curPrefix) > 18 or
+          length($curPeer) > 15 or
+	  defined($curMetric) and length($curMetric) > 10);
+
+  # Print a line to $fullFH and $pfaspFH. $fullFH gets the original path,
+  # whereas $pfaspFH (used for atoms computation) gets the non-repeated AS
+  # path.
+  my $str = sprintf("%10d %-5s %-18s %-15s %-10s %s %s\n",
+            $., $curStatusCode, $curPrefix, $curPeer,
+            (defined $curMetric ? $curMetric : '-'),
+            $curPath, (defined $curOriginCode ? $curOriginCode : '-'));
+  print $fullFH $str; 
+  print STDERR $str if $debug and $. % $logInterval == 0;
+
+  printf($pfaspFH "%-18s %-15s %s\n", $curPrefix, $curPeer, $nrHyphenPath); 
+
+  # update some more statistics
+  unless ($disable_pathCn) {
+    $pathCn{$nrHyphenPath}++;
+    $pathTailCn{$nrHyphenPathTail}++ if @tail; # skip empty tails
+  }
+  unless ($disable_peerPathCn) {
+    $peerPathCn{"$curPeer-$nrHyphenPath"}++;
+  }
+}
+
+
+#=========================================================================#
+
+
+# Writes per-prefix info to $prefFH.
+# Updates the following globals:
+#   %originCnStats
+#   $maxOriginCn
+#   %multiOriginAsCn
+#   %multiOriginAsGroupCn
+#   %peerCnPerPrefixStats
+#   %globalPrefixLengthStats
+#   $globalPrefixCn
+sub writePrefixes()
+{
+  print STDERR "Started prefix processing\n" if $debug;
+
+  # The number of peers that must carry a prefix for it to be counted as a
+  # global prefix. See description in openFiles().
+  my $globalPrefixPeerCn = (scalar keys %selpeer or
+                            scalar keys %prefixCnPerPeer);
+
+  foreach my $prefix (sort byPrefix keys %peerCnPerPrefix){
+
+    ### process origin ASes of this prefix 
+
+    # per origin AS count for this prefix
+    my %originStats = ();
+    my @origins = split /\s+/, $prefixOriginAses{$prefix};
+    map { $originStats{$_}++ } @origins;
+
+    # the origin ASes, sorted by frequency, no duplicates
+    my @sortedOriginAses = sort {byAs()} 
+                           keys %originStats;
+
+    # number of distinct origins for this prefix
+    my $originCn = scalar @sortedOriginAses;
+
+    $originCnStats{$originCn}++;
+    $maxOriginCn = $originCn if $originCn > $maxOriginCn;
+
+    # per-origin AS count for this prefix
+    my $originStatsStr = ""; 
+    # the origin ASes, sorted, no duplicates
+    my $sortedOriginAsesStr = "";
+    if( $originCn == 1 ){ 
+      my $as = $sortedOriginAses[0];
+      $sortedOriginAsesStr = $as;
+      $originStatsStr = "$as:$originStats{$as}";
+    }
+    else{
+      # multi-originated prefix
+      foreach my $as (@sortedOriginAses){
+    	$sortedOriginAsesStr .= "$as\_";
+    	$originStatsStr .= "$as:$originStats{$as} ";
+    	$multiOriginAsCn{$as}++;
+      }
+      chop $sortedOriginAsesStr; # trailing _
+      chop $originStatsStr; # trailing space
+      $multiOriginAsGroupCn{$sortedOriginAsesStr}++;
+    }
+
+    ### process origin links of this prefix 
+
+    my @originLinks;
+    if (defined $originLink{$prefix}) {
+      @originLinks = split /\s+/, $originLink{$prefix}; # contains duplicates
+    }
+    else {
+      @originLinks = ();
+    }
+
+    # per origin link count for this prefix
+    my %originLinkStats = ();
+    map { $originLinkStats{$_}++ } @originLinks;
+
+    # the origin links, sorted, no duplicates
+    my @sortedOriginLinks = sort byOriginLink keys %originLinkStats;
+
+    # number of distinct origin links for this prefix
+    my $originLinkCn = scalar @sortedOriginLinks;
+
+    # per-origin link count for this prefix
+    my $originLinkStatsStr = "";
+    foreach my $originLink (@sortedOriginLinks) {
+      $originLinkStatsStr .= "$originLink:$originLinkStats{$originLink}~";
+    }
+    chop $originLinkStatsStr; # trailing tilde
+
+    ### preparation for writePeerFiles() later
+
+    # the number of peers that carry this prefix
+    my $peerCnPerPrefix = $peerCnPerPrefix{$prefix};
+
+    $peerCnPerPrefixStats{$peerCnPerPrefix}++;
+    if($peerCnPerPrefix == $globalPrefixPeerCn) { 
+      # we have a global prefix
+      my ($ip, $len) = split /\//, $prefix;
+
+      $globalPrefixLengthStats{$len}++;
+      $globalPrefixCn++;
+    }
+
+    ###
+
+    printf($prefFH "%-18s %-11s %-6d %-7d %s %s\n", $prefix,
+           $sortedOriginAsesStr, $peerCnPerPrefix,
+           $originLinkCn,
+           $originLinkStatsStr, $originStatsStr);
+  }
+}
+
+#=========================================================================#
+
+# sort byPrefix @prefixes
+# A well-defined sorting order for prefixes. The prefixes must include a prefix
+# length.
+# MAINTAINER: identical to byPrefix() in joinPrefsByEqualAsPaths.
+sub byPrefix
+{
+  if ($assert) {
+    croak if $a !~ m#^[\d./]*$# ;
+    croak if $b !~ m#^[\d./]*$# ;
+  }
+  my @a = split m#[./]#, $a;
+  my @b = split m#[./]#, $b;
+
+  croak if $assert and (@a != 5 or @b != 5);
+
+  for (my $k = 0; $k < @a; $k++) { 
+    my $cmp = $a[$k] <=> $b[$k]; 
+    return $cmp if $cmp != 0; 
+  }
+  return 0;
+}
+
+#=========================================================================#
+# sort byIP @ips
+# A well-defined sorting order for IPv4 addresses.
+sub byIP
+{
+  if ($assert) {
+    die if $a !~ m#^[\d.]*$# ;
+    die if $b !~ m#^[\d.]*$# ;
+  }
+  my @a = split m#\.#, $a;
+  my @b = split m#\.#, $b;
+
+  croak if $assert and (@a != 4 or @b != 4);
+
+  for (my $k = 0; $k < @a; $k++) { 
+    my $cmp = $a[$k] <=> $b[$k]; 
+    return $cmp if $cmp != 0; 
+  }
+  return 0;
+}
+
+#=========================================================================#
+
+# sort byPeerPrefLen @preflens
+# A well-defined sorting order for "$peerIP $prefixLength" strings.
+sub byPeerPrefLen
+{
+  if ($assert) {
+    croak if $a !~ m#^[\d. ]*$# ;
+    croak if $b !~ m#^[\d. ]*$# ;
+  }
+  my @a = split m#[. ]#, $a;
+  my @b = split m#[. ]#, $b;
+
+  croak if $assert and (@a != 5 or @b != 5);
+
+  for (my $k = 0; $k < @a; $k++) { 
+    my $cmp = $a[$k] <=> $b[$k]; 
+    return $cmp if $cmp != 0; 
+  }
+  return 0;
+}
+
+#=========================================================================#
+
+# sort byAs @ases
+# A well-defined sorting order for AS numbers and AS sets. An AS set is
+# represented as a comma-separated AS numbers: no surrounding braces!
+# MAINTAINER: identical to byAs() in nameAtoms.
+sub byAs
+{
+  if ($assert) {
+    die if $a !~ m#^[\d,]*$# ;
+    die if $b !~ m#^[\d,]*$# ;
+  }
+  my @a = split /,/, $a;
+  my @b = split /,/, $b;
+
+  my $minLength = @a < @b ? @a : @b;
+  for (my $k = 0; $k < $minLength; $k++) { 
+    my $cmp = $a[$k] <=> $b[$k]; 
+    return $cmp if $cmp != 0; 
+  }
+  return @a - @b;
+}
+
+#=========================================================================#
+
+# sort byOriginLink @links
+# A well-defined sorting order for origin links.
+sub byOriginLink
+
+{
+  if ($assert) {
+    die if $a !~ m#^[,\d\-]*$# ;
+    die if $b !~ m#^[,\d\-]*$# ;
+  }
+  my @a = split /[,\-]/, $a;
+  my @b = split /[,\-]/, $b;
+
+  my $minLength = @a < @b ? @a : @b;
+  for (my $k = 0; $k < $minLength; $k++) { 
+    my $cmp = $a[$k] <=> $b[$k]; 
+    return $cmp if $cmp != 0; 
+  }
+  return @a - @b;
+}
+
+#=========================================================================#
+
+# Writes the $aslkFH, $asFH, and $asdegFH, $as2lkFH and $aspFH files.
+# Updates the following globals:
+#   %indegrees
+#   %outdegrees
+sub writeLinkFiles()
+{
+  ### $aslkFH, and compute indegrees, outdegrees and stub AS indegrees.
+
+  # see openFiles() for the definition of the various degrees and stub ASes
+
+  foreach my $link (keys %asLinkCn) {
+    my ($from, $to) = split /\s+/, $link;
+    $outdegrees{$from}++; $indegrees{$to}++;
+    printf($aslkFH "%-6s %-6s %d\n", $from, $to, $asLinkCn{$link});
+  }
+
+  my %stubIndegrees = ();
+  foreach my $as (keys %indegrees) {
+    $stubIndegrees{$as} = $indegrees{$as} if ! $outdegrees{$as};
+  }
+
+  ### $asFH, and compute distributions of degrees
+
+  # distributions of indegrees, outdegrees, stub AS indegrees and total degrees
+  my %indegreesStats = ();
+  my %outdegreesStats = ();
+  my %stubIndegreesStats = ();
+  my %totdegreesStats = ();
+
+  foreach my $as (sort byAs keys %asCn){
+    my $indegree = ($indegrees{$as} or 0);
+    my $outdegree = ($outdegrees{$as} or 0);
+    my $stubIndegree = $stubIndegrees{$as}; # undef if $as is not a stub AS
+    my $totdegree = $indegree + $outdegree;
+
+    my $transitAsCn = ($transitAsCn{$as} or 0);
+    my $originAsCn = ($originAsCn{$as} or 0);
+    my $peerAsCn = ($peerAsCn{$as} or 0);
+
+    $indegreesStats{$indegree}++;
+    $outdegreesStats{$outdegree}++; 
+    $stubIndegreesStats{$stubIndegree}++ if defined $stubIndegree;
+    $totdegreesStats{$totdegree}++;
+
+    printf($asFH "%-6s %14d %7d %7d %7d %9d %9d %9d\n", 
+           $as, $transitAsCn + $originAsCn, $peerAsCn, $transitAsCn,
+     	   $originAsCn, $totdegree, $indegree, $outdegree);
+  }
+
+  ### $asdegFH
+    my $totases = scalar keys %asCn;
+
+  if ($assert) {
+
+    my $nases2 = 0;
+    map { $nases2 += $_ } values %indegreesStats;
+    die if $nases2 != $totases;
+
+    $nases2 = 0;
+    map { $nases2 += $_ } values %outdegreesStats;
+    die if $nases2 != $totases;
+
+    $nases2 = 0;
+    map { $nases2 += $_ } values %totdegreesStats;
+    die if $nases2 != $totases;
+
+    my $nases1 = scalar keys %stubIndegrees;
+    $nases2 = 0;
+    map { $nases2 += $_ } values %stubIndegreesStats;
+    die if $nases2 != $nases1;
+  }
+
+  # we only use $totases variable for stub indegrees; other cases do not use it
+  writeDegreeDistribution(\%indegreesStats, "indegree", $totases);
+  writeDegreeDistribution(\%outdegreesStats, "outdegree", $totases);
+  writeDegreeDistribution(\%totdegreesStats, "total degree", $totases);
+  writeDegreeDistribution(\%stubIndegreesStats, "stub AS indegree", $totases); 
+  
+  ### $as2lkFH
+
+  unless ($disable_as2LinkCn) {
+    foreach my $as2Link (keys %as2LinkCn) {
+      printf $as2lkFH "%-27s %d\n", $as2Link, $as2LinkCn{$as2Link};
+    }
+    # add terminators (see description in openFiles())
+    foreach my $link (keys %asLinkCn) {
+  	  my ($from, $to) = split /\s+/, $link;
+          printf $as2lkFH "%-27s %d\n", "0-$from $from-$to", $asLinkCn{$link};
+          printf $as2lkFH "%-27s %d\n", "$from-$to $to-0", $asLinkCn{$link};
+    }
+  }
+
+  ### $aspFH 
+
+  unless ($disable_pathCn) {
+    foreach my $path (keys %pathCn) {
+      printf $aspFH "%7d %s\n", $pathCn{$path}, $path;
+    }
+    print $aspFH "# Number of lines with empty AS path: $emptyAsPathCn";
+  }
+}
+
+#=========================================================================#
+
+# writeDegreeDistribution(\%distribution, $name, $totases)
+#
+# Performs part of the work of writeLinkFiles(): writes a degree distribution
+# to $asdegFH, followed by some statistics, followed by the extract of the
+# distribution, as described in openFiles(). 
+#
+# \%distribution is a reference to the distribution to be printed: a mapping
+# from each degree to the number of ASes that have this degree (e.g.
+# \%indegreesStats).  $name is the name of the distribution (e.g. "indegree").
+# $totases is only used for computing multihomed stub ASes as a fraction of the total
+sub writeDegreeDistribution($$$)
+{
+  my ($distribution, $name, $totases) = @_;
+
+  print $asdegFH "\n\n######################## $name distribution " .
+    "########################\n\n";
+
+  my $nases = 0;
+  my $deg_over2_ases = 0;
+  foreach my $count (values %$distribution) {
+    $nases += $count;
+  }
+
+  # We're printing the distribution directly to file, and saving the extract
+  # of the distribution to a $extract for subsequent printing.
+
+  print $asdegFH "# degree|      asCn|% all ASes|    N(>=X)|P(>=X)*100\n";
+  my $extract  = "# degree|    N(>=X)\n";
+
+  my $sum = my $weightedSum = my $weightedLogSum = 0;
+  my $entropy = 0;   # running computation of entropy
+
+  my @sortedDegrees = sort {$a<=>$b} keys %$distribution;
+  my $maxDegree = $sortedDegrees[@sortedDegrees-1];
+  foreach my $degree (sort {$a<=>$b} keys %$distribution) {
+    my $count = $distribution->{$degree};
+    next if $count == 0;
+
+    printf $asdegFH "%8d %10d %10.4f %10d %10.4f\n", $degree, $count,
+           100*$count/$nases, $nases - $sum, 100*($nases-$sum)/$nases;
+    if($degree == 2 ){ $deg_over2_ases = $nases - $sum; } # for multihomed ASes
+    $extract .= sprintf "%8s %10d\n", $degree, $nases - $sum;
+    $sum += $count;
+    $weightedSum += $count * $degree;
+    $weightedLogSum += log($degree) / log(2) * $count if $degree > 0;
+    my $p = $count / $nases;
+    $entropy -= $p * log($p) if $p > 0;
+  }
+  die if $sum != $nases;
+  printf $asdegFH "# Total  %10d\n\n", $sum;
+
+  # number of ASes with positive degree
+  my $positiveDegreeAsCn = $nases - ($distribution->{0} or 0);
+  my $averageLog = $weightedLogSum / $positiveDegreeAsCn
+    if $positiveDegreeAsCn > 0;
+
+  printf $asdegFH "# Average                : %10.4f links/node\n",
+         $weightedSum / $nases if $nases > 0;
+  printf $asdegFH "# Geometric average      : %10.4f links/node\n",
+         exp(log(2) * $averageLog);
+  printf $asdegFH "# Average logarithm      : %10.4f bits (for " .
+         "$positiveDegreeAsCn nodes with $name > 0)\n", $averageLog;
+  printf $asdegFH "# Entropy of distribution: %10.4f bits (%.2f choices)\n",
+         $entropy, exp(log(2) * $entropy);
+
+  if($name =~ /^stub AS indegree/){ # quick answer to industry's multihoming questions - ab
+   printf $asdegFH "# Multihomed ASes(deg>=2): %10.4f%% (%.2f%% of all ASes)\n",
+        100 * $deg_over2_ases / $nases,  100 * $deg_over2_ases / $totases;
+  }
+  
+  print $asdegFH "\n$extract\n";
+
+}
+#
+#=========================================================================#
+
+# Writes the $peerstatFH and $peerFH files.
+sub writePeerFiles()
+{
+  ### create a list of per-peer one-line summaries, which we use throughout
+  ### the output
+  my %peerSummaries = ();
+  foreach my $peer (sort byIP keys %prefixCnPerPeer){
+
+    my $prefixCnPerPeer = ($prefixCnPerPeer{$peer} or 0);
+    my $prefix24CnPerPeer = ($prefix24CnPerPeer{$peer} or 0);
+    my $longPrefixCn = $prefixCnPerPeer - $prefix24CnPerPeer;
+    $peerSummaries{$peer} = "# Peer: $peer, <=24 prefs: $prefix24CnPerPeer," .
+      " >24 prefs: $longPrefixCn, tot prefs: $prefixCnPerPeer," .
+      " AS: $peer2as{$peer}";
+  }
+
+  ### write per-peer prefix length distributions
+
+  writePrefixLengthDistrHeader();
+
+  my $accumPrefixCn;   # accumulated prefix count seen for current peer
+  my $accumPerc24;     # accumulated perc of <=24 prefs seen for current peer
+  my $previousPeer = '';
+  foreach my $peerPrefixLength (sort byPeerPrefLen keys %peerPrefixlengthCn){ 
+    my ($peer, $length) = split ' ', $peerPrefixLength;
+    if($peer ne $previousPeer){
+      # end $previousPeer table
+      if ($previousPeer) {
+        printf($peerstatFH "# Total:        %8.4f %12d\n\n",
+	       $accumPerc24, $accumPrefixCn);
+      }
+
+      # start $peer table
+      print $peerstatFH "$peerSummaries{$peer}\n";
+      print $peerstatFH
+        "# prefix length|perc<=24|prefix count|accumulated prefix count\n";;
+      $accumPrefixCn = $accumPerc24 = 0;
+    }
+    my $cn = $peerPrefixlengthCn{$peerPrefixLength};
+    $accumPrefixCn += $cn;
+
+    my $perc24;
+    if ($length <= 24) {
+      $perc24 = sprintf("%8.4f", 100*$cn/$prefix24CnPerPeer{$peer});
+      $accumPerc24+=$perc24;
+    }
+    else {
+      $perc24 = '0';
+    }
+    printf($peerstatFH "  %-13d %8s %12d %11d\n", $length, $perc24, $cn,
+           $accumPrefixCn);
+    $previousPeer = $peer;
+  }
+  # end $previousPeer table
+  if ($previousPeer) {
+    printf($peerstatFH "#Totals:        %8.4f %12d\n\n",
+           $accumPerc24, $accumPrefixCn);
+  }
+  
+  ### Computing peer AS path length statistics
+
+  my $pathLengthStatsStr = "";   # collect output for path length distr here
+  my $diversityStr = "";         # collect output for path diversity here
+  my %peer2pathCn = ();          # peer->number of paths
+  my %peer2pathLengthEntropy = ();
+  my %peer2averagePathLength = (); # the average path length of each peer 
+  my %peer2stdDevPathLength = ();  # the path length standard dev of each peer
+  my %originsReached = ();       # number of origin ASes reached for each peer
+
+  unless ($disable_peerPathCn) {
+    # statistics that follow all apply to distinct AS paths
+  
+    my %peerPathLengthCn = (); # count of (peer, AS path length) pairs.
+    my %peerOriginAsCn = ();   # count of (peer, origin AS) pairs.
+    foreach my $peerPath (keys %peerPathCn) { 
+      my ($peer, @path) = split /-/, $peerPath;
+      my $pathlen = scalar @path;
+      $peerPathLengthCn{"$peer $pathlen"}++;
+      my $originAs = pop @path;
+      $peerOriginAsCn{"$peer $originAs"}++;
+    }
+
+    my %peer2pathLengthStats = (); # peer->(path length, number of path lengths)
+    my %peer2totPathLength = ();   # peer->sum of all path lengths
+    my %peer2totPathLengthSq = (); # peer->weighted sum of squares of all
+                                   # path lengths
+    foreach my $peerPathLength (keys %peerPathLengthCn) { 
+      my ($peer, $pathlen) = split ' ', $peerPathLength;
+      my $cn = $peerPathLengthCn{$peerPathLength};
+      $peer2pathCn{$peer} += $cn;
+      $peer2pathLengthStats{$peer} .= sprintf("  %-14d %11d\n", $pathlen, $cn);
+      $peer2totPathLength{$peer} += $pathlen * $cn;
+      $peer2totPathLengthSq{$peer} += $pathlen * $pathlen * $cn;
+    }
+    
+    my %peerOriginFreqCn = (); # count of (peer, origin AS frequency) pairs.
+    foreach my $peerOrigin (keys %peerOriginAsCn){
+      my ($peer, $originAs) = split ' ', $peerOrigin;
+      my $freq = $peerOriginAsCn{$peerOrigin};
+      $originsReached{$peer}++;
+      $peerOriginFreqCn{"$peer $freq"}++;
+    }
+    
+    my %peer2originStats = ();    # peer -> (origin AS freq, count of this freq)
+    foreach my $peerOriginFreq (keys %peerOriginFreqCn){
+      my ($peer, $freq) = split ' ', $peerOriginFreq;
+      my $cn = $peerOriginFreqCn{$peerOriginFreq};
+      $peer2originStats{$peer} .= sprintf("  %-14d %11d\n", $freq, $cn);
+    }
+    
+    ### AS path lengh distribution and peer-to-origin path diversity
+    ### distribution also compute for later: path length entropy, average path
+    ### lengths and standard deviations of path lenghts.
+  
+    foreach my $peer (sort byIP keys %peer2pathLengthStats){
+    
+      my @pathLengthStats = sort {(split " ", $a) [0] <=> (split " ", $b) [0] }
+                                 (split /\n/, $peer2pathLengthStats{$peer});
+      my @originStats = sort {(split " ", $a) [0] <=> (split " ", $b) [0] }
+                             (split /\n/, $peer2originStats{$peer});
+    
+      # compute path length entropy
+      foreach my $stat (@pathLengthStats) { 
+        my ($pathLength, $pathCn) = split ' ', $stat; 
+        my $p = $pathCn/$peer2pathCn{$peer};  
+        $peer2pathLengthEntropy{$peer} -= $p * log($p) / log(2) if $p > 0;
+      }
+  
+      $pathLengthStatsStr .= "$peerSummaries{$peer}\n";
+      $pathLengthStatsStr .= "# as path length|as paths of this length\n";
+  
+      $diversityStr .= "$peerSummaries{$peer}\n";
+      $diversityStr .= "# as path count |origin ases with this path count\n";
+    
+      $pathLengthStatsStr .= join("\n", @pathLengthStats) .  "\n";
+      $diversityStr .= sprintf("%s\n", join "\n", @originStats);
+    
+      $pathLengthStatsStr .= sprintf("# %-14s %11d\n", "Total",
+                              $peer2pathCn{$peer});
+      $diversityStr .=
+         sprintf("# %-14s %11d\n", "Total", $originsReached{$peer});
+    
+      my $averagePathLength = $peer2totPathLength{$peer}/$peer2pathCn{$peer};
+      my $pathsPerOrigin = $peer2pathCn{$peer}/$originsReached{$peer};
+    
+      $pathLengthStatsStr .= sprintf("# %-14s %11.2f\n", "Average",
+                                     $averagePathLength);
+      $diversityStr .=
+         sprintf("# %-14s %11.2f\n\n", "Average", $pathsPerOrigin);
+    
+      my $stdDevPathLength = sqrt (
+       $peer2totPathLengthSq{$peer}/$peer2pathCn{$peer} -
+       $averagePathLength**2);
+      $peer2averagePathLength{$peer} = $averagePathLength;
+      $peer2stdDevPathLength{$peer} = $stdDevPathLength;
+      $pathLengthStatsStr .= sprintf("# %-14s %11.2f\n\n", "Standard Dev.",
+                                     $stdDevPathLength);
+    }
+  } # end unless ($disable_peerPathCn)
+
+  if ($disable_peerPathCn) {
+    writePathLengthStatsHeader();
+    print $peerstatFH "(disabled)\n\n";
+
+    writeDiversityHeader();
+    print $peerstatFH "(disabled)\n\n";
+  }
+  else {
+    writePathLengthStatsHeader();
+    print $peerstatFH "$pathLengthStatsStr\n";
+
+    writeDiversityHeader();
+    print $peerstatFH "$diversityStr\n";
+  }
+
+  ### Global prefixes length distribution
+
+  writeGlobalPrefixLengthDistrHeader();
+
+  if ($globalPrefixCn != 0) {
+    my $accum = 0;
+    foreach my $length (sort {$a<=>$b} keys %globalPrefixLengthStats) {
+      my $count = $globalPrefixLengthStats{$length};
+      $accum +=$count;
+      printf($peerstatFH "  %-13d %10.4f %12d %11d %16.4f\n", $length,
+             100*$count/$globalPrefixCn, $count, $accum,
+	     100*$accum/$globalPrefixCn);
+    }
+  }
+  printf($peerstatFH "# %-13s %10s %12d\n\n", "Total", "", $globalPrefixCn);
+  
+  ### Number of prefixes seen by a given number of peers
+
+  writePeerPrefixDistrHeader();
+  my $sum=0;
+  my $peerCn = scalar keys %prefixCnPerPeer;
+  for (my $k=1; $k <= $peerCn; $k++) {
+    my $prefixCn = ($peerCnPerPrefixStats{$k} or 0);
+    $sum += $prefixCn;
+    printf($peerstatFH "  %-10d %12d\n", $k, $prefixCn);
+  }
+  printf($peerstatFH "# %-10s %12d\n", "Total", $sum);
+  
+  ### The $peerFH file
+
+  foreach my $peer(sort byIP keys %prefixCnPerPeer){
+    my $prefix24CnPerPeer = ($prefix24CnPerPeer{$peer} or 0);
+    my $prefixCnPerPeer = ($prefixCnPerPeer{$peer} or 0);
+
+    my $peer2pathCn = $disable_peerPathCn
+                      ? "disabled"
+		      : $peer2pathCn{$peer};
+    my $peer2pathLengthEntropy = $disable_peerPathCn
+                      ? "disabled"
+		      : sprintf ("%8.2f", $peer2pathLengthEntropy{$peer});
+
+    my $peer2averagePathLength = $disable_peerPathCn
+                      ? "disabled"
+		      : sprintf ("%8.2f", $peer2averagePathLength{$peer});
+
+    my $peer2stdDevPathLength = $disable_peerPathCn
+                      ? "disabled"
+		      : sprintf ("%8.2f", $peer2stdDevPathLength{$peer});
+
+    my $originsReached = $disable_peerPathCn
+                      ? "disabled"
+		      : sprintf ("%8d", $originsReached{$peer});
+
+    my $pathsPerOrigin = $disable_peerPathCn
+             ? "disabled"
+	     : sprintf ("%11.3f", $peer2pathCn{$peer}/$originsReached{$peer});
+
+    printf $peerFH "%-15s %8d %8d %8d %7s %9s %s %s %s %s %s\n",
+       $peer, $prefix24CnPerPeer, $prefixCnPerPeer - $prefix24CnPerPeer,
+       $prefixCnPerPeer, $peer2as{$peer}, $peer2pathCn,
+       $peer2averagePathLength, $peer2stdDevPathLength,
+       $peer2pathLengthEntropy, $originsReached,
+       $pathsPerOrigin;
+  }
+}
+
+
+
+#=========================================================================#
+
+#
+# Writes a header for the per-peer prefix length distribution to $peerstatFH.
+sub writePrefixLengthDistrHeader()
+{
+  print $peerstatFH <<"END";
+# Per-peer prefix length distribution
+# -----------------------------------
+
+END
+}
+
+#=========================================================================#
+
+# Writes a header for the per-peer path length distribution to $peerstatFH.
+sub writePathLengthStatsHeader()
+{
+  print $peerstatFH <<"END";
+# Per-peer path length distribution
+# ---------------------------------
+
+END
+}
+
+
+#=========================================================================#
+
+#
+# Writes a header for the peer-to-origin path diversity distribution to
+# $peerstatFH.
+sub writeDiversityHeader()
+{
+  print $peerstatFH <<"END";
+# Peer-to-origin path diversity distribution
+# ------------------------------------------
+
+END
+}
+
+#=========================================================================#
+
+# Writes a header for the global prefixes' prefix length distribution to
+# $peerstatFH.
+sub writeGlobalPrefixLengthDistrHeader()
+{
+  print $peerstatFH <<"END";
+# Prefix length distribution of global prefixes
+# ---------------------------------------------
+
+# prefix length|percentage|prefix count|accumulated|accum percentage
+END
+}
+
+#=========================================================================#
+
+# Writes a header of the distribution of peer counts of prefixes to
+# $peerstatFH.
+sub writePeerPrefixDistrHeader()
+{
+  print $peerstatFH <<"END";
+# Distribution of peer counts of prefixes
+# ---------------------------------------
+
+# peer count|prefix count
+END
+}
+
+#=========================================================================#
+
+# Writes a summary of statistics to $statsFH.
+sub writeStatsFile()
+{
+  # This string will be written to the stats file
+  my $str = "\n";
+
+  my $prefixCn = scalar keys %peerCnPerPrefix;
+  my $peerCn = scalar keys %prefixCnPerPeer;
+
+  $str .= "\nGeneral Statistics\n";
+  $str .= "------------------\n\n";
+
+  $str .= "Number of lines: $.\n";
+  $str .= "Number of skipped lines (excluding due to unselected peers): $linesSkippedCn \n";
+  $str .= "Number of prefixes: $prefixCn\n";
+  $str .= "Classful (bare) prefixes found in file: $barePrefixCn\n";
+  $str .= sprintf("Output lines marked suppressed, dampened or history: $sdhCn (%.2f%% of $.)\n", 100*$sdhCn/$.);
+  $str .= "Number of peers: $peerCn\n";
+
+  $str .= "\nLarge Peers\n";
+  $str .= "-----------\n\n";
+
+  # peers sorted by the number of <= /24 prefixes they announce
+  my @sortedPeer24 = sort {$prefix24CnPerPeer{$b}<=>$prefix24CnPerPeer{$a}}
+                     keys %prefix24CnPerPeer;
+  # Counts of <= /24 prefixes, sorted.
+  my @sortedPrefix24Cn = sort {$b<=>$a} values %prefix24CnPerPeer;
+  my $sortedPrefix24CnStr = join " ", @sortedPrefix24Cn;
+
+  # Maximum "<=/24 prefix" count.
+  my $maxPrefix24 = defined $sortedPrefix24Cn[0] ?
+                            $sortedPrefix24Cn[0] : 0;
+  die if $assert and @sortedPeer24 > 0 and
+    $prefix24CnPerPeer{$sortedPeer24[0]} != $maxPrefix24;
+
+  my $largePeerCn = 0;      # peers that have a large <=/24 prefix count
+  my $largePeerStr = "";    # list of such peers
+  foreach my $peer (keys %prefix24CnPerPeer) {
+    if ($prefix24CnPerPeer{$peer} >= $largeFraction * $maxPrefix24) {
+      $largePeerCn++;
+      $largePeerStr .= "$peer ";
+    }
+  }
+  chop $largePeerStr; # trailing space
+
+  $str .= "Maximum number of prefixes per peer in /0-/24 range: $maxPrefix24\n";
+  $str .= "/0-/24 range prefix count for large peers is at least " .
+    "$largeFraction of this maximum\n";
+  $str .= "There are $largePeerCn large peers: $largePeerStr\n";
+  $str .= "Number of prefixes in /0-/24 range per peer: $sortedPrefix24CnStr\n";
+
+  my $maxPeersCommon = my $maxPeersPrefixCn = 0;  # see prints below
+  for (my $kpeer = 0; $kpeer <= $peerCn; $kpeer++) {
+    my $cn = $peerCnPerPrefixStats{$kpeer};
+    if (defined $cn and $cn > 0) {
+      $maxPeersCommon = $kpeer;
+      $maxPeersPrefixCn = $cn;
+    }
+  }
+  $str .= sprintf("Number of prefixes common to all $peerCn peers: %d\n",
+           (defined $peerCnPerPrefixStats{$peerCn} ?
+                    $peerCnPerPrefixStats{$peerCn} :  0));
+  $str .= "Maximum number of peers with common prefixes: $maxPeersCommon\n";
+  $str .= "Number of prefixes shared by $maxPeersCommon peers: " .
+           "$maxPeersPrefixCn\n";
+
+  $str .= "\nAS Paths Before Removing Prepending and Looping\n";
+  $str .= "-----------------------------------------------\n";
+  $str .= "Note: an AS set is counted as a single 'AS token'\n\n";
+
+  $str .= sprintf("Number of lines without origin code ('?' or missing): %d\n", $noOriginCodeCn);
+  $str .= sprintf("Number of lines with non-zero local preference: %d\n", $localPrefCn);
+  my $asTokenCn = $nonRepAsCn + $prepAsCn + $loopAsCn;
+  $str .= "Number of AS tokens: $asTokenCn\n";
+  $str .= sprintf("Number of AS tokens per peer: %.2f\n", $asTokenCn/$peerCn);
+  $str .= "Number of AS tokens neither prepended nor part of a loop: $nonRepAsCn\n";
+  $str .= sprintf("Number of prepended AS tokens : $prepAsCn (%.2f%%)\n",
+                  100*$prepAsCn/$asTokenCn);
+  $str .= sprintf("Number of AS tokens that are part of a loop: $loopAsCn (%.2f%%)\n", 100*$loopAsCn/$asTokenCn);
+
+  $str .= "Number of AS paths: $totalPathCn\n";
+  $str .= sprintf("Number of AS paths that contain prepending: $prependedPathCn (%.2f%%)\n", 100*$prependedPathCn/$totalPathCn);
+  $str .= sprintf("Number of AS paths that contain a loop: $loopingPathCn (%.2f%%)\n", 100*$loopingPathCn/$totalPathCn);
+  $str .= "Number of AS sets: $totAsSetCn\n";
+  $str .= sprintf("Number of distinct AS sets: %d\n", scalar keys %asSetCn);
+  $str .= "Number of lines with empty AS path: $emptyAsPathCn\n";
+
+  $str .= "\nAS Paths After Removing Prepending and Looping\n";
+  $str .= "----------------------------------------------\n";
+  $str .= "Notes from this point on:\n";
+  $str .= "  * An AS set is counted as a single 'AS token'.\n\n";
+  $str .= "  * An AS set consisting of a single AS 'a' is treated as\n";
+  $str .= "equivalent to AS 'a' itself\n\n";
+
+  my $totAsCn = 0;
+  foreach my $as (keys %asCn) {
+    $totAsCn += $asCn{$as};
+  }
+  $str .= "Number of AS tokens: $totAsCn\n";
+  $str .= sprintf("Number of distinct AS tokens: %d\n", scalar keys %asCn);
+  if ($disable_pathCn) {
+    $str .= sprintf("Number of distinct AS paths: (disabled)\n");
+    $str .= sprintf("Number of distinct AS paths after dropping peer AS: " .
+                    "(disabled)\n");
+  }
+  else {
+    $str .= sprintf("Number of distinct AS paths: %d\n", scalar keys %pathCn);
+    $str .= sprintf("Number of distinct AS paths after dropping peer AS: %d\n",
+                    scalar keys %pathTailCn);
+  }
+
+  my $entropy = 0;
+  foreach my $as (keys %asCn) { 
+    my $prob = $asCn{$as} / $totAsCn;
+    $entropy -= $prob * log($prob) / log(2); 
+  }
+  $str .= sprintf("Entropy of AS distribution (non-repeated AS): %.2f bit\n",
+                  $entropy);
+
+  $str .= "\nAS Graph\n";
+  $str .= "--------\n\n";
+
+  $str .= sprintf("Number of distinct AS links (X-Y): %d\n", scalar keys %asLinkCn);
+  if ($disable_as2LinkCn) {
+    $str .= sprintf("Number of distinct AS 2-links (X-Y-Z): (disabled)\n");
+  }
+  else {
+    $str .= sprintf("Number of distinct AS 2-links (X-Y-Z): %d\n",
+                    scalar keys %as2LinkCn);
+  }
+
+  $str .= sprintf("Number of ASes with positive indegree: %d\n",
+                  scalar keys %indegrees);
+  $str .= sprintf("Number of ASes with positive outdegree: %d\n", 
+	          scalar keys %outdegrees);
+  $str .= "(in AS path X-Z, X has positive outdegree, Z has positive indegree)\n";
+
+  $str .= "\nOrigin ASes\n";
+  $str .= "-----------\n\n";
+
+  $str .= "Distribution of the per-prefix origin AS counts:\n";
+  $str .= "  origin AS count  prefix count\n";
+
+  my $multiOriginPrefixCn = 0;
+  for (my $originCn=1; $originCn <= $maxOriginCn; $originCn++) {
+    my $stat = defined $originCnStats{$originCn} ?
+    		       $originCnStats{$originCn} : 0;
+    $str .= sprintf("  %15d  %-12d\n", $originCn, $stat);
+    $multiOriginPrefixCn += $stat if $originCn > 1;
+  }
+  $str .= "\n";
+  $str .= "Multi-origin prefix count: $multiOriginPrefixCn\n";
+  $str .= "Number of distinct groups of ASes that multi-originate some " .
+    "prefix: " . scalar (keys %multiOriginAsGroupCn) . "\n";
+  $str .= sprintf("Number of multi-originating ASes: %d\n",
+                    scalar keys %multiOriginAsCn);
+  $str .= "\n";
+  $str .= "Top 5 multiple originators:\n";
+  $str .= "    AS  prefix count\n";
+
+  my @sortedMultiOriginators =
+   sort {$multiOriginAsCn{$b} <=> $multiOriginAsCn{$a} } keys %multiOriginAsCn;
+  for (my $asPos = 0; $asPos < 5; $asPos++) {
+    my $as = $sortedMultiOriginators[$asPos];
+    if (defined $as) {
+      $str .= sprintf("%6s  %-12d\n", $as, defined $multiOriginAsCn{$as} ?
+                                                   $multiOriginAsCn{$as} : 0);
+    }
+  }
+
+  print $statsFH $str; 
+}
+
+# renaming of variables from scripts before rewrite:
+#   $_ -> $text
+#   $line -> $.
+#   IN -> $inFH
+#   OUT -> $pfaspFH
+#   FULL -> $fullFH
+#   LOG -> $statsFH
+#   ASLK -> $aslkFH
+#   AS -> $asFH
+#   DEG -> $asdegFH
+#   AS2LK -> $as2lkFH
+#   ASP -> $aspFH
+#   $nprependasp -> $prependedPathCn 
+#   $nasrep -> $loopingPathCn 
+#   $nnonrepas -> $nonRepAsCn 
+#   $nrepas -> $prepAsCn 
+#   %aspCn -> %pathCn 
+#   %asptailCn -> %pathTailCn 
+#   %peerAspCn -> %peerPathCn 
+#   @aspnr -> @nrASPath 
+#   %asRepCn -> %asOccCn 
+#   $nrascur -> $nrAScur 
+#   $minrepind -> $minRepIndex 
+#   $maxrepind -> $maxRepIndex 
+#   $repind -> $repIndex 
+#   $naspnr -> $nrASPathLen
+#   $naset -> $totAsSetCn
+#   %asetCn -> %asSetCn
+#   $pas, $ppas-> $previousAS, $previousAS2
+#   $nbarepref->$barePrefixCn
+#   %peerlenCn->%peerPrefixlengthCn
+#   %prefCn->%peerCnPerPrefix
+#   %peerCn->%prefixCnPerPeer
+#   %peer24Cn->%prefix24CnPerPeer
+#   @ases -> %asCn
+#   %trAsCn -> %transitAsCn
+#   %origAsCn -> %originAsCn
+#   %origAs -> %prefixOriginAses
+#   %aslkCn -> %asLinkCn
+#   %as2lkCn -> %as2LinkCn
+#   %origLk -> %originLink
+#   %peerAs -> %peer2as
+#   @oras->@origins
+#   %normasCn / %orasCn->%originStats
+#   $norig->$originCn
+#   $maxnorig->$maxOriginCn
+#   %origStat->%originCnStats
+#   $orig->$sortedOriginAsesStr
+#   $origAcc->$originStats
+#   %morigGpCn->%multiOriginAsCn
+#   %multorigCn->%multiOriginAsGroupCn
+#   $pfc->$peerCn
+#   %pfcCn->%peerCnPerPrefixStats
+#   %globpflenCn->%globalPrefixLengthStats
+#   $nglobpf->$globalPrefixCn
+#   @orkls->@originLinks
+#   %orlkCn->%originLinkStats
+#   $norlk->$originLinkCn
+#   $orlkAcc->$originLinkStatsStr
+#   %repeatedAs->$loopingPath
+#   @srtpeer->sortedPeer24
+#   @srtpeerv->sortedPrefix24Cn
+#   $maxpref->$maxPrefix24
+#   $largePeerAcc->$largePeerStr
+#   $nasm->$asTokenCn

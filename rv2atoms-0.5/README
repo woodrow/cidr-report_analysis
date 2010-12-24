@@ -1,0 +1,44 @@
+
+This package contains a number of perl scripts which analyze and process a
+RouteViews table and compute BGP policy atoms.
+
+The scripts assume perl is /usr/bin/perl. If perl is in a different location,
+you should either change the '#!' line at the top of each script, or invoke
+a script as follows:
+	$ /usr/local/bin/perl script
+Or if you like to turn on warnings:
+	$ /usr/local/bin/perl -w script
+
+Here is an example of usage:
+
+----------------------------------------------------------------------------
+
+# Fetch RouteViews table.
+wget http://archive.routeviews.org/oix-route-views/2002.12/oix-full-snapshot-2002-12-01-1200.dat.bz2
+
+# First run of straightenRV.
+straightenRV oix-full-snapshot-2002-12-01-1200.dat.bz2
+
+# Second run of straightenRV.
+# Only RouteViews peers are used that carry at least 115000 prefixes (of length
+# /24 or less).
+straightenRV -c 115000:bgp20021201f.peer oix-full-snapshot-2002-12-01-1200.dat.bz2
+
+# Compute the atoms.
+# '-T .' ensures that temporary files (potentially very large) are placed in
+# the current directory.
+findBgpAtoms -T . bgp20021201p36 
+
+----------------------------------------------------------------------------
+
+The output files generated are described in detail in the man pages.
+
+Note that straightenRV may consume a lot of memory: around 600000 Kbytes on a
+FreeBSD 4.2 system while analysing a RouteViews snapshot of February 2003.
+Pass '-m all' to straightenRV to reduce memory usage to around 180000 Kbytes
+(for the aforementioned case), at the expense of some data not being generated.
+
+Please consult the man pages of straightenRV(1) and findBgpAtoms(1) (included
+in this package) or our web page at http://www.caida.org/projects/routing/atoms/
+for further information.
+

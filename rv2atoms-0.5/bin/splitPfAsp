@@ -1,0 +1,55 @@
+#!/usr/bin/perl -w
+
+# Copyright (C) 2002  The Regents of the University of California
+# 
+# Permission to use and install this software is hereby granted.
+# Permission to copy for internal use in testing, training,
+# evaluation and disaster recovery purposes, and for backup and
+# archival purposes is hereby granted. Permission to modify or
+# alter the software, but only to the extent necessary to make the
+# software operate at the site, and as long as this copyright
+# notice shall apply to the software as modified or altered, is
+# hereby granted. Permission to use, copy, modify, and distribute
+# any part of this software for educational, research and non-
+# profit purposes is hereby granted, provided that the above
+# copyright notice, this paragraph and the following three
+# paragraphs appear in all copies. All users of this software must
+# acknowledge in their publications or presentations the
+# University of California San Diego and the San Diego
+# Supercomputer Center as the source of the software.
+# 
+# IN NO EVENT SHALL THE UNIVERSITY OF CALIFORNIA BE LIABLE TO ANY PARTY
+# FOR DIRECT, INDIRECT, SPECIAL, INCIDENTAL, OR CONSEQUENTIAL DAMAGES,
+# INCLUDING LOST PROFITS, ARISING OUT OF THE USE OF THIS SOFTWARE, EVEN
+# IF THE UNIVERSITY OF CALIFORNIA HAS BEEN ADVISED OF THE POSSIBILITY
+# OF SUCH DAMAGE.
+# 
+# THE SOFTWARE PROVIDED HEREIN IS ON AN "AS IS" BASIS, AND THE UNIVERSITY
+# OF CALIFORNIA HAS NO OBLIGATION TO PROVIDE MAINTENANCE, SUPPORT,
+# UPDATES, ENHANCEMENTS, OR MODIFICATIONS.  THE UNIVERSITY OF CALIFORNIA
+# MAKES NO REPRESENTATIONS AND EXTENDS NO WARRANTIES OF ANY KIND, EITHER
+# IMPLIED OR EXPRESS, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
+# OF MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE, OR THAT THE USE
+# OF THE SOFTWARE WILL NOT INFRINGE ANY PATENT, TRADEMARK OR OTHER RIGHTS.
+
+# splitPfAsp
+# Authors:
+#   Patrick Verkaik (patrick@caida.org)
+#   Andre Broido: algorithms and scripts before rewrite
+#   Young Hyun: code review
+
+# Called by the findBgpAtoms script as part of sorting the .pfasp.gz file. This
+# script prepares the .pfasp.gz file for UNIX sort. It deletes comments, and
+# splits the fields of the .pfasp.gz file, separating them with '.'.
+
+# 224.1.1.1/32       129.250.0.6     2914-701-80 =>
+# 224.1.1.1/ . 32 . 129.250.0.6 2914-701-80
+
+use strict;
+
+while (<>) {
+  next unless /^\d/;
+  chomp;
+  my ($ip, $length, $peer, $path) = split m#\s+|/# ;
+  print "$ip/ . $length . $peer $path\n";
+}

@@ -1,0 +1,37 @@
+Changes since version 0.4
+-------------------------
+
+  straightenRV:
+
+    Added support for parsing MRT format RIBs (with the aid of the command
+    line tool 'bgpdump').
+
+    Fixed parsing of AS sets using spaces as separators instead of commas.
+
+Changes since version 0.3
+-------------------------
+
+  straightenRV:
+                                                                                
+    Added the .stats file and moved statistics from .log to .stats.
+    A count of the number of input lines skipped is written to .stats.
+                                                                                
+    Most output messages emitted during input processing are logged to .log
+    rather than STDERR.
+    Output messages have been made more consistent.
+                                                                                
+    Lines containing AS path loops starting at the first AS in the path are no
+    longer skipped (unless the new -s option is passed).
+                                                                                
+Changes since version 0.2
+-------------------------
+
+  Added support for bzip2-compressed and uncompressed RouteViews tables.
+
+Changes since version 0.1
+-------------------------
+
+  Added '-m' option to straightenRV for lower memory usage.
+
+  straightenRV is now able to handle lines in the snapshot that are split due
+  to an overrunning 'Network' (prefix) field.

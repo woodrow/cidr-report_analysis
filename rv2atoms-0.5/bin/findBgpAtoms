@@ -1,0 +1,320 @@
+#!/usr/bin/perl -w
+
+# Copyright (C) 2002  The Regents of the University of California
+# 
+# Permission to use and install this software is hereby granted.
+# Permission to copy for internal use in testing, training,
+# evaluation and disaster recovery purposes, and for backup and
+# archival purposes is hereby granted. Permission to modify or
+# alter the software, but only to the extent necessary to make the
+# software operate at the site, and as long as this copyright
+# notice shall apply to the software as modified or altered, is
+# hereby granted. Permission to use, copy, modify, and distribute
+# any part of this software for educational, research and non-
+# profit purposes is hereby granted, provided that the above
+# copyright notice, this paragraph and the following three
+# paragraphs appear in all copies. All users of this software must
+# acknowledge in their publications or presentations the
+# University of California San Diego and the San Diego
+# Supercomputer Center as the source of the software.
+# 
+# IN NO EVENT SHALL THE UNIVERSITY OF CALIFORNIA BE LIABLE TO ANY PARTY
+# FOR DIRECT, INDIRECT, SPECIAL, INCIDENTAL, OR CONSEQUENTIAL DAMAGES,
+# INCLUDING LOST PROFITS, ARISING OUT OF THE USE OF THIS SOFTWARE, EVEN
+# IF THE UNIVERSITY OF CALIFORNIA HAS BEEN ADVISED OF THE POSSIBILITY
+# OF SUCH DAMAGE.
+# 
+# THE SOFTWARE PROVIDED HEREIN IS ON AN "AS IS" BASIS, AND THE UNIVERSITY
+# OF CALIFORNIA HAS NO OBLIGATION TO PROVIDE MAINTENANCE, SUPPORT,
+# UPDATES, ENHANCEMENTS, OR MODIFICATIONS.  THE UNIVERSITY OF CALIFORNIA
+# MAKES NO REPRESENTATIONS AND EXTENDS NO WARRANTIES OF ANY KIND, EITHER
+# IMPLIED OR EXPRESS, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
+# OF MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE, OR THAT THE USE
+# OF THE SOFTWARE WILL NOT INFRINGE ANY PATENT, TRADEMARK OR OTHER RIGHTS.
+
+# findBgpAtoms
+# Authors:
+#   Patrick Verkaik (patrick@caida.org)
+#   Andre Broido: algorithms and scripts before rewrite
+#   Young Hyun: code review
+
+# Sorting
+#
+# Several large files are sorted in a number of places. We use UNIX sort for
+# that, as Perl's sort uses too much memory. Unfortunately under SunOS 5.8,
+# sort core dumps when presented with standard input. So instead, we do all
+# sorting using intermediate files rather than pipes.
+
+use strict;
+use FileHandle;
+use POSIX;
+use Getopt::Long;
+
+sub readargs();
+sub getPeerCounts();
+sub sortPfAsp();
+sub doJoinAsPathsForPref();
+sub sortPfAspColl();
+sub groupPrefixesIntoAtoms();
+sub doNameAtoms();
+
+### command line arguments, see usage() for info
+my $progName;         # 'findBgpAtoms'
+my $scriptDir;        # directory where findBgpAtoms is located
+my $filePrefix;
+my $debug = 1;
+my $keepFiles = 0;    # whether to keep intermediate files
+my $tmpDir;           # temporary directory for UNIX sort to use
+
+my $sortArg = "";     # -T option to pass to UNIX sort
+my $tmpFile;          # temporary file (unrelated to 'intermediate files' and
+                      # $tmpDir)
+
+#  $^X is perl executable
+my $perl = $^W ? "$^X -w" : "$^X";
+
+# The number of peers.
+my $peerCn;
+
+# The number of peers that must carry a prefix for it to be considered a
+# semi-global prefix. Not currently used.
+my $semiGlobalPeerCn;
+
+readargs();
+getPeerCounts();
+sortPfAsp();
+doJoinAsPathsForPref();
+sortPfAspColl();
+groupPrefixesIntoAtoms();
+doNameAtoms();
+unlink $tmpFile or warn "unable to remove $tmpFile\n";
+print STDERR "done.\n";
+
+#=========================================================================#
+
+sub usage(@)
+{
+  my @msgs = (@_);
+  print STDERR "Error: @msgs\n" if @msgs;
+  print STDERR <<"END";
+
+$progName: computing BGP atoms.
+
+Usage:
+$progName [ -d debug-level ] [ -k ] [ -T dir ] file-prefix
+
+END
+  exit(1);
+}
+
+#=========================================================================#
+
+sub readargs()
+{
+  $0 =~ m#([^/]*)$#;
+  $progName = $1;
+  my $argv = join " ", @ARGV;
+  $scriptDir = $`;
+  $scriptDir =~ s#/+$## ;
+
+  my $cutoffOpt;
+  GetOptions(
+    'd=i' => \$debug,
+    'T=s' => \$tmpDir,
+    'k'   => \$keepFiles,
+  ) or usage();
+
+  # -d
+  if ($debug > 2) {
+    $debug = 2;
+  }
+  elsif ($debug < 0) {
+    $debug = 0;
+  }
+
+  # -T
+  if (defined $tmpDir) {
+    die "$tmpDir is not a directory\n" if ! -d $tmpDir;
+    print STDERR "tmpDir=$tmpDir\n" if $debug == 2;
+    $sortArg = "-T $tmpDir";
+  }
+
+  # -k
+  print STDERR ($keepFiles ? "" : "not ")  .  "keeping intermediate files\n"
+    if $debug;
+
+
+  print STDERR "debug level: $debug\n" if $debug;
+  print STDERR "scriptDir=$scriptDir\n" if $debug == 2;
+  print STDERR "progName=$progName\n" if $debug == 2;
+
+  $filePrefix = shift @ARGV or usage("missing file-prefix");
+  $tmpFile = "$filePrefix.tmp";
+  if (@ARGV) {
+    usage("too many arguments");
+  }
+  die "Working directory does not contain file $filePrefix.peer\n"
+    unless -e "$filePrefix.peer";
+
+  print STDERR "Running: $progName $argv\n" if $debug;
+}
+
+#=========================================================================#
+
+# Computes $peerCn and $semiGlobalPeerCn.
+sub getPeerCounts()
+{
+  my $fh = new FileHandle;
+  my $fname = "$filePrefix.peer";
+
+  $peerCn = 0;
+  -r $fname or die "$fname does not exist or is not readable\n";
+  open $fh, $fname or die "$fname: $!\n";
+  while (<$fh>) {
+    next unless /^\d/;
+    my ($peer) = split;
+    die "$fname: $.: invalid 'peer ip' field: $peer\n"
+      unless $peer =~ /^\d+\.\d+\.\d+\.\d+$/;
+    $peerCn++;
+  }
+  close $fh;
+  die "no peers found in $fname" if $peerCn == 0;
+
+  # the criterion for semi-global prefixes is: over half the peers in the .peer
+  # file must carry the prefix
+  $semiGlobalPeerCn = ceil (($peerCn + 1) / 2);
+  print STDERR
+    "Semi-global prefixes are carried by at least $semiGlobalPeerCn peers\n"
+    if $debug == 2;
+}
+
+#=========================================================================#
+
+# Sorts the .pfasp.gz file and writes the result to the .pfaspsorted file.
+sub sortPfAsp()
+{
+  print STDERR
+    "Sorting $filePrefix.pfasp.gz file to $filePrefix.pfaspsorted\n" if $debug;
+
+  # Sort on (1) prefix, (2) peer address, (3) AS path.  splitPfAsp is called to
+  # prepare for UNIX sort by splitting fields; joinSortedPfAsp is called
+  # afterwards to join fields together again.
+
+  my $command =
+    "{ gunzip -c $filePrefix.pfasp.gz " .
+    "  || echo gunzip error: \$? >&3 ; } | " .
+    "{ $perl $scriptDir/splitPfAsp > $tmpFile " .
+    "  || echo splitPfAsp error: \$? >&3 ; }";
+  print STDERR "starting: $command\n" if $debug == 2;
+  my $errors = `{ $command ; } 3>&1 1>/dev/null`;
+  die "sortPfAsp: unable to run '$command': $errors" if $errors;
+
+  $command =
+    "{ sort $sortArg -bn -t. +0 -1n +1 -2n +2 -3n +3 -4n +4 -5n +5 -6n +6 -7n +7 -8n +8 -9n $tmpFile " .
+    "  || echo sort error: \$? >&3 ; } | ".
+    "{ $scriptDir/joinSortedPfAsp > $filePrefix.pfaspsorted" .
+    "  || echo joinSortedPfAsp error: \$? >&3 ; }";
+  print STDERR "starting: $command\n" if $debug == 2;
+  $errors = `{ $command ; } 3>&1 1>/dev/null`;
+  die "sortPfAsp: unable to run '$command': $errors" if $errors;
+}
+
+#=========================================================================#
+
+# Invokes joinAsPathsForPref on the .pfaspsorted file, producing the
+# .pfaspcoll file. See that script for further info.
+sub doJoinAsPathsForPref()
+{
+  my $command =
+    "$perl $scriptDir/joinAsPathsForPref $debug $peerCn " .
+    "      <$filePrefix.pfaspsorted >$filePrefix.pfaspcoll";
+
+  print STDERR "starting: $command\n" if $debug == 2;
+  `$command`;
+  die "doJoinAsPathsForPref: unable to run '$command': $?" if $?;
+
+  if (! $keepFiles) {
+    unlink "$filePrefix.pfaspsorted"
+      or warn "unable to remove $filePrefix.pfaspsorted\n";
+  }
+}
+
+#=========================================================================#
+
+# Sorts the .pfaspcoll file by their collection of AS paths, effectively
+# grouping the prefixes by atoms, and writes the result to the
+# .pfaspcollsorted file.
+sub sortPfAspColl()
+{
+  print STDERR
+    "Sorting $filePrefix.pfaspcoll to $filePrefix.pfaspcollsorted\n" if $debug;
+
+  my $command =
+    "sort $sortArg +1 -2 +0 -1n $filePrefix.pfaspcoll " .
+    "     >$filePrefix.pfaspcollsorted";
+
+  print STDERR "starting: $command\n" if $debug == 2;
+  `$command`;
+  die "sortPfAspColl: unable to run '$command': $?" if $?;
+
+  if (! $keepFiles) {
+    unlink "$filePrefix.pfaspcoll"
+      or warn "unable to remove $filePrefix.pfaspcoll\n";
+  }
+}
+
+#=========================================================================#
+
+# From the .pfaspcollsorted file, reads prefixes and their collections of AS
+# paths, groups them into atoms, sorts the atoms by the number of prefixes per
+# atom (in reverse order), and writes the result to the .atoms file.
+# Also writes a distribution of prefix counts per atom to the .atoms.ccdf file.
+#
+# The format of the .atoms file is the following four lines per atom:
+#   o the number of prefixes in the atom
+#   o the sorted list of prefixes in the atom
+#   o the collection of AS paths for the atom (as copied from .pfaspcollsorted)
+#   o an empty separator line.
+sub groupPrefixesIntoAtoms()
+{
+  my $command =
+    "$perl $scriptDir/joinPrefsByEqualAsPaths $debug $filePrefix.atoms.ccdf".
+    "      < $filePrefix.pfaspcollsorted > $tmpFile";
+  print STDERR "starting: $command\n" if $debug == 2;
+  `$command`;
+  die "groupPrefixesIntoAtoms: unable to run '$command': $?" if $?;
+
+  if (! $keepFiles) {
+    unlink "$filePrefix.pfaspcollsorted"
+      or warn "unable to remove $filePrefix.pfaspcollsorted\n";
+  }
+
+  $command =
+    "{ sort $sortArg +0 -1rn $tmpFile" .
+    "  || echo sort error: \$? >&3 ; } | " .
+    "{ $perl -ne 's/\\+/\\n/g ; print \"\$_\\n\"' >$filePrefix.atoms" .
+    "  || echo 's/\+/\n/g' error: \$? >&3 ; }";
+
+  print STDERR "starting: $command\n" if $debug == 2;
+  my $errors = `{ $command ; } 3>&1 1>/dev/null`;
+  die "groupPrefixesIntoAtoms: unable to run '$command': $errors" if $errors;
+}
+
+#=========================================================================#
+
+# Invokes nameAtoms on the .atoms file, producing the .atoms.asp.gz,
+# .atoms.p2a and .atoms.full.gz files. See that script for further info.
+sub doNameAtoms()
+{
+  my $command = "$perl $scriptDir/nameAtoms $debug $filePrefix.atoms " .
+    "$filePrefix.atoms.asp.gz $filePrefix.atoms.p2a $filePrefix.atoms.full.gz";
+
+  print STDERR "starting: $command\n" if $debug == 2;
+  `$command`;
+  die "doNameAtoms: unable to run '$command': $?" if $?;
+
+  if (! $keepFiles) {
+    unlink "$filePrefix.atoms"
+      or warn "unable to remove $filePrefix.atoms\n";
+  }
+}

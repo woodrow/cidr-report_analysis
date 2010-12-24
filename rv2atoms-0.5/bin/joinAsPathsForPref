@@ -1,0 +1,101 @@
+#!/usr/bin/perl -w
+
+# Copyright (C) 2002  The Regents of the University of California
+# 
+# Permission to use and install this software is hereby granted.
+# Permission to copy for internal use in testing, training,
+# evaluation and disaster recovery purposes, and for backup and
+# archival purposes is hereby granted. Permission to modify or
+# alter the software, but only to the extent necessary to make the
+# software operate at the site, and as long as this copyright
+# notice shall apply to the software as modified or altered, is
+# hereby granted. Permission to use, copy, modify, and distribute
+# any part of this software for educational, research and non-
+# profit purposes is hereby granted, provided that the above
+# copyright notice, this paragraph and the following three
+# paragraphs appear in all copies. All users of this software must
+# acknowledge in their publications or presentations the
+# University of California San Diego and the San Diego
+# Supercomputer Center as the source of the software.
+# 
+# IN NO EVENT SHALL THE UNIVERSITY OF CALIFORNIA BE LIABLE TO ANY PARTY
+# FOR DIRECT, INDIRECT, SPECIAL, INCIDENTAL, OR CONSEQUENTIAL DAMAGES,
+# INCLUDING LOST PROFITS, ARISING OUT OF THE USE OF THIS SOFTWARE, EVEN
+# IF THE UNIVERSITY OF CALIFORNIA HAS BEEN ADVISED OF THE POSSIBILITY
+# OF SUCH DAMAGE.
+# 
+# THE SOFTWARE PROVIDED HEREIN IS ON AN "AS IS" BASIS, AND THE UNIVERSITY
+# OF CALIFORNIA HAS NO OBLIGATION TO PROVIDE MAINTENANCE, SUPPORT,
+# UPDATES, ENHANCEMENTS, OR MODIFICATIONS.  THE UNIVERSITY OF CALIFORNIA
+# MAKES NO REPRESENTATIONS AND EXTENDS NO WARRANTIES OF ANY KIND, EITHER
+# IMPLIED OR EXPRESS, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
+# OF MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE, OR THAT THE USE
+# OF THE SOFTWARE WILL NOT INFRINGE ANY PATENT, TRADEMARK OR OTHER RIGHTS.
+
+# joinAsPathsForPref
+# Authors:
+#   Patrick Verkaik (patrick@caida.org)
+#   Andre Broido: algorithms and scripts before rewrite
+#   Young Hyun: code review
+
+
+# Usage: gunzip -c fileprefix.pfaspsorted.gz |
+#        joinAsPathsForPref debug npeers |
+#        gzip -c > fileprefix.pfaspcoll.gz
+#
+# Called by findBgpAtoms. From standard input (sorted), reads AS paths from
+# different peer views, and groups them into a collection of AS paths per
+# prefix. Results are written to standard output. Each line of output consists
+# of a prefix, followed by the collection of AS paths. Each AS path is
+# prepended with the peer IP address. For example: 4.0.0.0/8
+# 1.2.3.4-100-102-103;5.6.7.8-101-102-103
+#
+# Only global prefixes are considered: those prefixes that are carried by all
+# peers. The number of peers to determine what is a global prefix is passed as
+# the 'npeers' argument.
+#
+# The debug level of findBgpAtoms is passed as 'debug'.
+
+use strict;
+
+die "usage: joinAsPathsForPref debug npeers\n" if @ARGV != 2;
+my ($debug, $peerCn) = (@ARGV);
+
+my $args = join " ", "$0 ", @ARGV;
+print STDERR "\nStarted: $args\n" if $debug;
+
+my $curPrefix;   	# prefix of the current block of lines
+my $curPeersSeen = 0;	# the number of peers seen carrying $curPrefix
+my $curPathAcc = "";	# the path collection for $curPrefix
+
+while (<STDIN>) {
+  next if /^#/;
+
+  print STDERR "$.) $_" if $debug and $. % 250000 == 0;
+
+  if(/^$/){ # empty line
+    # end block of lines for a prefix
+    chop $curPathAcc;     # ';'
+    print STDOUT "$curPrefix $curPathAcc\n" if ( $curPeersSeen >= $peerCn );
+
+    # start next block of lines
+    $curPeersSeen = 0; 
+    $curPathAcc = "";
+    next;
+  }
+
+  chomp;
+  ($curPrefix, my $peer, my $asPath) = split /\s+/, $_, 3;
+
+  # convert to: 4.0.0.2-1-9942-9300
+  my $peerAsPath = "$peer $asPath";
+  $peerAsPath =~ s/\s+/-/g;
+
+  $curPathAcc .= "$peerAsPath\;";
+  $curPeersSeen++;
+}
+# end block of lines for final prefix
+if ($curPeersSeen) {
+  chop $curPathAcc;     # ';'
+  print STDOUT "$curPrefix $curPathAcc\n" if ( $curPeersSeen >= $peerCn );
+}

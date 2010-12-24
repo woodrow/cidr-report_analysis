@@ -1,0 +1,185 @@
+#!/usr/bin/perl -w
+
+# Copyright (C) 2002  The Regents of the University of California
+# 
+# Permission to use and install this software is hereby granted.
+# Permission to copy for internal use in testing, training,
+# evaluation and disaster recovery purposes, and for backup and
+# archival purposes is hereby granted. Permission to modify or
+# alter the software, but only to the extent necessary to make the
+# software operate at the site, and as long as this copyright
+# notice shall apply to the software as modified or altered, is
+# hereby granted. Permission to use, copy, modify, and distribute
+# any part of this software for educational, research and non-
+# profit purposes is hereby granted, provided that the above
+# copyright notice, this paragraph and the following three
+# paragraphs appear in all copies. All users of this software must
+# acknowledge in their publications or presentations the
+# University of California San Diego and the San Diego
+# Supercomputer Center as the source of the software.
+# 
+# IN NO EVENT SHALL THE UNIVERSITY OF CALIFORNIA BE LIABLE TO ANY PARTY
+# FOR DIRECT, INDIRECT, SPECIAL, INCIDENTAL, OR CONSEQUENTIAL DAMAGES,
+# INCLUDING LOST PROFITS, ARISING OUT OF THE USE OF THIS SOFTWARE, EVEN
+# IF THE UNIVERSITY OF CALIFORNIA HAS BEEN ADVISED OF THE POSSIBILITY
+# OF SUCH DAMAGE.
+# 
+# THE SOFTWARE PROVIDED HEREIN IS ON AN "AS IS" BASIS, AND THE UNIVERSITY
+# OF CALIFORNIA HAS NO OBLIGATION TO PROVIDE MAINTENANCE, SUPPORT,
+# UPDATES, ENHANCEMENTS, OR MODIFICATIONS.  THE UNIVERSITY OF CALIFORNIA
+# MAKES NO REPRESENTATIONS AND EXTENDS NO WARRANTIES OF ANY KIND, EITHER
+# IMPLIED OR EXPRESS, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
+# OF MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE, OR THAT THE USE
+# OF THE SOFTWARE WILL NOT INFRINGE ANY PATENT, TRADEMARK OR OTHER RIGHTS.
+
+# nameAtoms
+# Authors:
+#   Patrick Verkaik (patrick@caida.org)
+#   Andre Broido: algorithms and scripts before rewrite
+#   Young Hyun: code review
+
+# Usage: nameAtoms debug fileprefix.atoms fileprefix.atoms.asp.gz
+#                  fileprefix.atoms.p2a fileprefix.atoms.full.gz
+#
+# Called by findBgpAtoms. Reads fileprefix.atoms and uniquely names the
+# atoms found there. Produces the following files:
+#   o fileprefix.atoms.asp.gz, a file which maps each atom name to the
+#     collection of AS paths for the atom. (Each AS path is prefixed with the
+#     peer IP address from which the AS path was learnt.)
+#   o fileprefix.atoms.p2a, a file which maps each prefix to the atom that the
+#     prefix belongs to.
+#   o fileprefix.atoms.full.gz contains the data of fileprefix.atoms, and
+#     adds an atom counter (counter ranging over all atoms found) and the
+#     atom name. XXX TODO: see if the atom counter can be removed
+#
+# The atom name is a string composed as follows:
+#
+#   as<origin>np<#prefixes>at<sequence>
+#
+# where <origin> is the origin AS of the atom (or multiple origin ASes
+# separated by '_'), <#prefixes> is the number of prefixes in the atom, and
+# <sequence> is a sequence number (starting with 1) ranging over all atom names
+# that have the same <origin> and <#prefixes> parts. Examples:
+#
+#   as701np1133at1
+#   as5676np125at1
+#   as5676np125at2
+#   as6140_16528np34at1
+#
+# The debug level of findBgpAtoms is passed as 'debug'.
+
+use strict;
+use FileHandle;
+
+die "usage: nameAtoms debug fileprefix.atoms fileprefix.atoms.asp.gz fileprefix.atoms.p2a fileprefix.atoms.full.gz\n" if @ARGV != 5;
+my ($debug, $atomsFile, $aspFile, $p2aFile, $fullFile) = (@ARGV);
+
+my $args = join " ", "$0 ", @ARGV;
+print STDERR "\nStarted: $args\n" if $debug;
+
+my $atomsFH = new FileHandle;
+my $p2aFH = new FileHandle;
+my $aspFH = new FileHandle;
+my $fullFH = new FileHandle;
+
+local $SIG{PIPE} = sub { die "problem piping to gzip\n" };
+  
+open $atomsFH, $atomsFile or die "$atomsFile: $!\n";
+open $p2aFH, ">$p2aFile" or die "Cannot open output $p2aFile\n";
+open $aspFH, "| gzip -c >$aspFile" or die "Cannot open output $aspFile\n";
+open $fullFH, "| gzip -c >$fullFile" or die "Cannot open output $fullFile\n";
+
+$/ = "";		# empty line is our separator
+
+my $atomCounter = 1;	# ranges over all atoms
+my %atomBaseNames = (); # a count of atom names before the distinguishing
+                        # sequence number is added 
+my $duplicateCn = 0;    # number of duplicate atom base names for logging
+
+my @prefix2atom = ();   # where we collect $p2aFH output
+
+while(<$atomsFH>) {
+  my ($prefixCn, $prefixes, $paths) = split /\n/; 
+
+  # get origin ASes of this atom
+  my %originAses = ();
+  foreach my $path (split /\;/, $paths) {
+    my @ases = split /-/, $path;
+    my $orig = pop @ases;
+    $originAses{$orig}++;
+  }
+  my $originAses = join "_", (sort byAs keys %originAses);
+
+  # the base name of the atom (without sequence number)
+  my $atomBaseName =  "as${originAses}np$prefixCn";
+  my $sequence = ++$atomBaseNames{$atomBaseName};
+  my $atomName = "${atomBaseName}at$sequence";
+
+  if ($sequence > 1 and ++$duplicateCn % 1000 == 0) {
+    print STDERR
+      "Combination $sequence of origin AS and number of prefixes: $atomName\n"
+      if $debug;
+  }
+  print $fullFH "$atomCounter $atomName $_";
+  foreach my $prefix (split /\s+/, $prefixes){
+    my $str = sprintf("%-18s %-18s", $prefix, $atomName);
+    push @prefix2atom, $str;
+  }
+  print $aspFH "$atomName $paths\n";
+  $atomCounter++;
+}
+
+foreach my $pfat (sort byPrefixAtomName @prefix2atom) {
+  print $p2aFH "$pfat\n";
+} 
+
+close $atomsFH;
+close $p2aFH;
+close $aspFH or die "could not 'gzip -c >$aspFH': $! $?\n";
+close $fullFH or die "could not 'gzip -c >$fullFH': $! $?\n";
+
+
+#=========================================================================#
+
+# sort byPrefixAtomName @prefixAtoms
+# A well-defined sorting order for "prefix atomname" strings.
+sub byPrefixAtomName
+{
+  if ($debug) {
+    die "<$a>" if $a !~ m#^[\d./]+\s+as[\d_,]+np\d+at\d+\s*$# ;
+    die "<$b>" if $b !~ m#^[\d./]+\s+as[\d_,]+np\d+at\d+\s*$# ;
+  }
+
+  my @a = split m#[./]|\s+#, $a;
+  my @b = split m#[./]|\s+#, $b;
+
+  die if $debug and (@a != 6 or @b != 6);
+
+  # compare the numeric components of the IP address and the prefix length
+  for (my $k = 0; $k < 5; $k++) {
+    my $cmp = $a[$k] <=> $b[$k];
+    return $cmp if $cmp != 0;
+  }
+  # the atom name
+  return $a[5] cmp $a[5];
+}
+
+
+#=========================================================================#
+
+# sort byAs @ases
+# A well-defined sorting order for AS numbers and AS sets. An AS set is
+# represented as a comma-separated AS numbers: no surrounding braces!
+# MAINTAINER: identical to straightenRV's byAs.
+sub byAs
+{
+  my @a = split /,/, $a;
+  my @b = split /,/, $b;
+
+  my $minLength = @a < @b ? @a : @b;
+  for (my $k = 0; $k < $minLength; $k++) {
+    my $cmp = $a[$k] <=> $b[$k];
+    return $cmp if $cmp != 0;
+  }
+  return @a - @b;
+}

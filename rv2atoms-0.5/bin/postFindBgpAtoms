@@ -1,0 +1,83 @@
+#!/bin/sh
+
+# Copyright (C) 2002  The Regents of the University of California
+# 
+# Permission to use and install this software is hereby granted.
+# Permission to copy for internal use in testing, training,
+# evaluation and disaster recovery purposes, and for backup and
+# archival purposes is hereby granted. Permission to modify or
+# alter the software, but only to the extent necessary to make the
+# software operate at the site, and as long as this copyright
+# notice shall apply to the software as modified or altered, is
+# hereby granted. Permission to use, copy, modify, and distribute
+# any part of this software for educational, research and non-
+# profit purposes is hereby granted, provided that the above
+# copyright notice, this paragraph and the following three
+# paragraphs appear in all copies. All users of this software must
+# acknowledge in their publications or presentations the
+# University of California San Diego and the San Diego
+# Supercomputer Center as the source of the software.
+# 
+# IN NO EVENT SHALL THE UNIVERSITY OF CALIFORNIA BE LIABLE TO ANY PARTY
+# FOR DIRECT, INDIRECT, SPECIAL, INCIDENTAL, OR CONSEQUENTIAL DAMAGES,
+# INCLUDING LOST PROFITS, ARISING OUT OF THE USE OF THIS SOFTWARE, EVEN
+# IF THE UNIVERSITY OF CALIFORNIA HAS BEEN ADVISED OF THE POSSIBILITY
+# OF SUCH DAMAGE.
+# 
+# THE SOFTWARE PROVIDED HEREIN IS ON AN "AS IS" BASIS, AND THE UNIVERSITY
+# OF CALIFORNIA HAS NO OBLIGATION TO PROVIDE MAINTENANCE, SUPPORT,
+# UPDATES, ENHANCEMENTS, OR MODIFICATIONS.  THE UNIVERSITY OF CALIFORNIA
+# MAKES NO REPRESENTATIONS AND EXTENDS NO WARRANTIES OF ANY KIND, EITHER
+# IMPLIED OR EXPRESS, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
+# OF MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE, OR THAT THE USE
+# OF THE SOFTWARE WILL NOT INFRINGE ANY PATENT, TRADEMARK OR OTHER RIGHTS.
+
+#------------------------------------------------------
+# Finding global prefixes - those w.prefix count >= $semiGlobalPeerCn (third command line argument, e.g. 27)
+perl -e 'BEGIN{($IN,$pcn)=@ARGV; open IN or die "No $IN\n";} while(<IN>){@F=split; print if $F[2] >= $pcn;}' $filePrefix.pref $semiGlobalPeerCn > $filePrefix.gl$semiGlobalPeerCn.pref
+
+echo "Finding less-specifics for prefixes by ../BGP/findPrefixByIp"
+cat $filePrefix.gl$semiGlobalPeerCn.pref | perl -ane '($ip)=split /\//; print' | ../BGP/findPrefixByIp $filePrefix.gl$semiGlobalPeerCn.pref 500000 > $filePrefix.gl$semiGlobalPeerCn.p2p
+
+echo "Counting trees of more specifics"
+../BGP/prefTreeCount.pl $filePrefix.gl$semiGlobalPeerCn.pref $filePrefix.gl$semiGlobalPeerCn.p2p 24 $semiGlobalPeerCn $filePrefix.pftr
+
+# finding how many CIDR blocks are necessary for correct routing
+sort -t"/" +1 -2rn  $filePrefix.gl$semiGlobalPeerCn.p2p >  $filePrefix.gl$semiGlobalPeerCn.p2p.bylen
+../BGP/atomPrefHier.pl $filePrefix.gl$semiGlobalPeerCn.p2p.bylen $filePrefix.atoms.p2a $filePrefix.a2a.msp.lnk $filePrefix.pf2gbk > $filePrefix.at.gbk.log
+
+# finding ramified atoms
+../BGP/atomTreesByFocalPt.pl $filePrefix.peer $filePrefix.atoms.asp.gz $filePrefix.at.lnk $filePrefix.at.slv.pth $filePrefix.at.log
+
+# prefix types: standalone, root, more specific
+ ../BGP/pref2type.pl $filePrefix.gl$semiGlobalPeerCn.p2p $filePrefix.gl$semiGlobalPeerCn.p2t
+
+# How many prefixes are advertized by transit/nontransit, single/multihomed AS, by category: standalone, root, more sp.
+../BGP/mhomePrefCn.pl     $filePrefix.gl$semiGlobalPeerCn.pref $filePrefix.gl$semiGlobalPeerCn.p2t $filePrefix.aslk >  $filePrefix.gl$semiGlobalPeerCn.mhms.log
+../BGP/mhomePrefIodgCn.pl $filePrefix.gl$semiGlobalPeerCn.pref $filePrefix.gl$semiGlobalPeerCn.p2t $filePrefix.aslk >> $filePrefix.gl$semiGlobalPeerCn.mhms.log
+
+# Statistics of atoms for each AS. List them all on the line, 
+#with names assigned by nameAtoms, see above. Produces file $filePrefix.as2at used below
+
+../BGP/as2atomTab.pl $filePrefix.atoms.p2a  $filePrefix.as2at
+
+# Statistics: AS, number of atoms, number of prefixes in the largest atom for given AS, 
+# and the list of atoms. 
+
+# sort +1 -2rn +2 -3rn +0 -1n $filePrefix.as2at > $filePrefix.as2at.bynoat
+# top of the sorted table for the paper
+# cat $filePrefix.as2at.bynoat | perl -ane 'last if $F[1]<17; print substr($_,0,28), "\n";' 
+
+echo counting multiple origin atoms 
+cat $filePrefix.as2at | grep "\_" | perl -ane '$k+=(@F-3);END{print "Mult. origin atoms $k\n";}'
+
+# table of AS atom counts
+gunzip -c $filePrefix.atoms.full.gz |\
+perl -ane 'BEGIN{$/=""} @F=split; ($as)= split /np/, $F[1]; $asCn{$as}++; last if $line++>1000 and 1==0; END{for $as(keys %asCn){$cn=$asCn{$as}; $fqCn{$cn}++;} printf("%6s %6s\n", "#Atoms", "#AS w.so many atoms"); for $fq(sort{$a<=>$b} keys %fqCn){$cn=$fqCn{$fq}; $sum+=$cn; printf("%6d %6d %6d\n", $fq, $cn, $sum); $stf.="$fq & "; $sta .="$fqCn{$fq} & "; if(++$k%8==0){$str.="$stf \\\\ \n $sta \\\\ \n"; $sta = $stf = "";} } print "$str $stf \\\\ \n $sta \\\\ \n";}' > $filePrefix.asatcn
+
+# To compare two dates w.r.t. changes in the sets of standalone, root, and m.sp prefixes (change as necessary):
+# example: ../BGP/join11wnone.pl ../BGD00P6/bgp000502p6.gl.p2t 18 ../BGD0503P6/bgp010503p6.gl.p2t > bgp000502vs010503p6.gl.p2t.tab
+
+# Counting gaps in address space of global prefixes and intervals of addr.space with the same tower of specifics 
+../BGP/prefTo24sOnce.pl $filePrefix.gl$semiGlobalPeerCn.pref | ../BGP/findPrefixByIp $filePrefix.gl$semiGlobalPeerCn.pref 300000 | ../BGP/prefTowerCnt.pl >> $filePrefix.at.log
+# this functionality is also afforded by  intervGaps

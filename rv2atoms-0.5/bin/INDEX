@@ -1,0 +1,9 @@
+INDEX                  : this file
+findBgpAtoms           : main script for atom computation
+joinAsPathsForPref     : used by findBgpAtoms
+joinPrefsByEqualAsPaths: used by findBgpAtoms
+joinSortedPfAsp        : used by findBgpAtoms
+nameAtoms              : used by findBgpAtoms
+postFindBgpAtoms       : contains code to be rewritten and incorporated
+splitPfAsp             : used by findBgpAtoms
+straightenRV           : main script for RouteViews table processing
