@@ -203,7 +203,7 @@ def update_ancestor(ancestor, descendant):
         if ancestor.prefix_class == PREFIX_CLASSES.LONELY:
             ancestor.prefix_class = PREFIX_CLASSES.TOP
 #            print(str(ancestor) + " is TOP")
-        if as_paths_match_to_dfz(ancestor, descendant):
+        if as_paths_match(ancestor, descendant):
             descendant.prefix_class = PREFIX_CLASSES.DEAGG
 #            print(str(descendant) + " is DEAGG")
             if ancestor.is_aggregable:
@@ -507,7 +507,11 @@ def _plot_tree_helper(node, parent_node, graph, deep, force=False):
             graph.node[node]['color'] = 'red'
 #        else:
 #            graph.node[node]['color'] = 'red'
-        graph.node[node]['label'] = str(node) + ' ' +  str(node.aggregable_more_specifics) + '\\n' + str(node.origin_as)  + ' ' + str(node.as_paths[0])
+        graph.node[node]['label'] = ' '.join([str(node),
+            str(node.aggregable_more_specifics), str(node.origin_as), '\\n'])
+        graph.node[node]['label'] += '\\n'.join(
+            [str(ap) for ap in node.as_paths])
+        #str(node.as_paths[0])
         # annotate
         p = node
         r = node
