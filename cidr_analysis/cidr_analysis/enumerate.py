@@ -1,3 +1,5 @@
+#!/usr/bin/env python2.6
+
 class Enumerate(object):
     """A general-purpose enumerated type class that accepts its types during
     initialization.

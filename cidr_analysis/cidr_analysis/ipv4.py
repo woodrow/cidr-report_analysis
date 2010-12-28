@@ -1,3 +1,5 @@
+#!/usr/bin/env python2.6
+
 def dotquad_to_int(ipv4_str):
     """Convert an IPv4 address in dotted quad string representation to 32-bit
     integer representation.
