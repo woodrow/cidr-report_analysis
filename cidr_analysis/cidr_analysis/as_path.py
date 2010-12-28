@@ -1,29 +1,43 @@
 #!/usr/bin/env python2.6
 
 def normalize_as_path(path):
-    new_path = [extract_asn(e) for e in path] # remove AS_SETs
-    new_path = [e for e in path if e < 64512 or e > 65551] # remove private
-    new_path = deprepend_as_path(new_path)
-    new_path = deloop_as_path(new_path)
-    return new_path
+    # remove AS_SETs and convert to ints
+    norm_path = [extract_asn(e) for e in path]
+    # remove private ASNs
+    norm_path = [e for e in norm_path if e < 64512 or e > 65551]
+    norm_path = deprepend_as_path(norm_path)
+    # TODO how to deal with 0s in AS_PATH?
+    norm_path = deloop_as_path(norm_path)
+    return norm_path
+
 
 def extract_asn(s):
     """A helper function to extract AS numbers from AS_PATH string elements that
     may contain AS_SETs (denoted by '{ASN1, ASN2, ...}'). If the string does not
     contain an AS_SET or if the AS_SET contains only one AS number, the AS
     number is returned. If the AS_SET contains two or more ASNs, 0 is returned.
+    If an unparsable AS_PATH element is passed, a ValueError will be raised.
 
     """
-    s = s.strip()
-    #TODO should I worrry about AS_CONFED_SET and AS_CONFED_SEQ?
-    if s.find('{') > -1:
-        components = s[1:-1].split(',')
-        if len(components) == 1:
-            return int(components[0])
+    try:
+        s = s.strip()
+    except AttributeError:
+#        raise TypeError
+        # instead of TypeError, try and convert -- it may already be an int
+        return int(s)
+
+    if -1 < s.find('{') < s.find('}'):
+        if s.find('{') == 0 and s.find('}') == len(s)-1:
+            components = s[1:-1].split(',')
+            if len(components) == 1:
+                return int(components[0].strip())
+            else:
+                return 0
         else:
-            return 0
+            raise ValueError
     else:
         return int(s)
+
 
 def deprepend_as_path(path):
     """A helper function to remove AS_PATH prepending while maintaining the
@@ -44,6 +58,7 @@ def deprepend_as_path(path):
             current_as = asn
             new_path.append(asn)
     return new_path
+
 
 def deloop_as_path(path):
     """A helper function to remove AS loops in the AS_PATH while maintaining the
