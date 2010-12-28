@@ -1,0 +1,66 @@
+==Project todo==
+
+* Reorganize base layout (see http://jcalderone.livejournal.com/39794.html and http://stackoverflow.com/questions/193161/what-is-the-best-project-structure-for-a-python-application)
+
+    cidr-report_analysis/
+      cidr_analysis/
+        bin/
+        cidr_analysis/
+          __init__.py
+          test/
+            __init__.py
+      libbgpdump/
+      nov12/
+      oct22/
+      optimization/
+      planning/
+      rib_dumps/
+      routeviews/
+      rv2atoms-0.5/
+
+* Refactor cidr\_analysis code into a real module, and separate executable
+actions (into `bin`) from module-like stuff (into `cidr_analysis`)
+
+* Build unit tests for cidr\_analysis module functions and components
+    - Think about functional spec for each and design tests accordingly
+
+* Refactor current cidrprefix\_treeonly code to aggregate each view
+individually, perhaps by keeping a dict keyed by peer ip in which to store
+PrefixAttr objects, and then determining aggregation potential by crawling the
+tree recursively until all nodes are aggregable (it would be useful to
+implement `__eq__` or whatever the appropriate method is in PrefixAttr such
+that `any()` and/or `all()` function in a useful way to make this as efficient
+as possible)
+
+* Also, refactor cidrprefix\_treeonly to allow different classification
+algorithms (really, AS\_PATH equality/routing policy equality algorithms) to
+be run, including:
+    - exact path match (current cidr report)
+    - no deviation in upstream routing policy (arthur + my approach)
+    - exact path match with virtual nodes (i.e. less-specific covering prefixes)
+
+* Refactor code to perform logging:
+    - using the python logging library
+    - capturing loggable output from command-line calls (i.e. using subprocess)
+    - capturing other loggable error conditions/exceptions/etc.
+    - make sure log output is formatted for easy grepping or other counting
+      to gather summary statistics about the success or failure of a given
+      processing run
+
+* hack up straightenRV to produce output like I'm expecting from the other text-
+based solutions:
+    prefix peer_ip as_path (origin last)
+
+* test and profile (CPU time and memory) processing workflow:
+    - generate txt RIB (simpledump or straightenRV)
+    - (optional) sort on prefix -- not sure how valuable/necessary this is
+    - preprocess RIB and generate statistic files for validation (neighbors.py)
+    - perform cidr-report analysis (cidrprefix_treeonly.py)
+    - dump cidr-report ranking into postgres
+    - (optional) save intermediate data for later recall/checking
+
+* optimize major problems
+
+* preflight processing with karen/ddc/arthur
+
+* start processing!

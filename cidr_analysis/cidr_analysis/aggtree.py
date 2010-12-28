@@ -1,25 +1,8 @@
-#!/usr/bin/env python
+#!/usr/bin/env python2.6
 
 import itertools
-
-class Enumerate(object):
-    """A general-purpose enumerated type class that accepts its types during
-    initialization.
-
-    """
-    def __init__(self, *args):
-        if len(args) < 1:
-            raise TypeError("Enumerate.__init__() takes at least 1 argument "
-                "(0 given)")
-        if len(args) == 1:
-            if args[0] == str(args[0]):
-                namelist = args[0].split()
-            else:
-                namelist = args[0]
-        else:
-            namelist = [str(x) for x in args]
-        for number, name in enumerate(namelist):
-            setattr(self, name, number)
+from enumerate import Enumerate
+import ipv4
 
 PREFIX_CLASSES = Enumerate('LONELY', 'TOP', 'DEAGG', 'DELEG')
 DFZ_ASNS = [209, 701, 1239, 1299, 2828, 2914, 3356, 3549, 3561, 6453, 6461,
@@ -55,9 +38,9 @@ class CidrPrefix(object):
 
     def __str__(self):
         if self.as_paths:
-            return int_to_dotquad(self.prefix) + '/' + str(self.prefix_len)
+            return ipv4.int_to_dotquad(self.prefix) + '/' + str(self.prefix_len)
         else:
-            return '<' + int_to_dotquad(self.prefix) + '/' + \
+            return '<' + ipv4.int_to_dotquad(self.prefix) + '/' + \
                 str(self.prefix_len) + '>'
 
     def __repr__(self):
@@ -80,30 +63,6 @@ class CidrPrefix(object):
                 self.origin_as = as_path[0]
         self.as_paths.append(as_path)
 
-def dotquad_to_int(ipv4_str):
-    """Convert an IPv4 address in dotted quad string representation to 32-bit
-    integer representation.
-
-    """
-    ipv4_int = 0
-    byte_str_list = ipv4_str.split('.')
-    if len(byte_str_list) != 4:
-        raise ValueError("dotquad_to_int takes address in dotted quad format")
-    for pos, byte_str in enumerate(byte_str_list):
-        ipv4_int |= int(byte_str) << (3-pos)*8
-    return ipv4_int
-
-def int_to_dotquad(ipv4_int):
-    """Convert an IPv4 address in 32-bit integer representation to
-    dotted quad string representation.
-
-    """
-    octets = []
-    for i in xrange(4):
-        octets.append(str(ipv4_int & 0xFF))
-        ipv4_int >>= 8
-    octets.reverse()
-    return '.'.join(octets)
 
 def process_table(infile, root_list):
     """Process the contents of the text-formatted routing table and form a
@@ -148,8 +107,8 @@ def process_table(infile, root_list):
                 else:
                     print("error, prefix bigger than /8 !")
             # create new prefix
-            new_cidrprefix = CidrPrefix(dotquad_to_int(prefix), int(prefix_len),
-            as_path, is_aggregable=True)
+            new_cidrprefix = CidrPrefix(ipv4.dotquad_to_int(prefix),
+                int(prefix_len), as_path, is_aggregable=True)
 
         line_count += 1
         if line_count % 1000 == 0:
@@ -300,7 +259,8 @@ def as_paths_match_to_dfz(anc, des):
                     break
 
         if first_des_fragment:
-            print(int_to_dotquad(des.prefix) + " First fragment: " + str(first_des_fragment))
+            print(ipv4.int_to_dotquad(des.prefix) + " First fragment: "
+                + str(first_des_fragment))
         else:
             match = False
 
@@ -327,46 +287,6 @@ def as_paths_match_to_dfz(anc, des):
     else:
         match = False
     return match
-
-
-
-def deprepend_as_path(path):
-    """A helper function to remove AS_PATH prepending while maintaining the
-    order of AS_PATH traversal. This is used to produce a canonical
-    representation of each AS_PATH from a routing policy perspective (but not
-    TE, BGP decision algorithm, etc. perspective0
-
-    Example:
-
-        deprepend_as_path([1, 1, 2, 3, 3, 4, 5, 5]) = [1, 2, 3, 4, 5]
-        deprepend_as_path([1, 1, 2, 3, 3, 1, 1, 1, 2, 1]) = [1, 2, 3, 1, 2, 1]
-
-    """
-    current_as = None
-    new_path = []
-    for asn in path:
-        if asn != current_as:
-            current_as = asn
-            new_path.append(asn)
-    return new_path
-
-def extract_asn(s):
-    """A helper function to extract AS numbers from AS_PATH string elements that
-    may contain AS_SETs (denoted by '{ASN1, ASN2, ...}'). If the string does not
-    contain an AS_SET or if the AS_SET contains only one AS number, the AS
-    number is returned. If the AS_SET contains two or more ASNs, 0 is returned.
-
-    """
-    s = s.strip()
-    #TODO should I worrry about AS_CONFED_SET and AS_CONFED_SEQ?
-    if s.find('{') > -1:
-        components = s[1:-1].split(',')
-        if len(components) == 1:
-            return int(components[0])
-        else:
-            return 0
-    else:
-        return int(s)
 
 def get_prefix_agg_list(root_list):
     prefix_agg_list = []
@@ -535,25 +455,3 @@ def _plot_tree_helper(node, parent_node, graph, deep, force=False):
             graph.add_edge(p, child)
 
     return r
-
-
-
-def main():
-    global root_list, prefix_agg_list, as_agg_list, as_netsnow_dict
-    print("Starting processing table.")
-    root_list = [None]*256
-    #f = open('../nov12/3356-rib.20101113.0400.txt')
-    f = open('../nov12/rib.20101113.0400-origin_714.txt')
-    #f = open('../nov12/rib_174-86.txt')
-    #f = open('../nov12/rib_68.txt')
-    process_table(f, root_list)
-    f.close()
-    print("Ending processing table.")
-    prefix_agg_list = get_prefix_agg_list(root_list)
-    as_agg_list = get_as_agg_list(prefix_agg_list)
-    as_netsnow_dict = get_as_netsnow_dict(root_list)
-    print_cidr_report(as_agg_list, as_netsnow_dict)
-    plot_tree(root_list, 17)
-
-if __name__ == '__main__':
-    main()

@@ -1,0 +1,44 @@
+ipv4:
+cidrprefix_treeonly.py:def dotquad_to_int(ipv4_str):
+cidrprefix_treeonly.py:def int_to_dotquad(ipv4_int):
+
+as_path
+neighbors.py:def normalize_as_path(path):
+neighbors.py:def extract_asn(s):
+neighbors.py:def deprepend_as_path(path):
+neighbors.py:def deloop_as_path(path):
+
+aggtree
+cidrprefix_treeonly.py:def process_table(infile, root_list):
+cidrprefix_treeonly.py:def add_node_to_tree(root, new):
+cidrprefix_treeonly.py:def update_ancestor(ancestor, descendant):
+cidrprefix_treeonly.py:def as_paths_match(anc, des):
+cidrprefix_treeonly.py:def as_paths_match_origin(anc, des):
+cidrprefix_treeonly.py:def as_paths_match_to_dfz(anc, des):
+cidrprefix_treeonly.py:def get_prefix_agg_list(root_list):
+cidrprefix_treeonly.py:def _get_prefix_agg_list_helper(prefix, prefix_agg_list):
+cidrprefix_treeonly.py:def get_as_agg_list(prefix_agg_list):
+cidrprefix_treeonly.py:def get_as_netsnow_dict(root_list):
+cidrprefix_treeonly.py:def _get_as_netsnow_list_helper(prefix, as_netsnow_dict):
+cidrprefix_treeonly.py:def print_cidr_report(as_agg_list, as_netsnow_dict, top_n=30):
+cidrprefix_treeonly.py:def plot_tree(rl, classa):
+cidrprefix_treeonly.py:def color_func(ams):
+cidrprefix_treeonly.py:def _plot_tree_helper(node, parent_node, graph, deep, force=False):
+
+txtrib_processing
+neighbors.py:def postprocess_rib(rib_filename, norm_filename, include_peer_ip):
+
+rib_processing
+neighbors.py:def generate_files(full_path, include_peer_ip=False):
+
+bin/cidr_report
+cidrprefix_treeonly.py:def main():
+
+bin/{process_rib,process_txtrib}
+neighbors.py:def usage():
+neighbors.py:def main():
+
+(eliminate):
+cidrprefix_treeonly.py:def deprepend_as_path(path):
+cidrprefix_treeonly.py:def extract_asn(s):
+
