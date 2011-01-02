@@ -5,10 +5,10 @@ def dotquad_to_int(ipv4_str):
     integer representation.
 
     """
-    ipv4_int = 0
     byte_str_list = ipv4_str.split('.')
     if len(byte_str_list) != 4:
         raise ValueError("ipv4_str must be in dotted quad format")
+    ipv4_int = 0
     for pos, byte_str in enumerate(byte_str_list):
         if 0 <= int(byte_str) <= 255:
             ipv4_int |= int(byte_str) << (3-pos)*8
@@ -23,7 +23,6 @@ def int_to_dotquad(ipv4_int):
     """
     if ipv4_int < 0 or ipv4_int > 0xFFFFFFFF:
         raise ValueError("ipv4_int is out of range 0..0xFFFFFFFF")
-
     octets = []
     for i in xrange(4):
         octets.append(str(ipv4_int & 0xFF))

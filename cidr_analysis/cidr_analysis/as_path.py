@@ -1,5 +1,8 @@
 #!/usr/bin/env python2.6
 
+DFZ_ASNS = [209, 701, 1239, 1299, 2828, 2914, 3356, 3549, 3561, 6453, 6461,
+    7018]
+
 def normalize_as_path(path):
     # remove AS_SETs and convert to ints
     norm_path = [extract_asn(e) for e in path]
@@ -22,8 +25,8 @@ def extract_asn(s):
     try:
         s = s.strip()
     except AttributeError:
-#        raise TypeError
         # instead of TypeError, try and convert -- it may already be an int
+        # if it's not an it, it will raise a TypeError anyway
         return int(s)
 
     if -1 < s.find('{') < s.find('}'):
@@ -92,3 +95,118 @@ def deloop_as_path(path):
             return None
     else:
         return path
+
+## OLD STUFF FROM AGGTREE.PY -- MAY EVENTUALLY BE DELETED
+
+def as_paths_match_to_parent_origin(anc, des):
+    """Check to see if the ancestor's AS_PATHs and the descendant's AS_PATHs are
+    compatible for aggregation. Returns True if compatible, or False otherwise.
+    We define compatibility as whether the fragment of each of descendant's
+    AS_PATHs from the descendant's origin to the ancestor's origin are equal. If
+    the ancestor is a multiple-origin prefix, this is not compatible.
+
+    Example: (origin is the rightmost asn)
+
+    10.0.0.0/8          3356 3 10
+                        7018 3 10
+    10.128.0.0/9        3356 3 10 30
+                        26 7018 3 10 30
+    10.128.128.0/16     3356 3 10 30
+                        26 7018 50 30
+
+    10/8 and 10.128/9 are aggregable because:
+    - 10/8's (single) origin
+        = AS10
+    - path fragments from 10/8's origin to 10.128/9's origin
+        = 10 30
+        = 10 30
+    - both paths are equal -- aggregable
+
+    10/8 and 10.128.128/16 are NOT aggregable because:
+    - 10/8's (single) origin
+        = AS10
+    - path fragments from 10/8's origin to 10.128.128/16's origin
+        = 10 30
+        = [] (AS10 NOT FOUND in 26 7018 50 30)
+    - paths are not equal -- NOT aggregable
+
+    TODO what about the crazy case of deaggregates corresponding 1-to-1 to each
+    of the the ancestor's MOAS routes?
+
+    """
+    match = True
+    if anc.origin_as:
+        try:
+            # .index(anc_origin)+1 to include anc_origin in path fragment
+            #
+            # all paths must be equal, so we'll use the first as our yardstick
+            p = des.as_paths[0]
+            check_path = deprepend_as_path(p[:p.index(anc.origin_as)])
+            for p in des.as_paths[1:]:
+                if check_path != deprepend_as_path(p[:p.index(anc.origin_as)]):
+                    match = False
+                    break
+        except ValueError:
+            match = False
+    else:
+#        print("error: ancestor is MOAS")
+        match = False
+    return match
+
+def as_paths_match_origin(anc, des):
+    match = True
+    if anc.origin_as and des.origin_as:
+        try:
+            if des.as_paths[0].index(anc.origin_as) > 0:
+                match = False
+        except ValueError:
+            match = False
+    else:
+        match = False
+    return match
+
+def as_paths_match_to_dfz(anc, des):
+    match = True
+    if anc.origin_as and des.origin_as:
+        try:
+            if des.as_paths[0].index(anc.origin_as) > 0:
+                match = False
+        except ValueError:
+            match = False
+        first_des_fragment = None
+        for as_path in des.as_paths:
+            as_path = deprepend_as_path(as_path)
+            for i in xrange(len(as_path)):
+                if as_path[i] in DFZ_ASNS:
+                    first_des_fragment = as_path[:i]
+                    break
+
+        if first_des_fragment:
+            print(ipv4.int_to_dotquad(des.prefix) + " First fragment: "
+                + str(first_des_fragment))
+        else:
+            match = False
+
+        print("descendants")
+        for as_path in des.as_paths:
+            as_path = deprepend_as_path(as_path)
+            for i in xrange(len(as_path)):
+                if as_path[i] in DFZ_ASNS:
+                    print(as_path[:i])
+                    #print(as_path)
+                    if as_path[:i] != first_des_fragment:
+                        match = False
+                    break
+        print("ancestors")
+        for as_path in anc.as_paths:
+            as_path = deprepend_as_path(as_path)
+            for i in xrange(len(as_path)):
+                if as_path[i] in DFZ_ASNS:
+                    print(as_path[:i])
+                    #print(as_path)
+                    if as_path[:i] != first_des_fragment:
+                        match = False
+                    break
+    else:
+        match = False
+    return match

@@ -1,6 +1,8 @@
 ==Project todo==
 
-* Reorganize base layout (see http://jcalderone.livejournal.com/39794.html and http://stackoverflow.com/questions/193161/what-is-the-best-project-structure-for-a-python-application)
+* **DONE** Reorganize base layout
+(see http://jcalderone.livejournal.com/39794.html and
+http://stackoverflow.com/questions/193161/what-is-the-best-project-structure-for-a-python-application)
 
     cidr-report_analysis/
       cidr_analysis/
@@ -20,9 +22,15 @@
 
 * Refactor cidr\_analysis code into a real module, and separate executable
 actions (into `bin`) from module-like stuff (into `cidr_analysis`)
+    - tweak bin/process_{rib,txtrib}
+    - tweak cidr_analysis/process_{rib,txtrib}
 
 * Build unit tests for cidr\_analysis module functions and components
     - Think about functional spec for each and design tests accordingly
+    - Remaining modules:
+        - aggtree
+        - process_rib?
+        - process_txtrib
 
 * Refactor current cidrprefix\_treeonly code to aggregate each view
 individually, perhaps by keeping a dict keyed by peer ip in which to store

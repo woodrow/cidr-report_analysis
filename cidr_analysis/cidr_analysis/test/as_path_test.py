@@ -62,6 +62,7 @@ class TestNormalizeASPath(unittest.TestCase):
         self.assertEqual(norm_path, as_path.normalize_as_path(path))
 
     def test_straightenrv_example(self):
+        # from straightenRV code comment
         path = ['0', '4006', '209', '15254', '15251', '15254', '15254',
             '15254', '15254']
         norm_path = [0, 4006, 209, 15254]
