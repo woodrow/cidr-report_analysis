@@ -50,9 +50,9 @@ def process_txtrib(full_path, include_peer_ip=True):
     #      similar in size such that there wasn't a big error
 
     print("Sorting RIB by prefix first octet.")
-    os.system(' '.join(['sort -s -n -k 1 -t . ',
-        normrib_name, '>', normrib_name+'.tmp']))
-    os.system(' '.join(['mv', normrib_name+'.tmp', normrib_name]))
+    os.system(' '.join(['sort -s -n -k 1,1 -t . ',
+        normrib_name, '>', normrib_name+'.sorted']))
+    os.system(' '.join(['mv', normrib_name+'.sorted', normrib_name]))
 
     if include_peer_ip:
         args_peers = ' '.join(["awk '{print \"(\" $NF, $2 \")\"}'",
