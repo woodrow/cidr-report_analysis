@@ -1,6 +1,6 @@
 #!/usr/bin/env python2.6
 
-from cidr_analysis import as_path
+from cidr_analysis import aspath
 import os
 
 def postprocess_rib(rib_filename, norm_filename, include_peer_ip):
@@ -17,15 +17,15 @@ def postprocess_rib(rib_filename, norm_filename, include_peer_ip):
             as_start_index = 1
         raw_as_path = components[as_start_index:]
         raw_as_path.reverse()
-        norm_path = as_path.normalize_as_path(raw_as_path)
+        norm_path = aspath.normalize_as_path(raw_as_path)
         if norm_path:
             if include_peer_ip:
                 outfile.write("{0}/{1} {2} {3}\n".format(
                     prefix, prefix_len, peer_ip,
-                    as_path.path_to_string(norm_path)))
+                    aspath.path_to_string(norm_path)))
             else:
                 outfile.write("{0}/{1} {2}\n".format(
-                    prefix, prefix_len, as_path.path_to_string(norm_path)))
+                    prefix, prefix_len, aspath.path_to_string(norm_path)))
         else:
             print("dropping line due to invalid AS_PATH:\n  {0}".format(line))
     outfile.close()
