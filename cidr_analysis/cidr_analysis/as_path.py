@@ -96,6 +96,9 @@ def deloop_as_path(path):
     else:
         return path
 
+def path_to_string(as_path):
+    return ' '.join((str(x) for x in as_path))
+
 ## OLD STUFF FROM AGGTREE.PY -- MAY EVENTUALLY BE DELETED
 
 def as_paths_match_to_parent_origin(anc, des):
