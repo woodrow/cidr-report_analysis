@@ -1,23 +1,39 @@
 #!/usr/bin/env python2.6
 
-import aggtree
+# hack for uninstalled packages
+import sys
+import os
+sys.path.append(
+    os.path.realpath('/home/woodrow/proj/cidr-report_analysis/cidr_analysis'))
+# /hack
+
+from cidr_analysis import aggtree
+
+def usage():
+    print(' '.join(["USAGE:", sys.argv[0], 'RIB_FILE.normrib']))
+    print("""  Generate CIDR report.""")
 
 def main():
     global root_list, prefix_agg_list, as_agg_list, as_netsnow_dict
-    print("Starting processing table.")
-    root_list = [None]*256
-    #f = open('../nov12/3356-rib.20101113.0400.txt')
-    f = open('../nov12/rib.20101113.0400-origin_714.txt')
-    #f = open('../nov12/rib_174-86.txt')
-    #f = open('../nov12/rib_68.txt')
-    aggtree.process_table(f, root_list)
-    f.close()
-    print("Ending processing table.")
-    prefix_agg_list = aggtree.get_prefix_agg_list(root_list)
-    as_agg_list = aggtree.get_as_agg_list(prefix_agg_list)
-    as_netsnow_dict = aggtree.get_as_netsnow_dict(root_list)
-    aggtree.print_cidr_report(as_agg_list, as_netsnow_dict)
-    aggtree.plot_tree(root_list, 17)
+    if len(sys.argv) == 2:
+        full_path = os.path.realpath(sys.argv[1])
+        print("Starting processing table.")
+        root_list = [None]*256
+        f = open(full_path, 'r')
+        #f = open('../nov12/3356-rib.20101113.0400.txt')
+        #f = open('../nov12/rib.20101113.0400-origin_714.txt')
+        #f = open('../nov12/rib_174-86.txt')
+        #f = open('../nov12/rib_68.txt')
+        aggtree.process_table(f, root_list)
+        f.close()
+        print("Ending processing table.")
+        prefix_agg_list = aggtree.get_prefix_agg_list(root_list)
+        as_agg_list = aggtree.get_as_agg_list(prefix_agg_list)
+        as_netsnow_dict = aggtree.get_as_netsnow_dict(root_list)
+        aggtree.print_cidr_report(as_agg_list, as_netsnow_dict)
+        #aggtree.plot_tree(root_list, 17)
+    else:
+        usage()
 
 if __name__ == '__main__':
     main()

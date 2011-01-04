@@ -1,26 +1,28 @@
 #!/usr/bin/env python2.6
 
-def usage():
-    print(' '.join(["Usage:", sys.argv[0], '[-p] MRT_RIB_FILE']))
-    print("""Produces intermediate text-based routing table (.txt) and peer
-table (.peer) based on supplied MRT_RIB_FILE.
+# hack for uninstalled packages
+import sys
+import os
+sys.path.append(
+    os.path.realpath('/home/woodrow/proj/cidr-report_analysis/cidr_analysis'))
+# /hack
 
-Optional flag -p will include peer ip addresses to determine unique neighbors.
-""")
+from cidr_analysis import process_txtrib
+
+def usage():
+    print(' '.join(["USAGE:", sys.argv[0], 'RIB_FILE.txt']))
+    print("""  Preprocesses the specified intermediate text-based routing table
+  (.txt) produced by the process_rib tool to normalize AS_PATHs, including
+  removal of AS prepends and loops. The normalized text-based routing table
+  is output with a '.normrib' extension. This tool also produces statistical
+  files containing the number of prefixes seen by each peer (.peers) and the
+  number of prefixes per AS seen by each peer (.ppapp), to allow discovery of
+  any cases of significant deviation amongst the routeviews peers.""")
 
 def main():
-    include_peer_ip = False
-    if 1 < len(sys.argv) < 4:
-        if len(sys.argv) == 2:
-            full_path = os.path.realpath(sys.argv[1])
-        else:
-            if sys.argv[1] == '-p':
-                include_peer_ip = True
-            else:
-                usage()
-                exit()
-            full_path = os.path.realpath(sys.argv[2])
-        generate_files(full_path, include_peer_ip)
+    if len(sys.argv) == 2:
+        full_path = os.path.realpath(sys.argv[1])
+        process_txtrib.process_txtrib(full_path)
     else:
         usage()
 

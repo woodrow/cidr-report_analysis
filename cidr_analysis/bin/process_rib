@@ -1,26 +1,24 @@
 #!/usr/bin/env python2.6
 
-def usage():
-    print(' '.join(["Usage:", sys.argv[0], '[-p] MRT_RIB_FILE']))
-    print("""Produces intermediate text-based routing table (.txt) and peer
-table (.peer) based on supplied MRT_RIB_FILE.
+# hack for uninstalled packages
+import sys
+import os
+sys.path.append(
+    os.path.realpath('/home/woodrow/proj/cidr-report_analysis/cidr_analysis'))
+# /hack
 
-Optional flag -p will include peer ip addresses to determine unique neighbors.
-""")
+from cidr_analysis import process_rib
+
+def usage():
+    print(' '.join(["USAGE:", sys.argv[0], 'RIB_FILE']))
+    print("""  Produces intermediate text-based routing table (.txt) from the
+  specified RIB_FILE, either in the MRT format or Cisco console dump format
+  handled by CAIDA's straightenRV tool.""")
 
 def main():
-    include_peer_ip = False
-    if 1 < len(sys.argv) < 4:
-        if len(sys.argv) == 2:
-            full_path = os.path.realpath(sys.argv[1])
-        else:
-            if sys.argv[1] == '-p':
-                include_peer_ip = True
-            else:
-                usage()
-                exit()
-            full_path = os.path.realpath(sys.argv[2])
-        generate_files(full_path, include_peer_ip)
+    if len(sys.argv) == 2:
+        full_path_to_rib = os.path.realpath(sys.argv[1])
+        process_rib.process_rib(full_path_to_rib)
     else:
         usage()
 
