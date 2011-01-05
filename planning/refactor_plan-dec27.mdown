@@ -20,19 +20,13 @@ http://stackoverflow.com/questions/193161/what-is-the-best-project-structure-for
       routeviews/
       rv2atoms-0.5/
 
-* Refactor cidr\_analysis code into a real module, and separate executable
+* **DONE** Refactor cidr\_analysis code into a real module, and separate executable
 actions (into `bin`) from module-like stuff (into `cidr_analysis`)
-    - tweak bin/process_{rib,txtrib}
-    - tweak cidr_analysis/process_{rib,txtrib}
 
-* Build unit tests for cidr\_analysis module functions and components
-    - Think about functional spec for each and design tests accordingly
-    - Remaining modules:
-        - aggtree
-        - process_rib?
-        - process_txtrib
+* **DONE** Refactor aggtree to perform aggregation analysis on one /8 at a time in order
+to use memory more efficiently.
 
-* Refactor current cidrprefix\_treeonly code to aggregate each view
+* **DONE** Refactor current cidrprefix\_treeonly code to aggregate each view
 individually, perhaps by keeping a dict keyed by peer ip in which to store
 PrefixAttr objects, and then determining aggregation potential by crawling the
 tree recursively until all nodes are aggregable (it would be useful to
@@ -46,6 +40,13 @@ be run, including:
     - exact path match (current cidr report)
     - no deviation in upstream routing policy (arthur + my approach)
     - exact path match with virtual nodes (i.e. less-specific covering prefixes)
+
+* Build unit tests for cidr\_analysis module functions and components
+    - Think about functional spec for each and design tests accordingly
+    - Remaining modules:
+        - aggtree
+        - process_rib??
+        - process_txtrib
 
 * Refactor code to perform logging:
     - using the python logging library
