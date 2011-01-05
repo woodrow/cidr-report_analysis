@@ -1,12 +1,19 @@
 #!/usr/bin/env python2.6
 
 import itertools
-from enumerate import Enumerate
+from enumerator import Enumerate
 import ipv4
 
 PREFIX_CLASSES = Enumerate('LONELY', 'TOP', 'DEAGG', 'DELEG')
-DFZ_ASNS = [209, 701, 1239, 1299, 2828, 2914, 3356, 3549, 3561, 6453, 6461,
-    7018]
+
+class PrefixAttr(object):
+    def __init__(self, as_path, is_aggregable=False,
+        prefix_class=PREFIX_CLASSES.LONELY):
+        self.as_path = as_path
+        self.is_aggregable = is_aggregable
+        self.aggregable_more_specifics = 0
+        self.prefix_class = prefix_class
+
 
 class CidrPrefix(object):
     """An object representing a route to a CIDR prefix, including AS_PATH(s)
@@ -14,30 +21,29 @@ class CidrPrefix(object):
     and whether (and how) aggregable this prefix is if it is a covering prefix.
 
     """
-    def __init__(self, prefix=0, prefix_len=0, as_path=None,
-        ms_0=None, ms_1=None, is_aggregable=False,
-        prefix_class=PREFIX_CLASSES.LONELY):
+    def __init__(self, prefix=0, prefix_len=0, ms_0=None, ms_1=None):
         self.prefix = prefix
         self.prefix_len = prefix_len
 
-        # as_paths is a list of as_path lists
-        # each as_path is list of integers with origin in index 0
-        if as_path:
-            self.as_paths = [as_path]
-            self.origin_as = as_path[0]
-        else:
-            self.as_paths = []
-            self.origin_as = None
+        self.attrs = {} # dictionary of PrefixAttrs indexed by peer IP address
 
         self.ms_0 = ms_0
         self.ms_1 = ms_1
 
-        self.is_aggregable = is_aggregable
+        # TODO not sure if this is a good idea to keep here and update
+        # during processing?
+        self.prefix_class = PREFIX_CLASSES.LONELY
+        self.is_aggregable = False
         self.aggregable_more_specifics = 0
-        self.prefix_class = prefix_class
+        self.origin_as = None
+
+        # used later, by post-processing functions
+        self.post_is_aggregable = False
+        self.post_ams = None
+        self.post_origin_as = None
 
     def __str__(self):
-        if self.as_paths:
+        if self.attrs:
             return ipv4.int_to_dotquad(self.prefix) + '/' + str(self.prefix_len)
         else:
             return '<' + ipv4.int_to_dotquad(self.prefix) + '/' + \
@@ -46,26 +52,42 @@ class CidrPrefix(object):
     def __repr__(self):
         return self.__str__()
 
-    def merge(self, new):
-        if self.origin_as != new.origin_as:
-            if len(self.as_paths):
-                self.origin_as = None
-            else:
-                self.origin_as = new.origin_as
-        self.as_paths += new.as_paths
-        # is_aggregable, etc. semantics...?
-
-    def add_aspath(self, as_path):
-        if self.origin_as != as_path[0]:
-            if len(self.as_paths):
-                self.origin_as = None
-            else:
-                self.origin_as = as_path[0]
-        self.as_paths.append(as_path)
+    def add_route(self, peer_ip_int, as_path, is_aggregable=False):
+        assert peer_ip_int not in self.attrs
+        self.attrs[peer_ip_int] = PrefixAttr(as_path, is_aggregable)
+        if not self.origin_as:
+            self.origin_as = as_path[0]
+        elif self.origin_as != as_path[0]:
+            self.origin_as = 0
+        # TODO if is_aggregable: self.is_aggregable = True
 
 
-def process_table(infile, root_list):
-    """Process the contents of the text-formatted routing table and form a
+def aggregate_table(infile):
+    as_agg_count_dict = {}
+    as_netsnow_dict = {}
+    for root in process_table(infile):
+            # also sets root.post_origin_as appropriately
+            add_prefix_tree_to_netsnow_count(as_netsnow_dict, root)
+
+            prefix_agg_list = find_aggregable_prefixes(root)
+            as_agg_dict = group_agg_prefixes_by_as(prefix_agg_list)
+            count_agg_prefixes_by_as(as_agg_count_dict, as_agg_dict)
+            ## debug; if used to go here
+#            if root.prefix >> 24 == 17:
+#                print prefix_agg_list
+#                print as_agg_dict
+#                netsnow = [x for x in as_netsnow_dict.iteritems()]
+#                netsnow.sort(key=lambda x: x[1], reverse=True)
+#                for k in xrange(len(netsnow)):
+#                    print netsnow[k]
+#                plot_tree(root)
+#                break
+    print_new_cidr_report(as_agg_count_dict, as_netsnow_dict)
+
+
+def process_table(infile):
+    """TODO NOTE ABOUT GENERATOR FUNCTION
+    Process the contents of the text-formatted routing table and form a
     prefix tree for later processing, storing the output in root_list which
     contains the prefix tree corresponding to each /8 in the IPv4 address space.
 
@@ -76,76 +98,98 @@ def process_table(infile, root_list):
     infile -- a file-like object where each line is a routing table entry in
     PREFIX AS_PATH format
 
+    Returns
+    an iterator-like object that, when next() is called, returns the next root
+    of an aggregation
+
     """
     line_count = 0
-    prefix_str = ""
+    current_prefixstr = ""
+    current_slash8 = None  # first octet of the current /8
     new_cidrprefix = None
+    slash8_root = None
+
     for line in infile:
-        # TODO this needs to change to handle peers with same AS, different IP
+        # line format: prefix/prefix_len peer_ip space-delimited-as_path
         components = line.split()
-        [prefix, prefix_len] = components[0].split('/')
-        as_path = [extract_asn(asn) for asn in components[1:]]
-        as_path.reverse()
-
-        if prefix_str == components[0]:
-            new_cidrprefix.add_aspath(as_path)
-        else:
-            prefix_str = components[0]
+        if current_prefixstr != components[0]: # we've encountered a new prefix
             # add old prefix to tree
-            if new_cidrprefix:
-                if new_cidrprefix.prefix_len == 8:
-                    if root_list[new_cidrprefix.prefix >> 24] is None:
-                        root_list[new_cidrprefix.prefix >> 24] = new_cidrprefix
-                    else:
-                        root_list[new_cidrprefix.prefix >> 24].merge(new_cidrprefix)
-                elif new_cidrprefix.prefix_len > 8:
-                    if root_list[new_cidrprefix.prefix >> 24] is None:
-                        root_list[new_cidrprefix.prefix >> 24] = CidrPrefix(
-                            new_cidrprefix.prefix & 0xFF000000, 8)
-                    add_node_to_tree(root_list[new_cidrprefix.prefix >> 24],
-                        new_cidrprefix)
-                else:
-                    print("error, prefix bigger than /8 !")
-            # create new prefix
-            new_cidrprefix = CidrPrefix(ipv4.dotquad_to_int(prefix),
-                int(prefix_len), as_path, is_aggregable=True)
-
+            slash8_root = add_cidrprefix_to_tree(slash8_root, new_cidrprefix)
+            # create new prefix object
+            current_prefixstr = components[0]
+            [prefix, prefix_len] = current_prefixstr.split('/')
+            prefix = ipv4.dotquad_to_int(prefix)
+            prefix_len = int(prefix_len)
+            new_cidrprefix = CidrPrefix(prefix, prefix_len)
+            # yield slash8 to caller if new prefix is also new /8
+            if current_slash8 != prefix >> 24:
+                if slash8_root:
+                    yield slash8_root
+                current_slash8 = prefix >> 24
+                slash8_root = None
+                print("current_slash8 = {0}".format(current_slash8))
+        # add route
+        peer_ip = ipv4.dotquad_to_int(components[1])
+        as_path = [int(asn) for asn in components[2:]]
+        new_cidrprefix.add_route(peer_ip, as_path, is_aggregable=True)
+        # debug info
         line_count += 1
         if line_count % 1000 == 0:
             print line_count
 
-def add_node_to_tree(root, new):
+    # after the loop, yield remaining data before returning
+    slash8_root = add_cidrprefix_to_tree(slash8_root, new_cidrprefix)
+    if slash8_root:
+        yield slash8_root
+
+
+def add_cidrprefix_to_tree(root, cidrprefix):
+    if cidrprefix:
+        if cidrprefix.prefix_len == 8:
+            root = cidrprefix
+        elif cidrprefix.prefix_len > 8:
+            if not root:  # create virtual /8 node
+                root = CidrPrefix(cidrprefix.prefix & 0xFF000000, 8)
+            insert_prefix_into_tree(root, cidrprefix)
+        else:  # less specific than /8: ignore (or log for debugging)
+            pass
+    return root
+
+
+def insert_prefix_into_tree(root, new):
     """Add node new to the prefix tree rooted at root. Update all ancestor nodes
     traversed from root to the proper location of new.
 
     """
     cursor = root
     test_mask = 0x00800000
-
     for i in xrange(9, new.prefix_len+1):
         update_ancestor(cursor, new)
         if test_mask & new.prefix > 0:
-            if cursor.ms_1 == None:
-                if i == new.prefix_len:
-                    cursor.ms_1 = new
-                else:
+            if i == new.prefix_len:
+                if cursor.ms_1:
+                    assert cursor.ms_1.attrs is None
+                    new.ms_0 = cursor.ms_1.ms_0
+                    new.ms_1 = cursor.ms_1.ms_1
+                cursor.ms_1 = new
+            else:
+                if not cursor.ms_1:
                     cursor.ms_1 = CidrPrefix(
                         prefix=(cursor.prefix | test_mask), prefix_len=i)
-            else:
-                if i == new.prefix_len:
-                    cursor.ms_1.merge(new)
             cursor = cursor.ms_1
         else:
-            if cursor.ms_0 == None:
-                if i == new.prefix_len:
-                    cursor.ms_0 = new
-                else:
-                    cursor.ms_0 = CidrPrefix(prefix=cursor.prefix, prefix_len=i)
+            if i == new.prefix_len:
+                if cursor.ms_0:
+                    assert cursor.ms_0.attrs is None
+                    new.ms_0 = cursor.ms_0.ms_0
+                    new.ms_1 = cursor.ms_0.ms_1
+                cursor.ms_0 = new
             else:
-                if i == new.prefix_len:
-                    cursor.ms_0.merge(new)
+                if not cursor.ms_0:
+                    cursor.ms_0 = CidrPrefix(prefix=cursor.prefix, prefix_len=i)
             cursor = cursor.ms_0
         test_mask >>= 1
+
 
 def update_ancestor(ancestor, descendant):
     """Update ancestor's metadata to be consistent with the fact that descendant
@@ -158,135 +202,191 @@ def update_ancestor(ancestor, descendant):
     AS_PATH seen by a virtual node in the tree, and if no other AS_PATH is added
     to the subtree, then it could indeed be aggregated at this higher block.
     """
-    if len(ancestor.as_paths) and len(descendant.as_paths):
-        if ancestor.prefix_class == PREFIX_CLASSES.LONELY:
-            ancestor.prefix_class = PREFIX_CLASSES.TOP
-#            print(str(ancestor) + " is TOP")
-        if as_paths_match(ancestor, descendant):
-            descendant.prefix_class = PREFIX_CLASSES.DEAGG
-#            print(str(descendant) + " is DEAGG")
-            if ancestor.is_aggregable:
-                ancestor.aggregable_more_specifics += 1
+
+    # optimization to make tree-walking faster later on
+    # also sort of a hack to allow using existing code that doesn't know about
+    # CidrPrefix.attrs
+    greatest_ancestor_class = ancestor.prefix_class
+    greatest_descendant_class = descendant.prefix_class
+    greatest_agg_more_specifics = ancestor.aggregable_more_specifics
+
+    for k in ancestor.attrs:
+        try:
+            anc_attr = ancestor.attrs[k]
+            des_attr = descendant.attrs[k]
+            if anc_attr.prefix_class == PREFIX_CLASSES.LONELY:
+                anc_attr.prefix_class = PREFIX_CLASSES.TOP
+                greatest_ancestor_class = max(                    # optimization
+                    greatest_ancestor_class, PREFIX_CLASSES.TOP)
+            #if as_paths_match(ancestor, descendant):
+            if anc_attr.as_path == des_attr.as_path:
+                des_attr.prefix_class = PREFIX_CLASSES.DEAGG
+                greatest_descendant_class = max(                  # optimization
+                    greatest_descendant_class, PREFIX_CLASSES.DEAGG)
+                if anc_attr.is_aggregable:
+                    anc_attr.aggregable_more_specifics += 1
+                    greatest_agg_more_specifics = max(
+                        greatest_agg_more_specifics,
+                        anc_attr.aggregable_more_specifics)
+            else:
+                des_attr.prefix_class = PREFIX_CLASSES.DELEG
+                greatest_descendant_class = max(                  # optimization
+                    greatest_descendant_class, PREFIX_CLASSES.DELEG)
+                if anc_attr.is_aggregable:
+                    anc_attr.is_aggregable = False
+                    anc_attr.aggregable_more_specifics = 0
+        except KeyError:
+            pass
+
+    # optimization + reuse existing code hack
+    ancestor.prefix_class = greatest_ancestor_class
+    descendant.prefix_class = greatest_descendant_class
+    if descendant.prefix_class == PREFIX_CLASSES.DELEG:
+        ancestor.is_aggregable = False
+        ancestor.aggregable_more_specifics = 0
+    elif descendant.prefix_class == PREFIX_CLASSES.DEAGG:
+        ancestor.is_aggregable = True
+        ancestor.aggregable_more_specifics = greatest_agg_more_specifics
+
+
+def find_aggregable_prefixes(root):
+    prefix_agg_list = []
+    _find_aggregable_prefixes_recursor(root, prefix_agg_list)
+    return prefix_agg_list
+
+
+def _find_aggregable_prefixes_recursor(tree, prefix_agg_list):
+    if tree.attrs and all((a.is_aggregable for a in tree.attrs.itervalues())):
+#        print('YES')
+        max_agg = max(
+            (a.aggregable_more_specifics for a in tree.attrs.itervalues()))
+        if max_agg > 0:
+#            print('DOUBLE-YES')
+            tree.post_is_aggregable = True
+            tree.post_ams = max_agg
+            prefix_agg_list.append(tree)
         else:
-            descendant.prefix_class = PREFIX_CLASSES.DELEG
-#            print(str(descendant) + " is DELEG")
-            if ancestor.is_aggregable:
-#                print(str(ancestor) + " is not aggregable")
-                ancestor.is_aggregable = False
-                ancestor.aggregable_more_specifics = 0
+            tree.post_ams = 0
+    else:
+        if tree.attrs:
+            tree.post_ams = 0
+        if tree.ms_0:
+            _find_aggregable_prefixes_recursor(tree.ms_0, prefix_agg_list)
+        if tree.ms_1:
+            _find_aggregable_prefixes_recursor(tree.ms_1, prefix_agg_list)
 
-def as_paths_match(anc, des):
-    """Check to see if the ancestor's AS_PATHs and the descendant's AS_PATHs are
-    compatible for aggregation. Returns True if compatible, or False otherwise.
-    We define compatibility as whether the fragment of each of descendant's
-    AS_PATHs from the descendant's origin to the ancestor's origin are equal. If
-    the ancestor is a multiple-origin prefix, this is not compatible.
 
-    Example: (origin is the rightmost asn)
+def group_agg_prefixes_by_as(prefix_agg_list):
+    as_agg_dict = {}  # keyed on as number
+    for prefix in prefix_agg_list:
+        as_agg_dict.setdefault(prefix.post_origin_as, []).append(prefix)
+        ## could also implement this as adding to set + checking set size --
+        ## performance comparison opportunity?
+        #origin_set = set()
+        #for attr in prefix.attrs.itervalues():
+        #    origin_set.add(attr.as_path[0])
+        #if len(origin_set) == 1:
+        #    prefix.post_origin_as = origin_set.pop()
+        #    as_agg_dict.setdefault(prefix.post_origin_as, []).append(prefix)
+        #else:
+        #    print("MOAS!!")
+        #    prefix.post_origin_as = -1
+        ################################################
+        # prefix_attr_iter = prefix.attrs.itervalues()
+        # test_origin = prefix_attr_iter.next().as_path[0]
+        # origins_match = True
+        # for attr in prefix_attr_iter:
+        #     if attr.as_path[0] != test_origin:
+        #         origins_match = False
+        #         break
+        # if origins_match:
+        #     prefix.post_origin_as = test_origin
+        #     as_agg_dict.setdefault(test_origin, []).append(prefix)
+        # else:
+        #     print("MOAS!!")
+        #     #prefix.post_origin_as = 0
+        #     #as_agg_dict.setdefault(0, []).append(prefix)
+    return as_agg_dict
 
-    10.0.0.0/8          3356 3 10
-                        7018 3 10
-    10.128.0.0/9        3356 3 10 30
-                        26 7018 3 10 30
-    10.128.128.0/16     3356 3 10 30
-                        26 7018 50 30
 
-    10/8 and 10.128/9 are aggregable because:
-    - 10/8's (single) origin
-        = AS10
-    - path fragments from 10/8's origin to 10.128/9's origin
-        = 10 30
-        = 10 30
-    - both paths are equal -- aggregable
+def count_agg_prefixes_by_as(as_agg_count_dict, as_agg_dict):
+    for asn in as_agg_dict:
+        as_agg_count_dict[asn] = as_agg_count_dict.get(asn, 0) + sum(
+            (p.post_ams for p in as_agg_dict[asn]))
+    return as_agg_count_dict
 
-    10/8 and 10.128.128/16 are NOT aggregable because:
-    - 10/8's (single) origin
-        = AS10
-    - path fragments from 10/8's origin to 10.128.128/16's origin
-        = 10 30
-        = [] (AS10 NOT FOUND in 26 7018 50 30)
-    - paths are not equal -- NOT aggregable
 
-    TODO what about the crazy case of deaggregates corresponding 1-to-1 to each
-    of the the ancestor's MOAS routes?
+def add_prefix_tree_to_netsnow_count(as_netsnow_dict, root):
+    if root.attrs:
+        origin_set = set()
+        for attr in root.attrs.itervalues():
+            origin_set.add(attr.as_path[0])
+        if len(origin_set) == 1:
+            root.post_origin_as = origin_set.pop()
+        else:
+#            print("MOAS!!")
+            root.post_origin_as = -1
+        as_netsnow_dict[root.post_origin_as] = as_netsnow_dict.get(
+            root.post_origin_as, 0) + 1
+    if root.ms_0:
+        add_prefix_tree_to_netsnow_count(as_netsnow_dict, root.ms_0)
+    if root.ms_1:
+        add_prefix_tree_to_netsnow_count(as_netsnow_dict, root.ms_1)
 
+
+def print_new_cidr_report(as_agg_count_dict, as_netsnow_dict, top_n=30):
     """
-    match = True
-    if anc.origin_as:
+    [8     ][     8][4 ][     8][4 ][     8][4 ][     8]
+    ASnum   NetsNow     NetsAggr    NetGain     %Gain
+    19262     340775      208585      132170       38.8%
+    """
+
+    as_agg_list = [x for x in as_agg_count_dict.iteritems()]
+    as_agg_list.sort(key=lambda x: x[1], reverse=True)
+
+    print(" --- 12Nov10 ---")
+    print("ASnum   NetsNow     NetsAggr    NetGain     % Gain")
+
+    tbl_netgain = sum((x[1] for x in as_agg_list))
+    tbl_netsnow = sum(as_netsnow_dict.itervalues())
+    tbl_netsaggr = tbl_netsnow - tbl_netgain
+    try:
+        tbl_pctgain = 100.0*float(tbl_netgain)/float(tbl_netsnow)
+    except ZeroDivisionError:
+        tbl_pctgain = -100.0
+    print("{0:<8}{1:>8}    {2:>8}    {3:>8}    {4:>8.3}%\n".format(
+        "Table", tbl_netsnow, tbl_netsaggr, tbl_netgain, tbl_pctgain))
+
+    sum_netsnow = 0
+    sum_netsaggr = 0
+    sum_netgain = 0
+    for i in xrange(min(len(as_agg_list), top_n)):
+        as_num = as_agg_list[i][0]
+        netgain = as_agg_list[i][1]
+        netsnow = as_netsnow_dict[as_num]
+        netsaggr = netsnow - netgain
         try:
-            # .index(anc_origin)+1 to include anc_origin in path fragment
-            #
-            # all paths must be equal, so we'll use the first as our yardstick
-            p = des.as_paths[0]
-            check_path = deprepend_as_path(p[:p.index(anc.origin_as)])
-            for p in des.as_paths[1:]:
-                if check_path != deprepend_as_path(p[:p.index(anc.origin_as)]):
-                    match = False
-                    break
-        except ValueError:
-            match = False
-    else:
-#        print("error: ancestor is MOAS")
-        match = False
-    return match
+            pctgain = 100.0*float(netgain)/float(netsnow)
+        except ZeroDivisionError:
+            pctgain = -100.0
+        print("{0:<8}{1:>8}    {2:>8}    {3:>8}    {4:>8.3}%".format(
+            as_num, netsnow, netsaggr, netgain, pctgain))
+        sum_netsnow += netsnow
+        sum_netsaggr += netsaggr
+        sum_netgain += netgain
 
-def as_paths_match_origin(anc, des):
-    match = True
-    if anc.origin_as and des.origin_as:
-        try:
-            if des.as_paths[0].index(anc.origin_as) > 0:
-                match = False
-        except ValueError:
-            match = False
-    else:
-        match = False
-    return match
+    try:
+        sum_pctgain = 100.0*float(sum_netgain)/float(sum_netsnow)
+    except ZeroDivisionError:
+        sum_pctgain = -100.0
+    print("\n{0:<8}{1:>8}    {2:>8}    {3:>8}    {4:>8.3}%".format(
+        "Total", sum_netsnow, sum_netsaggr, sum_netgain, sum_pctgain))
 
-def as_paths_match_to_dfz(anc, des):
-    match = True
-    if anc.origin_as and des.origin_as:
-        try:
-            if des.as_paths[0].index(anc.origin_as) > 0:
-                match = False
-        except ValueError:
-            match = False
-        first_des_fragment = None
-        for as_path in des.as_paths:
-            as_path = deprepend_as_path(as_path)
-            for i in xrange(len(as_path)):
-                if as_path[i] in DFZ_ASNS:
-                    first_des_fragment = as_path[:i]
-                    break
 
-        if first_des_fragment:
-            print(ipv4.int_to_dotquad(des.prefix) + " First fragment: "
-                + str(first_des_fragment))
-        else:
-            match = False
 
-        print("descendants")
-        for as_path in des.as_paths:
-            as_path = deprepend_as_path(as_path)
-            for i in xrange(len(as_path)):
-                if as_path[i] in DFZ_ASNS:
-                    print(as_path[:i])
-                    #print(as_path)
-                    if as_path[:i] != first_des_fragment:
-                        match = False
-                    break
-        print("ancestors")
-        for as_path in anc.as_paths:
-            as_path = deprepend_as_path(as_path)
-            for i in xrange(len(as_path)):
-                if as_path[i] in DFZ_ASNS:
-                    print(as_path[:i])
-                    #print(as_path)
-                    if as_path[:i] != first_des_fragment:
-                        match = False
-                    break
-    else:
-        match = False
-    return match
+################################################################################
+##  OLD ALGORITHMS
+##
 
 def get_prefix_agg_list(root_list):
     prefix_agg_list = []
@@ -321,12 +421,12 @@ def get_as_netsnow_dict(root_list):
     return as_netsnow_dict
 
 def _get_as_netsnow_list_helper(prefix, as_netsnow_dict):
-    if prefix.origin_as:
-        as_netsnow_dict[prefix.origin_as] = as_netsnow_dict.get(
-            prefix.origin_as, 0) + 1
-    elif len(prefix.as_paths): # MOAS
-        for asn in set([as_path[0] for as_path in prefix.as_paths]):
-            as_netsnow_dict[asn] = as_netsnow_dict.get(asn, 0) + 1
+    origin_set = set()
+    for k in prefix.attrs:
+        origin_set.add(prefix.attrs[k].as_path[0])
+    for origin in origin_set:
+        as_netsnow_dict[origin] = as_netsnow_dict.get(
+            origin, 0) + 1
     if prefix.ms_0 is not None:
         _get_as_netsnow_list_helper(prefix.ms_0, as_netsnow_dict)
     if prefix.ms_1 is not None:
@@ -344,7 +444,10 @@ def print_cidr_report(as_agg_list, as_netsnow_dict, top_n=30):
     tbl_netgain = sum((x[1] for x in as_agg_list))
     tbl_netsnow = sum(as_netsnow_dict.itervalues())
     tbl_netsaggr = tbl_netsnow - tbl_netgain
-    tbl_pctgain = 100.0*float(tbl_netgain)/float(tbl_netsnow)
+    try:
+        tbl_pctgain = 100.0*float(tbl_netgain)/float(tbl_netsnow)
+    except ZeroDivisionError:
+        tbl_pctgain = -100.0
     print("{0:<8}{1:>8}    {2:>8}    {3:>8}    {4:>8.3}%\n".format(
         "Table", tbl_netsnow, tbl_netsaggr, tbl_netgain, tbl_pctgain))
 
@@ -356,14 +459,20 @@ def print_cidr_report(as_agg_list, as_netsnow_dict, top_n=30):
         netgain = as_agg_list[i][1]
         netsnow = as_netsnow_dict[as_num]
         netsaggr = netsnow - netgain
-        pctgain = 100.0*float(netgain)/float(netsnow)
+        try:
+            pctgain = 100.0*float(netgain)/float(netsnow)
+        except ZeroDivisionError:
+            pctgain = -100.0
         print("{0:<8}{1:>8}    {2:>8}    {3:>8}    {4:>8.3}%".format(
             as_num, netsnow, netsaggr, netgain, pctgain))
         sum_netsnow += netsnow
         sum_netsaggr += netsaggr
         sum_netgain += netgain
 
-    sum_pctgain = 100.0*float(sum_netgain)/float(sum_netsnow)
+    try:
+        sum_pctgain = 100.0*float(sum_netgain)/float(sum_netsnow)
+    except ZeroDivisionError:
+        sum_pctgain = -100.0
     print("\n{0:<8}{1:>8}    {2:>8}    {3:>8}    {4:>8.3}%".format(
         "Total", sum_netsnow, sum_netsaggr, sum_netgain, sum_pctgain))
 
@@ -387,11 +496,11 @@ What needs to happen:
     - for each subtree rooted at a TOP, determine if
 """
 
-def plot_tree(rl, classa):
+def plot_tree(root):
     import networkx as nx
     import matplotlib.pyplot as plt
     graph = nx.DiGraph()
-    _plot_tree_helper(rl[classa], rl[classa], graph, 0, force=True)
+    _plot_tree_helper(root, root, graph, 0, force=True)
     #twopi, gvcolor, wc, ccomps, tred, sccmap, fdp, circo, neato, acyclic, nop, gvpr, dot.
     #nodelist = [v for v in graph.nodes() if v.aggregable_more_specifics > 0]
     #node_color = [color_func(v.aggregable_more_specifics) for v in graph]
@@ -412,25 +521,25 @@ def _plot_tree_helper(node, parent_node, graph, deep, force=False):
     p = parent_node
     r = None
 
-    if len(node.as_paths):
+    if node.attrs:
         graph.add_node(node, shape='box', penwidth=2)
-        if node.aggregable_more_specifics > 0:
+        if node.post_ams > 0:
             graph.node[node]['style'] = 'filled'
             graph.node[node]['fillcolor'] = 'palegreen'
-        if node.prefix_class is PREFIX_CLASSES.LONELY:
-            graph.node[node]['color'] = 'black'
-        elif node.prefix_class is PREFIX_CLASSES.TOP:
-            graph.node[node]['color'] = 'blue'
-        elif node.prefix_class is PREFIX_CLASSES.DEAGG:
-            graph.node[node]['color'] = 'green'
-        elif node.prefix_class is PREFIX_CLASSES.DELEG:
-            graph.node[node]['color'] = 'red'
+        ##if node.prefix_class is PREFIX_CLASSES.LONELY:
+        ##    graph.node[node]['color'] = 'black'
+        ##elif node.prefix_class is PREFIX_CLASSES.TOP:
+        ##    graph.node[node]['color'] = 'blue'
+        ##elif node.prefix_class is PREFIX_CLASSES.DEAGG:
+        ##    graph.node[node]['color'] = 'green'
+        ##elif node.prefix_class is PREFIX_CLASSES.DELEG:
+        ##    graph.node[node]['color'] = 'red'
 #        else:
 #            graph.node[node]['color'] = 'red'
         graph.node[node]['label'] = ' '.join([str(node),
-            str(node.aggregable_more_specifics), str(node.origin_as), '\\n'])
-        graph.node[node]['label'] += '\\n'.join(
-            [str(ap) for ap in node.as_paths])
+            str(node.post_ams), str(node.post_origin_as)])
+        ##graph.node[node]['label'] += '\\n'.join(
+        ##    [str(ap) for ap in node.as_paths])
         #str(node.as_paths[0])
         # annotate
         p = node
