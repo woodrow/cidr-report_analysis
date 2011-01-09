@@ -34,12 +34,57 @@ implement `__eq__` or whatever the appropriate method is in PrefixAttr such
 that `any()` and/or `all()` function in a useful way to make this as efficient
 as possible)
 
+--------------------------------------------------------------------------------
+
+## current quality problems
+
+* Figure out a quick way to fully visualize trees -- visualize per peer -- to
+see why aggregation is or isn't taking place
+
+* Track node aggregability with "virtual nodes", either
+    - by default, or
+    - only once a covering (top/lonely) prefix is laid down
+
+* Handle partial aggregability -- allowing a covering prefix to aggregate all aggregable subprefixes while ignoring/discounting "punch out" prefixes
+    - to this point, why does Geoff Huston not simply "partly aggregate" the
+    more-specific prefixes into the covering less-specific?
+    - debug aggregation of 17_714_rib
+
+* Consider the proper function of the system in the face of unordered (beyond
+the first octet) insertion of prefixes into the tree!
+
+* Is my approach to maintaining aggregable\_more\_specifics at each node the way
+to go? it seems perhaps not, with regard to out of order, partial aggregation,
+etc.
+    - perhaps the solution is to just build the tree and then walk it after?
+    - this is probably the "correct" solution that can then be improved after
+
+## current proposed solution
+
+* Don't perform any determinations of "aggregatability" during tree construction
+
+* Once tree is constructed, walk it to find TOP/LONELY prefixes, and then from
+each of those, recursively (DFS) find the next TOP/LONELY prefix within each
+subtree and compare it's aggregability with its parent
+    - basis case: leaf 'node' (prefix):
+        1. compare aggregability with parent
+        2. classify as LONELY/TOP/DEAGG/DELEG accordingly
+        3. set is_advertised bit accordingly
+        4. return tuple containing (advertised_prefix_list, agg_prefix_list)
+    - non-basis case
+        1. run classifiation function on children
+        2. perform basis case as given above, returning the concatenation of the
+           lists received from children in the returned tuple
+
+-------------------------------------------------------------------------------
+
 * Also, refactor cidrprefix\_treeonly to allow different classification
 algorithms (really, AS\_PATH equality/routing policy equality algorithms) to
 be run, including:
     - exact path match (current cidr report)
     - no deviation in upstream routing policy (arthur + my approach)
-    - exact path match with virtual nodes (i.e. less-specific covering prefixes)
+    - exact path match with virtual nodes for unadvertised routes
+      (i.e. unadvertised but feasible less-specific covering prefixes)
 
 * Build unit tests for cidr\_analysis module functions and components
     - Think about functional spec for each and design tests accordingly
@@ -70,6 +115,6 @@ based solutions:
 
 * optimize major problems
 
-* preflight processing with karen/ddc/arthur
+* preflight processing with bauer/karen/ddc/arthur
 
 * start processing!

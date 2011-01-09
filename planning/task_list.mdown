@@ -28,26 +28,26 @@
         - `http://archive.routeviews.org/oix-route-views/YYYY.MM/oix-full-YYYY-MM-DD-HHMM.dat.bz2` until 31 December 1999
         - `http://archive.routeviews.org/oix-route-views/YYYY.MM/oix-full-snapshot-YYYY-MM-DD-HHMM.dat.bz2` after 1 January 2000
 
-## Upcoming/Ongoing Tasks ##
-
-0. Identify a consistent peer across the data set
+0. ** NOT THE RIGHT APPROACH** Identify a consistent peer across the data set
     - 3356? "The Carrier's Carrier"?
     - the provider with the most prefixes?
     - more discussion in my notebook
         - geoff houston uses all routes in 6447
     - bin/neighbors.py will help with this...
 
-0. Download Cidr Report emails from NANOG archives
-    - look for when the transition from tony bates to geoff huston occured, etc.
-    - look for (and note) methodological differences too
-
 1. generate individual routing table (C)
     - process data using c, taking args: [filename, peer_as]
     - output data from the given peer_as: prefix + as_path
     - addition for jesse's to insert (prefix, as_path, date) into postgres
 
-2. postgres database schema
-
 3. run elements into tree algorithm (C?)
     - output top aggregable ASes based on count
     - output aggregated routing table (for jesse)?
+
+## Upcoming/Ongoing Tasks ##
+
+0. Download Cidr Report emails from NANOG archives
+    - look for when the transition from tony bates to geoff huston occured, etc.
+    - look for (and note) methodological differences too
+
+2. postgres database schema
