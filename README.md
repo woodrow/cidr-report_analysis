@@ -22,6 +22,10 @@ Repo Layout
 License
 -------
 
-This software will be relicensed under a well-known license in the future, at
-which time this license notice will be changed to reflect the new license.
-Until this software is relicensed, the author reserves all copyrights.
+The software located in /cidr_analysis will be relicensed under a well-known
+license in the future, at which time this license notice will be changed to
+reflect the new license. Until this software is relicensed, the author reserves
+all copyrights.
+
+The software in /libbgpdump and /rv2atoms are copyrighted by their respective
+authors and licensed in accordance with the included license, readme, or source files.
