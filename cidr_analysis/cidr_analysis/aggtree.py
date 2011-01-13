@@ -7,6 +7,7 @@ import ipv4
 PREFIX_CLASSES = Enumerate('LONELY', 'TOP', 'DEAGG', 'DELEG')
 
 class PrefixAttr(object):
+
     def __init__(self, as_path, is_advertised=True,
         prefix_class=PREFIX_CLASSES.LONELY):
         self.as_path = as_path
@@ -68,7 +69,9 @@ def aggregate_table(infile):
         ## pseudocode #####################################################
         (prefix_agg_list, prefix_adv_list) = classify_prefixes(root)
         print(prefix_agg_list)
+        print(len(prefix_agg_list))
         print(prefix_adv_list)
+        print(len(prefix_adv_list))
         best_agg_list = []
         for k in root.attrs:
             best_agg_list.append((k, root.attrs[k].as_path[-1],
@@ -76,15 +79,15 @@ def aggregate_table(infile):
         best_agg_list.sort(key=lambda x: x[2], reverse=True)
         for t in best_agg_list:
             print("{0[1]}\t(-{0[2]}, +{0[3]})\t{0[0]}".format(t))
-        plot_tree(root)
-        return  # debug
+        #plot_tree(root)
+        #return  # debug
         as_agg_dict = group_agg_prefixes_by_as(prefix_agg_list)
         count_agg_prefixes_by_as(as_agg_count_dict, as_agg_dict)
         ###################################################################
 
-        prefix_agg_list = find_aggregable_prefixes(root)
-        as_agg_dict = group_agg_prefixes_by_as(prefix_agg_list)
-        count_agg_prefixes_by_as(as_agg_count_dict, as_agg_dict)
+#        prefix_agg_list = find_aggregable_prefixes(root)
+#        as_agg_dict = group_agg_prefixes_by_as(prefix_agg_list)
+#        count_agg_prefixes_by_as(as_agg_count_dict, as_agg_dict)
         ## debug; if used to go here
 #        if root.prefix >> 24 == 17:
 #            print prefix_agg_list
@@ -95,48 +98,75 @@ def aggregate_table(infile):
 #                print netsnow[k]
 #            plot_tree(root)
 #            break
+    print(as_agg_dict)
     print_new_cidr_report(as_agg_count_dict, as_netsnow_dict)
 
 
-def classify_prefixes(prefix, parent=None):
+def classify_prefixes(prefix, parent=None, ancestor_attrs={}):
     agg_list = []
     adv_list = []
+    if prefix.attrs:
+        new_ancestor_attrs = ancestor_attrs.copy()
+        new_ancestor_attrs.update(prefix.attrs)
+    else:
+        new_ancestor_attrs = ancestor_attrs
     if prefix.ms_0:
         if prefix.attrs:
-            (agg, adv) = classify_prefixes(prefix.ms_0, prefix)
+            (agg, adv) = classify_prefixes(prefix.ms_0, prefix, new_ancestor_attrs)
         else:
-            (agg, adv) = classify_prefixes(prefix.ms_0, parent)
+            (agg, adv) = classify_prefixes(prefix.ms_0, parent, new_ancestor_attrs)
         agg_list += agg
         adv_list += adv
     if prefix.ms_1:
         if prefix.attrs:
-            (agg, adv) = classify_prefixes(prefix.ms_1, prefix)
+            (agg, adv) = classify_prefixes(prefix.ms_1, prefix, new_ancestor_attrs)
         else:
-            (agg, adv) = classify_prefixes(prefix.ms_1, parent)
+            (agg, adv) = classify_prefixes(prefix.ms_1, parent, new_ancestor_attrs)
         agg_list += agg
         adv_list += adv
     # base case
     if parent and prefix.attrs:
         fully_aggregable = True
-        for k in parent.attrs:
-            try:
-                anc_attr = parent.attrs[k]
-                des_attr = prefix.attrs[k]
-                if anc_attr.prefix_class == PREFIX_CLASSES.LONELY:
-                    anc_attr.prefix_class = PREFIX_CLASSES.TOP
-                if anc_attr.as_path == des_attr.as_path:
-                    des_attr.prefix_class = PREFIX_CLASSES.DEAGG
-                    des_attr.is_advertised = False
-                    anc_attr.agg_children += 1
-                else:
-                    des_attr.prefix_class = PREFIX_CLASSES.DELEG
-                    des_attr.is_advertised = True
-                    anc_attr.adv_children += 1
-                    fully_aggregable = False
-                anc_attr.agg_children += des_attr.agg_children
-                anc_attr.adv_children += des_attr.adv_children
-            except KeyError:
-                pass
+        peer_set = set(ancestor_attrs).union(set(prefix.attrs))
+        for k in peer_set:  # TODO could be simplified to just ancestor_attrs
+            if k not in ancestor_attrs:
+                # TODO log this
+                print("orphan prefix-peer combo")
+            else:
+                anc_attr = ancestor_attrs[k]
+                try:
+                    des_attr = prefix.attrs[k]
+                    if anc_attr.prefix_class == PREFIX_CLASSES.LONELY:
+                        anc_attr.prefix_class = PREFIX_CLASSES.TOP
+                    if anc_attr.as_path == des_attr.as_path:
+                        des_attr.prefix_class = PREFIX_CLASSES.DEAGG
+                        des_attr.is_advertised = False
+                        anc_attr.agg_children += 1
+                    else:
+                        des_attr.prefix_class = PREFIX_CLASSES.DELEG
+                        des_attr.is_advertised = True
+                        anc_attr.adv_children += 1
+                        fully_aggregable = False
+# DEBUG CODE -- remove later when confirmed this isnt an issue anymore
+#                    if str(parent) == '17.64.0.0/12' and anc_attr.as_path[-1] == 3303:
+#                        print('###') # this illustrates the problem -- my workaround makes things falsely assume that they're aggregable -- this workaround doesn't work
+#                        # how would it work if the fake prefix wasn't in the tree in the first place?
+#                        # its as though, on the way down the tree, it needs to
+#                        # bring the virtual parent attrs down the tree to nodes
+#                        # that don't have them -- perhaps that will work?
+#                        print(prefix)
+#                        print(' '.join([str(anc_attr.as_path[-1]), str([
+#                            anc_attr.agg_children, des_attr.agg_children,
+#                        anc_attr.adv_children, des_attr.adv_children])]))
+#                    if str(parent) == '17.0.0.0/9' and anc_attr.as_path[-1] == 3303:
+#                        print(prefix)
+#                        print(' '.join([str(anc_attr.as_path[-1]), str([
+#                            anc_attr.agg_children, des_attr.agg_children,
+#                        anc_attr.adv_children, des_attr.adv_children])]))
+                    anc_attr.agg_children += des_attr.agg_children
+                    anc_attr.adv_children += des_attr.adv_children
+                except KeyError:
+                    pass
         # generalization time
         if fully_aggregable:
             agg_list.append(prefix)
@@ -328,11 +358,11 @@ def _find_aggregable_prefixes_recursor(tree, prefix_agg_list):
             (a.aggregable_more_specifics for a in tree.attrs.itervalues()))
         if max_agg > 0:
 #            print('DOUBLE-YES')
-            tree.post_is_aggregable = True
-            tree.post_ams = max_agg
+            tree.is_aggregable = True
+            tree.agg_children = max_agg
             prefix_agg_list.append(tree)
         else:
-            tree.post_ams = 0
+            tree.agg = 0
     else:
         if tree.attrs:
             tree.post_ams = 0
@@ -345,7 +375,7 @@ def _find_aggregable_prefixes_recursor(tree, prefix_agg_list):
 def group_agg_prefixes_by_as(prefix_agg_list):
     as_agg_dict = {}  # keyed on as number
     for prefix in prefix_agg_list:
-        as_agg_dict.setdefault(prefix.post_origin_as, []).append(prefix)
+        as_agg_dict.setdefault(prefix.origin_as, []).append(prefix)
         ## could also implement this as adding to set + checking set size --
         ## performance comparison opportunity?
         #origin_set = set()
@@ -378,7 +408,7 @@ def group_agg_prefixes_by_as(prefix_agg_list):
 def count_agg_prefixes_by_as(as_agg_count_dict, as_agg_dict):
     for asn in as_agg_dict:
         as_agg_count_dict[asn] = as_agg_count_dict.get(asn, 0) + sum(
-            (p.post_ams for p in as_agg_dict[asn]))
+            (p.agg_children for p in as_agg_dict[asn]))
     return as_agg_count_dict
 
 
