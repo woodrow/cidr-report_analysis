@@ -1,0 +1,886 @@
+2009-08-28	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2009-08/msg00633.html
+2009-08-21	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2009-08/msg00469.html
+2009-08-15	Re: The Cidr Report	Patrick W. Gilmore	http://www.merit.edu/mail.archives/nanog/2009-08/msg00353.html
+2009-08-14	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2009-08/msg00348.html
+2009-08-07	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2009-08/msg00198.html
+2009-08-01	Re: The Cidr Report	Geoff Huston	http://www.merit.edu/mail.archives/nanog/2009-08/msg00005.html
+2009-08-01	Re: The Cidr Report	&#xE3;&#xE3;&#xE3;&#xE3;&#xE3;&#xE3;&#xE3;	http://www.merit.edu/mail.archives/nanog/2009-08/msg00004.html
+2009-07-31	Re: The Cidr Report	Patrick W. Gilmore	http://www.merit.edu/mail.archives/nanog/2009-07/msg00751.html
+2009-07-31	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2009-07/msg00749.html
+2009-07-24	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2009-07/msg00596.html
+2009-07-17	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2009-07/msg00460.html
+2009-07-10	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2009-07/msg00296.html
+2009-07-03	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2009-07/msg00055.html
+2009-07-03	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2009-07/msg00029.html
+2009-06-26	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2009-06/msg00537.html
+2009-06-19	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2009-06/msg00413.html
+2009-06-12	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2009-06/msg00199.html
+2009-06-05	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2009-06/msg00069.html
+2009-05-29	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2009-05/msg00793.html
+2009-05-22	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2009-05/msg00597.html
+2009-05-15	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2009-05/msg00473.html
+2009-05-08	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2009-05/msg00261.html
+2009-05-01	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2009-05/msg00002.html
+2009-04-24	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2009-04/msg00862.html
+2009-04-17	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2009-04/msg00521.html
+2009-04-10	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2009-04/msg00285.html
+2009-04-03	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2009-04/msg00045.html
+2009-03-27	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2009-03/msg00439.html
+2009-03-20	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2009-03/msg00305.html
+2009-03-13	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2009-03/msg00168.html
+2009-03-06	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2009-03/msg00068.html
+2009-02-27	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2009-02/msg01252.html
+2009-02-20	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2009-02/msg00967.html
+2009-02-13	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2009-02/msg00573.html
+2009-02-06	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2009-02/msg00252.html
+2009-01-30	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2009-01/msg00864.html
+2009-01-24	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2009-01/msg00685.html
+2009-01-09	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2009-01/msg00259.html
+2009-01-02	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2009-01/msg00015.html
+2008-12-26	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2008-12/msg00574.html
+2008-12-19	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2008-12/msg00442.html
+2008-12-12	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2008-12/msg00297.html
+2008-12-05	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2008-12/msg00202.html
+2008-11-28	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2008-11/msg00604.html
+2008-11-21	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2008-11/msg00518.html
+2008-11-14	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2008-11/msg00370.html
+2008-11-07	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2008-11/msg00250.html
+2008-10-31	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2008-10/msg00498.html
+2008-10-24	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2008-10/msg00387.html
+2008-10-17	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2008-10/msg00329.html
+2008-10-10	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2008-10/msg00197.html
+2008-10-03	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2008-10/msg00080.html
+2008-09-26	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2008-09/msg00952.html
+2008-09-19	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2008-09/msg00613.html
+2008-09-12	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2008-09/msg00394.html
+2008-09-05	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2008-09/msg00202.html
+2008-08-29	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2008-08/msg00740.html
+2008-08-22	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2008-08/msg00521.html
+2008-08-15	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2008-08/msg00337.html
+2008-08-08	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2008-08/msg00127.html
+2008-08-01	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2008-08/msg00002.html
+2008-07-25	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2008-07/msg00498.html
+2008-07-18	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2008-07/msg00272.html
+2008-07-11	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2008-07/msg00192.html
+2008-07-04	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2008-07/msg00065.html
+2008-06-27	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2008-06/msg00602.html
+2008-06-20	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2008-06/msg00415.html
+2008-06-13	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2008-06/msg00191.html
+2008-06-06	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2008-06/msg00080.html
+2008-05-30	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2008-05/msg00698.html
+2008-05-23	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2008-05/msg00475.html
+2008-05-16	[NANOG] The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2008-05/msg00259.html
+2008-05-09	[NANOG] The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2008-05/msg00173.html
+2008-05-02	[NANOG] The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2008-05/msg00006.html
+2008-04-25	[NANOG] The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2008-04/msg00666.html
+2008-04-18	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2008-04/msg00465.html
+2008-04-11	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2008-04/msg00248.html
+2008-04-04	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2008-04/msg00064.html
+2008-03-28	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2008-03/msg00544.html
+2008-03-21	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2008-03/msg00335.html
+2008-03-14	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2008-03/msg00203.html
+2008-03-07	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2008-03/msg00039.html
+2008-02-29	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2008-02/msg00634.html
+2008-02-22	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2008-02/msg00425.html
+2008-02-15	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2008-02/msg00264.html
+2008-02-08	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2008-02/msg00176.html
+2008-02-01	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2008-02/msg00001.html
+2008-01-25	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2008-01/msg00745.html
+2008-01-18	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2008-01/msg00428.html
+2008-01-11	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2008-01/msg00214.html
+2008-01-04	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2008-01/msg00082.html
+2007-12-28	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2007-12/msg00293.html
+2007-12-21	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2007-12/msg00153.html
+2007-12-14	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2007-12/msg00062.html
+2007-12-07	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2007-12/msg00034.html
+2007-11-30	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2007-11/msg00348.html
+2007-11-23	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2007-11/msg00262.html
+2007-11-16	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2007-11/msg00195.html
+2007-11-09	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2007-11/msg00122.html
+2007-11-02	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2007-11/msg00006.html
+2007-10-26	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2007-10/msg00922.html
+2007-10-19	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2007-10/msg00550.html
+2007-10-12	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2007-10/msg00354.html
+2007-10-05	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2007-10/msg00176.html
+2007-09-28	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2007-09/msg00496.html
+2007-09-21	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2007-09/msg00356.html
+2007-09-14	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2007-09/msg00216.html
+2007-09-07	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2007-09/msg00095.html
+2007-08-31	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2007-08/msg00752.html
+2007-08-24	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2007-08/msg00624.html
+2007-08-17	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2007-08/msg00488.html
+2007-08-10	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2007-08/msg00206.html
+2007-08-03	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2007-08/msg00054.html
+2007-07-27	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2007-07/msg00504.html
+2007-07-20	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2007-07/msg00165.html
+2007-06-08	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2007-06/msg00254.html
+2007-06-01	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2007-06/msg00007.html
+2007-05-25	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2007-05/msg00468.html
+2007-05-18	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2007-05/msg00310.html
+2007-05-11	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2007-05/msg00132.html
+2007-05-04	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2007-05/msg00036.html
+2007-04-27	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2007-04/msg00676.html
+2007-04-20	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2007-04/msg00541.html
+2007-04-13	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2007-04/msg00389.html
+2007-04-06	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2007-04/msg00220.html
+2007-03-30	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2007-03/msg00401.html
+2007-03-23	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2007-03/msg00305.html
+2007-03-16	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2007-03/msg00251.html
+2007-03-09	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2007-03/msg00090.html
+2007-03-02	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2007-03/msg00027.html
+2007-02-23	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2007-02/msg00400.html
+2007-02-16	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2007-02/msg00307.html
+2007-02-09	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2007-02/msg00122.html
+2007-02-02	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2007-02/msg00042.html
+2007-01-26	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2007-01/msg00719.html
+2007-01-19	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2007-01/msg00471.html
+2007-01-12	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2007-01/msg00328.html
+2007-01-05	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2007-01/msg00132.html
+2006-12-29	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2006-12/msg00311.html
+2006-12-22	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2006-12/msg00232.html
+2006-12-15	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2006-12/msg00187.html
+2006-12-09	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2006-12/msg00103.html
+2006-12-09	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2006-12/msg00101.html
+2006-12-08	Re: Whatever happened to &quot;The Cidr Repor	Adam Jacob Muller	http://www.merit.edu/mail.archives/nanog/2006-12/msg00099.html
+2006-12-08	Re: Whatever happened to &quot;The Cidr Repor	Alan Spicer	http://www.merit.edu/mail.archives/nanog/2006-12/msg00095.html
+2006-12-08	Whatever happened to &quot;The Cidr Report&quot;?	Etaoin Shrdlu	http://www.merit.edu/mail.archives/nanog/2006-12/msg00091.html
+2006-11-12	RE: The Cidr Report	Geoff Huston	http://www.merit.edu/mail.archives/nanog/2006-11/msg00163.html
+2006-11-12	RE: The Cidr Report	Scott Morris	http://www.merit.edu/mail.archives/nanog/2006-11/msg00162.html
+2006-11-12	Re: The Cidr Report	Geoff Huston	http://www.merit.edu/mail.archives/nanog/2006-11/msg00161.html
+2006-11-10	Re: The Cidr Report	Fergie	http://www.merit.edu/mail.archives/nanog/2006-11/msg00151.html
+2006-11-10	Re: The Cidr Report	Simon Leinen	http://www.merit.edu/mail.archives/nanog/2006-11/msg00150.html
+2006-11-10	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2006-11/msg00133.html
+2006-11-03	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2006-11/msg00027.html
+2006-10-27	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2006-10/msg00476.html
+2006-10-20	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2006-10/msg00274.html
+2006-10-13	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2006-10/msg00138.html
+2006-10-06	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2006-10/msg00051.html
+2006-09-29	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2006-09/msg00603.html
+2006-09-22	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2006-09/msg00470.html
+2006-09-15	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2006-09/msg00340.html
+2006-09-08	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2006-09/msg00120.html
+2006-09-01	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2006-09/msg00005.html
+2006-08-25	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2006-08/msg00490.html
+2006-08-18	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2006-08/msg00424.html
+2006-08-11	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2006-08/msg00279.html
+2006-08-04	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2006-08/msg00089.html
+2006-07-28	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2006-07/msg00358.html
+2006-07-21	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2006-07/msg00252.html
+2006-07-14	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2006-07/msg00225.html
+2006-07-07	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2006-07/msg00080.html
+2006-06-30	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2006-06/msg00545.html
+2006-06-23	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2006-06/msg00442.html
+2006-06-16	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2006-06/msg00298.html
+2006-06-09	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2006-06/msg00122.html
+2006-06-02	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2006-06/msg00004.html
+2006-05-26	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2006-05/msg00342.html
+2006-05-19	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2006-05/msg00248.html
+2006-05-12	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2006-05/msg00121.html
+2006-05-05	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2006-05/msg00070.html
+2006-04-28	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2006-04/msg00441.html
+2006-04-21	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2006-04/msg00368.html
+2006-04-14	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2006-04/msg00285.html
+2006-04-07	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2006-04/msg00123.html
+2006-03-31	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2006-03/msg00654.html
+2006-03-24	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2006-03/msg00510.html
+2006-03-17	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2006-03/msg00431.html
+2006-03-10	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2006-03/msg00353.html
+2006-03-03	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2006-03/msg00122.html
+2006-02-24	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2006-02/msg00573.html
+2006-02-17	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2006-02/msg00427.html
+2006-02-10	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2006-02/msg00216.html
+2006-02-03	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2006-02/msg00027.html
+2006-01-27	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2006-01/msg00621.html
+2006-01-20	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2006-01/msg00441.html
+2006-01-13	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2006-01/msg00224.html
+2006-01-06	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2006-01/msg00071.html
+2005-12-30	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2005-12/msg00575.html
+2005-12-23	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2005-12/msg00470.html
+2005-12-16	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2005-12/msg00355.html
+2005-12-09	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2005-12/msg00111.html
+2005-12-02	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2005-12/msg00028.html
+2005-11-18	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2005-11/msg00553.html
+2005-11-11	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2005-11/msg00300.html
+2005-11-04	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2005-11/msg00142.html
+2005-10-28	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2005-10/msg01188.html
+2005-10-21	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2005-10/msg00989.html
+2005-10-14	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2005-10/msg00517.html
+2005-10-07	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2005-10/msg00239.html
+2005-09-30	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2005-09/msg01038.html
+2005-09-23	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2005-09/msg00800.html
+2005-09-20	Re: [routing-wg]The Cidr Report	Hank Nussbacher	http://www.merit.edu/mail.archives/nanog/2005-09/msg00706.html
+2005-09-16	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2005-09/msg00591.html
+2005-09-09	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2005-09/msg00294.html
+2005-09-02	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2005-09/msg00055.html
+2005-08-26	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2005-08/msg00898.html
+2005-08-19	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2005-08/msg00704.html
+2005-08-12	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2005-08/msg00454.html
+2005-08-05	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2005-08/msg00215.html
+2005-07-29	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2005-07/msg00969.html
+2005-07-22	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2005-07/msg00729.html
+2005-07-15	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2005-07/msg00558.html
+2005-07-08	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2005-07/msg00342.html
+2005-07-01	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2005-07/msg00011.html
+2005-06-24	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2005-06/msg00495.html
+2005-06-17	Re: The Cidr Report	Hank Nussbacher	http://www.merit.edu/mail.archives/nanog/2005-06/msg00341.html
+2005-06-03	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2005-06/msg00070.html
+2005-05-27	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2005-05/msg00740.html
+2005-05-20	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2005-05/msg00558.html
+2005-05-13	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2005-05/msg00421.html
+2005-05-06	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2005-05/msg00213.html
+2005-04-29	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2005-04/msg00961.html
+2005-04-22	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2005-04/msg00656.html
+2005-04-15	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2005-04/msg00409.html
+2005-04-08	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2005-04/msg00074.html
+2005-03-25	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2005-03/msg00610.html
+2005-03-21	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2005-03/msg00412.html
+2005-03-18	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2005-03/msg00399.html
+2005-03-11	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2005-03/msg00280.html
+2005-03-04	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2005-03/msg00133.html
+2005-02-25	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2005-02/msg00536.html
+2005-02-18	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2005-02/msg00400.html
+2005-02-15	Re: The Cidr Report	Mark Prior	http://www.merit.edu/mail.archives/nanog/2005-02/msg00246.html
+2005-02-14	RE: The Cidr Report	Barry Raveendran Greene	http://www.merit.edu/mail.archives/nanog/2005-02/msg00238.html
+2005-02-14	RE: The Cidr Report	Hannigan, Martin	http://www.merit.edu/mail.archives/nanog/2005-02/msg00227.html
+2005-02-14	RE: The Cidr Report	John van Oppen	http://www.merit.edu/mail.archives/nanog/2005-02/msg00219.html
+2005-02-14	Re: The Cidr Report	Elmar K. Bins	http://www.merit.edu/mail.archives/nanog/2005-02/msg00217.html
+2005-02-14	Re: The Cidr Report	Hank Nussbacher	http://www.merit.edu/mail.archives/nanog/2005-02/msg00216.html
+2005-02-13	Re: The Cidr Report	Warren Kumari, Ph.D, CCIE# 9190	http://www.merit.edu/mail.archives/nanog/2005-02/msg00215.html
+2005-02-13	Re: The Cidr Report	Patrick W Gilmore	http://www.merit.edu/mail.archives/nanog/2005-02/msg00214.html
+2005-02-13	Re: The Cidr Report	Philip Smith	http://www.merit.edu/mail.archives/nanog/2005-02/msg00213.html
+2005-02-13	Re: The Cidr Report	Aaron Hopkins	http://www.merit.edu/mail.archives/nanog/2005-02/msg00212.html
+2005-02-13	RE: The Cidr Report	Hannigan, Martin	http://www.merit.edu/mail.archives/nanog/2005-02/msg00211.html
+2005-02-13	Re: The Cidr Report	Stephen J. Wilcox	http://www.merit.edu/mail.archives/nanog/2005-02/msg00210.html
+2005-02-13	Re: The Cidr Report	Christopher L. Morrow	http://www.merit.edu/mail.archives/nanog/2005-02/msg00209.html
+2005-02-13	Re: The Cidr Report	Michael Smith	http://www.merit.edu/mail.archives/nanog/2005-02/msg00208.html
+2005-02-13	Re: The Cidr Report	Peter Walker	http://www.merit.edu/mail.archives/nanog/2005-02/msg00205.html
+2005-02-13	RE: The Cidr Report	Stephen J. Wilcox	http://www.merit.edu/mail.archives/nanog/2005-02/msg00204.html
+2005-02-13	Re: The Cidr Report	Stephen J. Wilcox	http://www.merit.edu/mail.archives/nanog/2005-02/msg00203.html
+2005-02-13	RE: The Cidr Report	Justin Ryburn	http://www.merit.edu/mail.archives/nanog/2005-02/msg00202.html
+2005-02-13	Re: The Cidr Report	Warren Kumari, Ph.D, CCIE# 9190	http://www.merit.edu/mail.archives/nanog/2005-02/msg00201.html
+2005-02-13	Re: The Cidr Report	Christopher L. Morrow	http://www.merit.edu/mail.archives/nanog/2005-02/msg00200.html
+2005-02-13	Re: The Cidr Report	Alexander Koch	http://www.merit.edu/mail.archives/nanog/2005-02/msg00199.html
+2005-02-13	Re: The Cidr Report	Jerry Pasker	http://www.merit.edu/mail.archives/nanog/2005-02/msg00198.html
+2005-02-13	Re: The Cidr Report	Christopher L. Morrow	http://www.merit.edu/mail.archives/nanog/2005-02/msg00197.html
+2005-02-13	Re: The Cidr Report	Philip Smith	http://www.merit.edu/mail.archives/nanog/2005-02/msg00196.html
+2005-02-12	Re: The Cidr Report	Philip Smith	http://www.merit.edu/mail.archives/nanog/2005-02/msg00195.html
+2005-02-12	Re: The Cidr Report	Vinny Abello	http://www.merit.edu/mail.archives/nanog/2005-02/msg00194.html
+2005-02-12	Re: The Cidr Report	Fredy Kuenzler	http://www.merit.edu/mail.archives/nanog/2005-02/msg00193.html
+2005-02-12	Re: The Cidr Report	Alexander Koch	http://www.merit.edu/mail.archives/nanog/2005-02/msg00192.html
+2005-02-12	Re: The Cidr Report	Hank Nussbacher	http://www.merit.edu/mail.archives/nanog/2005-02/msg00191.html
+2005-02-12	Re: The Cidr Report	Hank Nussbacher	http://www.merit.edu/mail.archives/nanog/2005-02/msg00190.html
+2005-02-12	Re: The Cidr Report	Jon Lewis	http://www.merit.edu/mail.archives/nanog/2005-02/msg00189.html
+2005-02-12	Re: The Cidr Report	Stephen J. Wilcox	http://www.merit.edu/mail.archives/nanog/2005-02/msg00188.html
+2005-02-12	Re: The Cidr Report	Philip Smith	http://www.merit.edu/mail.archives/nanog/2005-02/msg00187.html
+2005-02-12	RE: The Cidr Report	Neil J. McRae	http://www.merit.edu/mail.archives/nanog/2005-02/msg00186.html
+2005-02-12	RE: The Cidr Report	Neil J. McRae	http://www.merit.edu/mail.archives/nanog/2005-02/msg00185.html
+2005-02-11	RE: The Cidr Report	Stephen J. Wilcox	http://www.merit.edu/mail.archives/nanog/2005-02/msg00183.html
+2005-02-11	Re: The Cidr Report	Marc Binderberger	http://www.merit.edu/mail.archives/nanog/2005-02/msg00182.html
+2005-02-11	RE: The Cidr Report	Mike Leber	http://www.merit.edu/mail.archives/nanog/2005-02/msg00181.html
+2005-02-11	RE: The Cidr Report	Jon Lewis	http://www.merit.edu/mail.archives/nanog/2005-02/msg00180.html
+2005-02-11	RE: The Cidr Report	Malayter, Christopher	http://www.merit.edu/mail.archives/nanog/2005-02/msg00175.html
+2005-02-11	Re: The Cidr Report	Philip Smith	http://www.merit.edu/mail.archives/nanog/2005-02/msg00174.html
+2005-02-11	RE: The Cidr Report	Neil J. McRae	http://www.merit.edu/mail.archives/nanog/2005-02/msg00172.html
+2005-02-11	RE: The Cidr Report	Stephen J. Wilcox	http://www.merit.edu/mail.archives/nanog/2005-02/msg00171.html
+2005-02-11	RE: The Cidr Report	Neil J. McRae	http://www.merit.edu/mail.archives/nanog/2005-02/msg00170.html
+2005-02-11	RE: The Cidr Report	Frotzler, Florian	http://www.merit.edu/mail.archives/nanog/2005-02/msg00169.html
+2005-02-11	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2005-02/msg00168.html
+2005-02-04	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2005-02/msg00085.html
+2005-01-28	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2005-01/msg00757.html
+2005-01-21	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2005-01/msg00615.html
+2005-01-14	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2005-01/msg00261.html
+2005-01-07	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2005-01/msg00073.html
+2004-12-24	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2004-12/msg00665.html
+2004-12-17	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2004-12/msg00520.html
+2004-12-14	Re: The Cidr Report	Michael.Dillon	http://www.merit.edu/mail.archives/nanog/2004-12/msg00457.html
+2004-12-13	Re: The Cidr Report	Joe Provo	http://www.merit.edu/mail.archives/nanog/2004-12/msg00437.html
+2004-12-13	Re: The Cidr Report	Patrick W Gilmore	http://www.merit.edu/mail.archives/nanog/2004-12/msg00436.html
+2004-12-13	Re: The Cidr Report	Michael.Dillon	http://www.merit.edu/mail.archives/nanog/2004-12/msg00432.html
+2004-12-13	Re: The Cidr Report	Michael.Dillon	http://www.merit.edu/mail.archives/nanog/2004-12/msg00423.html
+2004-12-12	Re: The Cidr Report	Joe Provo	http://www.merit.edu/mail.archives/nanog/2004-12/msg00410.html
+2004-12-10	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2004-12/msg00354.html
+2004-12-03	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2004-12/msg00123.html
+2004-11-26	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2004-11/msg00790.html
+2004-11-19	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2004-11/msg00545.html
+2004-11-13	RE: The Cidr Report	Christopher L. Morrow	http://www.merit.edu/mail.archives/nanog/2004-11/msg00428.html
+2004-11-13	Re: The Cidr Report	joshua sahala	http://www.merit.edu/mail.archives/nanog/2004-11/msg00422.html
+2004-11-13	RE: The Cidr Report	Randy Bush	http://www.merit.edu/mail.archives/nanog/2004-11/msg00420.html
+2004-11-13	RE: The Cidr Report	Geoff Huston	http://www.merit.edu/mail.archives/nanog/2004-11/msg00419.html
+2004-11-13	Re: The Cidr Report	Geoff Huston	http://www.merit.edu/mail.archives/nanog/2004-11/msg00418.html
+2004-11-13	Re: The Cidr Report	Geoff Huston	http://www.merit.edu/mail.archives/nanog/2004-11/msg00416.html
+2004-11-13	Re: The Cidr Report	Patrick W Gilmore	http://www.merit.edu/mail.archives/nanog/2004-11/msg00405.html
+2004-11-13	Re: The Cidr Report	Hank Nussbacher	http://www.merit.edu/mail.archives/nanog/2004-11/msg00402.html
+2004-11-13	RE: The Cidr Report	Roy	http://www.merit.edu/mail.archives/nanog/2004-11/msg00389.html
+2004-11-13	Re: The Cidr Report	Joe Provo	http://www.merit.edu/mail.archives/nanog/2004-11/msg00388.html
+2004-11-13	Re: The Cidr Report	Simon Leinen	http://www.merit.edu/mail.archives/nanog/2004-11/msg00385.html
+2004-11-12	Re: The Cidr Report	Randy Bush	http://www.merit.edu/mail.archives/nanog/2004-11/msg00377.html
+2004-11-12	Re: The Cidr Report	Christopher L. Morrow	http://www.merit.edu/mail.archives/nanog/2004-11/msg00372.html
+2004-11-12	RE: The Cidr Report	Christopher L. Morrow	http://www.merit.edu/mail.archives/nanog/2004-11/msg00371.html
+2004-11-12	Re: The Cidr Report	Christopher L. Morrow	http://www.merit.edu/mail.archives/nanog/2004-11/msg00370.html
+2004-11-12	RE: The Cidr Report	Randy Bush	http://www.merit.edu/mail.archives/nanog/2004-11/msg00368.html
+2004-11-12	Re: The Cidr Report	Randy Bush	http://www.merit.edu/mail.archives/nanog/2004-11/msg00367.html
+2004-11-12	RE: The Cidr Report	Roldan, Brad	http://www.merit.edu/mail.archives/nanog/2004-11/msg00366.html
+2004-11-12	Re: The Cidr Report	Daniel Roesen	http://www.merit.edu/mail.archives/nanog/2004-11/msg00364.html
+2004-11-12	Re: The Cidr Report	Austin Schutz	http://www.merit.edu/mail.archives/nanog/2004-11/msg00362.html
+2004-11-12	Re: The Cidr Report	Christopher L. Morrow	http://www.merit.edu/mail.archives/nanog/2004-11/msg00360.html
+2004-11-12	Re: The Cidr Report	Randy Bush	http://www.merit.edu/mail.archives/nanog/2004-11/msg00354.html
+2004-11-12	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2004-11/msg00296.html
+2004-11-05	Fwd: The Cidr Report	David Barak	http://www.merit.edu/mail.archives/nanog/2004-11/msg00047.html
+2004-11-05	Re: The Cidr Report	Patrick W Gilmore	http://www.merit.edu/mail.archives/nanog/2004-11/msg00045.html
+2004-11-05	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2004-11/msg00044.html
+2004-10-29	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2004-10/msg00524.html
+2004-10-22	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2004-10/msg00391.html
+2004-10-15	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2004-10/msg00295.html
+2004-10-08	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2004-10/msg00061.html
+2004-10-01	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2004-10/msg00002.html
+2004-09-24	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2004-09/msg00727.html
+2004-09-17	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2004-09/msg00508.html
+2004-09-10	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2004-09/msg00311.html
+2004-09-03	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2004-09/msg00103.html
+2004-08-27	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2004-08/msg00607.html
+2004-08-20	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2004-08/msg00472.html
+2004-08-13	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2004-08/msg00218.html
+2004-08-06	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2004-08/msg00107.html
+2004-07-30	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2004-07/msg00740.html
+2004-07-23	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2004-07/msg00556.html
+2004-07-16	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2004-07/msg00387.html
+2004-07-09	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2004-07/msg00234.html
+2004-07-02	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2004-07/msg00057.html
+2004-06-25	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2004-06/msg00993.html
+2004-06-18	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2004-06/msg00643.html
+2004-06-11	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2004-06/msg00318.html
+2004-06-04	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2004-06/msg00093.html
+2004-05-28	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2004-05/msg00720.html
+2004-05-21	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2004-05/msg00552.html
+2004-05-14	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2004-05/msg00283.html
+2004-05-07	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2004-05/msg00168.html
+2004-04-30	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2004-04/msg00853.html
+2004-04-23	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2004-04/msg00724.html
+2004-04-16	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2004-04/msg00374.html
+2004-04-09	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2004-04/msg00132.html
+2004-04-02	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2004-04/msg00029.html
+2004-03-26	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2004-03/msg01067.html
+2004-03-19	Re: The Cidr Report	Patrick W.Gilmore	http://www.merit.edu/mail.archives/nanog/2004-03/msg00927.html
+2004-03-19	Re: The Cidr Report	Mike Lewinski	http://www.merit.edu/mail.archives/nanog/2004-03/msg00925.html
+2004-03-19	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2004-03/msg00924.html
+2004-03-12	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2004-03/msg00414.html
+2004-03-05	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2004-03/msg00156.html
+2004-02-27	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2004-02/msg00960.html
+2004-02-20	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2004-02/msg00716.html
+2004-02-13	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2004-02/msg00542.html
+2004-02-08	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2004-02/msg00285.html
+2004-02-06	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2004-02/msg00200.html
+2004-01-30	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2004-01/msg00793.html
+2004-01-23	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2004-01/msg00580.html
+2004-01-16	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2004-01/msg00391.html
+2004-01-09	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2004-01/msg00200.html
+2004-01-02	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2004-01/msg00002.html
+2003-12-26	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2003-12/msg00594.html
+2003-12-19	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2003-12/msg00423.html
+2003-12-12	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2003-12/msg00325.html
+2003-12-05	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2003-12/msg00187.html
+2003-11-28	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2003-11/msg00742.html
+2003-11-21	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2003-11/msg00566.html
+2003-11-14	Re: The Cidr Report	Stephen J. Wilcox	http://www.merit.edu/mail.archives/nanog/2003-11/msg00457.html
+2003-11-14	Re: The Cidr Report	Suresh Ramasubramanian	http://www.merit.edu/mail.archives/nanog/2003-11/msg00456.html
+2003-11-14	Re: The Cidr Report	Stephen J. Wilcox	http://www.merit.edu/mail.archives/nanog/2003-11/msg00455.html
+2003-11-14	Re: The Cidr Report	Suresh Ramasubramanian	http://www.merit.edu/mail.archives/nanog/2003-11/msg00449.html
+2003-11-14	Re: The Cidr Report	Joe Abley	http://www.merit.edu/mail.archives/nanog/2003-11/msg00447.html
+2003-11-14	RE: The Cidr Report	McBurnett, Jim	http://www.merit.edu/mail.archives/nanog/2003-11/msg00446.html
+2003-11-14	Re: The Cidr Report	Stephen J. Wilcox	http://www.merit.edu/mail.archives/nanog/2003-11/msg00445.html
+2003-11-14	Re: The Cidr Report	Suresh Ramasubramanian	http://www.merit.edu/mail.archives/nanog/2003-11/msg00443.html
+2003-11-14	Re: The Cidr Report	Stephen J. Wilcox	http://www.merit.edu/mail.archives/nanog/2003-11/msg00442.html
+2003-11-14	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2003-11/msg00441.html
+2003-11-07	Re: The Cidr Report	william	http://www.merit.edu/mail.archives/nanog/2003-11/msg00224.html
+2003-11-07	Re: The Cidr Report	Adam Debus	http://www.merit.edu/mail.archives/nanog/2003-11/msg00221.html
+2003-11-07	Re: The Cidr Report	Valdis.Kletnieks	http://www.merit.edu/mail.archives/nanog/2003-11/msg00220.html
+2003-11-07	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2003-11/msg00219.html
+2003-10-31	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2003-10/msg01474.html
+2003-10-24	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2003-10/msg01225.html
+2003-10-17	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2003-10/msg00985.html
+2003-10-10	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2003-10/msg00555.html
+2003-10-03	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2003-10/msg00078.html
+2003-09-26	Re: The Cidr Report	Saku Ytti	http://www.merit.edu/mail.archives/nanog/2003-09/msg01422.html
+2003-09-26	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2003-09/msg01419.html
+2003-09-19	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2003-09/msg00917.html
+2003-09-12	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2003-09/msg00336.html
+2003-09-05	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2003-09/msg00168.html
+2003-08-29	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2003-08/msg01360.html
+2003-08-22	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2003-08/msg00957.html
+2003-08-15	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2003-08/msg00623.html
+2003-08-08	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2003-08/msg00270.html
+2003-08-01	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2003-08/msg00012.html
+2003-07-25	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2003-07/msg00443.html
+2003-07-18	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2003-07/msg00235.html
+2003-07-11	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2003-07/msg00132.html
+2003-07-04	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2003-07/msg00047.html
+2003-06-27	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2003-06/msg00595.html
+2003-06-22	RE: The Cidr Report	McBurnett, Jim	http://www.merit.edu/mail.archives/nanog/2003-06/msg00470.html
+2003-06-21	Re: The Cidr Report	Matt Levine	http://www.merit.edu/mail.archives/nanog/2003-06/msg00461.html
+2003-06-21	RE: The Cidr Report	Kris Foster	http://www.merit.edu/mail.archives/nanog/2003-06/msg00460.html
+2003-06-21	Re: The Cidr Report	Stephen J. Wilcox	http://www.merit.edu/mail.archives/nanog/2003-06/msg00459.html
+2003-06-21	Re: The Cidr Report	Hank Nussbacher	http://www.merit.edu/mail.archives/nanog/2003-06/msg00458.html
+2003-06-21	Re: The Cidr Report	Haesu	http://www.merit.edu/mail.archives/nanog/2003-06/msg00457.html
+2003-06-20	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2003-06/msg00449.html
+2003-06-13	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2003-06/msg00267.html
+2003-06-06	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2003-06/msg00139.html
+2003-05-30	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2003-05/msg00583.html
+2003-05-23	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2003-05/msg00456.html
+2003-05-16	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2003-05/msg00379.html
+2003-05-10	Re: The Cidr Report	Hank Nussbacher	http://www.merit.edu/mail.archives/nanog/2003-05/msg00265.html
+2003-05-09	Re: The Cidr Report	Lee Howard	http://www.merit.edu/mail.archives/nanog/2003-05/msg00261.html
+2003-05-09	Re: The Cidr Report	ren	http://www.merit.edu/mail.archives/nanog/2003-05/msg00247.html
+2003-05-09	Re: The Cidr Report	Larry J. Blunk	http://www.merit.edu/mail.archives/nanog/2003-05/msg00245.html
+2003-05-09	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2003-05/msg00242.html
+2003-05-02	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2003-05/msg00051.html
+2003-04-11	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2003-04/msg00232.html
+2003-04-04	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2003-04/msg00096.html
+2003-03-28	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2003-03/msg00804.html
+2003-03-21	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2003-03/msg00631.html
+2003-03-14	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2003-03/msg00516.html
+2003-03-07	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2003-03/msg00127.html
+2003-02-28	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2003-02/msg00633.html
+2003-02-21	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2003-02/msg00440.html
+2003-02-15	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2003-02/msg00331.html
+2003-02-07	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2003-02/msg00121.html
+2003-01-31	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2003-01/msg01096.html
+2003-01-24	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2003-01/msg00561.html
+2003-01-18	Re: The Cidr Report	Hank Nussbacher	http://www.merit.edu/mail.archives/nanog/2003-01/msg00392.html
+2003-01-17	Re: The Cidr Report	Larry J. Blunk	http://www.merit.edu/mail.archives/nanog/2003-01/msg00368.html
+2003-01-17	Re: The Cidr Report	Douglas A. Dever	http://www.merit.edu/mail.archives/nanog/2003-01/msg00363.html
+2003-01-17	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2003-01/msg00359.html
+2003-01-10	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2003-01/msg00164.html
+2003-01-03	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2003-01/msg00017.html
+2002-12-27	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2002-12/msg00485.html
+2002-12-23	Analyzing  The Cidr Report (fwd)	Lee Howard	http://www.merit.edu/mail.archives/nanog/2002-12/msg00467.html
+2002-12-20	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2002-12/msg00419.html
+2002-12-13	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2002-12/msg00303.html
+2002-12-06	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2002-12/msg00083.html
+2002-11-29	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2002-11/msg00697.html
+2002-11-22	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2002-11/msg00599.html
+2002-11-15	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2002-11/msg00325.html
+2002-11-08	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2002-11/msg00154.html
+2002-11-01	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2002-11/msg00002.html
+2002-10-25	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2002-10/msg00562.html
+2002-10-18	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2002-10/msg00403.html
+2002-10-11	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2002-10/msg00333.html
+2002-10-04	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2002-10/msg00125.html
+2002-09-28	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2002-09/msg00777.html
+2002-09-27	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2002-09/msg00760.html
+2002-09-20	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2002-09/msg00588.html
+2002-08-26	FYI: CIDR Report changes	Philip Smith	http://www.merit.edu/mail.archives/nanog/2002-08/msg00847.html
+2002-08-24	The Cidr Report	CIDR Report	http://www.merit.edu/mail.archives/nanog/2002-08/msg00840.html
+2002-08-17	The Cidr Report	CIDR Report	http://www.merit.edu/mail.archives/nanog/2002-08/msg00477.html
+2002-08-10	The Cidr Report	CIDR Report	http://www.merit.edu/mail.archives/nanog/2002-08/msg00303.html
+2002-08-03	The Cidr Report	CIDR Report	http://www.merit.edu/mail.archives/nanog/2002-08/msg00033.html
+2002-07-27	The Cidr Report	CIDR Report	http://www.merit.edu/mail.archives/nanog/2002-07/msg00977.html
+2002-07-20	The Cidr Report	CIDR Report	http://www.merit.edu/mail.archives/nanog/2002-07/msg00761.html
+2002-07-14	RE: The Cidr Report - web site inaccessi	Peter Murray	http://www.merit.edu/mail.archives/nanog/2002-07/msg00585.html
+2002-07-14	Re: The Cidr Report - web site inaccessi	Gregory Hicks	http://www.merit.edu/mail.archives/nanog/2002-07/msg00583.html
+2002-07-14	Re: The Cidr Report - web site inaccessi	Rafi Sadowsky	http://www.merit.edu/mail.archives/nanog/2002-07/msg00581.html
+2002-07-13	The Cidr Report	CIDR Report	http://www.merit.edu/mail.archives/nanog/2002-07/msg00551.html
+2002-07-06	The Cidr Report	CIDR Report	http://www.merit.edu/mail.archives/nanog/2002-07/msg00221.html
+2002-06-29	The Cidr Report	CIDR Report	http://www.merit.edu/mail.archives/nanog/2002-06/msg00941.html
+2002-06-22	The Cidr Report	CIDR Report	http://www.merit.edu/mail.archives/nanog/2002-06/msg00684.html
+2002-06-15	The Cidr Report	CIDR Report	http://www.merit.edu/mail.archives/nanog/2002-06/msg00351.html
+2002-06-08	The Cidr Report	CIDR Report	http://www.merit.edu/mail.archives/nanog/2002-06/msg00185.html
+2002-06-01	The Cidr Report	CIDR Report	http://www.merit.edu/mail.archives/nanog/2002-06/msg00001.html
+2002-05-25	The Cidr Report	CIDR Report	http://www.merit.edu/mail.archives/nanog/2002-05/msg01049.html
+2002-05-18	The Cidr Report	CIDR Report	http://www.merit.edu/mail.archives/nanog/2002-05/msg00684.html
+2002-04-06	The Cidr Report	CIDR Report	http://www.merit.edu/mail.archives/nanog/2002-04/msg00106.html
+2002-03-31	The Cidr Report	CIDR Report (by way of eugen roman-ionita &lt;ripe@fx.ro&gt;)	http://www.merit.edu/mail.archives/nanog/2002-03/msg00550.html
+2002-03-31	The Cidr Report	CIDR Report (by way of eugen roman-ionita &lt;ripe@fx.ro&gt;)	http://www.merit.edu/mail.archives/nanog/2002-03/msg00549.html
+2002-03-30	The Cidr Report	CIDR Report	http://www.merit.edu/mail.archives/nanog/2002-03/msg00540.html
+2002-03-23	The Cidr Report	CIDR Report	http://www.merit.edu/mail.archives/nanog/2002-03/msg00333.html
+2002-03-09	The Cidr Report	CIDR Report	http://www.merit.edu/mail.archives/nanog/2002-03/msg00091.html
+2002-03-02	The Cidr Report	CIDR Report	http://www.merit.edu/mail.archives/nanog/2002-03/msg00003.html
+2002-02-23	The Cidr Report	CIDR Report	http://www.merit.edu/mail.archives/nanog/2002-02/msg00435.html
+2002-02-16	The Cidr Report	CIDR Report	http://www.merit.edu/mail.archives/nanog/2002-02/msg00356.html
+2002-02-12	The Cidr Report	CIDR Report	http://www.merit.edu/mail.archives/nanog/2002-02/msg00263.html
+2002-02-09	The Cidr Report	CIDR Report	http://www.merit.edu/mail.archives/nanog/2002-02/msg00187.html
+2002-02-02	The Cidr Report	CIDR Report	http://www.merit.edu/mail.archives/nanog/2002-02/msg00068.html
+2002-01-26	The Cidr Report	CIDR Report	http://www.merit.edu/mail.archives/nanog/2002-01/msg00340.html
+2002-01-19	The Cidr Report	CIDR Report	http://www.merit.edu/mail.archives/nanog/2002-01/msg00228.html
+2002-01-16	Re: The Cidr Report	Philip Smith	http://www.merit.edu/mail.archives/nanog/2002-01/msg00154.html
+2002-01-15	Re: The Cidr Report	Joe Abley	http://www.merit.edu/mail.archives/nanog/2002-01/msg00132.html
+2002-01-15	Re: The Cidr Report	Hank Nussbacher	http://www.merit.edu/mail.archives/nanog/2002-01/msg00126.html
+2002-01-14	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/2002-01/msg00113.html
+2002-01-05	The Cidr Report	CIDR Report	http://www.merit.edu/mail.archives/nanog/2002-01/msg00030.html
+2001-12-29	The Cidr Report	CIDR Report	http://www.merit.edu/mail.archives/nanog/2001-12/msg00356.html
+2001-12-22	The Cidr Report	CIDR Report	http://www.merit.edu/mail.archives/nanog/2001-12/msg00338.html
+2001-12-15	The Cidr Report	CIDR Report	http://www.merit.edu/mail.archives/nanog/2001-12/msg00264.html
+2001-12-08	The Cidr Report	CIDR Report	http://www.merit.edu/mail.archives/nanog/2001-12/msg00126.html
+2001-12-01	The Cidr Report	CIDR Report	http://www.merit.edu/mail.archives/nanog/2001-12/msg00000.html
+2001-11-24	The Cidr Report	CIDR Report	http://www.merit.edu/mail.archives/nanog/2001-11/msg00387.html
+2001-11-17	The Cidr Report	CIDR Report	http://www.merit.edu/mail.archives/nanog/2001-11/msg00249.html
+2001-11-10	The Cidr Report	CIDR Report	http://www.merit.edu/mail.archives/nanog/2001-11/msg00161.html
+2001-11-03	The Cidr Report	CIDR Report	http://www.merit.edu/mail.archives/nanog/2001-11/msg00045.html
+2001-10-27	The Cidr Report	CIDR Report	http://www.merit.edu/mail.archives/nanog/2001-10/msg00727.html
+2001-10-20	The Cidr Report	CIDR Report	http://www.merit.edu/mail.archives/nanog/2001-10/msg00462.html
+2001-10-13	The Cidr Report	CIDR Report	http://www.merit.edu/mail.archives/nanog/2001-10/msg00300.html
+2001-10-06	The Cidr Report	CIDR Report	http://www.merit.edu/mail.archives/nanog/2001-10/msg00180.html
+2001-09-29	The Cidr Report	CIDR Report	http://www.merit.edu/mail.archives/nanog/2001-09/msg01895.html
+2001-09-22	The Cidr Report	CIDR Report	http://www.merit.edu/mail.archives/nanog/2001-09/msg01589.html
+2001-09-15	The Cidr Report	CIDR Report	http://www.merit.edu/mail.archives/nanog/2001-09/msg01138.html
+2001-09-08	The Cidr Report	CIDR Report	http://www.merit.edu/mail.archives/nanog/2001-09/msg00190.html
+2001-09-01	The Cidr Report	CIDR Report	http://www.merit.edu/mail.archives/nanog/2001-09/msg00000.html
+2001-08-25	The Cidr Report	CIDR Report	http://www.merit.edu/mail.archives/nanog/2001-08/msg00834.html
+2001-08-18	The Cidr Report	CIDR Report	http://www.merit.edu/mail.archives/nanog/2001-08/msg00635.html
+2001-08-11	The Cidr Report	CIDR Report	http://www.merit.edu/mail.archives/nanog/2001-08/msg00446.html
+2001-08-04	The Cidr Report	CIDR Report	http://www.merit.edu/mail.archives/nanog/2001-08/msg00159.html
+2001-07-28	Re: The Cidr Report	Joel Baker	http://www.merit.edu/mail.archives/nanog/2001-07/msg00685.html
+2001-07-28	The Cidr Report	CIDR Report	http://www.merit.edu/mail.archives/nanog/2001-07/msg00684.html
+2001-07-21	The Cidr Report	CIDR Report	http://www.merit.edu/mail.archives/nanog/2001-07/msg00442.html
+2001-07-14	The Cidr Report	cidr-report	http://www.merit.edu/mail.archives/nanog/2001-07/msg00276.html
+2001-07-07	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/2001-07/msg00152.html
+2001-06-30	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/2001-06/msg01046.html
+2001-06-23	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/2001-06/msg00667.html
+2001-06-16	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/2001-06/msg00590.html
+2001-06-09	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/2001-06/msg00408.html
+2001-06-02	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/2001-06/msg00043.html
+2001-05-05	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/2001-05/msg00091.html
+2001-04-28	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/2001-04/msg00722.html
+2001-04-21	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/2001-04/msg00569.html
+2001-04-14	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/2001-04/msg00423.html
+2001-04-07	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/2001-04/msg00212.html
+2001-03-31	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/2001-03/msg01043.html
+2001-03-24	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/2001-03/msg00864.html
+2001-03-17	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/2001-03/msg00668.html
+2001-03-11	Re: [apops] The Cidr Report	Mark Prior	http://www.merit.edu/mail.archives/nanog/2001-03/msg00312.html
+2001-03-10	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/2001-03/msg00297.html
+2001-03-03	Re: The Cidr Report	Simon Leinen	http://www.merit.edu/mail.archives/nanog/2001-03/msg00042.html
+2001-03-03	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/2001-03/msg00041.html
+2001-02-24	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/2001-02/msg00796.html
+2001-02-18	Re: The Cidr Report	Hank Nussbacher	http://www.merit.edu/mail.archives/nanog/2001-02/msg00500.html
+2001-02-17	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/2001-02/msg00460.html
+2001-02-12	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/2001-02/msg00310.html
+2001-02-09	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/2001-02/msg00270.html
+2001-02-04	Re: The Cidr Report	Hank Nussbacher	http://www.merit.edu/mail.archives/nanog/2001-02/msg00141.html
+2001-02-02	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/2001-02/msg00049.html
+2001-01-26	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/2001-01/msg00792.html
+2001-01-16	Re: The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/2001-01/msg00390.html
+2001-01-12	Re: The Cidr Report	Alex Bligh	http://www.merit.edu/mail.archives/nanog/2001-01/msg00324.html
+2001-01-12	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/2001-01/msg00323.html
+2001-01-05	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/2001-01/msg00098.html
+2000-12-29	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/2000-12/msg00508.html
+2000-12-22	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/2000-12/msg00461.html
+2000-12-15	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/2000-12/msg00269.html
+2000-12-08	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/2000-12/msg00134.html
+2000-12-01	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/2000-12/msg00008.html
+2000-11-24	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/2000-11/msg00562.html
+2000-11-03	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/2000-11/msg00091.html
+2000-10-27	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/2000-10/msg00290.html
+2000-10-20	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/2000-10/msg00176.html
+2000-10-13	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/2000-10/msg00110.html
+2000-10-06	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/2000-10/msg00059.html
+2000-09-29	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/2000-09/msg00597.html
+2000-09-22	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/2000-09/msg00430.html
+2000-09-15	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/2000-09/msg00310.html
+2000-09-08	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/2000-09/msg00202.html
+2000-09-01	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/2000-09/msg00034.html
+2000-08-25	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/2000-08/msg00324.html
+2000-08-18	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/2000-08/msg00215.html
+2000-08-11	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/2000-08/msg00180.html
+2000-08-04	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/2000-08/msg00061.html
+2000-07-28	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/2000-07/msg00704.html
+2000-07-21	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/2000-07/msg00597.html
+2000-07-14	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/2000-07/msg00410.html
+2000-07-07	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/2000-07/msg00174.html
+2000-06-30	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/2000-06/msg00620.html
+2000-06-23	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/2000-06/msg00440.html
+2000-06-16	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/2000-06/msg00292.html
+2000-06-09	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/2000-06/msg00074.html
+2000-06-02	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/2000-06/msg00013.html
+2000-05-26	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/2000-05/msg00499.html
+2000-05-19	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/2000-05/msg00399.html
+2000-05-17	Re: CIDR Report	Craig Partridge	http://www.merit.edu/mail.archives/nanog/2000-05/msg00365.html
+2000-05-17	RE: CIDR Report	Roeland Meyer (E-mail)	http://www.merit.edu/mail.archives/nanog/2000-05/msg00364.html
+2000-05-17	RE: CIDR Report	Wolfgang Henke	http://www.merit.edu/mail.archives/nanog/2000-05/msg00363.html
+2000-05-17	RE: CIDR Report	Roeland Meyer (E-mail)	http://www.merit.edu/mail.archives/nanog/2000-05/msg00362.html
+2000-05-17	Re: CIDR Report	Valdis.Kletnieks	http://www.merit.edu/mail.archives/nanog/2000-05/msg00360.html
+2000-05-17	RE: CIDR Report	Roeland Meyer (E-mail)	http://www.merit.edu/mail.archives/nanog/2000-05/msg00355.html
+2000-05-17	Re: CIDR Report	Vadim Antonov	http://www.merit.edu/mail.archives/nanog/2000-05/msg00354.html
+2000-05-16	Re: CIDR Report	jlewis	http://www.merit.edu/mail.archives/nanog/2000-05/msg00315.html
+2000-05-16	&quot;Simple&quot; Multi-Homing ? (was Re: CIDR Re	Todd Sandor	http://www.merit.edu/mail.archives/nanog/2000-05/msg00314.html
+2000-05-15	Re: CIDR Report	Rodney L Caston	http://www.merit.edu/mail.archives/nanog/2000-05/msg00311.html
+2000-05-15	Re: CIDR Report	Valdis.Kletnieks	http://www.merit.edu/mail.archives/nanog/2000-05/msg00308.html
+2000-05-15	RE: CIDR Report	Rodney L Caston	http://www.merit.edu/mail.archives/nanog/2000-05/msg00307.html
+2000-05-15	RE: CIDR Report	Roeland Meyer (E-mail)	http://www.merit.edu/mail.archives/nanog/2000-05/msg00306.html
+2000-05-15	Re: CIDR Report	Chris Williams	http://www.merit.edu/mail.archives/nanog/2000-05/msg00305.html
+2000-05-15	Re: CIDR Report	brett watson	http://www.merit.edu/mail.archives/nanog/2000-05/msg00304.html
+2000-05-15	Re: CIDR Report	Randy Bush	http://www.merit.edu/mail.archives/nanog/2000-05/msg00303.html
+2000-05-15	Re: CIDR Report	Chris Williams	http://www.merit.edu/mail.archives/nanog/2000-05/msg00300.html
+2000-05-15	RE: CIDR Report	Bradly Walters	http://www.merit.edu/mail.archives/nanog/2000-05/msg00299.html
+2000-05-15	Re: CIDR Report	Chris Williams	http://www.merit.edu/mail.archives/nanog/2000-05/msg00298.html
+2000-05-15	Re: CIDR Report	Chris Williams	http://www.merit.edu/mail.archives/nanog/2000-05/msg00295.html
+2000-05-15	Re: CIDR Report	Adrian Chadd	http://www.merit.edu/mail.archives/nanog/2000-05/msg00294.html
+2000-05-15	Re: CIDR Report	Danny McPherson	http://www.merit.edu/mail.archives/nanog/2000-05/msg00293.html
+2000-05-15	Re: CIDR Report	Chris Williams	http://www.merit.edu/mail.archives/nanog/2000-05/msg00290.html
+2000-05-15	Re: CIDR Report	Peter Galbavy	http://www.merit.edu/mail.archives/nanog/2000-05/msg00286.html
+2000-05-15	Re: CIDR Report	Jeremy Porter	http://www.merit.edu/mail.archives/nanog/2000-05/msg00285.html
+2000-05-14	Re: CIDR Report	Danny McPherson	http://www.merit.edu/mail.archives/nanog/2000-05/msg00273.html
+2000-05-14	RE: CIDR Report	Daniel L. Golding	http://www.merit.edu/mail.archives/nanog/2000-05/msg00270.html
+2000-05-14	Re: CIDR Report	Steven M. Bellovin	http://www.merit.edu/mail.archives/nanog/2000-05/msg00258.html
+2000-05-14	Re: CIDR Report	Joe Provo - Network Architect	http://www.merit.edu/mail.archives/nanog/2000-05/msg00257.html
+2000-05-14	RE: CIDR Report	Roeland M.J. Meyer	http://www.merit.edu/mail.archives/nanog/2000-05/msg00255.html
+2000-05-14	Re: CIDR Report	Geoff Huston	http://www.merit.edu/mail.archives/nanog/2000-05/msg00252.html
+2000-05-14	Multi-home I (was CIDR Report)	Rural CNE	http://www.merit.edu/mail.archives/nanog/2000-05/msg00251.html
+2000-05-13	Re: CIDR Report	ww	http://www.merit.edu/mail.archives/nanog/2000-05/msg00250.html
+2000-05-13	RE: CIDR Report	Owen DeLong	http://www.merit.edu/mail.archives/nanog/2000-05/msg00248.html
+2000-05-13	Re: CIDR Report	Randy Bush	http://www.merit.edu/mail.archives/nanog/2000-05/msg00247.html
+2000-05-13	RE: CIDR Report	Roeland M.J. Meyer	http://www.merit.edu/mail.archives/nanog/2000-05/msg00246.html
+2000-05-13	Re: CIDR Report	Danny McPherson	http://www.merit.edu/mail.archives/nanog/2000-05/msg00245.html
+2000-05-13	RE: CIDR Report	Roeland Meyer (E-mail)	http://www.merit.edu/mail.archives/nanog/2000-05/msg00244.html
+2000-05-13	Re: CIDR Report	Danny McPherson	http://www.merit.edu/mail.archives/nanog/2000-05/msg00242.html
+2000-05-13	RE: CIDR Report	Owen DeLong	http://www.merit.edu/mail.archives/nanog/2000-05/msg00241.html
+2000-05-13	RE: CIDR Report	Roeland Meyer (E-mail)	http://www.merit.edu/mail.archives/nanog/2000-05/msg00240.html
+2000-05-13	Re: CIDR Report	Mark Kent	http://www.merit.edu/mail.archives/nanog/2000-05/msg00239.html
+2000-05-13	Re: CIDR Report	Vijay Gill	http://www.merit.edu/mail.archives/nanog/2000-05/msg00238.html
+2000-05-13	Re: CIDR Report	Christian Nielsen	http://www.merit.edu/mail.archives/nanog/2000-05/msg00237.html
+2000-05-13	Re: CIDR Report	Mikael Abrahamsson	http://www.merit.edu/mail.archives/nanog/2000-05/msg00235.html
+2000-05-13	CIDR Report	pjnesser	http://www.merit.edu/mail.archives/nanog/2000-05/msg00234.html
+2000-05-12	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/2000-05/msg00231.html
+2000-04-21	Re: The Cidr Report	BrandonButterworth	http://www.merit.edu/mail.archives/nanog/2000-04/msg00282.html
+2000-04-21	Re: The Cidr Report	Randy Bush	http://www.merit.edu/mail.archives/nanog/2000-04/msg00278.html
+2000-04-21	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/2000-04/msg00277.html
+2000-04-07	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/2000-04/msg00111.html
+2000-03-31	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/2000-03/msg00331.html
+2000-03-24	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/2000-03/msg00278.html
+2000-03-10	The CIDR Report	Bandy Rush	http://www.merit.edu/mail.archives/nanog/2000-03/msg00136.html
+2000-03-10	Re: Whereis the CIDR report?	jhsu	http://www.merit.edu/mail.archives/nanog/2000-03/msg00134.html
+2000-03-10	Whereis the CIDR report?	Jeffry Roberts	http://www.merit.edu/mail.archives/nanog/2000-03/msg00133.html
+2000-02-25	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/2000-02/msg00644.html
+2000-02-18	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/2000-02/msg00478.html
+2000-02-11	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/2000-02/msg00377.html
+2000-02-04	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/2000-02/msg00070.html
+2000-01-28	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/2000-01/msg00439.html
+2000-01-21	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/2000-01/msg00380.html
+2000-01-14	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/2000-01/msg00264.html
+2000-01-07	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/2000-01/msg00116.html
+1999-12-31	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/1999-12/msg00409.html
+1999-12-25	Re: The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/1999-12/msg00327.html
+1999-12-24	Re: The Cidr Report	john heasley	http://www.merit.edu/mail.archives/nanog/1999-12/msg00323.html
+1999-12-24	Re: The Cidr Report	john heasley	http://www.merit.edu/mail.archives/nanog/1999-12/msg00322.html
+1999-12-24	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/1999-12/msg00321.html
+1999-12-17	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/1999-12/msg00257.html
+1999-12-10	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/1999-12/msg00205.html
+1999-12-03	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/1999-12/msg00047.html
+1999-11-26	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/1999-11/msg00288.html
+1999-11-19	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/1999-11/msg00152.html
+1999-11-05	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/1999-11/msg00021.html
+1999-10-29	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/1999-10/msg00439.html
+1999-10-22	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/1999-10/msg00358.html
+1999-10-15	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/1999-10/msg00255.html
+1999-10-08	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/1999-10/msg00147.html
+1999-10-01	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/1999-10/msg00013.html
+1999-09-03	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/1999-09/msg00027.html
+1999-08-27	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/1999-08/msg00294.html
+1999-08-20	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/1999-08/msg00193.html
+1999-08-13	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/1999-08/msg00150.html
+1999-08-06	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/1999-08/msg00061.html
+1999-08-02	Re: The Cidr Report	Vijay Gill	http://www.merit.edu/mail.archives/nanog/1999-08/msg00002.html
+1999-08-02	Re: The Cidr Report	Peter Galbavy	http://www.merit.edu/mail.archives/nanog/1999-08/msg00001.html
+1999-07-30	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/1999-07/msg00242.html
+1999-07-23	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/1999-07/msg00177.html
+1999-07-16	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/1999-07/msg00128.html
+1999-07-09	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/1999-07/msg00079.html
+1999-07-02	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/1999-07/msg00009.html
+1999-06-28	Re: The Cidr Report	Peter Galbavy	http://www.merit.edu/mail.archives/nanog/1999-06/msg00201.html
+1999-06-25	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/1999-06/msg00188.html
+1999-06-18	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/1999-06/msg00140.html
+1999-06-11	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/1999-06/msg00058.html
+1999-06-04	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/1999-06/msg00015.html
+1999-05-28	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/1999-05/msg00253.html
+1999-05-21	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/1999-05/msg00203.html
+1999-05-14	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/1999-05/msg00093.html
+1999-05-07	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/1999-05/msg00055.html
+1999-04-30	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/1999-04/msg00321.html
+1999-04-23	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/1999-04/msg00173.html
+1999-04-16	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/1999-04/msg00119.html
+1999-04-09	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/1999-04/msg00056.html
+1999-04-02	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/1999-04/msg00004.html
+1999-03-26	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/1999-03/msg00324.html
+1999-03-19	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/1999-03/msg00224.html
+1999-03-12	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/1999-03/msg00108.html
+1999-03-05	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/1999-03/msg00046.html
+1999-02-27	Re: The Cidr Report	Mark Prior	http://www.merit.edu/mail.archives/nanog/1999-02/msg00296.html
+1999-02-26	Re: The Cidr Report	Michael Dillon	http://www.merit.edu/mail.archives/nanog/1999-02/msg00282.html
+1999-02-26	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/1999-02/msg00277.html
+1999-02-19	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/1999-02/msg00223.html
+1999-02-12	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/1999-02/msg00184.html
+1999-02-05	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/1999-02/msg00099.html
+1999-01-29	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/1999-01/msg00432.html
+1999-01-23	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/1999-01/msg00354.html
+1999-01-15	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/1999-01/msg00248.html
+1999-01-08	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/1999-01/msg00111.html
+1999-01-02	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/1999-01/msg00000.html
+1998-12-25	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/1998-12/msg00369.html
+1998-12-18	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/1998-12/msg00269.html
+1998-12-11	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/1998-12/msg00194.html
+1998-12-04	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/1998-12/msg00064.html
+1998-11-27	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/1998-11/msg00930.html
+1998-11-20	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/1998-11/msg00793.html
+1998-11-13	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/1998-11/msg00386.html
+1998-11-06	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/1998-11/msg00164.html
+1998-10-30	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/1998-10/msg01042.html
+1998-10-23	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/1998-10/msg00772.html
+1998-10-16	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/1998-10/msg00618.html
+1998-10-09	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/1998-10/msg00428.html
+1998-10-02	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/1998-10/msg00164.html
+1998-09-25	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/1998-09/msg00612.html
+1998-09-18	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/1998-09/msg00446.html
+1998-09-15	Re: The Cidr Report	Brian Dickson	http://www.merit.edu/mail.archives/nanog/1998-09/msg00316.html
+1998-09-13	Re: The Cidr Report	Mark R. Lindsey	http://www.merit.edu/mail.archives/nanog/1998-09/msg00284.html
+1998-09-13	Re: The Cidr Report	Jared Mauch	http://www.merit.edu/mail.archives/nanog/1998-09/msg00280.html
+1998-09-13	Re: The Cidr Report	Brian Wallingford	http://www.merit.edu/mail.archives/nanog/1998-09/msg00269.html
+1998-09-13	Re: The Cidr Report	John M. Brown	http://www.merit.edu/mail.archives/nanog/1998-09/msg00268.html
+1998-09-11	Re: The Cidr Report	Tim Wolfe	http://www.merit.edu/mail.archives/nanog/1998-09/msg00256.html
+1998-09-11	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/1998-09/msg00255.html
+1998-09-04	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/1998-09/msg00128.html
+1998-08-28	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/1998-08/msg00610.html
+1998-08-21	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/1998-08/msg00355.html
+1998-08-19	Re: The Cidr Report	Sean M. Doran	http://www.merit.edu/mail.archives/nanog/1998-08/msg00313.html
+1998-08-18	Re: The Cidr Report	Erik Sherk	http://www.merit.edu/mail.archives/nanog/1998-08/msg00305.html
+1998-08-18	Re: The Cidr Report	Sean M. Doran	http://www.merit.edu/mail.archives/nanog/1998-08/msg00285.html
+1998-08-17	Re: The Cidr Report	Tony Li	http://www.merit.edu/mail.archives/nanog/1998-08/msg00280.html
+1998-08-17	Re: The Cidr Report	alex	http://www.merit.edu/mail.archives/nanog/1998-08/msg00278.html
+1998-08-14	Re: The Cidr Report	Sean M. Doran	http://www.merit.edu/mail.archives/nanog/1998-08/msg00200.html
+1998-08-14	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/1998-08/msg00198.html
+1998-08-09	Re: The Cidr Report	Sean M. Doran	http://www.merit.edu/mail.archives/nanog/1998-08/msg00072.html
+1998-08-07	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/1998-08/msg00066.html
+1998-07-31	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/1998-07/msg00283.html
+1998-07-24	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/1998-07/msg00246.html
+1998-07-17	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/1998-07/msg00196.html
+1998-07-10	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/1998-07/msg00109.html
+1998-07-03	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/1998-07/msg00015.html
+1998-06-26	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/1998-06/msg00668.html
+1998-06-20	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/1998-06/msg00580.html
+1998-06-12	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/1998-06/msg00411.html
+1998-06-05	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/1998-06/msg00170.html
+1998-05-29	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/1998-05/msg00829.html
+1998-05-22	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/1998-05/msg00601.html
+1998-05-15	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/1998-05/msg00345.html
+1998-05-08	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/1998-05/msg00153.html
+1998-05-01	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/1998-05/msg00013.html
+1998-04-24	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/1998-04/msg00457.html
+1998-04-17	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/1998-04/msg00310.html
+1998-04-10	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/1998-04/msg00124.html
+1998-04-03	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/1998-04/msg00033.html
+1998-03-27	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/1998-03/msg00373.html
+1998-03-20	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/1998-03/msg00241.html
+1998-03-13	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/1998-03/msg00131.html
+1998-03-06	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/1998-03/msg00013.html
+1998-02-27	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/1998-02/msg00619.html
+1998-02-20	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/1998-02/msg00549.html
+1998-02-13	Re: The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/1998-02/msg00452.html
+1998-02-13	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/1998-02/msg00450.html
+1998-02-02	Re: The Cidr Report	Vince Fuller	http://www.merit.edu/mail.archives/nanog/1998-02/msg00012.html
+1998-02-02	Re: The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/1998-02/msg00006.html
+1998-01-30	Re: The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/1998-01/msg00393.html
+1998-01-30	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/1998-01/msg00392.html
+1998-01-23	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/1998-01/msg00292.html
+1998-01-16	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/1998-01/msg00170.html
+1998-01-09	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/1998-01/msg00130.html
+1998-01-02	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/1998-01/msg00007.html
+1997-12-26	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/1997-12/msg00241.html
+1997-12-19	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/1997-12/msg00148.html
+1997-12-12	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/1997-12/msg00125.html
+1997-12-05	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/1997-12/msg00053.html
+1997-11-28	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/1997-11/msg00814.html
+1997-11-21	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/1997-11/msg00660.html
+1997-11-14	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/1997-11/msg00435.html
+1997-11-10	Re: The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/1997-11/msg00266.html
+1997-11-07	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/1997-11/msg00219.html
+1997-10-31	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/1997-10/msg00585.html
+1997-10-24	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/1997-10/msg00354.html
+1997-10-10	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/1997-10/msg00200.html
+1997-10-06	Re: The Cidr Report	Phillip Vandry	http://www.merit.edu/mail.archives/nanog/1997-10/msg00055.html
+1997-10-03	Re: The Cidr Report	Philip J. Nesser II	http://www.merit.edu/mail.archives/nanog/1997-10/msg00041.html
+1997-10-03	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/1997-10/msg00040.html
+1997-09-26	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/1997-09/msg00584.html
+1997-09-19	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/1997-09/msg00492.html
+1997-09-12	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/1997-09/msg00302.html
+1997-09-05	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/1997-09/msg00079.html
+1997-08-29	Re: The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/1997-08/msg00526.html
+1997-08-29	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/1997-08/msg00525.html
+1997-08-22	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/1997-08/msg00393.html
+1997-08-15	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/1997-08/msg00338.html
+1997-08-08	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/1997-08/msg00163.html
+1997-07-25	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/1997-07/msg00922.html
+1997-07-18	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/1997-07/msg00638.html
+1997-07-14	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/1997-07/msg00401.html
+1997-07-05	Re: ? re: Tony Bates' CIDR Report	Sean M. Doran	http://www.merit.edu/mail.archives/nanog/1997-07/msg00108.html
+1997-07-04	? re: Tony Bates' CIDR Report	Larry Vaden	http://www.merit.edu/mail.archives/nanog/1997-07/msg00107.html
+1997-07-01	Re: The Cidr Report	Justin W. Newton	http://www.merit.edu/mail.archives/nanog/1997-07/msg00001.html
+1997-06-27	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/1997-06/msg00516.html
+1997-06-20	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/1997-06/msg00409.html
+1997-06-13	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/1997-06/msg00314.html
+1997-06-06	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/1997-06/msg00128.html
+1997-05-30	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/1997-05/msg00758.html
+1997-05-23	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/1997-05/msg00541.html
+1997-05-20	Re: The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/1997-05/msg00439.html
+1997-05-20	Re: The Cidr Report	Geoff Huston	http://www.merit.edu/mail.archives/nanog/1997-05/msg00438.html
+1997-05-20	Re: The Cidr Report	Curtis Villamizar	http://www.merit.edu/mail.archives/nanog/1997-05/msg00415.html
+1997-05-16	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/1997-05/msg00393.html
+1997-05-02	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/1997-05/msg00050.html
+1997-04-25	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/1997-04/msg00359.html
+1997-04-19	Re: The Cidr Report	MAEMURA Akinori	http://www.merit.edu/mail.archives/nanog/1997-04/msg00243.html
+1997-04-18	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/1997-04/msg00233.html
+1997-04-12	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/1997-04/msg00150.html
+1997-04-04	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/1997-04/msg00029.html
+1997-03-28	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/1997-03/msg00502.html
+1997-03-24	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/1997-03/msg00460.html
+1997-03-21	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/1997-03/msg00439.html
+1997-02-28	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/1997-02/msg00494.html
+1997-02-24	Re: The Cidr Report	David R. Conrad	http://www.merit.edu/mail.archives/nanog/1997-02/msg00395.html
+1997-02-21	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/1997-02/msg00360.html
+1997-01-10	Re: The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/1997-01/msg00235.html
+1996-12-05	Re: The Cidr Report	Paul Ferguson	http://www.merit.edu/mail.archives/nanog/1996-12/msg00069.html
+1996-12-05	Re: The Cidr Report	Curtis Villamizar	http://www.merit.edu/mail.archives/nanog/1996-12/msg00062.html
+1996-12-03	Re: The Cidr Report	John S. Quarterman	http://www.merit.edu/mail.archives/nanog/1996-12/msg00033.html
+1996-12-02	Re: The Cidr Report	Jessica Yu	http://www.merit.edu/mail.archives/nanog/1996-12/msg00015.html
+1996-12-02	Re: The Cidr Report	Alex.Bligh	http://www.merit.edu/mail.archives/nanog/1996-12/msg00014.html
+1996-12-02	Re: The Cidr Report	Paul Ferguson	http://www.merit.edu/mail.archives/nanog/1996-12/msg00013.html
+1996-12-02	Re: The Cidr Report	Bill Manning	http://www.merit.edu/mail.archives/nanog/1996-12/msg00012.html
+1996-12-02	Re: The Cidr Report	Alex.Bligh	http://www.merit.edu/mail.archives/nanog/1996-12/msg00010.html
+1996-12-02	Re: The Cidr Report	Meg Jahnke	http://www.merit.edu/mail.archives/nanog/1996-12/msg00008.html
+1996-12-01	Re: The Cidr Report	Bill Manning	http://www.merit.edu/mail.archives/nanog/1996-12/msg00007.html
+1996-12-01	Re: The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/1996-12/msg00006.html
+1996-12-01	Re: The Cidr Report	Randy Bush	http://www.merit.edu/mail.archives/nanog/1996-12/msg00005.html
+1996-12-01	Re: The Cidr Report	Paul Ferguson	http://www.merit.edu/mail.archives/nanog/1996-12/msg00004.html
+1996-12-01	Re: The Cidr Report	Geoff Huston	http://www.merit.edu/mail.archives/nanog/1996-12/msg00003.html
+1996-12-01	Re: The Cidr Report	Pushpendra Mohta	http://www.merit.edu/mail.archives/nanog/1996-12/msg00002.html
+1996-12-01	Re: The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/1996-12/msg00001.html
+1996-11-30	Re: The Cidr Report	Bill Manning	http://www.merit.edu/mail.archives/nanog/1996-11/msg00380.html
+1996-11-30	Re: The Cidr Report	Randy Bush	http://www.merit.edu/mail.archives/nanog/1996-11/msg00379.html
+1996-11-30	Re: The Cidr Report	Bill Manning	http://www.merit.edu/mail.archives/nanog/1996-11/msg00378.html
+1996-11-30	Re: The Cidr Report	Brett D. Watson	http://www.merit.edu/mail.archives/nanog/1996-11/msg00377.html
+1996-11-30	Re: The Cidr Report	Tony Li	http://www.merit.edu/mail.archives/nanog/1996-11/msg00376.html
+1996-11-29	Re: The Cidr Report	Paul Ferguson	http://www.merit.edu/mail.archives/nanog/1996-11/msg00375.html
+1996-11-29	Re: The Cidr Report	Tony Li	http://www.merit.edu/mail.archives/nanog/1996-11/msg00373.html
+1996-11-29	Re: The Cidr Report	Paul Ferguson	http://www.merit.edu/mail.archives/nanog/1996-11/msg00372.html
+1996-11-26	Re: The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/1996-11/msg00348.html
+1996-11-23	Re: The Cidr Report	William Allen Simpson	http://www.merit.edu/mail.archives/nanog/1996-11/msg00293.html
+1996-11-23	Re: The Cidr Report	Paul Ferguson	http://www.merit.edu/mail.archives/nanog/1996-11/msg00292.html
+1996-11-23	Re: The Cidr Report	Randy Bush	http://www.merit.edu/mail.archives/nanog/1996-11/msg00281.html
+1996-11-22	Re: The Cidr Report	Steve Kann	http://www.merit.edu/mail.archives/nanog/1996-11/msg00273.html
+1996-11-22	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/1996-11/msg00272.html
+1996-11-17	Re: 192/3 ? (The CIDR Report)	alex	http://www.merit.edu/mail.archives/nanog/1996-11/msg00167.html
+1996-11-17	192/3 ? (The CIDR Report)	Marc Roger	http://www.merit.edu/mail.archives/nanog/1996-11/msg00164.html
+1996-11-15	Re: The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/1996-11/msg00156.html
+1996-11-15	Re: The Cidr Report	Randy Bush	http://www.merit.edu/mail.archives/nanog/1996-11/msg00154.html
+1996-11-15	Re: The Cidr Report	Scott Huddle	http://www.merit.edu/mail.archives/nanog/1996-11/msg00153.html
+1996-11-15	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/1996-11/msg00152.html
+1996-11-11	Small update on CIDR Report	Jerry Phannenstill	http://www.merit.edu/mail.archives/nanog/1996-11/msg00099.html
+1996-11-08	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/1996-11/msg00046.html
+1996-11-04	Small update on CIDR Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/1996-11/msg00028.html
+1996-11-01	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/1996-11/msg00020.html
+1996-10-25	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/1996-10/msg00831.html
+1996-10-19	Re: The Cidr Report	Hakan Hansson	http://www.merit.edu/mail.archives/nanog/1996-10/msg00568.html
+1996-10-18	Re: The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/1996-10/msg00541.html
+1996-10-18	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/1996-10/msg00540.html
+1996-10-04	The Cidr Report	Tony Bates	http://www.merit.edu/mail.archives/nanog/1996-10/msg00132.html
+1996-09-27	Cidr Report - part 3	Tony Bates	http://www.merit.edu/mail.archives/nanog/1996-09/msg00778.html
+1996-09-27	Cidr Report - part 2	Tony Bates	http://www.merit.edu/mail.archives/nanog/1996-09/msg00777.html
+1996-09-27	Cidr Report in parts - part 1	Tony Bates	http://www.merit.edu/mail.archives/nanog/1996-09/msg00776.html
+1996-09-17	CIDR report.	Tony Bates	http://www.merit.edu/mail.archives/nanog/1996-09/msg00474.html
