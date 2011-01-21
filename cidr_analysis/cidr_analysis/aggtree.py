@@ -7,12 +7,14 @@ import ipv4
 PREFIX_CLASSES = Enumerate('LONELY', 'TOP', 'DEAGG', 'DELEG')
 
 class PrefixAttr(object):
-    def __init__(self, as_path, is_aggregable=False,
+
+    def __init__(self, as_path, is_advertised=True,
         prefix_class=PREFIX_CLASSES.LONELY):
         self.as_path = as_path
-        self.is_aggregable = is_aggregable
-        self.aggregable_more_specifics = 0
+        self.is_advertised = is_advertised
         self.prefix_class = prefix_class
+        self.adv_children = 0
+        self.agg_children = 0
 
 
 class CidrPrefix(object):
@@ -24,23 +26,17 @@ class CidrPrefix(object):
     def __init__(self, prefix=0, prefix_len=0, ms_0=None, ms_1=None):
         self.prefix = prefix
         self.prefix_len = prefix_len
-
-        self.attrs = {} # dictionary of PrefixAttrs indexed by peer IP address
-
+        # 'ms' == 'more specific', referring to the child prefixes of this
+        # current prefix. the 0/1 refers to whether the least-significant bit
+        # of the child prefix is a 0 or a 1
         self.ms_0 = ms_0
         self.ms_1 = ms_1
-
-        # TODO not sure if this is a good idea to keep here and update
-        # during processing?
-        self.prefix_class = PREFIX_CLASSES.LONELY
-        self.is_aggregable = False
-        self.aggregable_more_specifics = 0
+        self.attrs = {}  # dictionary of PrefixAttrs indexed by peer IP address
         self.origin_as = None
-
-        # used later, by post-processing functions
-        self.post_is_aggregable = False
-        self.post_ams = None
-        self.post_origin_as = None
+        # should these be here?
+        self.is_advertised = False
+        self.adv_children = 0
+        self.agg_children = 0
 
     def __str__(self):
         if self.attrs:
@@ -52,37 +48,138 @@ class CidrPrefix(object):
     def __repr__(self):
         return self.__str__()
 
-    def add_route(self, peer_ip_int, as_path, is_aggregable=False):
+    def add_route(self, peer_ip_int, as_path):
         assert peer_ip_int not in self.attrs
-        self.attrs[peer_ip_int] = PrefixAttr(as_path, is_aggregable)
-        if not self.origin_as:
-            self.origin_as = as_path[0]
-        elif self.origin_as != as_path[0]:
-            self.origin_as = 0
-        # TODO if is_aggregable: self.is_aggregable = True
+        self.attrs[peer_ip_int] = PrefixAttr(as_path)
+        # this is now done after the tree is constructed
+        # if not self.origin_as:
+        #     self.origin_as = as_path[0]
+        # elif self.origin_as != as_path[0]:
+        #     self.origin_as = 0
 
 
 def aggregate_table(infile):
     as_agg_count_dict = {}
     as_netsnow_dict = {}
     for root in process_table(infile):
-            # also sets root.post_origin_as appropriately
-            add_prefix_tree_to_netsnow_count(as_netsnow_dict, root)
+        # also sets CidrPrefix.origin_as attributes appropriately
+        # TODO should origin_as be a separate function?
+        add_prefix_tree_to_netsnow_count(as_netsnow_dict, root)
 
-            prefix_agg_list = find_aggregable_prefixes(root)
-            as_agg_dict = group_agg_prefixes_by_as(prefix_agg_list)
-            count_agg_prefixes_by_as(as_agg_count_dict, as_agg_dict)
-            ## debug; if used to go here
-#            if root.prefix >> 24 == 17:
-#                print prefix_agg_list
-#                print as_agg_dict
-#                netsnow = [x for x in as_netsnow_dict.iteritems()]
-#                netsnow.sort(key=lambda x: x[1], reverse=True)
-#                for k in xrange(len(netsnow)):
-#                    print netsnow[k]
-#                plot_tree(root)
-#                break
+        ## pseudocode #####################################################
+        (prefix_agg_list, prefix_adv_list) = classify_prefixes(root)
+        print(prefix_agg_list)
+        print(len(prefix_agg_list))
+        print(prefix_adv_list)
+        print(len(prefix_adv_list))
+        best_agg_list = []
+        for k in root.attrs:
+            best_agg_list.append((k, root.attrs[k].as_path[-1],
+                root.attrs[k].agg_children, root.attrs[k].adv_children))
+        best_agg_list.sort(key=lambda x: x[2], reverse=True)
+        for t in best_agg_list:
+            print("{0[1]}\t(-{0[2]}, +{0[3]})\t{0[0]}".format(t))
+        #plot_tree(root)
+        #return  # debug
+        as_agg_dict = group_agg_prefixes_by_as(prefix_agg_list)
+        count_agg_prefixes_by_as(as_agg_count_dict, as_agg_dict)
+        ###################################################################
+
+#        prefix_agg_list = find_aggregable_prefixes(root)
+#        as_agg_dict = group_agg_prefixes_by_as(prefix_agg_list)
+#        count_agg_prefixes_by_as(as_agg_count_dict, as_agg_dict)
+        ## debug; if used to go here
+#        if root.prefix >> 24 == 17:
+#            print prefix_agg_list
+#            print as_agg_dict
+#            netsnow = [x for x in as_netsnow_dict.iteritems()]
+#            netsnow.sort(key=lambda x: x[1], reverse=True)
+#            for k in xrange(len(netsnow)):
+#                print netsnow[k]
+#            plot_tree(root)
+#            break
+    print(as_agg_dict)
     print_new_cidr_report(as_agg_count_dict, as_netsnow_dict)
+
+
+def classify_prefixes(prefix, parent=None, ancestor_attrs={}):
+    agg_list = []
+    adv_list = []
+    if prefix.attrs:
+        new_ancestor_attrs = ancestor_attrs.copy()
+        new_ancestor_attrs.update(prefix.attrs)
+    else:
+        new_ancestor_attrs = ancestor_attrs
+    if prefix.ms_0:
+        if prefix.attrs:
+            (agg, adv) = classify_prefixes(prefix.ms_0, prefix, new_ancestor_attrs)
+        else:
+            (agg, adv) = classify_prefixes(prefix.ms_0, parent, new_ancestor_attrs)
+        agg_list += agg
+        adv_list += adv
+    if prefix.ms_1:
+        if prefix.attrs:
+            (agg, adv) = classify_prefixes(prefix.ms_1, prefix, new_ancestor_attrs)
+        else:
+            (agg, adv) = classify_prefixes(prefix.ms_1, parent, new_ancestor_attrs)
+        agg_list += agg
+        adv_list += adv
+    # base case
+    if parent and prefix.attrs:
+        fully_aggregable = True
+        peer_set = set(ancestor_attrs).union(set(prefix.attrs))
+        for k in peer_set:  # TODO could be simplified to just ancestor_attrs
+            if k not in ancestor_attrs:
+                # TODO log this
+                print("orphan prefix-peer combo")
+            else:
+                anc_attr = ancestor_attrs[k]
+                try:
+                    des_attr = prefix.attrs[k]
+                    if anc_attr.prefix_class == PREFIX_CLASSES.LONELY:
+                        anc_attr.prefix_class = PREFIX_CLASSES.TOP
+                    if anc_attr.as_path == des_attr.as_path:
+                        des_attr.prefix_class = PREFIX_CLASSES.DEAGG
+                        des_attr.is_advertised = False
+                        anc_attr.agg_children += 1
+                    else:
+                        des_attr.prefix_class = PREFIX_CLASSES.DELEG
+                        des_attr.is_advertised = True
+                        anc_attr.adv_children += 1
+                        fully_aggregable = False
+# DEBUG CODE -- remove later when confirmed this isnt an issue anymore
+#                    if str(parent) == '17.64.0.0/12' and anc_attr.as_path[-1] == 3303:
+#                        print('###') # this illustrates the problem -- my workaround makes things falsely assume that they're aggregable -- this workaround doesn't work
+#                        # how would it work if the fake prefix wasn't in the tree in the first place?
+#                        # its as though, on the way down the tree, it needs to
+#                        # bring the virtual parent attrs down the tree to nodes
+#                        # that don't have them -- perhaps that will work?
+#                        print(prefix)
+#                        print(' '.join([str(anc_attr.as_path[-1]), str([
+#                            anc_attr.agg_children, des_attr.agg_children,
+#                        anc_attr.adv_children, des_attr.adv_children])]))
+#                    if str(parent) == '17.0.0.0/9' and anc_attr.as_path[-1] == 3303:
+#                        print(prefix)
+#                        print(' '.join([str(anc_attr.as_path[-1]), str([
+#                            anc_attr.agg_children, des_attr.agg_children,
+#                        anc_attr.adv_children, des_attr.adv_children])]))
+                    anc_attr.agg_children += des_attr.agg_children
+                    anc_attr.adv_children += des_attr.adv_children
+                except KeyError:
+                    pass
+        # generalization time
+        if fully_aggregable:
+            agg_list.append(prefix)
+            prefix.is_advertised = False
+            parent.agg_children += 1
+        else:
+            adv_list.append(prefix)
+            prefix.is_advertised = True
+            parent.adv_children += 1
+        parent.agg_children += prefix.agg_children
+        parent.adv_children += prefix.adv_children
+
+    return (agg_list, adv_list)
 
 
 def process_table(infile):
@@ -131,7 +228,7 @@ def process_table(infile):
         # add route
         peer_ip = ipv4.dotquad_to_int(components[1])
         as_path = [int(asn) for asn in components[2:]]
-        new_cidrprefix.add_route(peer_ip, as_path, is_aggregable=True)
+        new_cidrprefix.add_route(peer_ip, as_path)
         # debug info
         line_count += 1
         if line_count % 1000 == 0:
@@ -164,7 +261,6 @@ def insert_prefix_into_tree(root, new):
     cursor = root
     test_mask = 0x00800000
     for i in xrange(9, new.prefix_len+1):
-        update_ancestor(cursor, new)
         if test_mask & new.prefix > 0:
             if i == new.prefix_len:
                 if cursor.ms_1:
@@ -262,11 +358,11 @@ def _find_aggregable_prefixes_recursor(tree, prefix_agg_list):
             (a.aggregable_more_specifics for a in tree.attrs.itervalues()))
         if max_agg > 0:
 #            print('DOUBLE-YES')
-            tree.post_is_aggregable = True
-            tree.post_ams = max_agg
+            tree.is_aggregable = True
+            tree.agg_children = max_agg
             prefix_agg_list.append(tree)
         else:
-            tree.post_ams = 0
+            tree.agg = 0
     else:
         if tree.attrs:
             tree.post_ams = 0
@@ -279,7 +375,7 @@ def _find_aggregable_prefixes_recursor(tree, prefix_agg_list):
 def group_agg_prefixes_by_as(prefix_agg_list):
     as_agg_dict = {}  # keyed on as number
     for prefix in prefix_agg_list:
-        as_agg_dict.setdefault(prefix.post_origin_as, []).append(prefix)
+        as_agg_dict.setdefault(prefix.origin_as, []).append(prefix)
         ## could also implement this as adding to set + checking set size --
         ## performance comparison opportunity?
         #origin_set = set()
@@ -312,7 +408,7 @@ def group_agg_prefixes_by_as(prefix_agg_list):
 def count_agg_prefixes_by_as(as_agg_count_dict, as_agg_dict):
     for asn in as_agg_dict:
         as_agg_count_dict[asn] = as_agg_count_dict.get(asn, 0) + sum(
-            (p.post_ams for p in as_agg_dict[asn]))
+            (p.agg_children for p in as_agg_dict[asn]))
     return as_agg_count_dict
 
 
@@ -322,12 +418,12 @@ def add_prefix_tree_to_netsnow_count(as_netsnow_dict, root):
         for attr in root.attrs.itervalues():
             origin_set.add(attr.as_path[0])
         if len(origin_set) == 1:
-            root.post_origin_as = origin_set.pop()
-        else:
-#            print("MOAS!!")  # TODO find a better solution for MOASes
-            root.post_origin_as = -1
-        as_netsnow_dict[root.post_origin_as] = as_netsnow_dict.get(
-            root.post_origin_as, 0) + 1
+            root.origin_as = origin_set.pop()
+        else:  # MOAS -- TODO find a better solution
+            # TODO consider origin_as = set/list of origins, instead of -1
+            root.origin_as = -1
+        as_netsnow_dict[root.origin_as] = as_netsnow_dict.get(
+            root.origin_as, 0) + 1
     if root.ms_0:
         add_prefix_tree_to_netsnow_count(as_netsnow_dict, root.ms_0)
     if root.ms_1:
@@ -498,16 +594,28 @@ What needs to happen:
 
 def plot_tree(root):
     import networkx as nx
-    import matplotlib.pyplot as plt
-    graph = nx.DiGraph()
-    _plot_tree_helper(root, root, graph, 0, force=True)
-    #twopi, gvcolor, wc, ccomps, tred, sccmap, fdp, circo, neato, acyclic, nop, gvpr, dot.
-    #nodelist = [v for v in graph.nodes() if v.aggregable_more_specifics > 0]
-    #node_color = [color_func(v.aggregable_more_specifics) for v in graph]
-    #nx.draw_graphviz(graph, prog='dot', nodelist=nodelist, node_color=node_color)
-    #nx.draw_graphviz(graph, nodelist=nodelist, node_color=node_color)
-    nx.write_dot(graph, 'plot.dot')
-    #plt.show()
+    #import matplotlib.pyplot as plt
+    peer_set = set()
+    find_all_peers(root, peer_set)
+    for peer in peer_set:
+        graph = nx.DiGraph(ordering='out')
+        #graph.graph['ordering'] = 'out'
+        _plot_tree_helper(root, root, peer, graph, 0, force=True)
+        #twopi, gvcolor, wc, ccomps, tred, sccmap, fdp, circo, neato, acyclic, nop, gvpr, dot.
+        #nodelist = [v for v in graph.nodes() if v.aggregable_more_specifics > 0]
+        #node_color = [color_func(v.aggregable_more_specifics) for v in graph]
+        #nx.draw_graphviz(graph, prog='dot', nodelist=nodelist, node_color=node_color)
+        #nx.draw_graphviz(graph, nodelist=nodelist, node_color=node_color)
+        nx.write_dot(graph, 'plots/plot-' + str(peer) +'.dot')
+        #plt.show()
+
+def find_all_peers(root, peer_set):
+    for k in root.attrs:
+        peer_set.add(k)
+    if root.ms_0:
+        find_all_peers(root.ms_0, peer_set)
+    if root.ms_1:
+        find_all_peers(root.ms_1, peer_set)
 
 def color_func(ams):
     if ams > 0:
@@ -515,16 +623,16 @@ def color_func(ams):
     else:
         return 'r'
 
-def _plot_tree_helper(node, parent_node, graph, deep, force=False):
+def _plot_tree_helper(node, parent_node, peer, graph, deep, force=False):
 #    if deep > 8:
 #        return None
     p = parent_node
     r = None
 
-    if node.attrs:
+    if peer in node.attrs:
         graph.add_node(node, shape='box', penwidth=2)
-        if node.post_ams > 0:
-            graph.node[node]['style'] = 'filled'
+        graph.node[node]['style'] = 'filled'
+        if node.attrs[peer].is_advertised:
             graph.node[node]['fillcolor'] = 'palegreen'
         ##if node.prefix_class is PREFIX_CLASSES.LONELY:
         ##    graph.node[node]['color'] = 'black'
@@ -537,7 +645,8 @@ def _plot_tree_helper(node, parent_node, graph, deep, force=False):
 #        else:
 #            graph.node[node]['color'] = 'red'
         graph.node[node]['label'] = ' '.join([str(node),
-            str(node.post_ams), str(node.post_origin_as)])
+            '(-' + str(node.attrs[peer].agg_children) + ', +'  + str(node.attrs[peer].adv_children) + ')',
+            '\\n', str(node.attrs[peer].as_path)])
         ##graph.node[node]['label'] += '\\n'.join(
         ##    [str(ap) for ap in node.as_paths])
         #str(node.as_paths[0])
@@ -555,11 +664,11 @@ def _plot_tree_helper(node, parent_node, graph, deep, force=False):
         r = node
 
     if node.ms_0:
-        child = _plot_tree_helper(node.ms_0, p, graph, deep+1)
+        child = _plot_tree_helper(node.ms_0, p, peer, graph, deep+1)
         if child:
             graph.add_edge(p, child)
     if node.ms_1:
-        child = _plot_tree_helper(node.ms_1, p, graph, deep+1)
+        child = _plot_tree_helper(node.ms_1, p, peer, graph, deep+1)
         if child:
             graph.add_edge(p, child)
 
