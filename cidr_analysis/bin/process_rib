@@ -1,13 +1,16 @@
 #!/usr/bin/env python2.6
 
-# hack for uninstalled packages
 import sys
 import os
-sys.path.append(
-    os.path.realpath('/home/woodrow/proj/cidr-report_analysis/cidr_analysis'))
+# hack for uninstalled packages
+try:
+    import cidr_analysis
+except ImportError:
+    sys.path.append(os.path.realpath('../../cidr_analysis'))
+finally:
+    from cidr_analysis import process_rib
 # /hack
 
-from cidr_analysis import process_rib
 
 def usage():
     print(' '.join(["USAGE:", sys.argv[0], 'RIB_FILE']))
@@ -15,12 +18,14 @@ def usage():
   specified RIB_FILE, either in the MRT format or Cisco console dump format
   handled by CAIDA's straightenRV tool.""")
 
+
 def main():
     if len(sys.argv) == 2:
         full_path_to_rib = os.path.realpath(sys.argv[1])
         process_rib.process_rib(full_path_to_rib)
     else:
         usage()
+
 
 if __name__ == '__main__':
     main()

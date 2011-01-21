@@ -1,17 +1,21 @@
 #!/usr/bin/env python2.6
 
-# hack for uninstalled packages
 import sys
 import os
-sys.path.append(
-    os.path.realpath('/home/woodrow/proj/cidr-report_analysis/cidr_analysis'))
+# hack for uninstalled packages
+try:
+    import cidr_analysis
+except ImportError:
+    sys.path.append(os.path.realpath('../../cidr_analysis'))
+finally:
+    from cidr_analysis import aggtree
 # /hack
 
-from cidr_analysis import aggtree
 
 def usage():
     print(' '.join(["USAGE:", sys.argv[0], 'RIB_FILE.normrib']))
     print("""  Generate CIDR report.""")
+
 
 def main():
     if len(sys.argv) == 2:
@@ -27,6 +31,7 @@ def main():
         print("Ending processing table.")
     else:
         usage()
+
 
 if __name__ == '__main__':
     main()

@@ -1,13 +1,16 @@
 #!/usr/bin/env python2.6
 
-# hack for uninstalled packages
 import sys
 import os
-sys.path.append(
-    os.path.realpath('/home/woodrow/proj/cidr-report_analysis/cidr_analysis'))
+# hack for uninstalled packages
+try:
+    import cidr_analysis
+except ImportError:
+    sys.path.append(os.path.realpath('../../cidr_analysis'))
+finally:
+    from cidr_analysis import process_txtrib
 # /hack
 
-from cidr_analysis import process_txtrib
 
 def usage():
     print(' '.join(["USAGE:", sys.argv[0], 'RIB_FILE.txt']))
@@ -19,12 +22,14 @@ def usage():
   number of prefixes per AS seen by each peer (.ppapp), to allow discovery of
   any cases of significant deviation amongst the routeviews peers.""")
 
+
 def main():
     if len(sys.argv) == 2:
         full_path = os.path.realpath(sys.argv[1])
         process_txtrib.process_txtrib(full_path)
     else:
         usage()
+
 
 if __name__ == '__main__':
     main()
