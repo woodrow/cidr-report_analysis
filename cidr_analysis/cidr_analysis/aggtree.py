@@ -324,7 +324,7 @@ def add_prefix_tree_to_netsnow_count(as_netsnow_dict, root):
         if len(origin_set) == 1:
             root.post_origin_as = origin_set.pop()
         else:
-#            print("MOAS!!")
+#            print("MOAS!!")  # TODO find a better solution for MOASes
             root.post_origin_as = -1
         as_netsnow_dict[root.post_origin_as] = as_netsnow_dict.get(
             root.post_origin_as, 0) + 1
