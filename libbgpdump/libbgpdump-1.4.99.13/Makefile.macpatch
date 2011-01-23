@@ -1,0 +1,4 @@
+35c35
+< 	$(COMPILE) -o simpledump simpledump.c libbgpdump.a $(SYS_LIBS)
+---
+> 	$(COMPILE) -o simpledump simpledump.c libbgpdump.a $(SYS_LIBS) -L/opt/local/lib -largp

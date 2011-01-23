@@ -1,0 +1,13 @@
+diff --git a/libbgpdump/libbgpdump-1.4.99.13/simpledump.c b/libbgpdump/libbgpdump-1.4.99.13/simpledump.c
+index 08d1669..4a18f01 100644
+--- a/libbgpdump/libbgpdump-1.4.99.13/simpledump.c
++++ b/libbgpdump/libbgpdump-1.4.99.13/simpledump.c
+@@ -37,7 +37,7 @@ Author: Dan Ardelean (dan@ripe.net)
+ 
+ #include <unistd.h>
+ #include <stdio.h>
+-#include <argp.h>
++#include "/opt/local/include/argp.h"
+ 
+ /* SRW ADDITIONS **************************************************************/
+ 
