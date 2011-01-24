@@ -4,7 +4,6 @@
 
 """
 
-import itertools
 import os
 
 import ipv4
@@ -61,6 +60,12 @@ class CidrPrefix(object):
         return self.__str__()
 
     def add_route(self, peer_ip_int, as_path):
+        """Add a route, that is a prefix and an AS path to get to that prefix,
+        to the given CidrPrefix object. Under the covers, this creates a new
+        PrefixAttr object and stores it in the CidrPrefix.attrs dict, keyed on
+        the observing peer's integer IP address.
+
+        """
         assert peer_ip_int not in self.attrs
         self.attrs[peer_ip_int] = PrefixAttr(as_path)
 
@@ -77,16 +82,16 @@ def aggregate_table(infile):
     a Cidr Report-like output table.
 
     """
-    as_agg_count_dict = {}
+    as_aggcount_dict = {}
     as_netsnow_dict = {}
     for root in process_table(infile):
-        # add_prefix_tree_to_netsnow_count also sets CidrPrefix.origin_as
+        # update_netsnow_count also sets CidrPrefix.origin_as
         # attributes appropriately
         # TODO should origin_as be a separate function?
-        add_prefix_tree_to_netsnow_count(as_netsnow_dict, root)
+        update_netsnow_count(as_netsnow_dict, root)
         (prefix_agg_list, prefix_adv_list) = classify_prefixes(root)
-        as_agg_dict = group_agg_prefixes_by_origin_as(prefix_agg_list)
-        count_agg_prefixes_by_as(as_agg_count_dict, as_agg_dict)
+        as_agg_dict = group_prefixes_by_origin(prefix_agg_list)
+        update_aggcount(as_aggcount_dict, as_agg_dict)
 
         ## debugging/verbose stuff:
         debug_print(prefix_agg_list)
@@ -112,7 +117,7 @@ def aggregate_table(infile):
             plot_tree.plot_tree(root, os.path.realpath('./plots/'))
             break
     debug_print(as_agg_dict)
-    print_new_cidr_report(as_agg_count_dict, as_netsnow_dict)
+    print_new_cidr_report(as_aggcount_dict, as_netsnow_dict)
 
 
 def process_table(infile):
@@ -251,9 +256,7 @@ def insert_prefix_into_tree(root, new):
         test_mask >>= 1
 
 
-def classify_prefixes(prefix, parent=None, ancestor_attrs={}):
-    # TODO default ancestor_attrs={} is dangerous, even though I'm using it
-    # correctly -- think about changing this
+def classify_prefixes(prefix, parent=None, ancestor_attrs=None):
     """For a given constructed prefix tree, traverse the tree and classify its
     prefixes as LONELY/TOP/DEAGGREGATED/DELEGATED and also update counts of
     how many of each prefixes children may be aggregated (i.e. unannounced) and
@@ -270,6 +273,8 @@ def classify_prefixes(prefix, parent=None, ancestor_attrs={}):
     """
     agg_list = []
     adv_list = []
+    if ancestor_attrs is None:
+        ancestor_attrs = {}
 
     # Classification of child prefixes relies on knowledge of ancestor prefix
     # attributes. This serves to make the most recently encountered ('lowest',
@@ -282,16 +287,20 @@ def classify_prefixes(prefix, parent=None, ancestor_attrs={}):
 
     if prefix.ms_0:
         if prefix.attrs:
-            (agg, adv) = classify_prefixes(prefix.ms_0, prefix, new_ancestor_attrs)
+            (agg, adv) = classify_prefixes(prefix.ms_0, prefix,
+                new_ancestor_attrs)
         else:
-            (agg, adv) = classify_prefixes(prefix.ms_0, parent, new_ancestor_attrs)
+            (agg, adv) = classify_prefixes(prefix.ms_0, parent,
+                new_ancestor_attrs)
         agg_list += agg
         adv_list += adv
     if prefix.ms_1:
         if prefix.attrs:
-            (agg, adv) = classify_prefixes(prefix.ms_1, prefix, new_ancestor_attrs)
+            (agg, adv) = classify_prefixes(prefix.ms_1, prefix,
+                new_ancestor_attrs)
         else:
-            (agg, adv) = classify_prefixes(prefix.ms_1, parent, new_ancestor_attrs)
+            (agg, adv) = classify_prefixes(prefix.ms_1, parent,
+                new_ancestor_attrs)
         agg_list += agg
         adv_list += adv
 
@@ -339,7 +348,7 @@ def classify_prefixes(prefix, parent=None, ancestor_attrs={}):
     return (agg_list, adv_list)
 
 
-def group_agg_prefixes_by_origin_as(prefix_agg_list):
+def group_prefixes_by_origin(prefix_agg_list):
     """Takes a list of aggregable prefixes gathered by another function and
     groups these prefixes into a dictionary by the origin AS of each prefix
     which is then returned.
@@ -354,14 +363,14 @@ def group_agg_prefixes_by_origin_as(prefix_agg_list):
     return as_agg_dict
 
 
-def count_agg_prefixes_by_as(as_agg_count_dict, as_agg_dict):
-    """Updates as_agg_count_dict, the dictionary containing a count of the
+def update_aggcount(as_aggcount_dict, as_agg_dict):
+    """Updates as_aggcount_dict, the dictionary containing a count of the
     number of aggregable prefixes advertised by each AS, based on the prefixes
     in as_agg_dict.
 
     """
     for asn in as_agg_dict:
-        as_agg_count_dict[asn] = as_agg_count_dict.get(asn, 0) + \
+        as_aggcount_dict[asn] = as_aggcount_dict.get(asn, 0) + \
             sum((p.agg_children for p in as_agg_dict[asn])) + \
             len(as_agg_dict[asn])
             # the last line -- len(...) above includes the aggregate prefixes
@@ -369,7 +378,7 @@ def count_agg_prefixes_by_as(as_agg_count_dict, as_agg_dict):
             # TODO look into this
 
 
-def add_prefix_tree_to_netsnow_count(as_netsnow_dict, root):
+def update_netsnow_count(as_netsnow_dict, root):
     """Add all of the prefixes in the prefix tree rooted at root to the
     netsnow dict. The netsnow dict contains a count of the total prefixes
     currently in the routing table originated by each AS number.
@@ -393,12 +402,12 @@ def add_prefix_tree_to_netsnow_count(as_netsnow_dict, root):
         as_netsnow_dict[root.origin_as] = as_netsnow_dict.get(
             root.origin_as, 0) + 1
     if root.ms_0:
-        add_prefix_tree_to_netsnow_count(as_netsnow_dict, root.ms_0)
+        update_netsnow_count(as_netsnow_dict, root.ms_0)
     if root.ms_1:
-        add_prefix_tree_to_netsnow_count(as_netsnow_dict, root.ms_1)
+        update_netsnow_count(as_netsnow_dict, root.ms_1)
 
 
-def print_new_cidr_report(as_agg_count_dict, as_netsnow_dict, top_n=30):
+def print_new_cidr_report(as_aggcount_dict, as_netsnow_dict, top_n=30):
     """Print the "top N" Cidr Report in the format that Geoff Huston emails
     out weekly to the operator communities. This function prints out the top
     top_n prefixes, sorted in decreasing order by their NetGain -- the
@@ -406,7 +415,7 @@ def print_new_cidr_report(as_agg_count_dict, as_netsnow_dict, top_n=30):
     aggregating their routing table as much as possible.
 
     """
-    as_agg_list = [x for x in as_agg_count_dict.iteritems()]
+    as_agg_list = [x for x in as_aggcount_dict.iteritems()]
     as_agg_list.sort(key=lambda x: x[1], reverse=True)
 
     print(" --- 12Nov10 ---")
