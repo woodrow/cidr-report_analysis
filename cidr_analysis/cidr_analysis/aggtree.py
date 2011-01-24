@@ -359,14 +359,14 @@ def count_agg_prefixes_by_as(as_agg_count_dict, as_agg_dict):
     number of aggregable prefixes advertised by each AS, based on the prefixes
     in as_agg_dict.
     
-    Returns the updated as_agg_count_dict, which is also modified in place, so
-    the return doesn't need to be used.
-    
     """
     for asn in as_agg_dict:
-        as_agg_count_dict[asn] = as_agg_count_dict.get(asn, 0) + sum(
-            (p.agg_children for p in as_agg_dict[asn]))
-    return as_agg_count_dict
+        as_agg_count_dict[asn] = as_agg_count_dict.get(asn, 0) + \
+            sum((p.agg_children for p in as_agg_dict[asn])) + \
+            len(as_agg_dict[asn])  
+            # the last line -- len(...) above includes the aggregate prefixes 
+            # themselves. not sure if this is the correct way to approach this
+            # TODO look into this
 
 
 def add_prefix_tree_to_netsnow_count(as_netsnow_dict, root):
