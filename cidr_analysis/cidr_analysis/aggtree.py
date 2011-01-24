@@ -343,10 +343,10 @@ def group_agg_prefixes_by_origin_as(prefix_agg_list):
     """Takes a list of aggregable prefixes gathered by another function and
     groups these prefixes into a dictionary by the origin AS of each prefix
     which is then returned.
-    
+
     The dictionary is keyed on origin AS number, and the value associated with
     each key is a list of the aggregable prefixes originated by the key ASN.
-    
+
     """
     as_agg_dict = {}  # keyed on AS number
     for prefix in prefix_agg_list:
@@ -358,13 +358,13 @@ def count_agg_prefixes_by_as(as_agg_count_dict, as_agg_dict):
     """Updates as_agg_count_dict, the dictionary containing a count of the
     number of aggregable prefixes advertised by each AS, based on the prefixes
     in as_agg_dict.
-    
+
     """
     for asn in as_agg_dict:
         as_agg_count_dict[asn] = as_agg_count_dict.get(asn, 0) + \
             sum((p.agg_children for p in as_agg_dict[asn])) + \
-            len(as_agg_dict[asn])  
-            # the last line -- len(...) above includes the aggregate prefixes 
+            len(as_agg_dict[asn])
+            # the last line -- len(...) above includes the aggregate prefixes
             # themselves. not sure if this is the correct way to approach this
             # TODO look into this
 
