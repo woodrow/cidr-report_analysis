@@ -45,7 +45,7 @@ class CidrPrefix(object):
         # an empty attrs dict is taken to mean that the prefix isn't advertised
         self.attrs = {}
         self.origin_as = None
-        # should these be here?
+        # TODO should these be here?
         self.is_advertised = False
         self.adv_children = 0
         self.agg_children = 0
@@ -85,7 +85,7 @@ def aggregate_table(infile):
         # TODO should origin_as be a separate function?
         add_prefix_tree_to_netsnow_count(as_netsnow_dict, root)
         (prefix_agg_list, prefix_adv_list) = classify_prefixes(root)
-        as_agg_dict = group_agg_prefixes_by_as(prefix_agg_list)
+        as_agg_dict = group_agg_prefixes_by_origin_as(prefix_agg_list)
         count_agg_prefixes_by_as(as_agg_count_dict, as_agg_dict)
 
         ## debugging/verbose stuff:
@@ -100,6 +100,8 @@ def aggregate_table(infile):
         best_agg_list.sort(key=lambda x: x[2], reverse=True)
         for t in best_agg_list:
             debug_print("{0[1]}\t(-{0[2]}, +{0[3]})\t{0[0]}".format(t))
+        debug_print(root.agg_children)
+        debug_print(root.adv_children)
         if root.prefix >> 24 == 17:
             print prefix_agg_list
             print as_agg_dict
@@ -300,7 +302,7 @@ def classify_prefixes(prefix, parent=None, ancestor_attrs={}):
         for k in peer_set:  # TODO could be simplified to just ancestor_attrs
             if k not in ancestor_attrs:
                 # TODO log this
-                print("orphan prefix-peer combo")
+                debug_print("orphan prefix-peer combo")
             else:
                 anc_attr = ancestor_attrs[k]
                 try:
@@ -337,7 +339,7 @@ def classify_prefixes(prefix, parent=None, ancestor_attrs={}):
     return (agg_list, adv_list)
 
 
-def group_agg_prefixes_by_as(prefix_agg_list):
+def group_agg_prefixes_by_origin_as(prefix_agg_list):
     """Takes a list of aggregable prefixes gathered by another function and
     groups these prefixes into a dictionary by the origin AS of each prefix
     which is then returned.
@@ -346,7 +348,7 @@ def group_agg_prefixes_by_as(prefix_agg_list):
     each key is a list of the aggregable prefixes originated by the key ASN.
     
     """
-    as_agg_dict = {}  # keyed on as number
+    as_agg_dict = {}  # keyed on AS number
     for prefix in prefix_agg_list:
         as_agg_dict.setdefault(prefix.origin_as, []).append(prefix)
     return as_agg_dict
