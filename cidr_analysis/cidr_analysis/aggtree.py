@@ -113,94 +113,6 @@ def aggregate_table(infile):
     print_new_cidr_report(as_agg_count_dict, as_netsnow_dict)
 
 
-def classify_prefixes(prefix, parent=None, ancestor_attrs={}):
-    # TODO default ancestor_attrs={} is dangerous, even though I'm using it
-    # correctly -- think about changing this
-    """For a given constructed prefix tree, traverse the tree and classify its
-    prefixes as LONELY/TOP/DEAGGREGATED/DELEGATED and also update counts of
-    how many of each prefixes children may be aggregated (i.e. unannounced) and
-    how many must be announced.
-
-    The algorithm behind this function performs a recursive DFS traversal of the
-    tree to find each leaf node and then work back up the tree comparing each
-    child for aggregability against its parents.
-
-    Returns a tuple containing a list of the prefixes in the tree that may be
-    aggregated and a list of the prefixes that must still be announced in a
-    fully aggregated routing table.
-
-    """
-    agg_list = []
-    adv_list = []
-
-    # Classification of child prefixes relies on knowledge of ancestor prefix
-    # attributes. This serves to make the most recently encountered ('lowest',
-    # in tree terms) attributes from each peer available at the current prefix.
-    if prefix.attrs:
-        new_ancestor_attrs = ancestor_attrs.copy()
-        new_ancestor_attrs.update(prefix.attrs)
-    else:
-        new_ancestor_attrs = ancestor_attrs
-
-    if prefix.ms_0:
-        if prefix.attrs:
-            (agg, adv) = classify_prefixes(prefix.ms_0, prefix, new_ancestor_attrs)
-        else:
-            (agg, adv) = classify_prefixes(prefix.ms_0, parent, new_ancestor_attrs)
-        agg_list += agg
-        adv_list += adv
-    if prefix.ms_1:
-        if prefix.attrs:
-            (agg, adv) = classify_prefixes(prefix.ms_1, prefix, new_ancestor_attrs)
-        else:
-            (agg, adv) = classify_prefixes(prefix.ms_1, parent, new_ancestor_attrs)
-        agg_list += agg
-        adv_list += adv
-
-    # base case -- we've hit bottom and are working back up the tree
-    if parent and prefix.attrs:
-        fully_aggregable = True
-        peer_set = set(ancestor_attrs).union(set(prefix.attrs))
-        for k in peer_set:  # TODO could be simplified to just ancestor_attrs
-            if k not in ancestor_attrs:
-                # TODO log this
-                print("orphan prefix-peer combo")
-            else:
-                anc_attr = ancestor_attrs[k]
-                try:
-                    des_attr = prefix.attrs[k]
-                    if anc_attr.prefix_class == PREFIX_CLASSES.LONELY:
-                        anc_attr.prefix_class = PREFIX_CLASSES.TOP
-                    if anc_attr.as_path == des_attr.as_path:
-                        des_attr.prefix_class = PREFIX_CLASSES.DEAGG
-                        des_attr.is_advertised = False
-                        anc_attr.agg_children += 1
-                    else:
-                        des_attr.prefix_class = PREFIX_CLASSES.DELEG
-                        des_attr.is_advertised = True
-                        anc_attr.adv_children += 1
-                        fully_aggregable = False
-                    anc_attr.agg_children += des_attr.agg_children
-                    anc_attr.adv_children += des_attr.adv_children
-                except KeyError:
-                    pass
-
-        # time to make a generalization about the prefix based on each
-        # table's view of that prefix
-        if fully_aggregable:
-            agg_list.append(prefix)
-            prefix.is_advertised = False
-            parent.agg_children += 1
-        else:
-            adv_list.append(prefix)
-            prefix.is_advertised = True
-            parent.adv_children += 1
-        parent.agg_children += prefix.agg_children
-        parent.adv_children += prefix.adv_children
-
-    return (agg_list, adv_list)
-
-
 def process_table(infile):
     """
     Generator function that processes the contents of the text-formatted
@@ -335,6 +247,94 @@ def insert_prefix_into_tree(root, new):
                     cursor.ms_0 = CidrPrefix(prefix=cursor.prefix, prefix_len=i)
             cursor = cursor.ms_0
         test_mask >>= 1
+
+
+def classify_prefixes(prefix, parent=None, ancestor_attrs={}):
+    # TODO default ancestor_attrs={} is dangerous, even though I'm using it
+    # correctly -- think about changing this
+    """For a given constructed prefix tree, traverse the tree and classify its
+    prefixes as LONELY/TOP/DEAGGREGATED/DELEGATED and also update counts of
+    how many of each prefixes children may be aggregated (i.e. unannounced) and
+    how many must be announced.
+
+    The algorithm behind this function performs a recursive DFS traversal of the
+    tree to find each leaf node and then work back up the tree comparing each
+    child for aggregability against its parents.
+
+    Returns a tuple containing a list of the prefixes in the tree that may be
+    aggregated and a list of the prefixes that must still be announced in a
+    fully aggregated routing table.
+
+    """
+    agg_list = []
+    adv_list = []
+
+    # Classification of child prefixes relies on knowledge of ancestor prefix
+    # attributes. This serves to make the most recently encountered ('lowest',
+    # in tree terms) attributes from each peer available at the current prefix.
+    if prefix.attrs:
+        new_ancestor_attrs = ancestor_attrs.copy()
+        new_ancestor_attrs.update(prefix.attrs)
+    else:
+        new_ancestor_attrs = ancestor_attrs
+
+    if prefix.ms_0:
+        if prefix.attrs:
+            (agg, adv) = classify_prefixes(prefix.ms_0, prefix, new_ancestor_attrs)
+        else:
+            (agg, adv) = classify_prefixes(prefix.ms_0, parent, new_ancestor_attrs)
+        agg_list += agg
+        adv_list += adv
+    if prefix.ms_1:
+        if prefix.attrs:
+            (agg, adv) = classify_prefixes(prefix.ms_1, prefix, new_ancestor_attrs)
+        else:
+            (agg, adv) = classify_prefixes(prefix.ms_1, parent, new_ancestor_attrs)
+        agg_list += agg
+        adv_list += adv
+
+    # base case -- we've hit bottom and are working back up the tree
+    if parent and prefix.attrs:
+        fully_aggregable = True
+        peer_set = set(ancestor_attrs).union(set(prefix.attrs))
+        for k in peer_set:  # TODO could be simplified to just ancestor_attrs
+            if k not in ancestor_attrs:
+                # TODO log this
+                print("orphan prefix-peer combo")
+            else:
+                anc_attr = ancestor_attrs[k]
+                try:
+                    des_attr = prefix.attrs[k]
+                    if anc_attr.prefix_class == PREFIX_CLASSES.LONELY:
+                        anc_attr.prefix_class = PREFIX_CLASSES.TOP
+                    if anc_attr.as_path == des_attr.as_path:
+                        des_attr.prefix_class = PREFIX_CLASSES.DEAGG
+                        des_attr.is_advertised = False
+                        anc_attr.agg_children += 1
+                    else:
+                        des_attr.prefix_class = PREFIX_CLASSES.DELEG
+                        des_attr.is_advertised = True
+                        anc_attr.adv_children += 1
+                        fully_aggregable = False
+                    anc_attr.agg_children += des_attr.agg_children
+                    anc_attr.adv_children += des_attr.adv_children
+                except KeyError:
+                    pass
+
+        # time to make a generalization about the prefix based on each
+        # table's view of that prefix
+        if fully_aggregable:
+            agg_list.append(prefix)
+            prefix.is_advertised = False
+            parent.agg_children += 1
+        else:
+            adv_list.append(prefix)
+            prefix.is_advertised = True
+            parent.adv_children += 1
+        parent.agg_children += prefix.agg_children
+        parent.adv_children += prefix.adv_children
+
+    return (agg_list, adv_list)
 
 
 def group_agg_prefixes_by_as(prefix_agg_list):
