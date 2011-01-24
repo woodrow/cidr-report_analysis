@@ -1,5 +1,9 @@
 #!/usr/bin/env python2.6
 
+"""Handles the aggregation and reporting aspects of the Cidr Report.
+
+"""
+
 import itertools
 import os
 
@@ -8,7 +12,11 @@ from prefix_classes import PREFIX_CLASSES
 import plot_tree
 
 class PrefixAttr(object):
+    """An object representing peer-specific attributes for a given prefix, such
+    as AS_PATH, classification, etc. These have a many-to-1 association with
+    CidrPrefix objects.
 
+    """
     def __init__(self, as_path, is_advertised=True,
         prefix_class=PREFIX_CLASSES.LONELY):
         self.as_path = as_path
@@ -60,6 +68,11 @@ class CidrPrefix(object):
 
 
 def aggregate_table(infile):
+    """Top-level function that accepts a properly formatted text-based routing
+    table as infile, performs the Cidr Report aggregation on it, and outputs
+    a Cidr Report-like output table.
+    
+    """
     as_agg_count_dict = {}
     as_netsnow_dict = {}
     for root in process_table(infile):
@@ -104,6 +117,20 @@ def aggregate_table(infile):
 
 
 def classify_prefixes(prefix, parent=None, ancestor_attrs={}):
+    """For a given constructed prefix tree, traverse the tree and classify its
+    prefixes as LONELY/TOP/DEAGGREGATED/DELEGATED and also update counts of
+    how many of each prefixes children may be aggregated (i.e. unannounced) and
+    how many must be announced.
+
+    The algorithm behind this function performs a recursive DFS traversal of the
+    tree to find each leaf node and then work back up the tree comparing each
+    child for aggregability against its parents.
+
+    Returns a tuple containing a list of the prefixes in the tree that may be
+    aggregated and a list of the prefixes that must still be announced in a
+    fully aggregated routing table.
+
+    """
     agg_list = []
     adv_list = []
     if prefix.attrs:
@@ -184,21 +211,32 @@ def classify_prefixes(prefix, parent=None, ancestor_attrs={}):
 
 
 def process_table(infile):
-    """TODO NOTE ABOUT GENERATOR FUNCTION
-    Process the contents of the text-formatted routing table and form a
-    prefix tree for later processing, storing the output in root_list which
-    contains the prefix tree corresponding to each /8 in the IPv4 address space.
+    """
+    Generator function that processes the contents of the text-formatted
+    routing table given by file-like object infile and yields a prefix tree,
+    rooted at a /8 prefix, for later processing.
 
-    The input text file is assumed to be in contiguous blocks organized by
-    prefix to keep things efficient.
+    Infile Format Specification:
+    The contents of the input text file assume the following format:
 
-    Arguments
+        X.X.X.X/L Y.Y.Y.Y AS0 AS1 AS2 ... ASN<EOL>
+
+    where X.X.X.X is the prefix, L is the prefix length, Y.Y.Y.Y is address of
+    the peer that observed this route, and ASi for i=0..N is the AS path, with
+    AS0 being the origin AS (i.e. in reverse order compared to the Cisco CLI).
+
+    Further, the input text file is assumed to be organized such that routes
+    with prefixes having the same first octet are in continguous blocks. This
+    organization of the text file is required to enable this generator function
+    to behave as advertised.
+
+    Arguments:
     infile -- a file-like object where each line is a routing table entry in
-    PREFIX AS_PATH format
+    the format specified above.
 
-    Returns
-    an iterator-like object that, when next() is called, returns the next root
-    of an aggregation
+    Returns:
+    an iterator-like object that, when next() is called, returns the next prefix
+    tree corresponding to the next /8 encountered in the input file.
 
     """
     line_count = 0
@@ -242,6 +280,16 @@ def process_table(infile):
 
 
 def add_cidrprefix_to_tree(root, cidrprefix):
+    """Adds a given CidrPrefix to a prefix tree. If the root is not defined, a
+    new real or 'virtual' root is instantiated if the cidrprefix is or is not
+    a /8, respectively. If the root is defined, the prefix is simply inserted
+    into the tree.
+
+    The root of the tree is returned, and should always be used in the case that
+    the root is redefined due to the creation of a new tree or encountering of a
+    /8 in the routing table.
+
+    """
     if cidrprefix:
         if cidrprefix.prefix_len == 8:
             root = cidrprefix
@@ -255,8 +303,9 @@ def add_cidrprefix_to_tree(root, cidrprefix):
 
 
 def insert_prefix_into_tree(root, new):
-    """Add node new to the prefix tree rooted at root. Update all ancestor nodes
-    traversed from root to the proper location of new.
+    """Insert new CidrPrefix to the prefix tree rooted at root by walking the
+    tree and adding 'virtual' nodes as necessary to place the prefix in the
+    correct location in the binary prefix tree.
 
     """
     cursor = root
@@ -414,6 +463,17 @@ def count_agg_prefixes_by_as(as_agg_count_dict, as_agg_dict):
 
 
 def add_prefix_tree_to_netsnow_count(as_netsnow_dict, root):
+    """Add all of the prefixes in the prefix tree rooted at root to the
+    netsnow dict. The netsnow dict contains a count of the total prefixes
+    currently in the routing table originated by each AS number.
+
+    This function also determines the origin_as attribute of each CidrPrefix
+    object it encounters, setting it to the origin AS if the prefix is
+    originated by a single AS from all available vantage points, or -1 if it
+    is originated by multiple AS numbers (i.e the prefix has multiple origin
+    ASes, or 'MOAS')
+
+    """
     if root.attrs:
         origin_set = set()
         for attr in root.attrs.itervalues():
@@ -432,17 +492,23 @@ def add_prefix_tree_to_netsnow_count(as_netsnow_dict, root):
 
 
 def print_new_cidr_report(as_agg_count_dict, as_netsnow_dict, top_n=30):
-    """
-    [8     ][     8][4 ][     8][4 ][     8][4 ][     8]
-    ASnum   NetsNow     NetsAggr    NetGain     %Gain
-    19262     340775      208585      132170       38.8%
-    """
+    """Print the "top N" Cidr Report in the format that Geoff Huston emails
+    out weekly to the operator communities. This function prints out the top
+    top_n prefixes, sorted in decreasing order by their NetGain -- the
+    absolute improvement they could offer in terms of global prefix counts by
+    aggregating their routing table as much as possible.
 
+    """
     as_agg_list = [x for x in as_agg_count_dict.iteritems()]
     as_agg_list.sort(key=lambda x: x[1], reverse=True)
 
     print(" --- 12Nov10 ---")
     print("ASnum   NetsNow     NetsAggr    NetGain     % Gain")
+    # example format, showing field width and justification:
+    #
+    #      [8     ][     8][4 ][     8][4 ][     8][4 ][     8]
+    #      ASnum   NetsNow     NetsAggr    NetGain     % Gain
+    #      19262     340775      208585      132170       38.8%
 
     tbl_netgain = sum((x[1] for x in as_agg_list))
     tbl_netsnow = sum(as_netsnow_dict.itervalues())
