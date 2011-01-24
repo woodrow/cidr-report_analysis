@@ -20,12 +20,13 @@ def postprocess_rib(rib_filename, norm_filename, include_peer_ip):
         norm_path = aspath.normalize_as_path(raw_as_path)
         if norm_path:
             if include_peer_ip:
-                outfile.write("{0}/{1} {2} {3}\n".format(
-                    prefix, prefix_len, peer_ip,
+                outfile.write("{0:<18} {1:<15} {2}\n".format(
+                    '/'.join([prefix, prefix_len]), peer_ip,
                     aspath.path_to_string(norm_path)))
             else:
-                outfile.write("{0}/{1} {2}\n".format(
-                    prefix, prefix_len, aspath.path_to_string(norm_path)))
+                outfile.write("{0:<18} {1}\n".format(
+                    '/'.join([prefix, prefix_len]),
+                    aspath.path_to_string(norm_path)))
         else:
             print("dropping line due to invalid AS_PATH:\n  {0}".format(line))
     outfile.close()
