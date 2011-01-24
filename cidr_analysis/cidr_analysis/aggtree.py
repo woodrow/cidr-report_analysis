@@ -1,10 +1,11 @@
 #!/usr/bin/env python2.6
 
 import itertools
-from enumerator import Enumerate
-import ipv4
+import os
 
-PREFIX_CLASSES = Enumerate('LONELY', 'TOP', 'DEAGG', 'DELEG')
+import ipv4
+from prefix_classes import PREFIX_CLASSES
+import plot_tree
 
 class PrefixAttr(object):
 
@@ -571,105 +572,3 @@ def print_cidr_report(as_agg_list, as_netsnow_dict, top_n=30):
         sum_pctgain = -100.0
     print("\n{0:<8}{1:>8}    {2:>8}    {3:>8}    {4:>8.3}%".format(
         "Total", sum_netsnow, sum_netsaggr, sum_netgain, sum_pctgain))
-
-
-"""
-What needs to happen:
-- process list one entry at a time:
-    - adding them to the tree, constructing intermediate tree elements
-      as necessary to get to that point
-    - classify according to Cittadini et al: TOP, DEAGG, DELEG, LONELY
-        - LONELY by default
-        - anything more specifc under lonely: LONELY -> TOP
-        - anything goes under a less specific: LONELY ->
-            - DEAGG if the AS_PATH is same as immediate less-specific cover
-            - DELEG if the AS_PATH is NOT same as immediate less-specific cover
-                - AND all less-specific covers aggregable = False
-                - AND subtract aggregable_more_specifics from parent
-- one tree per vantage point (receiver/peer AS)
-    - pick one to start with -- i.e. 3356
-- finally, walk the tree, looking for TOPs
-    - for each subtree rooted at a TOP, determine if
-"""
-
-def plot_tree(root):
-    import networkx as nx
-    #import matplotlib.pyplot as plt
-    peer_set = set()
-    find_all_peers(root, peer_set)
-    for peer in peer_set:
-        graph = nx.DiGraph(ordering='out')
-        #graph.graph['ordering'] = 'out'
-        _plot_tree_helper(root, root, peer, graph, 0, force=True)
-        #twopi, gvcolor, wc, ccomps, tred, sccmap, fdp, circo, neato, acyclic, nop, gvpr, dot.
-        #nodelist = [v for v in graph.nodes() if v.aggregable_more_specifics > 0]
-        #node_color = [color_func(v.aggregable_more_specifics) for v in graph]
-        #nx.draw_graphviz(graph, prog='dot', nodelist=nodelist, node_color=node_color)
-        #nx.draw_graphviz(graph, nodelist=nodelist, node_color=node_color)
-        nx.write_dot(graph, 'plots/plot-' + str(peer) +'.dot')
-        #plt.show()
-
-def find_all_peers(root, peer_set):
-    for k in root.attrs:
-        peer_set.add(k)
-    if root.ms_0:
-        find_all_peers(root.ms_0, peer_set)
-    if root.ms_1:
-        find_all_peers(root.ms_1, peer_set)
-
-def color_func(ams):
-    if ams > 0:
-        return 'g'
-    else:
-        return 'r'
-
-def _plot_tree_helper(node, parent_node, peer, graph, deep, force=False):
-#    if deep > 8:
-#        return None
-    p = parent_node
-    r = None
-
-    if peer in node.attrs:
-        graph.add_node(node, shape='box', penwidth=2)
-        graph.node[node]['style'] = 'filled'
-        if node.attrs[peer].is_advertised:
-            graph.node[node]['fillcolor'] = 'palegreen'
-        ##if node.prefix_class is PREFIX_CLASSES.LONELY:
-        ##    graph.node[node]['color'] = 'black'
-        ##elif node.prefix_class is PREFIX_CLASSES.TOP:
-        ##    graph.node[node]['color'] = 'blue'
-        ##elif node.prefix_class is PREFIX_CLASSES.DEAGG:
-        ##    graph.node[node]['color'] = 'green'
-        ##elif node.prefix_class is PREFIX_CLASSES.DELEG:
-        ##    graph.node[node]['color'] = 'red'
-#        else:
-#            graph.node[node]['color'] = 'red'
-        graph.node[node]['label'] = ' '.join([str(node),
-            '(-' + str(node.attrs[peer].agg_children) + ', +'  + str(node.attrs[peer].adv_children) + ')',
-            '\\n', str(node.attrs[peer].as_path)])
-        ##graph.node[node]['label'] += '\\n'.join(
-        ##    [str(ap) for ap in node.as_paths])
-        #str(node.as_paths[0])
-        # annotate
-        p = node
-        r = node
-    elif force:
-        graph.add_node(node, shape='box', color='grey', penwidth=2)
-        p = node
-        r = node
-    else:
-        graph.add_node(node, shape='point')
-        graph.node[node]['label'] = ''
-        p = node
-        r = node
-
-    if node.ms_0:
-        child = _plot_tree_helper(node.ms_0, p, peer, graph, deep+1)
-        if child:
-            graph.add_edge(p, child)
-    if node.ms_1:
-        child = _plot_tree_helper(node.ms_1, p, peer, graph, deep+1)
-        if child:
-            graph.add_edge(p, child)
-
-    return r
