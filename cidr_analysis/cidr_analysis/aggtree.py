@@ -11,6 +11,7 @@ import ipv4
 from prefix_classes import PREFIX_CLASSES
 import plot_tree
 
+
 class PrefixAttr(object):
     """An object representing peer-specific attributes for a given prefix, such
     as AS_PATH, classification, etc. These have a many-to-1 association with
@@ -40,7 +41,9 @@ class CidrPrefix(object):
         # of the child prefix is a 0 or a 1
         self.ms_0 = ms_0
         self.ms_1 = ms_1
-        self.attrs = {}  # dictionary of PrefixAttrs indexed by peer IP address
+        # dict of PrefixAttrs indexed by peer's integer IP address
+        # an empty attrs dict is taken to mean that the prefix isn't advertised
+        self.attrs = {}
         self.origin_as = None
         # should these be here?
         self.is_advertised = False
@@ -60,63 +63,59 @@ class CidrPrefix(object):
     def add_route(self, peer_ip_int, as_path):
         assert peer_ip_int not in self.attrs
         self.attrs[peer_ip_int] = PrefixAttr(as_path)
-        # this is now done after the tree is constructed
-        # if not self.origin_as:
-        #     self.origin_as = as_path[0]
-        # elif self.origin_as != as_path[0]:
-        #     self.origin_as = 0
+
+
+def debug_print(string):
+    """Quick and dirty bit of indirection to allow debug-related printing to be
+    disabled or reidrected later."""
+    print(string)
 
 
 def aggregate_table(infile):
     """Top-level function that accepts a properly formatted text-based routing
     table as infile, performs the Cidr Report aggregation on it, and outputs
     a Cidr Report-like output table.
-    
+
     """
     as_agg_count_dict = {}
     as_netsnow_dict = {}
     for root in process_table(infile):
-        # also sets CidrPrefix.origin_as attributes appropriately
+        # add_prefix_tree_to_netsnow_count also sets CidrPrefix.origin_as
+        # attributes appropriately
         # TODO should origin_as be a separate function?
         add_prefix_tree_to_netsnow_count(as_netsnow_dict, root)
-
-        ## pseudocode #####################################################
         (prefix_agg_list, prefix_adv_list) = classify_prefixes(root)
-        print(prefix_agg_list)
-        print(len(prefix_agg_list))
-        print(prefix_adv_list)
-        print(len(prefix_adv_list))
+        as_agg_dict = group_agg_prefixes_by_as(prefix_agg_list)
+        count_agg_prefixes_by_as(as_agg_count_dict, as_agg_dict)
+
+        ## debugging/verbose stuff:
+        debug_print(prefix_agg_list)
+        debug_print(len(prefix_agg_list))
+        debug_print(prefix_adv_list)
+        debug_print(len(prefix_adv_list))
         best_agg_list = []
         for k in root.attrs:
             best_agg_list.append((k, root.attrs[k].as_path[-1],
                 root.attrs[k].agg_children, root.attrs[k].adv_children))
         best_agg_list.sort(key=lambda x: x[2], reverse=True)
         for t in best_agg_list:
-            print("{0[1]}\t(-{0[2]}, +{0[3]})\t{0[0]}".format(t))
-        #plot_tree(root)
-        #return  # debug
-        as_agg_dict = group_agg_prefixes_by_as(prefix_agg_list)
-        count_agg_prefixes_by_as(as_agg_count_dict, as_agg_dict)
-        ###################################################################
-
-#        prefix_agg_list = find_aggregable_prefixes(root)
-#        as_agg_dict = group_agg_prefixes_by_as(prefix_agg_list)
-#        count_agg_prefixes_by_as(as_agg_count_dict, as_agg_dict)
-        ## debug; if used to go here
-#        if root.prefix >> 24 == 17:
-#            print prefix_agg_list
-#            print as_agg_dict
-#            netsnow = [x for x in as_netsnow_dict.iteritems()]
-#            netsnow.sort(key=lambda x: x[1], reverse=True)
-#            for k in xrange(len(netsnow)):
-#                print netsnow[k]
-#            plot_tree(root)
-#            break
-    print(as_agg_dict)
+            debug_print("{0[1]}\t(-{0[2]}, +{0[3]})\t{0[0]}".format(t))
+        if root.prefix >> 24 == 17:
+            print prefix_agg_list
+            print as_agg_dict
+            netsnow = [x for x in as_netsnow_dict.iteritems()]
+            netsnow.sort(key=lambda x: x[1], reverse=True)
+            for k in xrange(len(netsnow)):
+                print netsnow[k]
+            plot_tree.plot_tree(root, os.path.realpath('./plots/'))
+            break
+    debug_print(as_agg_dict)
     print_new_cidr_report(as_agg_count_dict, as_netsnow_dict)
 
 
 def classify_prefixes(prefix, parent=None, ancestor_attrs={}):
+    # TODO default ancestor_attrs={} is dangerous, even though I'm using it
+    # correctly -- think about changing this
     """For a given constructed prefix tree, traverse the tree and classify its
     prefixes as LONELY/TOP/DEAGGREGATED/DELEGATED and also update counts of
     how many of each prefixes children may be aggregated (i.e. unannounced) and
@@ -133,11 +132,16 @@ def classify_prefixes(prefix, parent=None, ancestor_attrs={}):
     """
     agg_list = []
     adv_list = []
+
+    # Classification of child prefixes relies on knowledge of ancestor prefix
+    # attributes. This serves to make the most recently encountered ('lowest',
+    # in tree terms) attributes from each peer available at the current prefix.
     if prefix.attrs:
         new_ancestor_attrs = ancestor_attrs.copy()
         new_ancestor_attrs.update(prefix.attrs)
     else:
         new_ancestor_attrs = ancestor_attrs
+
     if prefix.ms_0:
         if prefix.attrs:
             (agg, adv) = classify_prefixes(prefix.ms_0, prefix, new_ancestor_attrs)
@@ -152,7 +156,8 @@ def classify_prefixes(prefix, parent=None, ancestor_attrs={}):
             (agg, adv) = classify_prefixes(prefix.ms_1, parent, new_ancestor_attrs)
         agg_list += agg
         adv_list += adv
-    # base case
+
+    # base case -- we've hit bottom and are working back up the tree
     if parent and prefix.attrs:
         fully_aggregable = True
         peer_set = set(ancestor_attrs).union(set(prefix.attrs))
@@ -175,27 +180,13 @@ def classify_prefixes(prefix, parent=None, ancestor_attrs={}):
                         des_attr.is_advertised = True
                         anc_attr.adv_children += 1
                         fully_aggregable = False
-# DEBUG CODE -- remove later when confirmed this isnt an issue anymore
-#                    if str(parent) == '17.64.0.0/12' and anc_attr.as_path[-1] == 3303:
-#                        print('###') # this illustrates the problem -- my workaround makes things falsely assume that they're aggregable -- this workaround doesn't work
-#                        # how would it work if the fake prefix wasn't in the tree in the first place?
-#                        # its as though, on the way down the tree, it needs to
-#                        # bring the virtual parent attrs down the tree to nodes
-#                        # that don't have them -- perhaps that will work?
-#                        print(prefix)
-#                        print(' '.join([str(anc_attr.as_path[-1]), str([
-#                            anc_attr.agg_children, des_attr.agg_children,
-#                        anc_attr.adv_children, des_attr.adv_children])]))
-#                    if str(parent) == '17.0.0.0/9' and anc_attr.as_path[-1] == 3303:
-#                        print(prefix)
-#                        print(' '.join([str(anc_attr.as_path[-1]), str([
-#                            anc_attr.agg_children, des_attr.agg_children,
-#                        anc_attr.adv_children, des_attr.adv_children])]))
                     anc_attr.agg_children += des_attr.agg_children
                     anc_attr.adv_children += des_attr.adv_children
                 except KeyError:
                     pass
-        # generalization time
+
+        # time to make a generalization about the prefix based on each
+        # table's view of that prefix
         if fully_aggregable:
             agg_list.append(prefix)
             prefix.is_advertised = False
@@ -240,41 +231,49 @@ def process_table(infile):
 
     """
     line_count = 0
-    current_prefixstr = ""
+    current_prefixstr = ''
+    current_cidrprefix = None
     current_slash8 = None  # first octet of the current /8
-    new_cidrprefix = None
-    slash8_root = None
+    slash8_root = None  # root of the prefix tree for the current /8
 
+    # This loop iterates line-by-line through the file, and contains two levels
+    # of state.
+    # The first is at a prefix-level of granularity and exists to
+    # create a new CidrPrefix object for each new prefix and then add the
+    # remaining routes observed for the same prefix to that same CidrPrefix
+    # object.
+    # The second is at a /8 level and is the level of granularity at which the
+    # generator function operates, yielding the current prefix tree when the
+    # next /8 is encountered.
     for line in infile:
-        # line format: prefix/prefix_len peer_ip space-delimited-as_path
         components = line.split()
-        if current_prefixstr != components[0]: # we've encountered a new prefix
-            # add old prefix to tree
-            slash8_root = add_cidrprefix_to_tree(slash8_root, new_cidrprefix)
+        if current_prefixstr != components[0]:
+            slash8_root = add_cidrprefix_to_tree(slash8_root,
+                current_cidrprefix)
             # create new prefix object
             current_prefixstr = components[0]
             [prefix, prefix_len] = current_prefixstr.split('/')
             prefix = ipv4.dotquad_to_int(prefix)
             prefix_len = int(prefix_len)
-            new_cidrprefix = CidrPrefix(prefix, prefix_len)
+            current_cidrprefix = CidrPrefix(prefix, prefix_len)
             # yield slash8 to caller if new prefix is also new /8
             if current_slash8 != prefix >> 24:
                 if slash8_root:
                     yield slash8_root
                 current_slash8 = prefix >> 24
                 slash8_root = None
-                print("current_slash8 = {0}".format(current_slash8))
-        # add route
+                debug_print("current_slash8 = {0}".format(current_slash8))
+        # add route (prefix-asn pair) for the given prefix
         peer_ip = ipv4.dotquad_to_int(components[1])
         as_path = [int(asn) for asn in components[2:]]
-        new_cidrprefix.add_route(peer_ip, as_path)
+        current_cidrprefix.add_route(peer_ip, as_path)
         # debug info
         line_count += 1
         if line_count % 1000 == 0:
-            print line_count
+            debug_print(line_count)
 
-    # after the loop, yield remaining data before returning
-    slash8_root = add_cidrprefix_to_tree(slash8_root, new_cidrprefix)
+    # after EOF, yield remaining data before returning
+    slash8_root = add_cidrprefix_to_tree(slash8_root, current_cidrprefix)
     if slash8_root:
         yield slash8_root
 
@@ -292,6 +291,7 @@ def add_cidrprefix_to_tree(root, cidrprefix):
     """
     if cidrprefix:
         if cidrprefix.prefix_len == 8:
+            assert root is None  # otherwise we need to merge this
             root = cidrprefix
         elif cidrprefix.prefix_len > 8:
             if not root:  # create virtual /8 node
@@ -423,39 +423,29 @@ def _find_aggregable_prefixes_recursor(tree, prefix_agg_list):
 
 
 def group_agg_prefixes_by_as(prefix_agg_list):
+    """Takes a list of aggregable prefixes gathered by another function and
+    groups these prefixes into a dictionary by the origin AS of each prefix
+    which is then returned.
+    
+    The dictionary is keyed on origin AS number, and the value associated with
+    each key is a list of the aggregable prefixes originated by the key ASN.
+    
+    """
     as_agg_dict = {}  # keyed on as number
     for prefix in prefix_agg_list:
         as_agg_dict.setdefault(prefix.origin_as, []).append(prefix)
-        ## could also implement this as adding to set + checking set size --
-        ## performance comparison opportunity?
-        #origin_set = set()
-        #for attr in prefix.attrs.itervalues():
-        #    origin_set.add(attr.as_path[0])
-        #if len(origin_set) == 1:
-        #    prefix.post_origin_as = origin_set.pop()
-        #    as_agg_dict.setdefault(prefix.post_origin_as, []).append(prefix)
-        #else:
-        #    print("MOAS!!")
-        #    prefix.post_origin_as = -1
-        ################################################
-        # prefix_attr_iter = prefix.attrs.itervalues()
-        # test_origin = prefix_attr_iter.next().as_path[0]
-        # origins_match = True
-        # for attr in prefix_attr_iter:
-        #     if attr.as_path[0] != test_origin:
-        #         origins_match = False
-        #         break
-        # if origins_match:
-        #     prefix.post_origin_as = test_origin
-        #     as_agg_dict.setdefault(test_origin, []).append(prefix)
-        # else:
-        #     print("MOAS!!")
-        #     #prefix.post_origin_as = 0
-        #     #as_agg_dict.setdefault(0, []).append(prefix)
     return as_agg_dict
 
 
 def count_agg_prefixes_by_as(as_agg_count_dict, as_agg_dict):
+    """Updates as_agg_count_dict, the dictionary containing a count of the
+    number of aggregable prefixes advertised by each AS, based on the prefixes
+    in as_agg_dict.
+    
+    Returns the updated as_agg_count_dict, which is also modified in place, so
+    the return doesn't need to be used.
+    
+    """
     for asn in as_agg_dict:
         as_agg_count_dict[asn] = as_agg_count_dict.get(asn, 0) + sum(
             (p.agg_children for p in as_agg_dict[asn]))
