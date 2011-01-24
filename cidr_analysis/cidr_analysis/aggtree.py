@@ -114,7 +114,8 @@ def aggregate_table(infile):
             netsnow.sort(key=lambda x: x[1], reverse=True)
             for k in xrange(len(netsnow)):
                 print netsnow[k]
-            plot_tree.plot_tree(root, os.path.realpath('./plots/'))
+            plot_tree.plot_tree(root, os.path.realpath('./plots/'),
+                os.path.basename(infile.name))
             break
     debug_print(as_agg_dict)
     print_new_cidr_report(as_aggcount_dict, as_netsnow_dict)

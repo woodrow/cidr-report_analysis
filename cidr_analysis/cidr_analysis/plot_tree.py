@@ -3,31 +3,45 @@
 """Functions used to generate graphviz .dot files of the prefix trees for
 visualization of aggregation.
 
+
 """
 
 import os
+import datetime
+
 from prefix_classes import PREFIX_CLASSES
 
-def plot_tree(root, plot_dir):
+def plot_tree(root, plot_dir, rib_name=''):
     peer_set = set()
-    find_all_peers(root, peer_set)
+    as_map = {}
+    nowstr = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+    find_all_peers(root, peer_set, as_map)
     for peer in peer_set:
         dotfile = open(os.path.join(plot_dir,'plot-' + str(peer) +'.dot'), 'w')
         dotfile.write('strict digraph {\n'
-        '\tgraph [ordering=out];'
-        '\n')
+            '\tordering=out;\n')
+        dotfile.write('\tlabel="' + '  /  '.join([
+            'AS ' + str(as_map[peer]),
+            'plot-' + str(peer) +'.dot',
+            rib_name,
+            nowstr]) + '";\n')
+        dotfile.write('\tfontname="Bitstream Vera Sans";\n'
+            '\tfontsize=36;\n'
+            '\tlabelloc=t;\n'
+            '\tlabeljust=l;\n')
         _plot_tree_helper(root, root, peer, dotfile, 0, force=True)
         dotfile.write('}')
         dotfile.close()
 
 
-def find_all_peers(root, peer_set):
+def find_all_peers(root, peer_set, as_map):
     for k in root.attrs:
         peer_set.add(k)
+        as_map[k] = root.attrs[k].as_path[-1]
     if root.ms_0:
-        find_all_peers(root.ms_0, peer_set)
+        find_all_peers(root.ms_0, peer_set, as_map)
     if root.ms_1:
-        find_all_peers(root.ms_1, peer_set)
+        find_all_peers(root.ms_1, peer_set, as_map)
 
 
 def _plot_tree_helper(node, parent_node, peer, dotfile, deep, force=False):
