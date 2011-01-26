@@ -32,6 +32,22 @@ def plot_tree(root, plot_dir, rib_name=''):
         _plot_tree_helper(root, root, peer, dotfile, 0, force=True)
         dotfile.write('}')
         dotfile.close()
+    # finally, print one for the whole tree:
+    dotfile = open(os.path.join(plot_dir,'plot-routeviews.dot'), 'w')
+    dotfile.write('strict digraph {\n'
+        '\tordering=out;\n')
+    dotfile.write('\tlabel="' + '  /  '.join([
+        'AS ' + str(6447) + ' (Routeviews Aggregate)',
+        'plot-routeviews.dot',
+        rib_name,
+        nowstr]) + '";\n')
+    dotfile.write('\tfontname="Bitstream Vera Sans";\n'
+        '\tfontsize=36;\n'
+        '\tlabelloc=t;\n'
+        '\tlabeljust=l;\n')
+    _plot_tree_helper(root, root, None, dotfile, 0, force=True)
+    dotfile.write('}')
+    dotfile.close()
 
 
 def find_all_peers(root, peer_set, as_map):
@@ -45,16 +61,35 @@ def find_all_peers(root, peer_set, as_map):
 
 
 def _plot_tree_helper(node, parent_node, peer, dotfile, deep, force=False):
-    if peer in node.attrs:
+    if peer is None:
         node_label = ' '.join([str(node),
-            '(-' + str(node.attrs[peer].agg_children) + ', +'  + str(node.attrs[peer].adv_children) + ')',
+            '(-' + str(node.agg_children) + ', +'
+            + str(node.adv_children) + ')',
+            '\\n', str(node.origin_as)])
+        node_other = ('penwidth=2, shape=box, style=filled, '
+            'fontname="Bitstream Vera Sans"')
+        if node.is_advertised:
+            node_other += ', fillcolor=palegreen'
+        else:
+            node_other += ', fillcolor=grey'
+        if node.attrs and not node.is_intable:
+            node_other += ', color=goldenrod'
+        elif not node.attrs:
+            node_label = ''
+            node_other = 'shape=point'
+    elif peer in node.attrs:
+        node_label = ' '.join([str(node),
+            '(-' + str(node.attrs[peer].agg_children) + ', +'
+            + str(node.attrs[peer].adv_children) + ')',
             '\\n', str(node.attrs[peer].as_path)])
         node_other = 'penwidth=2, shape=box, style=filled, fontname="Bitstream Vera Sans"'
         if node.attrs[peer].is_advertised:
             node_other += ', fillcolor=palegreen'
         else:
             node_other += ', fillcolor=grey'
-        if node.attrs[peer].prefix_class is PREFIX_CLASSES.LONELY:
+        if not node.attrs[peer].is_intable:
+            node_other += ', color=goldenrod'
+        elif node.attrs[peer].prefix_class is PREFIX_CLASSES.LONELY:
             node_other += ', color=black'
         elif node.attrs[peer].prefix_class is PREFIX_CLASSES.TOP:
             node_other += ', color=blue3'

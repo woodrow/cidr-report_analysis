@@ -24,6 +24,7 @@ class PrefixAttr(object):
         self.prefix_class = prefix_class
         self.adv_children = 0
         self.agg_children = 0
+        self.is_intable = True
 
 
 class CidrPrefix(object):
@@ -44,6 +45,7 @@ class CidrPrefix(object):
         # an empty attrs dict is taken to mean that the prefix isn't advertised
         self.attrs = {}
         self.origin_as = None
+        self.is_intable = False
         # TODO should these be here?
         self.is_advertised = False
         self.adv_children = 0
@@ -68,12 +70,15 @@ class CidrPrefix(object):
         """
         assert peer_ip_int not in self.attrs
         self.attrs[peer_ip_int] = PrefixAttr(as_path)
+        self.is_advertised = True
+        self.is_intable = True
 
 
 def debug_print(string):
     """Quick and dirty bit of indirection to allow debug-related printing to be
     disabled or reidrected later."""
-    print(string)
+    pass
+#    print(string)
 
 
 def aggregate_table(infile):
@@ -88,8 +93,11 @@ def aggregate_table(infile):
         # update_netsnow_count also sets CidrPrefix.origin_as
         # attributes appropriately
         # TODO should origin_as be a separate function?
+        classify_prefixes(root)
         update_netsnow_count(as_netsnow_dict, root)
-        (prefix_agg_list, prefix_adv_list) = classify_prefixes(root)
+        prefix_agg_list = []
+        prefix_adv_list = []
+        gather_prefixes(root, prefix_agg_list, prefix_adv_list)
         as_agg_dict = group_prefixes_by_origin(prefix_agg_list)
         update_aggcount(as_aggcount_dict, as_agg_dict)
 
@@ -107,16 +115,16 @@ def aggregate_table(infile):
             debug_print("{0[1]}\t(-{0[2]}, +{0[3]})\t{0[0]}".format(t))
         debug_print(root.agg_children)
         debug_print(root.adv_children)
-        if root.prefix >> 24 == 17:
-            print prefix_agg_list
-            print as_agg_dict
-            netsnow = [x for x in as_netsnow_dict.iteritems()]
-            netsnow.sort(key=lambda x: x[1], reverse=True)
-            for k in xrange(len(netsnow)):
-                print netsnow[k]
-            plot_tree.plot_tree(root, os.path.realpath('./plots/'),
-                os.path.basename(infile.name))
-            break
+#        if root.prefix >> 24 == 17:
+#            print prefix_agg_list
+#            print as_agg_dict
+#            netsnow = [x for x in as_netsnow_dict.iteritems()]
+#            netsnow.sort(key=lambda x: x[1], reverse=True)
+#            for k in xrange(len(netsnow)):
+#                print netsnow[k]
+#            plot_tree.plot_tree(root, os.path.realpath('./plots/'),
+#                os.path.basename(infile.name))
+#            break
     debug_print(as_agg_dict)
     print_new_cidr_report(as_aggcount_dict, as_netsnow_dict)
 
@@ -267,13 +275,10 @@ def classify_prefixes(prefix, parent=None, ancestor_attrs=None):
     tree to find each leaf node and then work back up the tree comparing each
     child for aggregability against its parents.
 
-    Returns a tuple containing a list of the prefixes in the tree that may be
-    aggregated and a list of the prefixes that must still be announced in a
-    fully aggregated routing table.
+    This function simply updates/classifies the prefixes -- it needs to be
+    walked again to determine which prefixes are advertsied and which are not.
 
     """
-    agg_list = []
-    adv_list = []
     if ancestor_attrs is None:
         ancestor_attrs = {}
 
@@ -288,26 +293,54 @@ def classify_prefixes(prefix, parent=None, ancestor_attrs=None):
 
     if prefix.ms_0:
         if prefix.attrs:
-            (agg, adv) = classify_prefixes(prefix.ms_0, prefix,
-                new_ancestor_attrs)
+            classify_prefixes(prefix.ms_0, prefix, new_ancestor_attrs)
         else:
-            (agg, adv) = classify_prefixes(prefix.ms_0, parent,
-                new_ancestor_attrs)
-        agg_list += agg
-        adv_list += adv
+            classify_prefixes(prefix.ms_0, parent, new_ancestor_attrs)
     if prefix.ms_1:
         if prefix.attrs:
-            (agg, adv) = classify_prefixes(prefix.ms_1, prefix,
-                new_ancestor_attrs)
+            classify_prefixes(prefix.ms_1, prefix, new_ancestor_attrs)
         else:
-            (agg, adv) = classify_prefixes(prefix.ms_1, parent,
-                new_ancestor_attrs)
-        agg_list += agg
-        adv_list += adv
+            classify_prefixes(prefix.ms_1, parent, new_ancestor_attrs)
 
-    # base case -- we've hit bottom and are working back up the tree
+    # here's the base case -- we've hit bottom and are working back up the tree
+
+    # combine children into new virtual prefixes
+    allow_aggregation = True  # TODO debug tool -- move to function arg, etc.
+    if allow_aggregation:
+        if not prefix.attrs and prefix.ms_0 and prefix.ms_1:
+            for k in ancestor_attrs:
+                try:
+                    ms_0_attr = prefix.ms_0.attrs[k]
+                    ms_1_attr = prefix.ms_1.attrs[k]
+                    if ms_0_attr.as_path == ms_1_attr.as_path:
+                        prefix.add_route(k, ms_0_attr.as_path)
+                        # prefix.attrs[k].prefix_class as well as prefix.*
+                        # attributes should be handled by the next recursive
+                        # iteration?
+                        prefix.attrs[k].is_intable = False
+                        prefix.attrs[k].agg_children = sum(
+                            [ms_0_attr.agg_children, ms_1_attr.agg_children, 2])
+                        prefix.attrs[k].adv_children = sum(
+                            [ms_0_attr.adv_children, ms_1_attr.adv_children])
+                        ms_0_attr.is_advertised = False
+                        ms_1_attr.is_advertised = False
+                        ms_0_attr.prefix_class = PREFIX_CLASSES.DEAGG
+                        ms_1_attr.prefix_class = PREFIX_CLASSES.DEAGG
+
+                        # TODO better comment here about why this is okay to do
+                        # for the entire prefix instead of just for peer k
+                        prefix.is_intable = False
+                        prefix.ms_0.is_advertised = False
+                        prefix.ms_1.is_advertised = False
+                        prefix.ms_0.prefix_class = PREFIX_CLASSES.DEAGG
+                        prefix.ms_1.prefix_class = PREFIX_CLASSES.DEAGG
+                except KeyError:
+                    pass
+
+    # classify
     if parent and prefix.attrs:
         fully_aggregable = True
+        aggregation_visible = False
         peer_set = set(ancestor_attrs).union(set(prefix.attrs))
         for k in peer_set:  # TODO could be simplified to just ancestor_attrs
             if k not in ancestor_attrs:
@@ -316,37 +349,47 @@ def classify_prefixes(prefix, parent=None, ancestor_attrs=None):
             else:
                 anc_attr = ancestor_attrs[k]
                 try:
-                    des_attr = prefix.attrs[k]
+                    prefix_attr = prefix.attrs[k]
                     if anc_attr.prefix_class == PREFIX_CLASSES.LONELY:
                         anc_attr.prefix_class = PREFIX_CLASSES.TOP
-                    if anc_attr.as_path == des_attr.as_path:
-                        des_attr.prefix_class = PREFIX_CLASSES.DEAGG
-                        des_attr.is_advertised = False
-                        anc_attr.agg_children += 1
+                    if anc_attr.as_path == prefix_attr.as_path:
+                        prefix_attr.prefix_class = PREFIX_CLASSES.DEAGG
+                        prefix_attr.is_advertised = False
+                        prefix_attr.agg_children += 1
+                        aggregation_visible = True
                     else:
-                        des_attr.prefix_class = PREFIX_CLASSES.DELEG
-                        des_attr.is_advertised = True
+                        prefix_attr.prefix_class = PREFIX_CLASSES.DELEG
+                        prefix_attr.is_advertised = True
                         anc_attr.adv_children += 1
                         fully_aggregable = False
-                    anc_attr.agg_children += des_attr.agg_children
-                    anc_attr.adv_children += des_attr.adv_children
+                    anc_attr.agg_children += prefix_attr.agg_children
+                    anc_attr.adv_children += prefix_attr.adv_children
                 except KeyError:
                     pass
 
         # time to make a generalization about the prefix based on each
         # table's view of that prefix
-        if fully_aggregable:
-            agg_list.append(prefix)
+#        if fully_aggregable
+        if aggregation_visible:
             prefix.is_advertised = False
             parent.agg_children += 1
         else:
-            adv_list.append(prefix)
             prefix.is_advertised = True
             parent.adv_children += 1
         parent.agg_children += prefix.agg_children
         parent.adv_children += prefix.adv_children
 
-    return (agg_list, adv_list)
+
+def gather_prefixes(root, agg_list, adv_list):
+    if root.ms_0:
+        gather_prefixes(root.ms_0, agg_list, adv_list)
+    if root.ms_1:
+        gather_prefixes(root.ms_1, agg_list, adv_list)
+    if root.attrs:
+        if root.is_advertised:
+            adv_list.append(root)
+        else:
+            agg_list.append(root)
 
 
 def group_prefixes_by_origin(prefix_agg_list):
@@ -371,9 +414,9 @@ def update_aggcount(as_aggcount_dict, as_agg_dict):
 
     """
     for asn in as_agg_dict:
-        as_aggcount_dict[asn] = as_aggcount_dict.get(asn, 0) + \
-            sum((p.agg_children for p in as_agg_dict[asn])) + \
-            len(as_agg_dict[asn])
+        as_aggcount_dict[asn] = sum([as_aggcount_dict.get(asn, 0),
+#            sum((p.agg_children for p in as_agg_dict[asn])),
+            len([x for x in as_agg_dict[asn] if x.is_intable])])
             # the last line -- len(...) above includes the aggregate prefixes
             # themselves. not sure if this is the correct way to approach this
             # TODO look into this
@@ -400,8 +443,9 @@ def update_netsnow_count(as_netsnow_dict, root):
         else:  # MOAS -- TODO find a better solution
             # TODO consider origin_as = set/list of origins, instead of -1
             root.origin_as = -1
-        as_netsnow_dict[root.origin_as] = as_netsnow_dict.get(
-            root.origin_as, 0) + 1
+        if root.is_intable:
+            as_netsnow_dict[root.origin_as] = as_netsnow_dict.get(
+                root.origin_as, 0) + 1
     if root.ms_0:
         update_netsnow_count(as_netsnow_dict, root.ms_0)
     if root.ms_1:
