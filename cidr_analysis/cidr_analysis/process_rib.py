@@ -12,7 +12,6 @@ STRAIGHTENRV_PATH = os.path.realpath(
     '../../rv2atoms/rv2atoms-0.5/bin/straightenRV')
 
 def process_rib(full_path, include_peer_ip=True):
-    print(STRAIGHTENRV_PATH)
     dir_name = os.path.dirname(full_path)
     base_name = '.'.join(os.path.basename(full_path).split('.')[:-1])
     # full_name contains the full path to the RIB file without an extension
@@ -23,7 +22,7 @@ def process_rib(full_path, include_peer_ip=True):
     txt_name = full_name + '.txt'
 
     # generate routing table txt file
-    print("Generating .txt routing table.")
+    print("Generating .txt routing table: {0}".format(txt_name))
     if full_name.find('oix-full') == -1:
         # new (MRT) table
         # TODO capture debugging output
