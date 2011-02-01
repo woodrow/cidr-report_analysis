@@ -21,7 +21,7 @@ def usage():
 
 def main():
     if len(sys.argv) == 2:
-        full_path_to_rib = os.path.realpath(sys.argv[1])
+        full_path_to_rib = os.path.abspath(sys.argv[1])
         process_rib.process_rib(full_path_to_rib)
     else:
         usage()
