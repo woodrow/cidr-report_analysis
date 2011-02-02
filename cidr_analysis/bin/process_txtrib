@@ -25,7 +25,7 @@ def usage():
 
 def main():
     if len(sys.argv) == 2:
-        full_path = os.path.realpath(sys.argv[1])
+        full_path = os.path.abspath(sys.argv[1])
         process_txtrib.process_txtrib(full_path)
     else:
         usage()
