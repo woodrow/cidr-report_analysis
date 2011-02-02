@@ -2,6 +2,7 @@
 
 from cidr_analysis import aspath
 import os
+import subprocess
 
 def postprocess_rib(rib_filename, norm_filename, peers_filename,
     ppapp_filename, include_peer_ip):
@@ -9,6 +10,8 @@ def postprocess_rib(rib_filename, norm_filename, peers_filename,
     ppapp = {}  # prefixes per as, per peer
     ppp = {}  # prefixes per peer
     peer_asns = {}
+    null_peer_as_cache = {}
+    null_origin_as_cache = {}
 
     f = open(rib_filename, 'r')
     outfile = open(norm_filename, 'w')
@@ -22,6 +25,24 @@ def postprocess_rib(rib_filename, norm_filename, peers_filename,
             peer_ip = None
             as_start_index = 1
         raw_as_path = components[as_start_index:]
+        if raw_as_path[0] == '-':  # null AS -- find observer and peer ASNs
+            if components[0] not in null_origin_as_cache:
+                output = subprocess.Popen(
+                    "grep -P -m 1 '{0} (\d+\.)+\d+ \d+' {1}".format(
+                    components[0], rib_filename), shell=True,
+                    stdout=subprocess.PIPE).communicate()[0]
+                null_origin_as_cache[components[0]] = output.split()[-1]
+            raw_as_path = [null_origin_as_cache[components[0]]]
+            if include_peer_ip:
+                if peer_ip not in null_peer_as_cache:
+                    output = subprocess.Popen(
+                        "grep -P -m 1 '{0} \d+' {1}".format(
+                        peer_ip, rib_filename), shell=True,
+                        stdout=subprocess.PIPE).communicate()[0]
+                    null_peer_as_cache[peer_ip] = output.split()[2]
+                raw_as_path.insert(0, null_peer_as_cache[peer_ip])
+            print("NULL AS_PATH: replacing '{0}' with {1}".format(
+                line.strip(), raw_as_path))
         raw_as_path.reverse()
         norm_path = aspath.normalize_as_path(raw_as_path)
 
@@ -92,21 +113,18 @@ def process_txtrib(full_path, include_peer_ip=True):
     ppapp_name = full_name + '.ppapp' #ppapp = prefixes per as, per peer
 
     print("Postprocessing RIB and generating .normrib, .peers, and .ppapp "
-        "files.")
+        "files for {0}.".format(txt_name))
     postprocess_rib(txt_name, normrib_name, peers_name, ppapp_name,
         include_peer_ip)
     # TODO check to see that the files txt_name and normrib_name are rougly
     #      similar in size such that there wasn't a big error
 
-    print("Sorting RIB by prefix first octet.")
     os.system(
         'sort -s -n -k 1,1 -t . {0} > {0}.sorted; mv {0}.sorted {0}'.format(
         normrib_name))
-    print("Sorting .peers file.")
     os.system(
         'sort -r -n -k 1,1 {0} > {0}.sorted; mv {0}.sorted {0}'.format(
         peers_name))
-    print("Sorting .ppapp file.")
     os.system(
         'sort -n -k 2,2 -k 3,3 {0} > {0}.sorted; mv {0}.sorted {0}'.format(
         ppapp_name))
