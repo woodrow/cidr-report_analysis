@@ -47,7 +47,6 @@ def postprocess_rib(rib_filename, norm_filename, peers_filename,
             raw_as_path.reverse()
             norm_path = aspath.normalize_as_path(raw_as_path)
         except StandardError as e:
-            print(e)
             norm_path = None
 
         if norm_path:
@@ -75,7 +74,8 @@ def postprocess_rib(rib_filename, norm_filename, peers_filename,
                         norm_path[0], 1)
                     ppp.setdefault(norm_path[-1], 1)
         else:
-            print("dropping line due to invalid AS_PATH:\n  {0}".format(line))
+            print("dropping line due to invalid AS_PATH:\n  {0}".format(
+                line.strip()))
     outfile.close()
     f.close()
 
