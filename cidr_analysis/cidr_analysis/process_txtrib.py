@@ -3,7 +3,8 @@
 from cidr_analysis import aspath
 import os
 
-def postprocess_rib(rib_filename, norm_filename, include_peer_ip):
+def postprocess_rib(rib_filename, norm_filename, peers_filename,
+    ppapp_filename, include_peer_ip):
     # ppapp and ppp are keyed on peer_ip, or peer asn if there is no peer_ip
     ppapp = {}  # prefixes per as, per peer
     ppp = {}  # prefixes per peer
@@ -23,6 +24,7 @@ def postprocess_rib(rib_filename, norm_filename, include_peer_ip):
         raw_as_path = components[as_start_index:]
         raw_as_path.reverse()
         norm_path = aspath.normalize_as_path(raw_as_path)
+
         if norm_path:
             if include_peer_ip:
                 outfile.write("{0:<18} {1:<15} {2}\n".format(
@@ -52,9 +54,8 @@ def postprocess_rib(rib_filename, norm_filename, include_peer_ip):
     outfile.close()
     f.close()
 
-    ppapp_file = open(norm_filename.rpartition('.')[0]+'.ppapp','w')
-    peers_file = open(norm_filename.rpartition('.')[0]+'.peers','w')
-
+    ppapp_file = open(ppapp_filename,'w')
+    peers_file = open(peers_filename,'w')
     if include_peer_ip:
         #   ppapp_file.write("# prefix_count origin_as peer_as peer_ip\n")
         #   peers_file.write("# prefix_count peer_as peer_ip\n")
@@ -75,9 +76,8 @@ def postprocess_rib(rib_filename, norm_filename, include_peer_ip):
         for peer_asn in ppp:
             peers_file.write('{0:>8} {1:>5}\n'.format(
                 ppp[peer_asn], peer_asn))
-
-    peers_file.close()
     ppapp_file.close()
+    peers_file.close()
 
 def process_txtrib(full_path, include_peer_ip=True):
     dir_name = os.path.dirname(full_path)
@@ -93,7 +93,8 @@ def process_txtrib(full_path, include_peer_ip=True):
 
     print("Postprocessing RIB and generating .normrib, .peers, and .ppapp "
         "files.")
-    postprocess_rib(txt_name, normrib_name, include_peer_ip)
+    postprocess_rib(txt_name, normrib_name, peers_name, ppapp_name,
+        include_peer_ip)
     # TODO check to see that the files txt_name and normrib_name are rougly
     #      similar in size such that there wasn't a big error
 
