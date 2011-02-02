@@ -74,8 +74,7 @@ def postprocess_rib(rib_filename, norm_filename, peers_filename,
                         norm_path[0], 1)
                     ppp.setdefault(norm_path[-1], 1)
         else:
-            print("dropping line due to invalid AS_PATH:\n  {0}".format(
-                line.strip()))
+            print("INVALID AS_PATH: dropping '{0}'".format(line.strip()))
     outfile.close()
     f.close()
 
