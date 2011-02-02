@@ -16,35 +16,39 @@ def postprocess_rib(rib_filename, norm_filename, peers_filename,
     f = open(rib_filename, 'r')
     outfile = open(norm_filename, 'w')
     for line in f:
-        components = line.split()
-        [prefix, prefix_len] = components[0].split('/')
-        if include_peer_ip:
-            peer_ip = components[1]
-            as_start_index = 2
-        else:
-            peer_ip = None
-            as_start_index = 1
-        raw_as_path = components[as_start_index:]
-        if raw_as_path[0] == '-':  # null AS -- find observer and peer ASNs
-            if components[0] not in null_origin_as_cache:
-                output = subprocess.Popen(
-                    "grep -P -m 1 '{0} (\d+\.)+\d+ \d+' {1}".format(
-                    components[0], rib_filename), shell=True,
-                    stdout=subprocess.PIPE).communicate()[0]
-                null_origin_as_cache[components[0]] = output.split()[-1]
-            raw_as_path = [null_origin_as_cache[components[0]]]
+        try:
+            components = line.split()
+            [prefix, prefix_len] = components[0].split('/')
             if include_peer_ip:
-                if peer_ip not in null_peer_as_cache:
+                peer_ip = components[1]
+                as_start_index = 2
+            else:
+                peer_ip = None
+                as_start_index = 1
+            raw_as_path = components[as_start_index:]
+            if raw_as_path[0] == '-':  # null AS -- find observer and peer ASNs
+                if components[0] not in null_origin_as_cache:
                     output = subprocess.Popen(
-                        "grep -P -m 1 '{0} \d+' {1}".format(
-                        peer_ip, rib_filename), shell=True,
+                        "grep -P -m 1 '{0} (\d+\.)+\d+ \d+' {1}".format(
+                        components[0], rib_filename), shell=True,
                         stdout=subprocess.PIPE).communicate()[0]
-                    null_peer_as_cache[peer_ip] = output.split()[2]
-                raw_as_path.insert(0, null_peer_as_cache[peer_ip])
-            print("NULL AS_PATH: replacing '{0}' with {1}".format(
-                line.strip(), raw_as_path))
-        raw_as_path.reverse()
-        norm_path = aspath.normalize_as_path(raw_as_path)
+                    null_origin_as_cache[components[0]] = output.split()[-1]
+                raw_as_path = [null_origin_as_cache[components[0]]]
+                if include_peer_ip:
+                    if peer_ip not in null_peer_as_cache:
+                        output = subprocess.Popen(
+                            "grep -P -m 1 '{0} \d+' {1}".format(
+                            peer_ip, rib_filename), shell=True,
+                            stdout=subprocess.PIPE).communicate()[0]
+                        null_peer_as_cache[peer_ip] = output.split()[2]
+                    raw_as_path.insert(0, null_peer_as_cache[peer_ip])
+                print("NULL AS_PATH: replacing '{0}' with {1}".format(
+                    line.strip(), raw_as_path))
+            raw_as_path.reverse()
+            norm_path = aspath.normalize_as_path(raw_as_path)
+        except StandardError as e:
+            print(e)
+            norm_path = None
 
         if norm_path:
             if include_peer_ip:
@@ -52,11 +56,11 @@ def postprocess_rib(rib_filename, norm_filename, peers_filename,
                     '/'.join([prefix, prefix_len]), peer_ip,
                     aspath.path_to_string(norm_path)))
                 try:
-                    ppapp.setdefault(peer_ip,{})[norm_path[0]] += 1
+                    ppapp.setdefault(peer_ip, {})[norm_path[0]] += 1
                     ppp[peer_ip] += 1
                 except KeyError:
-                    ppapp.setdefault(peer_ip,{}).setdefault(norm_path[0], 1)
-                    ppp.setdefault(peer_ip,1)
+                    ppapp.setdefault(peer_ip, {}).setdefault(norm_path[0], 1)
+                    ppp.setdefault(peer_ip, 1)
                 if peer_ip not in peer_asns:
                     peer_asns[peer_ip] = norm_path[-1]
             else:
@@ -64,12 +68,12 @@ def postprocess_rib(rib_filename, norm_filename, peers_filename,
                     '/'.join([prefix, prefix_len]),
                     aspath.path_to_string(norm_path)))
                 try:
-                    ppapp.setdefault(norm_path[-1],{})[norm_path[0]] += 1
+                    ppapp.setdefault(norm_path[-1], {})[norm_path[0]] += 1
                     ppp[norm_path[-1]] += 1
                 except KeyError:
-                    ppapp.setdefault(norm_path[-1],{}).setdefault(
+                    ppapp.setdefault(norm_path[-1], {}).setdefault(
                         norm_path[0], 1)
-                    ppp.setdefault(norm_path[-1],1)
+                    ppp.setdefault(norm_path[-1], 1)
         else:
             print("dropping line due to invalid AS_PATH:\n  {0}".format(line))
     outfile.close()
