@@ -3,15 +3,75 @@
 DFZ_ASNS = [209, 701, 1239, 1299, 2828, 2914, 3356, 3549, 3561, 6453, 6461,
     7018]
 
+PRIVATE_AS_START = 64512
+PRIVATE_AS_END = 65551
+
 def normalize_as_path(path):
+    # find AS_CONFED_{SETS,SEQUENCES}
+    path = remove_private_confed_paths(path)
     # remove AS_SETs and convert to ints
     norm_path = [extract_asn(e) for e in path]
     # remove private ASNs
-    norm_path = [e for e in norm_path if e < 64512 or e > 65551]
+    norm_path = [e for e in norm_path
+        if e < PRIVATE_AS_START or e > PRIVATE_AS_END]
     norm_path = deprepend_as_path(norm_path)
     # TODO how to deal with 0s in AS_PATH?
     norm_path = deloop_as_path(norm_path)
     return norm_path
+
+
+def remove_private_confed_paths(path):
+    """Remove AS_CONFED_SEQUENCEs (65001 65002) and AS_CONFED_SETs [65001,65002]
+    containing all private AS numbers before continuing. If the numbers aren't
+    all private, these SETs/SEQUENCEs are left in, incluidng the syntax, which
+    will throw a ValueError when extract_asn is run on them.
+
+    """
+    start_confed_seq = -1
+    end_confed_seq = -1
+    deletable_indices = []
+
+    for i in xrange(len(path)):
+        # check for private AS_CONFED_SET (i.e. '[65000,65001]')
+        if -1 < path[i].find('[') < path[i].find(']'):
+            if path[i].find('[') == 0 and path[i].find(']') == len(path[i])-1:
+                components = path[i][1:-1].split(',')
+                try:
+                    if all((PRIVATE_AS_START <= int(c) <= PRIVATE_AS_END
+                        for c in components)):
+                        deletable_indices.append(i)
+                except ValueError:
+                    pass
+
+        # check for private AS_CONFED_SEQ (i.e. '(65000 65001)')
+        if path[i].find('(') > -1:
+            start_confed_seq = i
+        if path[i].find(')') > -1:
+            end_confed_seq = i
+        if -1 < start_confed_seq <= end_confed_seq:
+            removable = True
+            for j in xrange(start_confed_seq,end_confed_seq+1):
+                as_str = path[j]
+                if j == start_confed_seq:
+                    as_str = as_str[1:]
+                if j == end_confed_seq:
+                    as_str = as_str[:-1]
+                try:
+                    if not (PRIVATE_AS_START <= int(as_str) <= PRIVATE_AS_END):
+                        removable = False
+                        break
+                except ValueError:
+                    removable = False
+                    break
+            if removable:
+                deletable_indices += range(start_confed_seq, end_confed_seq+1)
+            start_confed_seq = -1
+            end_confed_seq = -1
+
+    deletable_indices.sort(reverse=True)
+    for index in deletable_indices:
+        del path[index]
+    return path
 
 
 def extract_asn(s):

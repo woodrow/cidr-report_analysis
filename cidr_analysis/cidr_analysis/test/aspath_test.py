@@ -3,6 +3,70 @@
 import unittest
 from cidr_analysis import aspath
 
+class RemovePrivateConfedPaths(unittest.TestCase):
+
+    def test_private_as_confed_seq(self):
+        # from rib.20091016.0000.txt
+        self.assertEqual(['13237', '13101', '8495', '8495', '8495', '196624'],
+            aspath.remove_private_confed_paths(
+            '13237 (64600) 13101 8495 8495 8495 196624'.split()))
+        self.assertEqual(['13237', '20485', '41209', '196673'],
+            aspath.remove_private_confed_paths(
+            '13237 (64600 65033 65044) 20485 41209 196673'.split()))
+        self.assertEqual(['13237', '20485', '29049', '196821'],
+            aspath.remove_private_confed_paths(
+            '13237 (64600 65044) 20485 29049 196821'.split()))
+
+    def test_private_as_confed_set(self):
+        # based on test_private_as_confed_seq examples
+        self.assertEqual(['13237', '13101', '8495', '8495', '8495', '196624'],
+            aspath.remove_private_confed_paths(
+            '13237 [64600] 13101 8495 8495 8495 196624'.split()))
+        self.assertEqual(['13237', '20485', '41209', '196673'],
+            aspath.remove_private_confed_paths(
+            '13237 [64600,65033,65044] 20485 41209 196673'.split()))
+        self.assertEqual(['13237', '20485', '29049', '196821'],
+            aspath.remove_private_confed_paths(
+            '13237 [64600,65044] 20485 29049 196821'.split()))
+
+    def test_non_private_confed_seq(self):
+        # based on test_private_as_confed_seq examples
+        self.assertEqual(
+            ['13237', '13101', '(8495)', '8495', '8495', '196624'],
+            aspath.remove_private_confed_paths(
+            '13237 (64600) 13101 (8495) 8495 8495 196624'.split()))
+        self.assertEqual(
+            ['13237', '(64600', '3', '65044)', '20485', '41209', '196673'], aspath.remove_private_confed_paths(
+            '13237 (64600 3 65044) 20485 41209 196673'.split()))
+        self.assertEqual(
+            ['13237', '(64600', '3356)', '20485', '29049', '196821'],
+            aspath.remove_private_confed_paths(
+            '13237 (64600 3356) 20485 29049 196821'.split()))
+
+    def test_non_private_confed_set(self):
+        # based on test_private_as_confed_seq examples
+        self.assertEqual(
+            ['13237', '13101', '[3]', '8495', '8495', '196624'],
+            aspath.remove_private_confed_paths(
+            '13237 [64600] 13101 [3] 8495 8495 196624'.split()))
+        self.assertEqual(
+            ['13237', '[64600,3,65044]', '20485', '41209', '196673'], aspath.remove_private_confed_paths(
+            '13237 [64600,3,65044] 20485 41209 196673'.split()))
+        self.assertEqual(
+            ['13237', '[64600,3356]', '20485', '29049', '196821'],
+            aspath.remove_private_confed_paths(
+            '13237 [64600,3356] 20485 29049 196821'.split()))
+
+    def test_mixed_seq_set(self):
+        # based on test_private_as_confed_seq examples
+        self.assertEqual(['13237', '20485', '41209', '196673'],
+            aspath.remove_private_confed_paths(
+            '13237 (64600 65033 65044) 20485 [65000] 41209 196673'.split()))
+        self.assertEqual(['13237', '20485', '29049', '196821'],
+            aspath.remove_private_confed_paths(
+            '13237 (64600 65044) 20485 29049 [65000,65001] 196821'.split()))
+
+
 class TestExtractASN(unittest.TestCase):
 
     def test_illegal_brackets(self):
@@ -67,9 +131,6 @@ class TestNormalizeASPath(unittest.TestCase):
             '15254', '15254']
         norm_path = [0, 4006, 209, 15254]
         self.assertEqual(norm_path, aspath.normalize_as_path(path))
-        # and also with ints
-        path = [0, 4006, 209, 15254, 15251, 15254, 15254, 15254, 15254]
-        self.assertEqual(norm_path, aspath.normalize_as_path(path))
 
     def test_composed_cases(self):
         path = ['1','1','{1}', '2', '3', '3', '2', '3', '{2}', '{2,3}']
@@ -81,3 +142,10 @@ class TestNormalizeASPath(unittest.TestCase):
         path = ['{2,3}', '{3,4}', '{4,5}', '{5,6}']
         norm_path = [0]
         self.assertEqual(norm_path, aspath.normalize_as_path(path))
+        # confed_set & confed_seq
+        path = ['1','1','{1}', '2', '3', '3', '(65000', '65001)', '2']
+        norm_path = [1, 2]
+        self.assertEqual(norm_path, aspath.normalize_as_path(path))
+        path = ['1','1','{1}', '2', '3', '3', '(6500', '6501)', '2']
+        norm_path = None
+        self.assertRaises(ValueError, aspath.normalize_as_path, path)
