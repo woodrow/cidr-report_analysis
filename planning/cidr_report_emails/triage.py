@@ -38,11 +38,14 @@ def process_files(files, resume_index, resume_line):
                     url_content = ''.join(response.readlines())
                     [header, body] = re.search((
                         '<!--X-Subject-Header-Begin-->(.*?)'
-                        '<!--X-Subject-Header-End-->.*?<pre>(.*?)<\/pre>'),
+                        '<!--X-Subject-Header-End-->.*?'
+                        '<!--X-Body-of-Message-->(.*?)'
+                        '<!--X-Body-of-Message-End-->'),
                         url_content, re.DOTALL).groups()
                     header = re.sub('<.*?>','', header)
                     header = re.sub('\n+', '\n', header)
                     header.strip()
+                    body = re.sub('<.*?>','', body)
                     file_str += '\n'.join([header, body])
 
                 else:  # new-style archives
@@ -87,7 +90,11 @@ def process_files(files, resume_index, resume_line):
                         elif user_input[0] == 'v':
                             pydoc.pager(file_str)
 
-        raise KeyboardInterrupt  # done
+        # done -- clear data to be pickled, as there's no state left to save
+        files = []
+        fi = -1
+        li = -1
+        raise KeyboardInterrupt
     except (KeyboardInterrupt, EOFError):
         pickle_file = open('triage_state.pickle', 'w')
         resume_dict = {}
