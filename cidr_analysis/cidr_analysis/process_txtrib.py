@@ -44,8 +44,8 @@ def postprocess_rib(rib_filename, norm_filename, peers_filename,
                     raw_as_path.insert(0, null_peer_as_cache[peer_ip])
                 print("NULL AS_PATH: replacing '{0}' with {1}".format(
                     line.strip(), raw_as_path))
-            raw_as_path.reverse()
             norm_path = aspath.normalize_as_path(raw_as_path)
+            raw_as_path.reverse()
         except StandardError as e:
             norm_path = None
 
