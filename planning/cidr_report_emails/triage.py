@@ -12,7 +12,6 @@ SUBDIR = 'triage_output'
 
 
 def process_files(files, resume_index, resume_line):
-    print(resume_index, resume_line)
     new_archive_cache = {}
     try:
         for fi in xrange(max(0, resume_index), len(files)):
