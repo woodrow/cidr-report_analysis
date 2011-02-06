@@ -13,35 +13,39 @@ def parse_file(filename):
     block_startline = 1
     for line in f:
         line_count += 1
-        if re.match('(From .*? (?:Mon|Tue|Wed|Thu|Fri|Sat|Sun) +' 
+        if re.match('(From .*? (?:Mon|Tue|Wed|Thu|Fri|Sat|Sun) +'
             '(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec) +'
             '\d{1,2} +\d{2}\:\d{2}\:\d{2} +\d{4})\n', line):
-            if grepblock:
-                # strip tabs
-                grepblock = re.sub("\t", " ", grepblock)
-    
-                # group 1: date. group 2: sender name. group 3: subject
-                matches = re.search('((?:Mon|Tue|Wed|Thu|Fri|Sat|Sun) +'
-                    '(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec) +'
-                    '\d{1,2} +\d{2}\:\d{2}\:\d{2} +\d{4})\n'
-                    '.*\(([^\)]*)\).*\n.*\nSubject: ([^\n]*)\n',
-                    grepblock,flags=re.M|re.I)
-                if matches:
-                    groups = matches.groups()
-                    
-                    date = datetime.datetime.strptime(groups[0], 
-                        '%a %b %d %H:%M:%S %Y')
-                    subject = groups[2]
-                    author = groups[1]
-                    range_tuple = (block_startline, line_count-1)
-                    output.append(
-                        (date, subject, author, filename, range_tuple))
+            process_grepblock(grepblock, block_startline, line_count, output)
             # reset for the next email
             grepblock = ''
             block_startline = line_count
         grepblock += line
+    process_grepblock(grepblock, block_startline, line_count, output)
     f.close()
     return output
+
+def process_grepblock(grepblock, block_startline, line_count, output):
+    if grepblock:
+        # strip tabs
+        grepblock = re.sub("\t", " ", grepblock)
+
+        # group 1: date. group 2: sender name. group 3: subject
+        matches = re.search('((?:Mon|Tue|Wed|Thu|Fri|Sat|Sun) +'
+            '(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec) +'
+            '\d{1,2} +\d{2}\:\d{2}\:\d{2} +\d{4})\n'
+            '.*\(([^\)]*)\).*\n.*\nSubject: ([^\n]*)\n',
+            grepblock,flags=re.M|re.I)
+        if matches:
+            groups = matches.groups()
+
+            date = datetime.datetime.strptime(groups[0],
+                '%a %b %d %H:%M:%S %Y')
+            subject = groups[2]
+            author = groups[1]
+            range_tuple = (block_startline, line_count-1)
+            output.append(
+                (date, subject, author, filename, range_tuple))
 
 if __name__ == '__main__':
     if len(sys.argv) > 1:

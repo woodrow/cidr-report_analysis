@@ -4,6 +4,7 @@
 2011-01-21T22:00:00	The Cidr Report	cidr-report at potaroo.net	new_indexes/201101.txt:52429-52809
 2011-01-14T22:00:00	The Cidr Report	cidr-report at potaroo.net	new_indexes/201101.txt:36405-36788
 2011-01-07T22:00:00	The Cidr Report	cidr-report at potaroo.net	new_indexes/201101.txt:16686-17069
+2010-12-31T22:00:00	The Cidr Report	cidr-report at potaroo.net	new_indexes/201012.txt:62825-63191
 2010-12-24T22:00:00	The Cidr Report	cidr-report at potaroo.net	new_indexes/201012.txt:57623-57981
 2010-12-17T22:00:00	The Cidr Report	cidr-report at potaroo.net	new_indexes/201012.txt:44888-45250
 2010-12-10T22:00:00	The Cidr Report	cidr-report at potaroo.net	new_indexes/201012.txt:31802-32159

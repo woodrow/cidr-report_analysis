@@ -1040,6 +1040,7 @@
 2011-01-13T22:19:10	Is Cisco equpiment de facto for you?	Jack Bates	new_indexes/201101.txt:34798-34832
 2011-01-13T22:14:20	Is NAT can provide some kind of protection?	Lamar Owen	new_indexes/201101.txt:34778-34797
 2011-01-13T22:13:38	Is Cisco equpiment de facto for you?	b nickell	new_indexes/201101.txt:34751-34777
+2011-01-13T22:02:46	Call for Papers: RAID'11	Guofei Gu	new_indexes/201101.txt:87135-87320
 2011-01-13T21:32:17	Is NAT can provide some kind of protection?	Owen DeLong	new_indexes/201101.txt:34718-34750
 2011-01-13T21:21:22	Is NAT can provide some kind of protection?	Lamar Owen	new_indexes/201101.txt:34702-34717
 2011-01-13T21:20:57	Is Cisco equpiment de facto for you?	Michael Ruiz	new_indexes/201101.txt:34595-34701
@@ -1780,6 +1781,7 @@
 2011-01-01T10:56:53	What sflow software - Manage Engine Net flow analyzer or Plixer	Alex Pinto	new_indexes/201101.txt:22-50
 2011-01-01T03:36:15	Happy New Year: Crazy Wiring	Jay Ashworth	new_indexes/201101.txt:1-21
 2010-12-31T22:00:04	BGP Update Report	cidr-report at potaroo.net	new_indexes/201012.txt:62732-62824
+2010-12-31T22:00:00	The Cidr Report	cidr-report at potaroo.net	new_indexes/201012.txt:62825-63191
 2010-12-31T20:17:57	Modify BGP AS Path	Scott Morris	new_indexes/201012.txt:62676-62731
 2010-12-31T19:08:04	POE bump-in-the-wire conversion	Michael Loftis	new_indexes/201012.txt:62587-62675
 2010-12-31T18:27:31	Modify BGP AS Path	Tarig Ahmed	new_indexes/201012.txt:62547-62586
@@ -3277,6 +3279,7 @@
 2010-11-30T20:34:27	Level 3 Communications Issues Statement Concerning Comcast's	Christian	new_indexes/201011.txt:52563-52757
 2010-11-30T20:32:19	Ratios & peering [was: Level 3 Communications Issues Statement	Leo Bicknell	new_indexes/201011.txt:52516-52562
 2010-11-30T20:30:20	Level 3 Communications Issues Statement Concerning Comcast's	Leo Bicknell	new_indexes/201011.txt:52389-52515
+2010-11-30T20:27:11	Four additional /8s allocated in November 2010	Leo Vegoda	new_indexes/201011.txt:53035-53082
 2010-11-30T20:17:22	Level 3 Communications Issues Statement Concerning Comcast's	William Cooper	new_indexes/201011.txt:52363-52388
 2010-11-30T19:46:27	Ratios & peering [was: Level 3 Communications Issues Statement	Matthew Petach	new_indexes/201011.txt:52321-52362
 2010-11-30T19:45:53	TWT - Comcast congestion 	Kevin Oberman	new_indexes/201011.txt:52276-52320
@@ -4363,6 +4366,7 @@
 2010-10-31T16:31:47	Failover IPv6 with multiple PA prefixes (Was: IPv6 fc00::/7 -	Owen DeLong	new_indexes/201010.txt:68937-68993
 2010-10-31T14:22:32	Failover IPv6 with multiple PA prefixes (Was: IPv6 fc00::/7 -	Valdis.Kletnieks at vt.edu	new_indexes/201010.txt:68885-68936
 2010-10-31T14:21:44	Topic: Inter-AS BGP Local Preference Matrix	Valdis.Kletnieks at vt.edu	new_indexes/201010.txt:68851-68884
+2010-10-31T13:02:54	APRICOT 2011 Call For Papers	Jonny Martin	new_indexes/201010.txt:69446-69535
 2010-10-30T23:24:42	Route hijacking	Geoff Huston	new_indexes/201010.txt:68819-68850
 2010-10-30T21:26:21	Mystery open source switching company claims top-of-rack price	Kevin Oberman	new_indexes/201010.txt:68788-68818
 2010-10-30T21:14:56	IPv6 Routing table will be bloated?	Frank Bulk - iName.com	new_indexes/201010.txt:68747-68787
@@ -5688,6 +5692,7 @@
 2010-10-01T00:54:18	RIP Justification	Guerra, Ruben	new_indexes/201010.txt:86-116
 2010-10-01T00:17:45	BGP next-hop	Christian Martin	new_indexes/201010.txt:36-85
 2010-10-01T00:01:11	BGP next-hop	Brett Watson	new_indexes/201010.txt:1-35
+2010-09-30T23:57:52	BGP next-hop	Randy Bush	new_indexes/201009.txt:52817-52845
 2010-09-30T23:32:17	BGP next-hop	Heath Jones	new_indexes/201009.txt:52784-52816
 2010-09-30T23:32:13	BGP next-hop	Richard A Steenbergen	new_indexes/201009.txt:52737-52783
 2010-09-30T23:06:22	RIP Justification	Heath Jones	new_indexes/201009.txt:52705-52736
@@ -6677,6 +6682,7 @@
 2010-09-01T09:43:23	quagga ospfd scaling	Randy Bush	new_indexes/201009.txt:80-90
 2010-09-01T06:34:55	Q-In-Q using M7i and CISCO Switch	sthaug at nethelp.no	new_indexes/201009.txt:37-79
 2010-09-01T00:25:07	Q-In-Q using M7i and CISCO Switch	Giuliano Cardozo Medalha	new_indexes/201009.txt:1-36
+2010-08-28T22:06:32	Comcast enables 6to4 relays	Franck Martin	new_indexes/201008.txt:41619-41664
 2010-08-28T17:49:30	Comcast enables 6to4 relays	John Jason Brzozowski	new_indexes/201008.txt:41565-41618
 2010-08-28T17:47:00	Did your BGP crash today?	James Hess	new_indexes/201008.txt:41504-41564
 2010-08-28T15:58:54	Did your BGP crash today?	Brett Frankenberger	new_indexes/201008.txt:41426-41503
@@ -7529,6 +7535,7 @@
 2010-08-01T05:31:17	T-Mobile IPv6 Beta	Joshua William Klubi	new_indexes/201008.txt:71-112
 2010-08-01T05:19:45	T-Mobile IPv6 Beta	Mikael Abrahamsson	new_indexes/201008.txt:36-70
 2010-08-01T01:37:22	T-Mobile IPv6 Beta	Stefan	new_indexes/201008.txt:1-35
+2010-07-31T21:46:40	Web expert on his 'catastrophe' key for the internet	Joe Abley	new_indexes/201007.txt:40211-40242
 2010-07-31T21:46:30	T-Mobile IPv6 Beta	Cameron Byrne	new_indexes/201007.txt:40188-40210
 2010-07-31T17:57:45	Monitoring tools for IPv6 tools	Seth Mattinen	new_indexes/201007.txt:40158-40187
 2010-07-31T07:20:20	Monitoring tools for IPv6 tools	Valdis.Kletnieks at vt.edu	new_indexes/201007.txt:40131-40157
@@ -8355,6 +8362,7 @@
 2010-07-01T03:48:59	ASR vs 7604 for BGP border router?	David Hubbard	new_indexes/201007.txt:35-73
 2010-07-01T03:33:09	Metro-E Testing Parameter	Muhammad Reza	new_indexes/201007.txt:22-34
 2010-07-01T01:30:22	Advice regarding Cisco/Juniper/HP	Jeroen van Aart	new_indexes/201007.txt:1-21
+2010-06-30T22:32:43	Advice regarding Cisco/Juniper/HP	George Bonser	new_indexes/201006.txt:33585-33626
 2010-06-30T21:32:09	Advice regarding Cisco/Juniper/HP	Jeff Kell	new_indexes/201006.txt:33559-33584
 2010-06-30T21:14:57	Advice regarding Cisco/Juniper/HP	Greg Whynott	new_indexes/201006.txt:33496-33558
 2010-06-30T20:54:47	Future of WiMax	J Wytt	new_indexes/201006.txt:33423-33495
@@ -9024,6 +9032,7 @@
 2010-06-01T13:15:45	IP Address Management Tool	Don McMorris	new_indexes/201006.txt:35-62
 2010-06-01T13:12:07	IP Address Management Tool	Tim Jackson	new_indexes/201006.txt:14-34
 2010-06-01T13:07:32	IP Address Management Tool	D C	new_indexes/201006.txt:1-13
+2010-05-31T19:24:21	Junos Asymmetric Routing	Richard A Steenbergen	new_indexes/201005.txt:30168-30215
 2010-05-31T14:05:35	IPv4 Multicast	Rens	new_indexes/201005.txt:29887-30167
 2010-05-30T17:16:14	Junos Asymmetric Routing 	Kevin Oberman	new_indexes/201005.txt:29854-29886
 2010-05-30T16:54:59	Junos Asymmetric Routing	Florian Weimer	new_indexes/201005.txt:29817-29853
@@ -9941,6 +9950,7 @@
 2010-04-24T19:12:11	Rate of growth on IPv6 not fast enough?	Larry Sheldon	new_indexes/201004.txt:63610-63645
 2010-04-24T19:07:00	Rate of growth on IPv6 not fast enough?	Joel Jaeggli	new_indexes/201004.txt:63554-63609
 2010-04-24T19:04:59	Connectivity to an IPv6-only site	John Jason Brzozowski	new_indexes/201004.txt:63484-63553
+2010-04-24T18:32:08	Call for Papers - IEEE GLOBECOM 2010 Workshop on Web and Pervasive	Robert C. Hsu	new_indexes/201004.txt:76863-77045
 2010-04-24T16:01:00	Hotmail bouncing email	Seth Mattinen	new_indexes/201004.txt:63463-63483
 2010-04-24T15:04:17	level 3 issues this morning	Welch, Bryan	new_indexes/201004.txt:63448-63462
 2010-04-24T12:47:01	Connectivity to an IPv6-only site	Geoff Huston	new_indexes/201004.txt:63418-63447
@@ -11486,6 +11496,7 @@
 2010-03-30T05:28:40	"Is TDM going the way of dial-up?"	Michael Sokolov	new_indexes/201003.txt:60037-60063
 2010-03-30T05:14:29	"Is TDM going the way of dial-up?" 	Kevin Oberman	new_indexes/201003.txt:59985-60036
 2010-03-30T04:59:56	IPv4 ANYCAST setup 	Kevin Oberman	new_indexes/201003.txt:59927-59984
+2010-03-30T00:33:23	legacy /8	Michael Thomas	new_indexes/201003.txt:67274-67300
 2010-03-29T23:17:28	IP4 Space	Doug Barton	new_indexes/201003.txt:59870-59926
 2010-03-29T22:19:36	DNS TXT field usage ?	Douglas Otis	new_indexes/201003.txt:59829-59869
 2010-03-29T22:07:44	Auto MDI/MDI-X + conference rooms + bored == loop	John Kristoff	new_indexes/201003.txt:59795-59828
@@ -12731,6 +12742,7 @@
 2010-02-26T16:43:50	ISP in Johannesburg in Southdafrika	Randy Bush	new_indexes/201002.txt:47492-47514
 2010-02-26T16:29:19	[Fwd: [members-discuss] [ncc-announce] RIPE NCC Position On The	Tom Vest	new_indexes/201002.txt:47427-47491
 2010-02-26T16:07:33	Euro-IX ASN Tools updated	Serge Radovcic	new_indexes/201002.txt:47363-47426
+2010-02-26T15:57:26	[NANOG-announce] NANOG 49 Call for Presentations now available	David Meyer	new_indexes/201002.txt:53723-53762
 2010-02-26T15:40:26	[Fwd: [members-discuss] [ncc-announce] RIPE NCC Position On The 	Jorge Amodio	new_indexes/201002.txt:47327-47362
 2010-02-26T14:24:17	[Fwd: [members-discuss] [ncc-announce] RIPE NCC Position On	Mans Nilsson	new_indexes/201002.txt:47282-47326
 2010-02-26T14:19:06	[Fwd: [members-discuss] [ncc-announce] RIPE NCC Position On The	Marshall Eubanks	new_indexes/201002.txt:47243-47281
@@ -13820,6 +13832,7 @@
 2010-02-01T15:31:02	Default route with object tracking	Dan White	new_indexes/201002.txt:85-114
 2010-02-01T15:13:39	Default route with object tracking	Andrey Gordon	new_indexes/201002.txt:59-84
 2010-02-01T07:39:20	Comcast IPv6 Trials	Joel Jaeggli	new_indexes/201002.txt:1-58
+2010-01-31T01:41:48	domain registra question	Eric Brunner-Williams	new_indexes/201001.txt:58280-58324
 2010-01-31T01:01:45	domain registra question	John Levine	new_indexes/201001.txt:58250-58279
 2010-01-30T22:36:50	Fwd: [Pauldotcom] Skiddy Interview	andrew.wallace	new_indexes/201001.txt:58208-58249
 2010-01-30T21:58:50	Countries with the most botnets	Sean Donelan	new_indexes/201001.txt:58180-58207
@@ -14956,6 +14969,7 @@
 2010-01-01T15:03:54	Restrictions on Ethernet L2 circuits?	A.B. Jr.	new_indexes/201001.txt:57-105
 2010-01-01T02:51:36	Restrictions on Ethernet L2 circuits?	George Bonser	new_indexes/201001.txt:11-56
 2010-01-01T02:47:19	Happy new year U.S Intelligence... we're on your side	n3td3v	new_indexes/201001.txt:1-10
+2009-12-31T22:56:29	Article on spammers and their infrastructure	Jorge Amodio	new_indexes/200912.txt:45393-45434
 2009-12-31T21:38:42	Restrictions on Ethernet L2 circuits?	Shane Ronan	new_indexes/200912.txt:45358-45392
 2009-12-31T21:23:56	Article on spammers and their infrastructure	Alex Lanstein	new_indexes/200912.txt:45330-45357
 2009-12-31T20:32:36	Restrictions on Ethernet L2 circuits?	George Bonser	new_indexes/200912.txt:45302-45329
@@ -15918,6 +15932,7 @@
 2009-12-01T02:48:53	DNS query analyzer 	Stefan Fouant	new_indexes/200912.txt:49-80
 2009-12-01T01:12:13	DNS query analyzer 	Nathan Ward	new_indexes/200912.txt:21-48
 2009-12-01T00:06:45	DNS query analyzer 	Joseph Jackson	new_indexes/200912.txt:1-20
+2009-11-30T19:30:31	STP Visualization	Dave Plonka	new_indexes/200911.txt:43201-43235
 2009-11-30T19:26:20	STP Visualization	Brian Feeny	new_indexes/200911.txt:43162-43200
 2009-11-30T19:15:47	STP Visualization	Will Clayton	new_indexes/200911.txt:43136-43161
 2009-11-30T18:16:53	STP Visualization	David Freedman	new_indexes/200911.txt:43102-43135
@@ -16811,6 +16826,7 @@
 2009-11-01T00:33:52	Upstream BGP community support	Dorian Kim	new_indexes/200911.txt:73-129
 2009-11-01T00:30:38	Upstream BGP community support	jim deleskie	new_indexes/200911.txt:30-72
 2009-11-01T00:25:34	Upstream BGP community support	Randy Bush	new_indexes/200911.txt:1-29
+2009-10-31T23:49:03	Upstream BGP community support	Richard A Steenbergen	new_indexes/200910.txt:62611-62652
 2009-10-31T23:47:39	Upstream BGP community support	JC Dill	new_indexes/200910.txt:62586-62610
 2009-10-31T23:35:31	Upstream BGP community support	Dorian Kim	new_indexes/200910.txt:62565-62585
 2009-10-31T23:27:38	Upstream BGP community support	Richard A Steenbergen	new_indexes/200910.txt:62519-62564
@@ -17897,6 +17913,7 @@
 2009-10-01T18:02:29	[NANOG-announce] Heads up -- NANOG 47 upcoming dates of interest	David Meyer	new_indexes/200910.txt:94-125
 2009-10-01T07:12:03	NANOG 47 PGP signing party.	Joel Jaeggli	new_indexes/200910.txt:59-93
 2009-10-01T00:24:50	SMS	Aaron D. Osgood	new_indexes/200910.txt:1-58
+2009-09-30T01:22:03	SMS	Robert E. Seastrom	new_indexes/200909.txt:38994-39024
 2009-09-29T22:46:52	Dearborn: Calling all CAcert and/or Thawte Notaries	Valdis.Kletnieks at vt.edu	new_indexes/200909.txt:38965-38993
 2009-09-29T22:30:36	Dearborn: Calling all CAcert and/or Thawte Notaries	Owen DeLong	new_indexes/200909.txt:38911-38964
 2009-09-29T10:15:30	Bell Canada - Old Bogon maybe - NOC contact	Randy Bush	new_indexes/200909.txt:38876-38910
