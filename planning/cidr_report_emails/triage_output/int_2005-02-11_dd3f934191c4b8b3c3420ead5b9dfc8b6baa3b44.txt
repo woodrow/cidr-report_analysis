@@ -1,0 +1,77 @@
+# from /home/woodrow/proj/cidr-report_analysis/planning/cidr_report_emails/cidr_r_emails-old_index.txt:279
+# 2005-02-11 'RE: The Cidr Report' from 'Mike Leber'
+# http://www.merit.edu/mail.archives/nanog/2005-02/msg00181.html
+
+
+RE: The Cidr Report
+From: Mike Leber
+Date: Fri Feb 11 15:42:05 2005
+
+
+
+
+On Fri, 11 Feb 2005, Stephen J. Wilcox wrote:
+&gt; On Fri, 11 Feb 2005, Frotzler, Florian wrote:
+&gt; 
+&gt; &gt; 
+&gt; &gt; &gt; Recent Table History
+&gt; &gt; &gt;         Date      Prefixes    CIDR Agg
+&gt; &gt; &gt;         04-02-05    151613      103143
+&gt; &gt; &gt;         05-02-05    152142      103736
+&gt; &gt; &gt;         06-02-05    152231      103721
+&gt; &gt; &gt;         07-02-05    152353      103830
+&gt; &gt; &gt;         08-02-05    152514      103966
+&gt; &gt; &gt;         09-02-05    153855      104090
+&gt; &gt; &gt;         10-02-05    154283      104246
+&gt; &gt; &gt;         11-02-05    154341      104240
+&gt; &gt; &lt;...&gt;
+&gt; &gt; 
+&gt; &gt; ~ +3000 routes in one week? Anyone else frightened by this?
+&gt; &gt; 
+&gt; &gt; Florian
+&gt; 
+&gt; any thoughts on how to fix it? my peers keep sending these to me and i'll even 
+&gt; admit my customers do too. telling people its bad doesnt appear to have an 
+&gt; effect, at the small end networks seem to collect /24s and announce them freely, 
+&gt; at the large end i'm still without an explanation as to why large networks 
+&gt; require so many prefixes - none of them seem to comment?
+&gt; 
+&gt; if people arent self policing it seems the only other way is for the larger 
+&gt; transit providers to stop accepting prefixes and telling their customers to fix 
+&gt; their s**t. and i dont see them doing this.
+
+It seems to me they get paid to carry prefixes by their customers.
+
+And their peers listen to the prefixes because they make money by using
+those prefixes.
+
+So, to the extent you make money listening to them, use the routes.
+
+And if they start to cause you problems you will have to take corrective
+action to stablize your network, as was done a long time ago (internet
+time):
+
+http://www.merit.edu/mail.archives/nanog/1995-09/msg00047.html
+
+(link grabbed at random from the archives, I'm sure there are better posts
+that actually list the full old school sprint filters.)
+
+However, if you are the one filtering and all your competitors figure out
+how to handle 154,000 routes then you will be at a competitive
+disadvantage.
+
+Coincidentally, the largest networks also spend the most with their
+vendors and get to tell the vendors what they want in the next generation
+of boxes they buy.
+
+Mike.
+
++----------------- H U R R I C A N E - E L E C T R I C -----------------+
+| Mike Leber           Direct Internet Connections   Voice 510 580 4100 |
+| Hurricane Electric     Web Hosting  Colocation       Fax 510 580 4151 |
+| mleber@he.net                                       http://www.he.net |
++-----------------------------------------------------------------------+
+
+
+
+

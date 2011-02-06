@@ -1,0 +1,121 @@
+# from /home/woodrow/proj/cidr-report_analysis/planning/cidr_report_emails/cidr_r_emails-old_index.txt:490
+# 2002-04-06 'The Cidr Report' from 'CIDR Report'
+# http://www.merit.edu/mail.archives/nanog/2002-04/msg00106.html
+
+
+The Cidr Report
+From: CIDR Report
+Date: Sat Apr 06 02:04:06 2002
+
+
+
+
+This is an auto-generated mail on Fri Apr  5 23:00:00 PST 2002
+It is not checked before it leaves my workstation.  However, hopefully 
+you will find this report interesting and will take the time to look 
+through this to see if you can improve the amount of aggregation you 
+perform.
+
+Check http://www.employees.org/~tbates/cidr-report.html for a daily
+update of this report.
+
+NEW: Check http://www.employees.org/~tbates/cidr-report-region.html for
+the regional version of this report.
+
+NEW: Check http://www.employees.org/~tbates/autnums.html for a complete
+list of autonomous system number to name mappings as used by the CIDR-Report.
+
+The report is split into sections:
+
+   0) General Status
+   
+      List the route table history for the last week, list any possibly
+      bogus routes seen and give some status on ASes.
+
+   1) Gains by aggregating at the origin AS level
+
+      This lists the &quot;Top 30&quot; players who if they decided to aggregate
+      their announced classful prefixes at the origin AS level could 
+      make a significant difference in the reduction of the current 
+      size of the Internet routing table. This calculation does not 
+      take into account the inclusion of holes when forming an aggregate
+      so it is possible even larger reduction should be possible.
+
+   2) Weekly Delta
+
+      A summary of the last weeks changes in terms of withdrawn and
+      added routes. Please note that this is only a snapshot but does 
+      give some indication of ASes participating in CIDR. Clearly,
+      it is generally a good thing to see a large amont of withdrawls.
+
+   3) Interesting aggregates
+
+      Interesting here means not an aggregate made as a set of 
+      classful routes.      
+
+Thanks to GX Networks for giving me access to their routing tables once a
+day. 
+
+Please send any comments about this report directly to CIDR Report &lt;cidr-report@cisco.com&gt;.
+
+
+
+------------------------------------------------------------------------------
+
+                        CIDR REPORT for 05Apr02
+
+
+0) General Status
+
+Table History
+-------------
+
+Date	Prefixes
+290302	108300
+300302	108315
+310302	108324
+010402	108317
+020402	108544
+030402	108663
+040402	108562
+050402	108885
+
+Check http://www.employees.org/~tbates/cidr.plot.html for a plot
+of the table history.
+
+
+Possible Bogus Routes
+---------------------
+
+*** Bogus 10.1.1.1/32 from AS(65301)
+*** Bogus 96.0.0.0/20 from AS3549
+
+AS Summary
+----------
+
+
+
+
+1) Gains by aggregating at the origin AS level
+
+ --- 05Apr02 ---
+
+
+
+For the rest of the previous weeks gain information please see
+http://www.employees.org:80/~tbates/cidr-report.html
+
+2) Weekly Delta
+
+Please see
+http://www.employees.org:80/~tbates/cidr-report.html
+for this part of the report
+
+3) Interesting aggregates
+
+Please see
+http://www.employees.org:80/~tbates/cidr-report.html
+for this part of the report
+
+
+

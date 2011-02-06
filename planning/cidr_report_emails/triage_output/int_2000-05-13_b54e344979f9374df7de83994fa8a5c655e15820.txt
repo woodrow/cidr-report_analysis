@@ -1,0 +1,49 @@
+# from /home/woodrow/proj/cidr-report_analysis/planning/cidr_report_emails/cidr_r_emails-old_index.txt:632
+# 2000-05-13 'Re: CIDR Report' from 'Danny McPherson'
+# http://www.merit.edu/mail.archives/nanog/2000-05/msg00245.html
+
+
+Re: CIDR Report
+From: Danny McPherson
+Date: Sat May 13 16:49:29 2000
+
+
+
+
+&gt; None of these are big enough to justify their own backbone operations or to
+&gt; buy a backbone from someone else, or there wouldn't be a problem. Paying scads 
+&gt; of extortion money is also problematic (cheaper to simply burn the IP addresses).
+&gt;
+&gt; I am NOT advocating tossing all of that out. I am simply bringing up a
+&gt; problem condition. Please, don't shoot the messenger, or otherwise get
+&gt; defensive (return fire is a bitch).
+
+Nope, all of these are reasonable, the ones that aren't are, for example, 
+where folks have a single connection, or multi-home only to a single provider.
+
+ 
+&gt; What I am bringing up here is that new, information-age companies, 
+&gt; as predicted in MegaTrends over 10 years ago, are now starting to
+&gt; appear. They are very diffused (sparse population, over very large 
+&gt; areas of the globe) and have connectivity needs which are both critical, 
+&gt; yet very different from click-n-morter customers that the Big8 was 
+&gt; built up to handle (either classful or classless). The current architecture
+&gt; is not handeling them very well.
+&gt; 
+&gt; The problem is currently in it's infancy, it will get much worse.
+
+I'm not disagreeing with any of this.  Actually, I see reliability and 
+availability feeding into all these other issues as well.
+
+It just that some of the folks advocating portability and deaggregation are 
+using &quot;route table size doesn't matter anymore&quot; as an argument, when it 
+absolutely does matter, especially if we plan to make the Internet more 
+reliable, and less vulnerable.
+
+-danny
+
+
+
+
+
+

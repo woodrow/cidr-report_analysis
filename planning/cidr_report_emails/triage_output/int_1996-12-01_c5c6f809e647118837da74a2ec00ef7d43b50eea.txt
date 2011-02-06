@@ -1,0 +1,119 @@
+# from /home/woodrow/proj/cidr-report_analysis/planning/cidr_report_emails/cidr_r_emails-old_index.txt:848
+# 1996-12-01 'Re: The Cidr Report' from 'Tony Bates'
+# http://www.merit.edu/mail.archives/nanog/1996-12/msg00006.html
+
+
+Re: The Cidr Report
+From: Tony Bates
+Date: Sun Dec 01 21:28:06 1996
+
+
+
+ Tony Li &lt;tli@jnx.com&gt; writes:
+  * 
+  *    Hey, this looks pretty good. Let's hope the trend continues (if, in fact
+  * ,
+  *    there *is* a trend).
+  * 
+  *    &gt;Date	Prefixes
+  *    &gt;231196	40687
+  *    &gt;241196	40908
+  *    &gt;251196	40844
+  *    &gt;261196	41043
+  *    &gt;271196	41074
+  *    &gt;281196	39803
+  *    &gt;291196	39735
+  * 
+  * I suspect that this is more due to the holiday than any real change.  ;-(
+
+Could be but the most interesting thing is it does look like some
+fairly large sets of prefixes went away [from my vantage point ;-)]
+around the 28th.  I just added to my delta checker both classful and
+classles delta checks to help show the change. Here's what the
+trend looked like today.
+
+Date    Prefixes
+241196  40908
+251196  40844
+261196  41043
+271196  41074
+281196  39803
+291196  39735
+301196  39676
+011296  39610
+
+Here are the Deltas (Note AS174 and AS4200, if your are interested in knowing
+what went away to cause these deltas mail me directly)
+
+This a snapshot of changes in classful routes being withdrawn and added.
+
+Top 20 Withdrawn Classful Routes from 24Nov96 to 01Dec96
+        -319  AS174 Performance Systems International
+        -133 AS3804 Bell Blobal Solutions
+         -98 AS4200 AGIS (Apex Global Information Ser
+         -75  AS681 KAWAIHIKO-1
+         -62 AS4454 OIR Telecommunications, State of 
+         -59 AS2048 State of Louisiana/Office of Tele
+         -51 AS3749 Tennessee Board of Regents
+         -48  AS568 JIS (Joint Interconnection Servic
+         -47  AS560 BBN Planet, New England Region (N
+         -45 AS4983 Intel Corporation Autonomous Syst
+         -34 AS2044 AUSNet, Inc. USA
+         -27  AS721 DLA-ASNBLOCK-AS
+         -23 AS3343 RUNNet
+         -21   AS71 Hewlett-Packard
+         -19 AS3904 ASTHOUGHTPRT
+         -17 AS6474 FLASHNET-AS
+         -14 AS2386 INS-AS
+         -13 AS4239 Coast to Coast Telecommunications
+         -12 AS3249 Estpak Data Ltd.
+         -11 AS4175 CONNECT-NCM
+
+Top 20 Added Classful Routes from 24Nov96 to 01Dec96
+          87  AS297 NASA Internet
+          24 AS4565 HLC Internet
+          19 AS6347 DIAMOND
+          17 AS3320 Deutsche Telekom AG
+          14 AS1717 RENATER
+          13  AS813 UUNET Canada (ASN-UUNETCA-AS1)
+          11 AS4270 RIU
+           8 AS6463 Rogers Network Services
+           6 AS3563 Pilot Network Services, Inc.
+           5 AS5769 Le Groupe Videotron Ltee
+           4 AS5553 TSTU
+           3 AS3951 ICONNET
+           2 AS3354 THENET-AS-1
+           1  AS816 UUNETCA-AS4
+
+
+This a snapshot of changes in classles routes being withdrawn and added.
+
+Top 20 Withdrawn Classles Routes from 24Nov96 to 01Dec96
+        -228 AS4200 AGIS (Apex Global Information Ser
+         -43 AS5672 PBI (Pacific Bell Internet)
+         -24 AS4648 APNIC-AS-BLOCK
+         -23 AS1239 SprintLink Backbone
+         -18    AS1 BBN Planet backbone
+         -10 AS6912 Hayes Computer Systems, Inc.
+          -6 AS4983 Intel Corporation Autonomous Syst
+          -5 AS3561 MCI
+          -4 AS4492 RTD
+          -3 AS6971 WCO
+          -2 AS5696 Primary AS for GoodNet
+          -1 AS3742 SEMAPHORE-1
+
+Top 20 Added Classles Routes from 24Nov96 to 01Dec96
+          10  AS701 Alternet
+           8 AS4565 HLC Internet
+           6 AS2548 DIGEX-AS
+           4 AS1717 RENATER
+           3 AS3559 KORNET-3559 Autonomous-system
+           2 AS4750 APNIC-AS-BLOCK
+           1 AS6299 Telalink Corporation
+
+
+		--Tony
+- - - - - - - - - - - - - - - - -
+
+
+

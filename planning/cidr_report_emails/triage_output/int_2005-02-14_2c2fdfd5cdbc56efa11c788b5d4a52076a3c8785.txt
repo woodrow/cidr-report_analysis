@@ -1,0 +1,53 @@
+# from /home/woodrow/proj/cidr-report_analysis/planning/cidr_report_emails/cidr_r_emails-old_index.txt:247
+# 2005-02-14 'Re: The Cidr Report' from 'Hank Nussbacher'
+# http://www.merit.edu/mail.archives/nanog/2005-02/msg00216.html
+
+
+Re: The Cidr Report
+From: Hank Nussbacher
+Date: Mon Feb 14 03:35:08 2005
+
+
+
+At 10:27 AM 14-02-05 +1000, Philip Smith wrote:
+
+Well said.  At NANOG you get the clueful people cuz they at least knew to 
+come.  That is a start.  But there are hundreds of ISPs out there who don't 
+have a clue.  RIPE realized this without having to do a membership poll and 
+rightly so, goes and does training where it is needed (and believe me - I 
+am their biggest critic and all-around pain in the ass when it comes to 
+their expenses as Leo and Rob can attest).
+
+NANOG is not the place to do it.  ARIN, as part of their overhead should do 
+an east coast, west coast and Chicago area tutorial at least once a 
+year.  And guess what - most of the training material has already been 
+written by the other RIRs.
+
+-Hank
+
+
+The BGP tutorials I've been doing on Sundays at NANOG all cover 
+aggregation - at least, I seem to end up talking about aggregation in each 
+one. Maybe I need to be more direct? But then again, who am I preaching 
+to? The choir maybe, I don't know. Maybe we need a specific aggregation 
+tutorial for those who don't know how to? Those who have operational and 
+technical reasons not to aggregate have made that decision with prior 
+knowledge. We should try and give everyone else the knowledge, then at 
+least we will know that all de-aggregation is done for a reason.
+
+Then it begs the question, is NANOG the conference actually reaching the 
+people who'd most benefit from it? I say this as I'm in transit in 
+Singapore heading back from a hugely successful and enjoyable SANOG (South 
+Asia NOG) in Bangladesh. Similar idea to NANOG, but heavier emphasis on 
+education (workshops &amp; tutorials), and we had ISPs falling over themselves 
+to participate in the first Internet operations meeting held in that country.
+
+philip
+--
++++++++++++++++++++++++++++++++++++++++++++
+This Mail Was Scanned By Mail-seCure System
+at the Tel-Aviv University CC.
+
+
+
+

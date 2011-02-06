@@ -1,0 +1,42 @@
+# from /home/woodrow/proj/cidr-report_analysis/planning/cidr_report_emails/cidr_r_emails-old_index.txt:745
+# 1998-08-17 'Re: The Cidr Report' from 'Tony Li'
+# http://www.merit.edu/mail.archives/nanog/1998-08/msg00280.html
+
+
+Re: The Cidr Report
+From: Tony Li
+Date: Mon Aug 17 23:47:12 1998
+
+
+
+&gt; &gt; | AS762        118       81       37   31.4%   WELLFLEET-AS
+&gt; 
+&gt; Oddly enough, they are announcing the aggregate *and* the specifics:
+&gt; 
+&gt; 
+&gt; brd1&gt;sho ip bgp reg _762_
+&gt; *&gt; 192.32.0.0/16    207.106.96.5                         0 4969 6461 1673
+&gt; *&gt; 192.32.2.0       207.106.96.5                         0 4969 6461 1673
+&gt; *&gt; 192.32.3.0       207.106.96.5                         0 4969 6461 1673
+&gt; *&gt; 192.32.4.0       207.106.96.5                         0 4969 6461 1673
+&gt; *&gt; 192.32.6.0       207.106.96.5                         0 4969 6461 1673
+
+
+If one were paranoid, one might imagine that they are doing so
+intentionally to see how many Cisco routers they can tank through prefix
+overload.  The problem with this is that a) they aren't also announcing the
+/17's, /18's, ... /25's and b) overloading a Cisco seems to mean that
+someone buys a bigger Cisco, thereby enhancing Cisco's revenue stream.
+
+One is then left with the theory that they are advertising more specifics
+for optimality, but haven't discovered communities yet.
+
+Exercise for the reader: If prefixes of length F and longer are filtered,
+and a domain has a prefix of length N, how many prefixes can they propagate
+into the backbone?  How many before people start proxy aggregating them?
+
+Tony
+
+
+
+

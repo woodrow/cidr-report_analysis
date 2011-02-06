@@ -1,0 +1,36 @@
+# from /home/woodrow/proj/cidr-report_analysis/planning/cidr_report_emails/cidr_r_emails-old_index.txt:308
+# 2004-11-13 'RE: The Cidr Report' from 'Geoff Huston'
+# http://www.merit.edu/mail.archives/nanog/2004-11/msg00419.html
+
+
+RE: The Cidr Report
+From: Geoff Huston
+Date: Sat Nov 13 19:36:40 2004
+
+
+
+Interestingly enough what Covad appears to be saying is:
+
+If we had a way to announce two things
+
+1 - here are the advertisements for covering aggregates for Covad
+
+AND
+
+2 - do not believe any more specifics for these address blocks, as they are 
+NOT part of Covad's routing policy for these prefixes
+
+then we would not be seeing this unfortunate case of unauthorized route 
+leakage being resolved in a way that seems to have unfortunate bgp 
+implications in terms of more specifics appearing.
+
+So its an interesting question. How could Covad achieve a routing policy 
+announcement of the form as stated in 2 above?
+
+regards,
+
+Geoff
+
+
+
+

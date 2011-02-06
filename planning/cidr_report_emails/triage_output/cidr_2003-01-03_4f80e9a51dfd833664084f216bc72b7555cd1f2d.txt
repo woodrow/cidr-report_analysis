@@ -1,0 +1,113 @@
+# from /home/woodrow/proj/cidr-report_analysis/planning/cidr_report_emails/cidr_r_emails-old_index.txt:453
+# 2003-01-03 'The Cidr Report' from 'cidr-report'
+# http://www.merit.edu/mail.archives/nanog/2003-01/msg00017.html
+
+
+The Cidr Report
+From: cidr-report
+Date: Fri Jan 03 06:03:48 2003
+
+
+
+This report has been generated at Fri Jan  3 21:45:27 2003 AEST.
+The report analyses the BGP Routing Table of an AS4637 (Reach) router
+and generates a report on aggregation potential within the table.
+
+Check http://www.cidr-report.org/as4637 for a current version of this report.
+
+Recent Table History
+        Date      Prefixes    CIDR Agg
+        27-12-02    117120       84759
+        28-12-02    117172       84857
+        29-12-02    117391       84760
+        30-12-02    117247       84955
+        31-12-02    117450       85024
+        01-01-03    117552       85059
+        02-01-03    117648       85132
+        03-01-03    117672       85168
+
+
+AS Summary
+         14290  Number of ASes in routing system
+          5618  Number of ASes announcing only one prefix
+          1610  Largest number of prefixes announced by an AS
+                AS701  : ALTERNET-AS UUNET Technologies, Inc.
+      73047040  Largest address span announced by an AS (/32s)
+                AS568  : SUMNET-AS DISO-UNRRA
+
+
+Aggregation Summary
+The algorithm used in this report proposes aggregation only
+when there is a precise match using the AS path, so as 
+to preserve traffic transit policies. Aggregation is also
+proposed across non-advertised address space ('holes').
+
+ --- 03Jan03 ---
+ASnum    NetsNow NetsAggr  NetGain   % Gain   Description
+
+Table     117812    85155    32657    27.7%   All ASes
+
+AS3908      1173      689      484    41.3%   SUPERNETASBLK SuperNet, Inc.
+AS701       1610     1195      415    25.8%   ALTERNET-AS UUNET
+                                               Technologies, Inc.
+AS18566      414        5      409    98.8%   COVAD Covad Communications
+AS7018      1430     1029      401    28.0%   ATT-INTERNET4 AT&amp;T WorldNet
+                                               Services
+AS4323       532      188      344    64.7%   TW-COMM Time Warner
+                                               Communications, Inc.
+AS7843       622      301      321    51.6%   ADELPHIA-AS Adelphia Corp.
+AS1221      1146      829      317    27.7%   ASN-TELSTRA Telstra Pty Ltd
+AS6197       455      150      305    67.0%   BATI-ATL BellSouth Network
+                                               Solutions, Inc
+AS1239       976      687      289    29.6%   SPRINTLINK Sprint
+AS6347       368       85      283    76.9%   DIAMOND SAVVIS Communications
+                                               Corporation
+AS4355       407      136      271    66.6%   ERMS-EARTHLNK EARTHLINK, INC
+AS22927      289       22      267    92.4%   AR-TEAR2-LACNIC TELEFONICA DE
+                                               ARGENTINA
+AS7046       552      291      261    47.3%   UUNET-CUSTOMER UUNET
+                                               Technologies, Inc.
+AS705        422      188      234    55.5%   ASN-ALTERNET UUNET
+                                               Technologies, Inc.
+AS4814       246       15      231    93.9%   CHINANET-BEIJING-AP China
+                                               Telecom (Group)
+AS6198       423      200      223    52.7%   BATI-MIA BellSouth Network
+                                               Solutions, Inc
+AS1          659      437      222    33.7%   GNTY-1 Genuity
+AS17676      231       26      205    88.7%   GIGAINFRA XTAGE CORPORATION
+AS22291      226       29      197    87.2%   CHARTER-LA Charter
+                                               Communications
+AS690        513      319      194    37.8%   MERIT-AS-27 Merit Network Inc.
+AS4151       325      134      191    58.8%   USDA-1 USDA
+AS6140       315      125      190    60.3%   IMPSAT-USA ImpSat
+AS209        517      335      182    35.2%   ASN-QWEST Qwest
+AS4134       290      108      182    62.8%   ERX-CHINALINK Data
+                                               Communications Bureau
+AS852        627      446      181    28.9%   ASN852 Telus Advanced
+                                               Communications
+AS2048       254       84      170    66.9%   LANET-1 State of Louisiana
+AS2386       387      229      158    40.8%   INS-AS AT&amp;T Data
+                                               Communications Services
+AS6327       185       34      151    81.6%   SHAWFIBER Shaw Fiberlink
+                                               Limited
+AS17557      324      179      145    44.8%   PKTELECOM-AS-AP Pakistan
+                                               Telecom
+AS3215       313      174      139    44.4%   AS3215  France Telecom
+                                               Transpac
+
+Total      16231     8669     7562    46.6%   Top 30 total
+
+
+
+Please see http://www.cidr-report.org for the full report
+
+------------------------------------
+Copies of this report are mailed to:
+  nanog@merit.edu
+  eof-list@ripe.net
+  apops@lists.apnic.net
+  routing-wg@ripe.net
+  afnog@afnog.org
+
+
+

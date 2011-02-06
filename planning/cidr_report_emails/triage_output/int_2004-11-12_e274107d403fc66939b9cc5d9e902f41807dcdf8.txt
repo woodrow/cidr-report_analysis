@@ -1,0 +1,66 @@
+# from /home/woodrow/proj/cidr-report_analysis/planning/cidr_report_emails/cidr_r_emails-old_index.txt:322
+# 2004-11-12 'RE: The Cidr Report' from 'Roldan, Brad'
+# http://www.merit.edu/mail.archives/nanog/2004-11/msg00366.html
+
+
+RE: The Cidr Report
+From: Roldan, Brad
+Date: Fri Nov 12 20:10:11 2004
+
+
+
+
+[snip]
+&gt; &gt; ASnum    NetsNow NetsAggr  NetGain   % Gain   Description
+&gt; &gt;
+&gt; &gt; AS18566      751        6      745    99.2%   CVAD Covad
+Communications
+[snip]
+
+&gt; not to justify the expense, but perhaps covad is renumbering from one
+&gt; block to another? Looking at their advertisments I see lots of /23 or
+/24
+&gt; blocks inside their larger covering routes... So either they
+deaggregated
+&gt; to renumber more gracefully, or they forgot their prefix-list outbound
+to
+&gt; williams and exodus ?
+
+&gt; perhaps covad can explain? or silently cover up the 'mistake' (which
+is
+&gt; acceptable as well...)
+
+I've been secretly hoping no one would notice Covad's ascension to the
+number one spot (which we've held for well over a month now ;). I
+actually made it through the last NANOG without a single mention of
+Covad's route bloat!
+
+There are no mistakes or excuses here. And there's definitely no
+renumbering going on.
+
+We were actually fully aggregated until an unfortunate incident this
+past May involving a distant service provider leaking our specifics.
+Gigs of traffic somehow vanished into Eastern Europe. The net result was
+deaggregation. 
+
+It's unlikely we will aggregate down to less than 10 netblocks again.
+However, we do make every effort to aggregate where possible. 
+
+Our superblocks are also being advertised, for those of you that want to
+filter our routes. 
+
+Want to discuss further? Great. Call me or email me directly. Contact
+info is below. 
+
+Think you can do it better? Even better. It turns out I'm hiring. :)
+
+Regards,
+
+Brad
+--
+Covad Communications
+408-434-2048
+broldan@covad.com
+
+
+

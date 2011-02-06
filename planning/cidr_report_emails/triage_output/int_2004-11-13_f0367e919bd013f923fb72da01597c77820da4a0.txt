@@ -1,0 +1,56 @@
+# from /home/woodrow/proj/cidr-report_analysis/planning/cidr_report_emails/cidr_r_emails-old_index.txt:309
+# 2004-11-13 'Re: The Cidr Report' from 'Geoff Huston'
+# http://www.merit.edu/mail.archives/nanog/2004-11/msg00418.html
+
+
+Re: The Cidr Report
+From: Geoff Huston
+Date: Sat Nov 13 19:27:33 2004
+
+
+
+
+
+&gt; e.g. is AS18566 the origin AS for 751 prefixes that could be
+&gt; collapsed to 6?
+&gt;
+
+        Sort of - from here it looks like they aren't actually announcing
+the supernets.
+
+
+
+The covering /162, /15 and /14 aggregates are being globally announced, and 
+the more specifics are being announced from the same origin AS, apparently 
+along the same AS paths as the specifics, so its not clear that there is 
+any form of traffic engineering or load balancing going on.
+
+regards,
+
+   Geoff
+
+
+&gt;   o and who can hack the perl to generate filters for this
+&gt;     so we can listen only to the aggregates
+&gt;
+
+        I don't see their stuff listed in the radb, so it looks like you
+have to go to the router itself to read the routes to determine what they
+are announcing, then ask the appropriate registry which block they
+are announcing from, aggregate the routes in that block, rinse and repeat,
+aggregate the aggregated blocks, then filter.
+        ..but that only works if they announce the supernets. Without that
+I'm not sure what you can do that wouldn't end up biting you back. It's also
+a lot of work for not too much reward as long as these messes are the
+exception and not the rule.
+
+        Plus the public hand slap is kind of amusing. But that's probably
+just me.
+
+        Austin
+
+
+
+
+
+

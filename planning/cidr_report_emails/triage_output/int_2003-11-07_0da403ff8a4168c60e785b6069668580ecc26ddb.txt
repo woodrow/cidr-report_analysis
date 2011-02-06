@@ -1,0 +1,28 @@
+# from /home/woodrow/proj/cidr-report_analysis/planning/cidr_report_emails/cidr_r_emails-old_index.txt:396
+# 2003-11-07 'Re: The Cidr Report' from 'Valdis.Kletnieks'
+# http://www.merit.edu/mail.archives/nanog/2003-11/msg00220.html
+
+
+Re: The Cidr Report
+From: Valdis.Kletnieks
+Date: Fri Nov 07 09:23:12 2003
+
+
+On Fri, 07 Nov 2003 22:00:01 +1100, cidr-report@potaroo.net said:
+&gt; The report analyses the BGP Routing Table of an AS4637 (Reach) router
+...
+&gt; Possible Bogus Routes
+&gt; 
+&gt;         10.127.32.0/24       AS25186 TRANSIT-VPN-AS  France Telecom Transpac's Transit VPN network
+&gt;         10.129.113.0/24      AS25186 TRANSIT-VPN-AS  France Telecom Transpac's Transit VPN network
+&gt;         10.129.131.0/24      AS25186 TRANSIT-VPN-AS  France Telecom Transpac's Transit VPN network
+
+OK.. I'll bite.  How many peering points between AS25186 and AS4637
+need to drop the ball on BGP filtering before this shows up in the report?
+
+
+
+Attachment:
+pgp00016.pgp
+Description: PGP signature
+

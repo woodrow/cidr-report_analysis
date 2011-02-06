@@ -1,0 +1,151 @@
+# from /home/woodrow/proj/cidr-report_analysis/planning/cidr_report_emails/cidr_r_emails-old_index.txt:581
+# 2000-08-25 'The Cidr Report' from 'Tony Bates'
+# http://www.merit.edu/mail.archives/nanog/2000-08/msg00324.html
+
+
+The Cidr Report
+From: Tony Bates
+Date: Fri Aug 25 15:08:20 2000
+
+
+
+
+This is an auto-generated mail on Fri Aug 25 12:00:00 PDT 2000
+It is not checked before it leaves my workstation.  However, hopefully 
+you will find this report interesting and will take the time to look 
+through this to see if you can improve the amount of aggregation you 
+perform.
+
+The report is split into sections:
+
+   0) General Status
+   
+      List the route table history for the last week, list any possibly
+      bogus routes seen and give some status on ASes.
+
+   1) Gains by aggregating at the origin AS level
+
+      This lists the &quot;Top 30&quot; players who if they decided to aggregate
+      their announced classful prefixes at the origin AS level could 
+      make a significant difference in the reduction of the current 
+      size of the Internet routing table. This calculation does not 
+      take into account the inclusion of holes when forming an aggregate
+      so it is possible even larger reduction should be possible.
+
+   2) Weekly Delta
+
+      A summary of the last weeks changes in terms of withdrawn and
+      added routes. Please note that this is only a snapshot but does 
+      give some indication of ASes participating in CIDR. Clearly,
+      it is generally a good thing to see a large amont of withdrawls.
+
+   3) Interesting aggregates
+
+      Interesting here means not an aggregate made as a set of 
+      classful routes.      
+
+Thanks to xara.net for giving me access to their routing tables once a
+day. 
+
+Please send any comments about this report directly to me.
+
+Check http://www.employees.org/~tbates/cidr-report.html for a daily
+update of this report.
+
+
+
+------------------------------------------------------------------------------
+
+                        CIDR REPORT for 25Aug00
+
+
+0) General Status
+
+Table History
+-------------
+
+Date	Prefixes
+180800	85012
+190800	84653
+200800	84576
+210800	84539
+220800	86440
+230800	85617
+240800	85297
+250800	85144
+
+Check http://www.employees.org/~tbates/cidr.plot.html for a plot
+of the table history.
+
+
+Possible Bogus Routes
+---------------------
+
+
+AS Summary
+----------
+
+Number of ASes in routing system:                 6240
+
+Number of ASes announcing only one prefix:        3082 (1039 cidr, 2043 classful)
+
+Largest number of  cidr routes:                    589 announced by  AS705
+Largest number of classful routes:                1076 announced by  AS701
+
+
+
+1) Gains by aggregating at the origin AS level
+
+ --- 25Aug00 ---
+ASnum    NetsNow NetsCIDR  NetGain  % Gain   Description
+
+AS12935       12        3        9   75.0%   Nocom.net AB, HQ Stockholm
+AS9655        11        3        8   72.7%   Startvision
+AS12540       10        2        8   80.0%   IdecNet Autonomous System
+AS9867        10        3        7   70.0%   CHONJU TECHNICAL COLLEGE
+AS9772         8        1        7   87.5%   Mighty Information Systems
+AS7980         9        2        7   77.8%   Global One Communications
+AS7959        12        5        7   58.3%   VICON
+AS7888        12        5        7   58.3%   CSI Health Autonomous System Obje
+AS7453         8        1        7   87.5%   GTINET
+AS6630         9        2        7   77.8%   LOA
+AS6614         8        1        7   87.5%   USCC-ASN
+AS3753        10        3        7   70.0%   NSCEE
+AS3339         9        2        7   77.8%   AT&amp;T Israel
+AS14677       11        4        7   63.6%   UNKNOWN
+AS14659        8        1        7   87.5%   LivePerson, Inc.
+AS14204        8        1        7   87.5%   UNKNOWN
+AS14062       11        4        7   63.6%   UNKNOWN
+AS13894       10        3        7   70.0%   UNKNOWN
+AS13761        8        1        7   87.5%   IMPSAT Brasil
+AS13418       10        3        7   70.0%   UNKNOWN
+AS12671        8        1        7   87.5%   Jordan Internet Network Autonomou
+AS11950        8        1        7   87.5%   UNKNOWN
+AS11900        9        2        7   77.8%   UNKNOWN
+AS11699       10        3        7   70.0%   Blue Mountain Internet
+AS10647       10        3        7   70.0%   UNKNOWN
+AS10242       12        5        7   58.3%   USINTERNET
+AS10044       10        3        7   70.0%   Wonkwang Health Science College
+AS8221        12        6        6   50.0%   Isabel-Belgium
+AS7699        10        4        6   60.0%   Weblink Philippines Inc
+AS6296        12        6        6   50.0%   MIND
+
+
+For the rest of the previous weeks gain information please see
+http://www.employees.org:80/~tbates/cidr-report.html
+
+2) Weekly Delta
+
+Please see
+http://www.employees.org:80/~tbates/cidr-report.html
+for this part of the report
+
+3) Interesting aggregates
+
+Please see
+http://www.employees.org:80/~tbates/cidr-report.html
+for this part of the report
+
+
+
+

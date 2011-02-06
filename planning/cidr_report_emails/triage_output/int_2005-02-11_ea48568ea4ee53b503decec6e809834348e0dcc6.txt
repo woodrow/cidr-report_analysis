@@ -1,0 +1,45 @@
+# from /home/woodrow/proj/cidr-report_analysis/planning/cidr_report_emails/cidr_r_emails-old_index.txt:284
+# 2005-02-11 'RE: The Cidr Report' from 'Stephen J. Wilcox'
+# http://www.merit.edu/mail.archives/nanog/2005-02/msg00171.html
+
+
+RE: The Cidr Report
+From: Stephen J. Wilcox
+Date: Fri Feb 11 06:56:31 2005
+
+
+
+On Fri, 11 Feb 2005, Frotzler, Florian wrote:
+
+&gt; 
+&gt; &gt; Recent Table History
+&gt; &gt;         Date      Prefixes    CIDR Agg
+&gt; &gt;         04-02-05    151613      103143
+&gt; &gt;         05-02-05    152142      103736
+&gt; &gt;         06-02-05    152231      103721
+&gt; &gt;         07-02-05    152353      103830
+&gt; &gt;         08-02-05    152514      103966
+&gt; &gt;         09-02-05    153855      104090
+&gt; &gt;         10-02-05    154283      104246
+&gt; &gt;         11-02-05    154341      104240
+&gt; &lt;...&gt;
+&gt; 
+&gt; ~ +3000 routes in one week? Anyone else frightened by this?
+&gt; 
+&gt; Florian
+
+any thoughts on how to fix it? my peers keep sending these to me and i'll even 
+admit my customers do too. telling people its bad doesnt appear to have an 
+effect, at the small end networks seem to collect /24s and announce them freely, 
+at the large end i'm still without an explanation as to why large networks 
+require so many prefixes - none of them seem to comment?
+
+if people arent self policing it seems the only other way is for the larger 
+transit providers to stop accepting prefixes and telling their customers to fix 
+their s**t. and i dont see them doing this.
+
+Steve
+
+
+
+

@@ -1,0 +1,28 @@
+# from /home/woodrow/proj/cidr-report_analysis/planning/cidr_report_emails/cidr_r_emails-old_index.txt:387
+# 2003-11-14 'Re: The Cidr Report' from 'Suresh Ramasubramanian'
+# http://www.merit.edu/mail.archives/nanog/2003-11/msg00449.html
+
+
+Re: The Cidr Report
+From: Suresh Ramasubramanian
+Date: Fri Nov 14 15:08:57 2003
+
+
+
+Stephen J. Wilcox writes on 11/14/2003 12:54 PM:
+
+
+Yeah maybe but what about where the RIRs have assigned independent /24 space..  
+or ISPs have subdelegated the IPs to a multihomed customer, was more thinking
+about where a bunch of routes originating from a single ASN can be aggregated 
+rather than routing bloat in general. There are numerous such examples of people 
+with eg a /19 announcing 32x /24 etc
+
+So how do you deal with one but not with the other?
+
+--
+srs (postmaster|suresh)@outblaze.com // gpg : EDEDEFB9
+manager, outblaze.com security and antispam operations
+
+
+

@@ -1,0 +1,52 @@
+# from /home/woodrow/proj/cidr-report_analysis/planning/cidr_report_emails/cidr_r_emails-old_index.txt:812
+# 1997-07-05 'Re: ? re: Tony Bates' CIDR Report' from 'Sean M. Doran'
+# http://www.merit.edu/mail.archives/nanog/1997-07/msg00108.html
+
+
+Re: ? re: Tony Bates' CIDR Report
+From: Sean M. Doran
+Date: Sat Jul 05 19:31:52 1997
+
+
+Not that this is really all that NANOG relevant, but if one checks
+into the archives on the NANOG and RIPE mailing lists, you will find
+that after lots of discussion, I agreed with Daniel Karrenberg and many
+others that /19s were eminently reasonable MAXIMUM prefix lengths for
+globally-visible NLRI.  A minimum aggregation boundary leading to
+no prefixes larger than 18 bits is desirable, and any aggregation
+that leads to even shorter global prefixes is a big plus for scalability.
+
+Consequently, just to repeat myself, /19s for everyone meeting
+registry requirements is probably just fine.  Now let's eliminate
+globally visible /24s.  All of them.  ESPECIALLY the historical
+stuff in the swamp and toxic waste dump.
+
+BTW, this probably can serve as notice to people that the step
+from proxy aggregation of long prefixes to outright lNAT for offenders
+is not that far in the future...
+
+Of course, the plus then is that people at the edges can be as sloppy
+as they want wrt routing announcements; from the perspective of large
+chunks of the topology (peers' and suppliers' networks, for example),
+even rather heavily meshed networks could and will appear to be
+neatly aggregated into PA address space.
+
+	Sean.
+
+P.S.: Those vendors who are crowing about flow-directed shortcuts
+	for IPv4 would be wise in investing in other flow-directed
+technologies, such as lNAT, intrusive web caching and redirection,
+and the like.  I am fairly confident that the near future will
+bring a popular recognition among large transit providers (that
+is, your initial market) of the Internet as a services-based network
+with congestion avoidance principally performed at the edges, with
+unknown spaghetti (odd IP topologies, address and protocol translations
+and gatewaying, etc.) in the middle.  All this nonsense about
+addressing MUST go away, and an ability to stage migrations to
+post-IP transport protocol(s) is also very handy.  Developing a
+mindset wherein IP itself is not necessarily end to end, IP
+addresses may change relative to topology, and may change over
+time is a really keen way of accomplishing that.
+
+
+

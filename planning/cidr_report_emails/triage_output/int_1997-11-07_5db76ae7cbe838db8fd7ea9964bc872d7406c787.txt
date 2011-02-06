@@ -1,0 +1,433 @@
+# from /home/woodrow/proj/cidr-report_analysis/planning/cidr_report_emails/cidr_r_emails-old_index.txt:793
+# 1997-11-07 'The Cidr Report' from 'Tony Bates'
+# http://www.merit.edu/mail.archives/nanog/1997-11/msg00219.html
+
+
+The Cidr Report
+From: Tony Bates
+Date: Fri Nov 07 15:15:19 1997
+
+
+
+This is an auto-generated mail on Fri Nov  7 12:00:00 PST 1997
+It is not checked before it leaves my workstation.  However, hopefully 
+you will find this report interesting and will take the time to look 
+through this to see if you can improve the amount of aggregation you 
+perform.
+
+The report is split into sections:
+
+   0) General Status
+   
+      List the route table history for the last week, list any possibly
+      bogus routes seen and give some status on ASes.
+
+   1) Gains by aggregating at the origin AS level
+
+      This lists the &quot;Top 30&quot; players who if they decided to aggregate
+      their announced classful prefixes at the origin AS level could 
+      make a significant difference in the reduction of the current 
+      size of the Internet routing table. This calculation does not 
+      take into account the inclusion of holes when forming an aggregate
+      so it is possible even larger reduction should be possible.
+
+   2) Weekly Delta
+
+      A summary of the last weeks changes in terms of withdrawn and
+      added routes. Please note that this is only a snapshot but does 
+      give some indication of ASes participating in CIDR. Clearly,
+      it is generally a good thing to see a large amont of withdrawls.
+
+   3) Interesting aggregates
+
+      Interesting here means not an aggregate made as a set of 
+      classful routes.      
+
+Thanks to xara.net for giving me access to their routing tables once a
+day. 
+
+Please send any comments about this report directly to me.
+
+Check http://www.employees.org/~tbates/cidr-report.html for a daily
+update of this report.
+
+
+
+------------------------------------------------------------------------------
+
+                        CIDR REPORT for 07Nov97
+
+
+0) General Status
+
+Table History
+-------------
+
+Date	Prefixes
+271097	46244
+281097	47092
+291097	47120
+301097	47207
+311097	46221
+011197	46279
+021197	46023
+031197	46334
+
+Check http://www.employees.org/~tbates/cidr.plot.html for a plot
+of the table history.
+
+
+Possible Bogus Routes
+---------------------
+
+
+AS Summary
+----------
+
+Number of ASes in routing system:                 2194
+
+Number of ASes announcing only one prefix:         626 (0 cidr, 626 classful)
+
+Largest number of  cidr routes:                      0 announced by       
+Largest number of classful routes:                 942 announced by  AS701
+
+
+
+1) Gains by aggregating at the origin AS level
+
+ --- 07Nov97 ---
+ASnum    NetsNow NetsCIDR  NetGain  % Gain   Description
+
+AS2493       733      412      321   43.8%   iSTAR Internet, Inc.
+AS3602       546      311      235   43.0%   Sprint Canada Inc.
+AS174        863      666      197   22.8%   Performance Systems International
+AS4293       364      183      181   49.7%   IMCI
+AS816        518      361      157   30.3%   UUNET Canada (ASN-UUNETCA-AS4)
+AS719        682      560      122   17.9%   LANLINK autonomous system
+AS839        124       27       97   78.2%   North West Territories Regional N
+AS3749       122       36       86   70.5%   TECNET
+AS2685       172       89       83   48.3%   IBM Global Network - US
+AS701        942      862       80    8.5%   Alternet
+AS2704       253      176       77   30.4%   HOOKUP-NET-A
+AS2048       159       91       68   42.8%   LaNet
+AS3804       200      136       64   32.0%   Bell Solutions
+AS4648       208      148       60   28.8%   NZIX 2
+AS5668        94       36       58   61.7%   Century Telephone Inc.
+AS1967        92       36       56   60.9%   Middle East Technical University 
+AS1239       611      555       56    9.2%   SprintLink Backbone
+AS1221       393      337       56   14.2%   AARNET-AS
+AS72          84       30       54   64.3%   Schlumberger Information Network
+AS4747       135       82       53   39.3%   Taiwan Telecommunication Network 
+AS3464       114       61       53   46.5%   ASC-NET
+AS1          881      830       51    5.8%   BBNPLANET
+AS4763       113       66       47   41.6%   Telstra New Zealand
+AS549        215      169       46   21.4%   ONet Backbone
+AS271        106       60       46   43.4%   BCnet Backbone
+AS1691       170      127       43   25.3%   BCTEL
+AS3561       935      893       42    4.5%   MCI
+AS2711        96       57       39   40.6%   SUNBELT-AS
+AS3564        61       24       37   60.7%   Microserve Infromation Systems In
+AS7545       118       82       36   30.5%   TPG Internet Pty Ltd
+
+ --- 06Nov97 ---
+ASnum    NetsNow NetsCIDR  NetGain  % Gain   Description
+
+AS2493       733      412      321   43.8%   iSTAR Internet, Inc.
+AS3602       546      311      235   43.0%   Sprint Canada Inc.
+AS174        863      666      197   22.8%   Performance Systems International
+AS4293       364      183      181   49.7%   IMCI
+AS816        518      361      157   30.3%   UUNET Canada (ASN-UUNETCA-AS4)
+AS719        682      560      122   17.9%   LANLINK autonomous system
+AS839        124       27       97   78.2%   North West Territories Regional N
+AS3749       122       36       86   70.5%   TECNET
+AS2685       172       89       83   48.3%   IBM Global Network - US
+AS701        942      862       80    8.5%   Alternet
+AS2704       253      176       77   30.4%   HOOKUP-NET-A
+AS2048       159       91       68   42.8%   LaNet
+AS3804       200      136       64   32.0%   Bell Solutions
+AS4648       208      148       60   28.8%   NZIX 2
+AS5668        94       36       58   61.7%   Century Telephone Inc.
+AS1967        92       36       56   60.9%   Middle East Technical University 
+AS1239       611      555       56    9.2%   SprintLink Backbone
+AS1221       393      337       56   14.2%   AARNET-AS
+AS72          84       30       54   64.3%   Schlumberger Information Network
+AS4747       135       82       53   39.3%   Taiwan Telecommunication Network 
+AS3464       114       61       53   46.5%   ASC-NET
+AS1          881      830       51    5.8%   BBNPLANET
+AS4763       113       66       47   41.6%   Telstra New Zealand
+AS549        215      169       46   21.4%   ONet Backbone
+AS271        106       60       46   43.4%   BCnet Backbone
+AS1691       170      127       43   25.3%   BCTEL
+AS3561       935      893       42    4.5%   MCI
+AS2711        96       57       39   40.6%   SUNBELT-AS
+AS3564        61       24       37   60.7%   Microserve Infromation Systems In
+AS7545       118       82       36   30.5%   TPG Internet Pty Ltd
+
+ --- 05Nov97 ---
+ASnum    NetsNow NetsCIDR  NetGain  % Gain   Description
+
+AS2493       733      412      321   43.8%   iSTAR Internet, Inc.
+AS3602       546      311      235   43.0%   Sprint Canada Inc.
+AS174        863      666      197   22.8%   Performance Systems International
+AS4293       364      183      181   49.7%   IMCI
+AS816        518      361      157   30.3%   UUNET Canada (ASN-UUNETCA-AS4)
+AS719        682      560      122   17.9%   LANLINK autonomous system
+AS839        124       27       97   78.2%   North West Territories Regional N
+AS3749       122       36       86   70.5%   TECNET
+AS2685       172       89       83   48.3%   IBM Global Network - US
+AS701        942      862       80    8.5%   Alternet
+AS2704       253      176       77   30.4%   HOOKUP-NET-A
+AS2048       159       91       68   42.8%   LaNet
+AS3804       200      136       64   32.0%   Bell Solutions
+AS4648       208      148       60   28.8%   NZIX 2
+AS5668        94       36       58   61.7%   Century Telephone Inc.
+AS1967        92       36       56   60.9%   Middle East Technical University 
+AS1239       611      555       56    9.2%   SprintLink Backbone
+AS1221       393      337       56   14.2%   AARNET-AS
+AS72          84       30       54   64.3%   Schlumberger Information Network
+AS4747       135       82       53   39.3%   Taiwan Telecommunication Network 
+AS3464       114       61       53   46.5%   ASC-NET
+AS1          881      830       51    5.8%   BBNPLANET
+AS4763       113       66       47   41.6%   Telstra New Zealand
+AS549        215      169       46   21.4%   ONet Backbone
+AS271        106       60       46   43.4%   BCnet Backbone
+AS1691       170      127       43   25.3%   BCTEL
+AS3561       935      893       42    4.5%   MCI
+AS2711        96       57       39   40.6%   SUNBELT-AS
+AS3564        61       24       37   60.7%   Microserve Infromation Systems In
+AS7545       118       82       36   30.5%   TPG Internet Pty Ltd
+
+ --- 04Nov97 ---
+ASnum    NetsNow NetsCIDR  NetGain  % Gain   Description
+
+AS2493       733      412      321   43.8%   iSTAR Internet, Inc.
+AS3602       546      311      235   43.0%   Sprint Canada Inc.
+AS174        863      666      197   22.8%   Performance Systems International
+AS4293       364      183      181   49.7%   IMCI
+AS816        518      361      157   30.3%   UUNET Canada (ASN-UUNETCA-AS4)
+AS719        682      560      122   17.9%   LANLINK autonomous system
+AS839        124       27       97   78.2%   North West Territories Regional N
+AS3749       122       36       86   70.5%   TECNET
+AS2685       172       89       83   48.3%   IBM Global Network - US
+AS701        942      862       80    8.5%   Alternet
+AS2704       253      176       77   30.4%   HOOKUP-NET-A
+AS2048       159       91       68   42.8%   LaNet
+AS3804       200      136       64   32.0%   Bell Solutions
+AS4648       208      148       60   28.8%   NZIX 2
+AS5668        94       36       58   61.7%   Century Telephone Inc.
+AS1967        92       36       56   60.9%   Middle East Technical University 
+AS1239       611      555       56    9.2%   SprintLink Backbone
+AS1221       393      337       56   14.2%   AARNET-AS
+AS72          84       30       54   64.3%   Schlumberger Information Network
+AS4747       135       82       53   39.3%   Taiwan Telecommunication Network 
+AS3464       114       61       53   46.5%   ASC-NET
+AS1          881      830       51    5.8%   BBNPLANET
+AS4763       113       66       47   41.6%   Telstra New Zealand
+AS549        215      169       46   21.4%   ONet Backbone
+AS271        106       60       46   43.4%   BCnet Backbone
+AS1691       170      127       43   25.3%   BCTEL
+AS3561       935      893       42    4.5%   MCI
+AS2711        96       57       39   40.6%   SUNBELT-AS
+AS3564        61       24       37   60.7%   Microserve Infromation Systems In
+AS7545       118       82       36   30.5%   TPG Internet Pty Ltd
+
+ --- 03Nov97 ---
+ASnum    NetsNow NetsCIDR  NetGain  % Gain   Description
+
+AS2493       733      412      321   43.8%   iSTAR Internet, Inc.
+AS3602       546      311      235   43.0%   Sprint Canada Inc.
+AS174        863      666      197   22.8%   Performance Systems International
+AS4293       364      183      181   49.7%   IMCI
+AS816        518      361      157   30.3%   UUNET Canada (ASN-UUNETCA-AS4)
+AS719        682      560      122   17.9%   LANLINK autonomous system
+AS839        124       27       97   78.2%   North West Territories Regional N
+AS3749       122       36       86   70.5%   TECNET
+AS2685       172       89       83   48.3%   IBM Global Network - US
+AS701        942      862       80    8.5%   Alternet
+AS2704       253      176       77   30.4%   HOOKUP-NET-A
+AS2048       159       91       68   42.8%   LaNet
+AS3804       200      136       64   32.0%   Bell Solutions
+AS4648       208      148       60   28.8%   NZIX 2
+AS5668        94       36       58   61.7%   Century Telephone Inc.
+AS1967        92       36       56   60.9%   Middle East Technical University 
+AS1239       611      555       56    9.2%   SprintLink Backbone
+AS1221       393      337       56   14.2%   AARNET-AS
+AS72          84       30       54   64.3%   Schlumberger Information Network
+AS4747       135       82       53   39.3%   Taiwan Telecommunication Network 
+AS3464       114       61       53   46.5%   ASC-NET
+AS1          881      830       51    5.8%   BBNPLANET
+AS4763       113       66       47   41.6%   Telstra New Zealand
+AS549        215      169       46   21.4%   ONet Backbone
+AS271        106       60       46   43.4%   BCnet Backbone
+AS1691       170      127       43   25.3%   BCTEL
+AS3561       935      893       42    4.5%   MCI
+AS2711        96       57       39   40.6%   SUNBELT-AS
+AS3564        61       24       37   60.7%   Microserve Infromation Systems In
+AS7545       118       82       36   30.5%   TPG Internet Pty Ltd
+
+ --- 02Nov97 ---
+ASnum    NetsNow NetsCIDR  NetGain  % Gain   Description
+
+AS2493       733      412      321   43.8%   iSTAR Internet, Inc.
+AS3602       545      311      234   42.9%   Sprint Canada Inc.
+AS174        924      705      219   23.7%   Performance Systems International
+AS4293       364      184      180   49.5%   IMCI
+AS816        520      364      156   30.0%   UUNET Canada (ASN-UUNETCA-AS4)
+AS719        682      560      122   17.9%   LANLINK autonomous system
+AS839        124       27       97   78.2%   North West Territories Regional N
+AS3749       123       36       87   70.7%   TECNET
+AS701        946      866       80    8.5%   Alternet
+AS2704       252      177       75   29.8%   HOOKUP-NET-A
+AS2048       159       91       68   42.8%   LaNet
+AS3804       200      136       64   32.0%   Bell Solutions
+AS4648       208      148       60   28.8%   NZIX 2
+AS5668        94       36       58   61.7%   Century Telephone Inc.
+AS1967        92       36       56   60.9%   Middle East Technical University 
+AS1239       611      555       56    9.2%   SprintLink Backbone
+AS1221       392      336       56   14.3%   AARNET-AS
+AS72          84       30       54   64.3%   Schlumberger Information Network
+AS4747       135       82       53   39.3%   Taiwan Telecommunication Network 
+AS3464       113       62       51   45.1%   ASC-NET
+AS1          879      828       51    5.8%   BBNPLANET
+AS549        216      168       48   22.2%   ONet Backbone
+AS4763       113       66       47   41.6%   Telstra New Zealand
+AS271        105       60       45   42.9%   BCnet Backbone
+AS1691       170      127       43   25.3%   BCTEL
+AS3561       936      894       42    4.5%   MCI
+AS2711        96       57       39   40.6%   SUNBELT-AS
+AS3564        61       24       37   60.7%   Microserve Infromation Systems In
+AS7545       118       82       36   30.5%   TPG Internet Pty Ltd
+AS6412        48       12       36   75.0%   Gulfnet International
+
+ --- 01Nov97 ---
+ASnum    NetsNow NetsCIDR  NetGain  % Gain   Description
+
+AS2493       731      411      320   43.8%   iSTAR Internet, Inc.
+AS3602       548      312      236   43.1%   Sprint Canada Inc.
+AS174        929      709      220   23.7%   Performance Systems International
+AS4293       365      180      185   50.7%   IMCI
+AS816        520      363      157   30.2%   UUNET Canada (ASN-UUNETCA-AS4)
+AS2685       269      123      146   54.3%   IBM Global Network - US
+AS719        682      560      122   17.9%   LANLINK autonomous system
+AS839        124       27       97   78.2%   North West Territories Regional N
+AS3749       123       36       87   70.7%   TECNET
+AS701        944      864       80    8.5%   Alternet
+AS2704       251      173       78   31.1%   HOOKUP-NET-A
+AS3804       200      136       64   32.0%   Bell Solutions
+AS4648       208      148       60   28.8%   NZIX 2
+AS5668        94       36       58   61.7%   Century Telephone Inc.
+AS2048       141       84       57   40.4%   LaNet
+AS1967        92       36       56   60.9%   Middle East Technical University 
+AS1239       611      555       56    9.2%   SprintLink Backbone
+AS1221       392      336       56   14.3%   AARNET-AS
+AS72          84       30       54   64.3%   Schlumberger Information Network
+AS3464       117       63       54   46.2%   ASC-NET
+AS4747       135       82       53   39.3%   Taiwan Telecommunication Network 
+AS1          885      834       51    5.8%   BBNPLANET
+AS549        220      172       48   21.8%   ONet Backbone
+AS4763       113       66       47   41.6%   Telstra New Zealand
+AS271        107       61       46   43.0%   BCnet Backbone
+AS1691       170      127       43   25.3%   BCTEL
+AS3561       935      893       42    4.5%   MCI
+AS2711        96       57       39   40.6%   SUNBELT-AS
+AS3564        61       24       37   60.7%   Microserve Infromation Systems In
+AS7545       118       82       36   30.5%   TPG Internet Pty Ltd
+
+ --- 31Oct97 ---
+ASnum    NetsNow NetsCIDR  NetGain  % Gain   Description
+
+AS2493       753      426      327   43.4%   iSTAR Internet, Inc.
+AS3602       546      311      235   43.0%   Sprint Canada Inc.
+AS174        934      718      216   23.1%   Performance Systems International
+AS4293       367      178      189   51.5%   IMCI
+AS816        511      360      151   29.5%   UUNET Canada (ASN-UUNETCA-AS4)
+AS2685       269      123      146   54.3%   IBM Global Network - US
+AS839        124       27       97   78.2%   North West Territories Regional N
+AS719        620      523       97   15.6%   LANLINK autonomous system
+AS3749       123       36       87   70.7%   TECNET
+AS701        946      867       79    8.4%   Alternet
+AS2704       253      177       76   30.0%   HOOKUP-NET-A
+AS2048       161       91       70   43.5%   LaNet
+AS1967       109       43       66   60.6%   Middle East Technical University 
+AS3804       201      137       64   31.8%   Bell Solutions
+AS4648       204      144       60   29.4%   NZIX 2
+AS5668        94       36       58   61.7%   Century Telephone Inc.
+AS1239       611      555       56    9.2%   SprintLink Backbone
+AS1221       392      336       56   14.3%   AARNET-AS
+AS3464       118       63       55   46.6%   ASC-NET
+AS72          84       30       54   64.3%   Schlumberger Information Network
+AS4747       135       82       53   39.3%   Taiwan Telecommunication Network 
+AS1          885      834       51    5.8%   BBNPLANET
+AS549        220      172       48   21.8%   ONet Backbone
+AS4763       113       66       47   41.6%   Telstra New Zealand
+AS271        105       60       45   42.9%   BCnet Backbone
+AS3561       936      894       42    4.5%   MCI
+AS2711        96       57       39   40.6%   SUNBELT-AS
+AS1691       160      122       38   23.8%   BCTEL
+AS3564        61       24       37   60.7%   Microserve Infromation Systems In
+AS7545       118       82       36   30.5%   TPG Internet Pty Ltd
+
+
+
+
+2) Weekly Delta
+
+This a daily snapshot of changes in classful routes being withdrawn and added.
+the deltas are calculated over a rolling 7 day period. Please bear in mind this
+is purely a &quot;snapshot&quot; and a large flucuation could be caused by a connectivity
+problem for example. However, this does give some indication of service
+providers that are moving to classless routing.
+
+
+Top 20 Withdrawn Classful Routes from 31Oct97 to 07Nov97
+	 -97 AS2685 IBM Global Network - US
+	 -71  AS174 Performance Systems International
+	 -34 AS5769 Videotron Telecom Ltee
+	 -32 AS8013 PSINET-CA
+	 -31 AS1761 Texas Dept. of Information Resour
+	 -24 AS6064 INTERSYS-AS
+	 -20 AS2493 iSTAR Internet, Inc.
+	 -17 AS1967 Middle East Technical University 
+	 -13 AS7470 ASIA INFONET Co.,Ltd.
+	 -10 AS2150 California State University Netwo
+	  -7 AS6755 ASN - TURNET
+	  -6 AS1767 IndNet AS
+	  -5 AS3388 UNM-AS
+	  -4  AS705 ALTERNET-AS
+	  -3   AS52 UCLA
+	  -2 AS4755 Videsh Sanchar Nigam Ltd. India
+	  -1 AS5486 Euronet Digital Communications
+
+Top 20 Added Classful Routes from 31Oct97 to 07Nov97
+	  76 AS3301 TeliaNet Sweden
+	  62  AS719 LANLINK autonomous system
+	  10 AS1290 PSINet UK Ltd.
+	   7  AS816 UUNET Canada (ASN-UUNETCA-AS4)
+	   6 AS2563 KoRea Education Network
+	   5 AS7497 Computer Network Information Cent
+	   4 AS3267 RUNNet
+	   3 AS6402 OneCall Communications Inc.
+	   2 AS1236 GTEGSC
+	   1  AS271 BCnet Backbone
+
+This a daily snapshot of changes in classles routes being withdrawn and added.
+
+
+Top 20 Withdrawn Classles Routes from 31Oct97 to 07Nov97
+
+Top 20 Added Classles Routes from 31Oct97 to 07Nov97
+
+
+
+3) Interesting aggregates
+
+
+
+            List of possibly interesting aggregates
+            ---------------------------------------
+
+         Aggregate | Origin | AS Description          | Netname                
+-------------------------------------------------------------------------------
+
+
+

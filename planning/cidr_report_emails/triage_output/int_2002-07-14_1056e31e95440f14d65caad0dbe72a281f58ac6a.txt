@@ -1,0 +1,101 @@
+# from /home/woodrow/proj/cidr-report_analysis/planning/cidr_report_emails/cidr_r_emails-old_index.txt:478
+# 2002-07-14 'RE: The Cidr Report - web site inaccessi' from 'Peter Murray'
+# http://www.merit.edu/mail.archives/nanog/2002-07/msg00585.html
+
+
+RE: The Cidr Report - web site inaccessible ?
+From: Peter Murray
+Date: Sun Jul 14 16:39:14 2002
+
+
+
+The employees.org server was attacked, and is being rebuilt.
+
+----
+Excerpts from willers.employees.org /etc/motd:
+
+On Friday, June 28, 2002, willers.employees.org was hacked and the root
+filesystem was compromised.  The system is still under re-construction.
+
+[snip]
+
+We will try to bring up http services over the next week.
+----
+
+Looks like some permissions have yet to be set correctly, as the webserver
+is actually up and running.
+
+-Peter Murray (N3IXY)
+Pittsburgh, PA
+
+-----Original Message-----
+From: owner-nanog@merit.edu [mailto:owner-nanog@merit.edu]On Behalf Of
+Gregory Hicks
+Sent: Sunday, July 14, 2002 3:10 PM
+To: rafi-nanog@meron.openu.ac.il
+Cc: tbates@cisco.com; nanog@merit.edu
+Subject: Re: The Cidr Report - web site inaccessible ?
+
+
+
+
+&gt; Date: Sun, 14 Jul 2002 21:36:01 +0300 (IDT)
+&gt; From: Rafi Sadowsky &lt;rafi-nanog@meron.openu.ac.il&gt;
+&gt;
+&gt;  Is it just me ?
+
+Internet-wide.
+
+I sent a note to Philip Smith re this very item.
+
+The wesite IS down.
+
+&gt; Date: Sun, 14 Jul 2002 08:56:34 +1000
+&gt; From: Philip Smith &lt;pfs@cisco.com&gt;
+&gt;
+&gt; Gregory,
+&gt;
+&gt; Yes, the website is down at the moment due to a failure on the server
+- &gt; I'm told it will be back in the next few days... Sorry about this.
+&gt; We'd no obvious way of telling everyone without spamming the whole
+&gt; mailing list...
+&gt;
+&gt; (If it isn't back by the next report, I'll have to do that..)
+&gt;
+&gt; best wishes!
+&gt;
+&gt; philip
+&gt; --
+
+At 00:07 13/07/2002 -0700, Gregory Hicks wrote:
+&gt;Um-m-m-m...  I tried to get to your report...  But failed with this
+&gt;error for each URL (listed below) shown in the CIDR report.
+[...snip...]
+Unquote
+
+Regards,
+Gregory Hicks
+
+&gt;
+[...snip remainder of both messages...]
+
+---------------------------------------------------------------------
+Gregory Hicks                           | Principal Systems Engineer
+Cadence Design Systems                  | Direct:   408.576.3609
+555 River Oaks Pkwy M/S 6B1             | Fax:      408.894.3479
+San Jose, CA 95134                      | Internet: ghicks@cadence.com
+
+Never attribute to malice that which is adequately explained by
+ignorance or stupidity.
+
+Asking the wrong questions is the leading cause of wrong answers
+
+&quot;The best we can hope for concerning the people at large is that they
+be properly armed.&quot; --Alexander Hamilton
+
+You can have it done good, fast, or cheap -- pick any two.
+
+
+
+
+

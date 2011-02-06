@@ -1,0 +1,52 @@
+# from /home/woodrow/proj/cidr-report_analysis/planning/cidr_report_emails/cidr_r_emails-old_index.txt:257
+# 2005-02-13 'RE: The Cidr Report' from 'Stephen J. Wilcox'
+# http://www.merit.edu/mail.archives/nanog/2005-02/msg00204.html
+
+
+RE: The Cidr Report
+From: Stephen J. Wilcox
+Date: Sun Feb 13 14:44:32 2005
+
+
+
+On Sun, 13 Feb 2005, Justin Ryburn wrote:
+
+&gt; I have recently heard companies saying their reasoning for de-aggregation was
+&gt; 1) to protect against outages to their customer base when a more specific of
+&gt; their aggregate was announced somewhere else and 2) if they are getting DDOS
+&gt; attacked on a given /24 they can just drop that advertisement and only affect
+&gt; part of their customer base.
+
+1) this only provides partial protection, even if you announce a /24 i can still 
+announce my own /24 and get some of your traffic
+
+2) either they are operating networks that cant support their business and i
+dont see why we should bale them out or in the cases where certain hosts are
+accepted by us as targets (ircnets etc) you could argue to obtain a discrete /24
+which is the better evil than taking a /16 and breaking it down to take out a
+/24
+
+i'm not keen on this latter idea, what if i operate an anti-ddos specialist isp,
+hosting ircnets, gambling, security sites etc - do i put each host in a /24 and
+waste a whole /16 with a couple hundred customers? 
+
+i strongly believe if you want to be an autonomous internet provider then you 
+should be able to run your network by accepted means not thro cheap hacks
+
+&gt; As technically savvy folks, we may not agree with this line of reasoning.  
+&gt; However, keep in mind that the technically savvy folks are not always the ones
+&gt; making the decisions within a company.  Just because someone has enable access
+&gt; and clue does not mean they have the authority to make certain decisions.  
+&gt; Most of those people probably spend a large amount of their time arguing with
+&gt; the decision makers to try and do the right thing but at some point they lose
+&gt; those arguments.
+
+if their suppliers/peers disagree strongly they would not be able to present 
+these options in the first place.. lack of regulation has its downsides it would 
+seem..
+
+Steve
+
+
+
+

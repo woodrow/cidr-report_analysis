@@ -1,0 +1,36 @@
+# from /home/woodrow/proj/cidr-report_analysis/planning/cidr_report_emails/cidr_r_emails-old_index.txt:602
+# 2000-05-17 'Re: CIDR Report' from 'Vadim Antonov'
+# http://www.merit.edu/mail.archives/nanog/2000-05/msg00354.html
+
+
+Re: CIDR Report
+From: Vadim Antonov
+Date: Wed May 17 03:34:34 2000
+
+
+
+Valdis.Kletnieks@vt.edu wrote:
+
+&gt; Sure, *any* good router vendor can build a router that can handle 100 million
+&gt; routing table entries.
+
+Not.  The empirical evidence suggests that aggregate flap rate is proportional
+to the number of prefixes in RIB.  Now, when people talk about route update
+processing they tend to forget that IGP and routing table updates are easy;
+matching prefixes against ruting policy filters is not.
+
+I would say that a computing device capable of doing today's border routing
+policies at 1M updates per second is well into the realm of science
+fiction.
+
+&gt; The questions are (a) can they do it for a pricetag
+&gt; of under $2M, and (b) how many will they sell?
+
+The question of profitability of cheese mining on the Moon is irrelevant,
+because Moon isn't made from cheese.
+
+--vadim
+
+
+
+

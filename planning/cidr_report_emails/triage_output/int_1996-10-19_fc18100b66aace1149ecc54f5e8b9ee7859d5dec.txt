@@ -1,0 +1,30 @@
+# from /home/woodrow/proj/cidr-report_analysis/planning/cidr_report_emails/cidr_r_emails-old_index.txt:879
+# 1996-10-19 'Re: The Cidr Report' from 'Hakan Hansson'
+# http://www.merit.edu/mail.archives/nanog/1996-10/msg00568.html
+
+
+Re: The Cidr Report
+From: Hakan Hansson
+Date: Sat Oct 19 04:59:05 1996
+
+
+At 12:53 1996-10-18 -0700, Tony Bates wrote:
+&gt;
+&gt; Tony Bates &lt;tbates@cisco.com&gt; writes:
+&gt;  * Even though I try to stay impartial, a couple of things are worthy of
+&gt;  * note here. AS455 (Telianet) may want to check a possible leak as an
+&gt;  * increase of 455 Classful routes seems a little hard to belive. Others
+&gt;[..]
+&gt;Oops - I meant AS3301 ...apologies...
+
+Tony,
+
+We will take care of this obvious leakage asap.
+
+Thanks,
+Hakan
+
+- - - - - - - - - - - - - - - - -
+
+
+

@@ -1,0 +1,47 @@
+# from /home/woodrow/proj/cidr-report_analysis/planning/cidr_report_emails/cidr_r_emails-old_index.txt:840
+# 1996-12-03 'Re: The Cidr Report' from 'John S. Quarterman'
+# http://www.merit.edu/mail.archives/nanog/1996-12/msg00033.html
+
+
+Re: The Cidr Report
+From: John S. Quarterman
+Date: Tue Dec 03 23:07:22 1996
+
+
+In article &lt;199612020252.AA02201@zephyr.isi.edu&gt; you write:
+&gt;&gt; 
+&gt;&gt; There is no &quot;absolute&quot; point at which to take these measurements. Any
+&gt;&gt; point will be coloured (colored) by its relative Internet location with respect to
+&gt;&gt; amounts of local detail and aggregated distant detail.
+&gt;&gt; 
+&gt;&gt; Thanks,
+&gt;&gt; 
+&gt;&gt;      Geoff
+&gt;
+&gt;	True enough.. (coloured is the correct spelling :)
+&gt;	Dave Meyers is starting to put up something like this
+&gt;	off his exchange in oregon.
+&gt;
+&gt;	Perhaps it would be useful to get a number of players 
+&gt;	together and ensure that we are taking routing snaps at
+&gt;	the same time and then persuade JQ to revamp his &quot;Internet
+&gt;	Weather Maps&quot; to reflect these high/low pressure patterns
+&gt;	across the landscape.
+
+Something like that is on the TODO list for the MIDS IWR, pending funding.
+
+Thanks,
+John
+
+John S. Quarterman &lt;jsq@mids.org&gt;
+Editor, Matrix Maps Quarterly and Matrix News &lt;mids@mids.org&gt;
+MIDS Internet Weather Report &lt;URL:http://www.mids.org/weather/&gt;
+President, Matrix Information and Directory Services (MIDS)
+http://www.mids.org, +1-512-451-7602, fax: +1-512-452-0127
+1106 Clayton Lane, Suite 500W
+Austin, TX 78723
+U.S.A.
+- - - - - - - - - - - - - - - - -
+
+
+

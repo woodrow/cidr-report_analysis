@@ -1,0 +1,64 @@
+# from /home/woodrow/proj/cidr-report_analysis/planning/cidr_report_emails/cidr_r_emails-old_index.txt:633
+# 2000-05-13 'RE: CIDR Report' from 'Roeland Meyer (E-mail)'
+# http://www.merit.edu/mail.archives/nanog/2000-05/msg00244.html
+
+
+RE: CIDR Report
+From: Roeland Meyer (E-mail)
+Date: Sat May 13 15:52:05 2000
+
+
+
+&gt; Danny McPherson: Saturday, May 13, 2000 12:08 PM
+&gt; 
+&gt; Perhaps part of the problem is this preconceived assumption 
+&gt; that one requires 
+&gt; portable address space and at least one unique AS number to 
+&gt; be able to connect 
+&gt; to the Internet in any reasonable manner, even if they're 
+&gt; single-homed, or 
+&gt; multi-homed to a single provider, etc..  Given, there are 
+&gt; plenty of instances 
+&gt; where it's indeed the optimal approach, but it's far from 
+&gt; being the norm, even 
+&gt; though it often seems to be evangelized as such.
+
+But, that isn't the problem that is presented. Redefining the problem away, won't solve the problem. That is what you are doing here, unless I completely misread your message. The conditions that I present are;
+
+1) Multiple upstream providers (No single upstream provider can cover all locations).
+2) Widely dispersed organization (even, multiple RIRs).
+3) Cost differences, between upstreams, based on location (cost optimal link, in one locale, is sub-optimal in another locale).
+
+cases:
+USWeb/CKS, now MARCHfirst: 8000 employees, over 5 continents.
+MHSC.NET: four locations in continental US, widely scattered sub-contractors.
+unamed CTI development client: Hong Kong(5), AUS(6), CA/US(20), east coast/US(8), etc...
+
+None of these are big enough to justify their own backbone operations or to buy a backbone from someone else, or there wouldn't be a problem. Paying scads of extortion money is also problematic (cheaper to simply burn the IP addresses).
+
+&gt; The CIDR stuff, the prefix-length filtering driven by Sean, 
+&gt; Randy, myself and others over the years, the address 
+&gt; portability and allocation stuff, it all feeds directly into 
+&gt; this, and absolutely has a substantial impact.  To toss it 
+&gt; all, while forgetting about reliability and availablity, 
+&gt; well, seems short-sighted to me.  
+
+I am NOT advocating tossing all of that out. I am simply bringing up a problem condition. Please, don't shoot the messenger, or otherwise get defensive (return fire is a bitch).
+
+What I am bringing up here is that new, information-age companies, as predicted in MegaTrends over 10 years ago, are now starting to appear. They are very diffused (sparse population, over very large areas of the globe) and have connectivity needs which are both critical, yet very different from click-n-morter customers that the Big8 was built up to handle (either classful or classless). The current architecture is not handeling them very well.
+
+The problem is currently in it's infancy, it will get much worse.
+
+---
+R O E L A N D  M .  J .  M E Y E R
+CEO, Morgan Hill Software Company, Inc.
+An eCommerce and eBusiness practice
+providing products and services for the Internet.
+Tel: (925)373-3954
+Fax: (925)373-9781
+
+
+
+
+
+

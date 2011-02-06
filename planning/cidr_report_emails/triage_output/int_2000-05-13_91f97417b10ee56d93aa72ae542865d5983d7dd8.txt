@@ -1,0 +1,51 @@
+# from /home/woodrow/proj/cidr-report_analysis/planning/cidr_report_emails/cidr_r_emails-old_index.txt:634
+# 2000-05-13 'Re: CIDR Report' from 'Danny McPherson'
+# http://www.merit.edu/mail.archives/nanog/2000-05/msg00242.html
+
+
+Re: CIDR Report
+From: Danny McPherson
+Date: Sat May 13 15:09:45 2000
+
+
+
+
+Perhaps part of the problem is this preconceived assumption that one requires 
+portable address space and at least one unique AS number to be able to connect 
+to the Internet in any reasonable manner, even if they're single-homed, or 
+multi-homed to a single provider, etc..  Given, there are plenty of instances 
+where it's indeed the optimal approach, but it's far from being the norm, even 
+though it often seems to be evangelized as such.
+
+The other issue that folks seem to be overlooking is that while routers are indeed more capable today (in terms of route and forwarding table space and processor speeds, hardware-based forwarding and the like), there are still a number of things that could be significantly improved upon .  Things that would make the Internet far more reliable as a whole, but won't be attainable if we forget about things like aggregation, reasonable justifcation for IP addresses, and address portability.
+
+For example, the fact that most large neworks (you define) don't perform any type of route prefix filtering between one another, but only at the customer ingress (if there), leaves a huge opportunity for (un)intentional unauthorized advertisement of another's routes.  
+
+Think about it, right now nearly half of the root name servers could be pretty much completely taken offline by simply injecting a more-specfic advertisement for the network in which they reside into BGP.  The other half, well, you could easily redirect ~half their traffic to an &quot;alternative&quot; location .. unless, of course, they reside within an address block which mean-old-Randy, or other networks are concerned about, then the number decreases slightly, but is still very substantial.
+
+Now, as for the actual impact this deaggregation and portability has, well:
+
+o if today I can't maintain a few 100K policy entries
+  defining valid paths at the edges of my network
+ 
+o or today I have no _reliable means of determining if the 
+  source of the information is valid
+
+o or today I can't reach to the databases during policy 
+  definition time
+
+o or especially, today, can't store the polices on my BGP routers 
+  or reasonable apply them to the associated peers
+
+Well, I'd say 5 or 10 (conservative) potential additions for each new prefix should indeed be a concern. 
+
+And this is just from a control plane perspective.  Think about if you actually wanted to utilize those same policies to perform some type of ingress SA-based packet filtering on a per-peer basis (it could easily decrease the impact of spoofing attacks by an order of magnitude).  Because of asymmetry, the packet filter can't be based on the forwarding table, it has to be based on the potential number of valid paths to the destination, and has to be performed in hardware.  Now, think about the impact that 5 or 10 (conservative) potential additions for each new prefix would have on the forwarding plane.
+
+The CIDR stuff, the prefix-length filtering driven by Sean, Randy, myself and others over the years, the address portability and allocation stuff, it all feeds directly into this, and absolutely has a substantial impact.  To toss it all, while forgetting about reliability and availablity, well, seems short-sighted to me.  
+
+-danny
+
+
+
+
+

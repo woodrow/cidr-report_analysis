@@ -1,0 +1,226 @@
+# from /home/woodrow/proj/cidr-report_analysis/planning/cidr_report_emails/cidr_r_emails-old_index.txt:577
+# 2000-09-22 'The Cidr Report' from 'Tony Bates'
+# http://www.merit.edu/mail.archives/nanog/2000-09/msg00430.html
+
+
+The Cidr Report
+From: Tony Bates
+Date: Fri Sep 22 15:06:24 2000
+
+
+
+
+This is an auto-generated mail on Fri Sep 22 12:00:00 PDT 2000
+It is not checked before it leaves my workstation.  However, hopefully 
+you will find this report interesting and will take the time to look 
+through this to see if you can improve the amount of aggregation you 
+perform.
+
+The report is split into sections:
+
+   0) General Status
+   
+      List the route table history for the last week, list any possibly
+      bogus routes seen and give some status on ASes.
+
+   1) Gains by aggregating at the origin AS level
+
+      This lists the &quot;Top 30&quot; players who if they decided to aggregate
+      their announced classful prefixes at the origin AS level could 
+      make a significant difference in the reduction of the current 
+      size of the Internet routing table. This calculation does not 
+      take into account the inclusion of holes when forming an aggregate
+      so it is possible even larger reduction should be possible.
+
+   2) Weekly Delta
+
+      A summary of the last weeks changes in terms of withdrawn and
+      added routes. Please note that this is only a snapshot but does 
+      give some indication of ASes participating in CIDR. Clearly,
+      it is generally a good thing to see a large amont of withdrawls.
+
+   3) Interesting aggregates
+
+      Interesting here means not an aggregate made as a set of 
+      classful routes.      
+
+Thanks to xara.net for giving me access to their routing tables once a
+day. 
+
+Please send any comments about this report directly to me.
+
+Check http://www.employees.org/~tbates/cidr-report.html for a daily
+update of this report.
+
+
+
+------------------------------------------------------------------------------
+
+                        CIDR REPORT for 22Sep00
+
+
+0) General Status
+
+Table History
+-------------
+
+Date	Prefixes
+150900	87093
+160900	87265
+170900	87208
+180900	87379
+190900	87348
+200900	87707
+210900	87719
+220900	87996
+
+Check http://www.employees.org/~tbates/cidr.plot.html for a plot
+of the table history.
+
+
+Possible Bogus Routes
+---------------------
+
+*** Bogus 65.0.0.0/14 from AS6172
+*** Bogus 65.33.0.0/16 from AS10994
+*** Bogus 65.128.0.0/14 from AS209
+*** Bogus 65.132.0.0/15 from AS209
+*** Bogus 65.134.0.0/17 from AS209
+*** Bogus 65.134.128.0/19 from AS209
+*** Bogus 65.160.0.0/15 from AS1239
+*** Bogus 65.162.0.0/16 from AS1239
+*** Bogus 66.1.16.0/20 from AS3847
+*** Bogus 66.4.0.0/17 from AS11686
+*** Bogus 66.4.0.0/15 from AS11686
+*** Bogus 66.4.128.0/17 from AS11686
+*** Bogus 66.6.32.0/20 from AS701
+*** Bogus 66.6.64.0/20 from AS14480
+*** Bogus 66.6.96.0/20 from AS10970
+*** Bogus 66.6.128.0/20 from AS3561
+*** Bogus 66.6.192.0/20 from AS11282
+*** Bogus 66.7.0.0/19 from AS16484
+*** Bogus 66.7.64.0/19 from AS14618
+*** Bogus 66.9.0.0/19 from AS6221
+*** Bogus 66.9.16.0/23 from AS16445
+*** Bogus 66.10.0.0/20 from AS7132
+*** Bogus 66.10.32.0/20 from AS7132
+*** Bogus 66.16.0.0/17 from AS14914
+*** Bogus 66.18.13.0/24 from AS3549
+*** Bogus 66.20.128.0/22 from AS7892
+*** Bogus 105.200.37.0/24 from AS9768
+*** Bogus 217.0.0.0/13 from AS3320
+*** Bogus 217.8.0.0/20 from AS1299
+*** Bogus 217.8.32.0/20 from AS3220
+*** Bogus 217.8.128.0/20 from AS15552
+*** Bogus 217.8.160.0/20 from AS8246
+*** Bogus 217.8.160.0/20 from AS15560
+*** Bogus 217.9.32.0/20 from AS15563
+*** Bogus 217.9.36.0/22 from AS15563
+*** Bogus 217.9.42.0 from AS15563
+*** Bogus 217.9.64.0/20 from AS3269
+*** Bogus 217.9.96.0/20 from AS15671
+*** Bogus 217.9.128.0/20 from AS12969
+*** Bogus 217.9.160.0 from AS15606
+*** Bogus 217.9.224.0/20 from AS13124
+*** Bogus 217.10.0.0/20 from AS1270
+*** Bogus 217.10.64.0/20 from AS15594
+*** Bogus 217.10.96.0/20 from AS5556
+*** Bogus 217.10.96.0/20 from AS5378
+*** Bogus 217.10.160.0/23 from AS15641
+*** Bogus 217.10.162.0 from AS15641
+*** Bogus 217.10.192.0 from AS12302
+*** Bogus 217.11.0.0/20 from AS9034
+*** Bogus 217.11.64.0/20 from AS702
+*** Bogus 217.11.160.0/20 from AS3259
+*** Bogus 217.11.224.0/20 from AS15685
+*** Bogus 217.12.0.0/20 from AS15635
+*** Bogus 217.12.32.0/20 from AS5378
+*** Bogus 217.12.96.0 from AS15632
+*** Bogus 217.12.96.0/23 from AS15632
+*** Bogus 217.12.97.0 from AS15632
+*** Bogus 217.12.192.0/20 from AS15626
+*** Bogus 217.12.224.0/20 from AS15438
+*** Bogus 217.13.0.0/20 from AS15659
+*** Bogus 217.13.32.0 from AS15629
+*** Bogus 217.13.33.0 from AS15629
+*** Bogus 217.13.34.0 from AS15629
+*** Bogus 217.13.192.0/20 from AS9126
+*** Bogus 217.13.224.0/20 from AS3220
+*** Bogus 217.14.64.0/20 from AS3303
+*** Bogus 217.14.96.0/23 from AS13099
+*** Bogus 217.14.128.0/20 from AS8851
+*** Bogus 217.14.192.0/20 from AS3226
+*** Bogus 217.15.0.0/20 from AS13064
+*** Bogus 217.15.128.0/20 from AS13118
+*** Bogus 217.16.96.0/20 from AS15687
+*** Bogus 217.32.0.0/12 from AS2856
+*** Bogus 217.117.117.0 from AS2007
+*** Bogus 220.10.56.0 from AS3215
+
+AS Summary
+----------
+
+Number of ASes in routing system:                 8534
+
+Number of ASes announcing only one prefix:        4865 (2696 cidr, 2169 classful)
+
+Largest number of  cidr routes:                    892 announced by  AS701
+Largest number of classful routes:                1087 announced by  AS701
+
+
+
+1) Gains by aggregating at the origin AS level
+
+ --- 22Sep00 ---
+ASnum    NetsNow NetsCIDR  NetGain  % Gain   Description
+
+AS271        432      155      277   64.1%   BCnet Backbone
+AS9706       310      104      206   66.5%   Pusan Metropolitan City Office of
+AS1221       611      451      160   26.2%   TELSTRA-AS
+AS9269       179       40      139   77.7%   Hong Kong CTI
+AS816        566      429      137   24.2%   UUNET Canada (ASN-UUNETCA-AS4)
+AS2609       128        8      120   93.8%   EUnet-TN
+AS7657       324      211      113   34.9%   The Internet Group Limited
+AS9304       124       17      107   86.3%   Hutchcity
+AS7046       376      270      106   28.2%   COQUI-NET PRTC Internet
+AS7545       159       56      103   64.8%   TPG Internet Pty Ltd
+AS705        367      266      101   27.5%   UNKNOWN
+AS6429       209      115       94   45.0%   FirstCom Internet
+AS7496       125       34       91   72.8%   Power Up
+AS4755       208      118       90   43.3%   Videsh Sanchar Nigam Ltd. India
+AS8013       490      403       87   17.8%   UNKNOWN
+AS174        536      450       86   16.0%   Performance Systems International
+AS6595       138       57       81   58.7%   UNKNOWN
+AS3908       256      176       80   31.2%   Supernet, Inc.
+AS4293       331      252       79   23.9%   Internal ASN for C&amp;W
+AS724        244      168       76   31.1%   UNKNOWN
+AS1785       384      309       75   19.5%   AppliedTheory Communications
+AS1727       172       97       75   43.6%   UNKNOWN
+AS577        250      177       73   29.2%   Bell Backbone
+AS7018       581      514       67   11.5%   AT&amp;T WorldNet Service Backbone
+AS701       1087     1021       66    6.1%   Alternet
+AS4792        77       11       66   85.7%   SK Telecom Co., Ltd.
+AS13999       77       11       66   85.7%   UNKNOWN
+AS5106        99       36       63   63.6%   UNKNOWN
+AS3749       119       57       62   52.1%   UNKNOWN
+AS226        170      108       62   36.5%   USC/Information Sciences Institut
+
+
+For the rest of the previous weeks gain information please see
+http://www.employees.org:80/~tbates/cidr-report.html
+
+2) Weekly Delta
+
+Please see
+http://www.employees.org:80/~tbates/cidr-report.html
+for this part of the report
+
+3) Interesting aggregates
+
+Please see
+http://www.employees.org:80/~tbates/cidr-report.html
+for this part of the report
+
+
+
+

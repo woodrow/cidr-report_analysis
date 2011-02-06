@@ -1,0 +1,105 @@
+# from /home/woodrow/proj/cidr-report_analysis/planning/cidr_report_emails/cidr_r_emails-old_index.txt:255
+# 2005-02-13 'Re: The Cidr Report' from 'Michael Smith'
+# http://www.merit.edu/mail.archives/nanog/2005-02/msg00208.html
+
+
+Re: The Cidr Report
+From: Michael Smith
+Date: Sun Feb 13 18:08:22 2005
+
+
+
+
+&gt; From: &quot;Warren Kumari, Ph.D, CCIE# 9190&quot; &lt;warren@kumari.net&gt;
+&gt; Date: Mon, 14 Feb 2005 10:14:38 -0500
+&gt; To: &lt;nanog@merit.edu&gt;
+&gt; Subject: Re: The Cidr Report
+&gt; 
+&gt; 
+&gt; -----BEGIN PGP SIGNED MESSAGE-----
+&gt; Hash: SHA1
+&gt; 
+&gt; 
+&gt; On Feb 13, 2005, at 2:31 AM, Christopher L. Morrow wrote:
+&gt; 
+&gt;&gt; 
+&gt;&gt; 
+&gt;&gt; On Sat, 12 Feb 2005, Alexander Koch wrote:
+&gt;&gt; 
+&gt;&gt;&gt; 
+&gt;&gt;&gt; On Sat, 12 February 2005 14:58:42 +0000, Stephen J. Wilcox wrote:
+&gt;&gt;&gt;&gt; From: &quot;Stephen J. Wilcox&quot; &lt;steve@telecomplete.co.uk&gt;
+&gt;&gt;&gt;&gt; [...]   - would you agree that most of the poor deaggregating is not
+&gt;&gt;&gt;&gt; intentional
+&gt;&gt;&gt;&gt; ie that they're announcing their '16 class Cs' or historically had 2
+&gt;&gt;&gt;&gt; /21s and
+&gt;&gt;&gt; 
+&gt;&gt;&gt; Think about someone putting in a Null0 route and re-
+&gt;&gt;&gt; exporting stuff unconditionally, now after he originates
+&gt;&gt;&gt; his /19 he is then adding a /24 here, and a /25 there.
+&gt;&gt;&gt; Lack of experience, when you suggest to them they should
+&gt;&gt;&gt; remove these announcements they are afraid to change it,
+&gt;&gt;&gt; not understanding the implications, etc.
+&gt;&gt;&gt; 
+&gt;&gt;&gt; Not to mention ppl using cisco and prefix lists, it is
+&gt;&gt;&gt; way too easy with cisco to say '/19 le 24', and then they
+&gt;&gt;&gt; use outbound prefix lists to their transit supplier
+&gt;&gt;&gt; (different, but related as I see it). Some transit ISPs
+&gt;&gt;&gt; use that a lot, and encourage the table growth.
+&gt;&gt; 
+&gt;&gt; There are some business reasons to de-aggregate. Look at some outages
+&gt;&gt; caused by 'routing problems' (someone leaked my /24's to their peers,
+&gt;&gt; peers, peer and my traffic got blackholed, because the public net only
+&gt;&gt; knows me as a /20)
+&gt;&gt; 
+&gt;&gt; There are multiple reasons for deaggregation aside from 'dumb
+&gt;&gt; operator',
+&gt;&gt; some are even 'valid' if you look at them from the protection
+&gt;&gt; standpoint.
+&gt;&gt; 
+&gt;&gt; -Chris
+&gt; 
+&gt; That and the &quot;I have 1 circuit to $good_provider and 1 circuit to
+&gt; $bad_provider and the only way I can make them balance is to split my
+&gt; space in half and announce more specifics out through each provider&quot;
+&gt; argument. I have also often seen people do this without announcing the
+&gt; aggregate because   &lt;some undefined bad thing&gt; will happen, usually
+&gt; justified with much hand-waving.  The people who do this can usually
+&gt; not be reasoned with....
+&gt; 
+&gt; It happens all the time...
+&gt; 
+&gt; Warren.
+&gt; 
+&gt;&gt; 
+&gt;&gt; 
+
+So, say  I'm a provider that has received a /22 from UUNet (just for example
+Chris :-) ) and I now get another transit provider and announce the /22
+there.  So, I call UUNet and ask them to announce the /22 as a more specific
+because I don't want a de-facto asymmetric configuration.  I *want* to get a
+/20 from ARIN but my usage doesn't justify it yet, so I have to ride the /22
+for some time.
+
+By the long string of anecdotal attacks in the string to date, listing most
+or all such providers as &quot;bad&quot; or &quot;uninformed&quot; how do you separate out those
+providers who are legitimately interested in routing redundancy and not clue
+impaired?  Do we just say &quot;too bad, routing table bloat is more important
+than your need for redundancy small guy!&quot;?
+
+I find it interesting that the general theme is one of &quot;we're smarter than
+they are because we aggregate more routes&quot; as if clue were directly
+correlated to aggregated routing announcements.
+
+Mike
+
+-- 
+Michael K. Smith               NoaNet
+206.219.7116 (work)         866.662.6380 (NOC)
+mksmith@noanet.net      http://www.noanet.net
+
+
+
+
+
+

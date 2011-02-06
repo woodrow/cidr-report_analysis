@@ -1,0 +1,38 @@
+# from /home/woodrow/proj/cidr-report_analysis/planning/cidr_report_emails/cidr_r_emails-old_index.txt:603
+# 2000-05-16 'Re: CIDR Report' from 'jlewis'
+# http://www.merit.edu/mail.archives/nanog/2000-05/msg00315.html
+
+
+Re: CIDR Report
+From: jlewis
+Date: Tue May 16 01:05:43 2000
+
+
+
+On Mon, 15 May 2000, Danny McPherson wrote:
+
+&gt; Cisco, are you listening?  You need to make a GSR that does BGP 
+&gt; updates faster, ok?  While you're at it, you need to write bug-free
+&gt; software....
+
+Those were going to be my words.  It seems every time we buy something
+relatively new &amp; high-end from Cisco, they don't actually have working
+code available yet...so we either end up suffering with serious bugs or
+they send us replacement hardware for which there's more stable software
+available.
+
+Latest non-working combo...7206VXR/NPE225/PA-MC-T3.  Anyone know of a
+stable release for this?  TAC doesn't seem to.  Solution for now is to
+swap out the NPE225 for an older more widely supported one...since only 2
+trains support the combo above and none work.
+
+----------------------------------------------------------------------
+ Jon Lewis *jlewis@lewis.org*|  I route
+ System Administrator        |  therefore you are
+ Atlantic Net                |  
+_________http://www.lewis.org/~jlewis/pgp for PGP public key__________
+
+
+
+
+

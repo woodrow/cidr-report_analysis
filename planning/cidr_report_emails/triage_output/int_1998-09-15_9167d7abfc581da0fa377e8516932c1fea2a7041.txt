@@ -1,0 +1,40 @@
+# from /home/woodrow/proj/cidr-report_analysis/planning/cidr_report_emails/cidr_r_emails-old_index.txt:732
+# 1998-09-15 'Re: The Cidr Report' from 'Brian Dickson'
+# http://www.merit.edu/mail.archives/nanog/1998-09/msg00316.html
+
+
+Re: The Cidr Report
+From: Brian Dickson
+Date: Tue Sep 15 14:29:53 1998
+
+
+
+&gt;Anyone care to comment on the fact that the top non-compliant companies
+&gt;never really seem to make any significant changes?
+&gt;
+&gt;&gt;  --- 11Sep98 ---
+&gt;&gt; ASnum    NetsNow NetsCIDR  NetGain  % Gain   Description
+&gt;&gt; AS174        789      611      178   22.6%   Performance Systems International
+&gt;&gt; AS2493       373      217      156   41.8%   iSTAR Internet, Inc.
+
+Well, two things: (1) PSI acquired iSTAR; (2) most of the clueful people
+had left or have left iSTAR (myself being one). I have no specific knowledge
+of PSI's clue quotient, per se.
+
+Also of note: all of iSTAR's unaggregated routes are below 206.0.0.0/8,
+in geographically-assigned /16's (ie, some /24's belong to iSTAR customers,
+some to customers of other providers), where the %gain is achieved by
+aggregating in variable-length clumps (eg /23's, /22's, etc), at iSTAR's EBGP
+borders, since these are not aggregatable internally.
+
+And yes, iSTAR does redistribute its IGP into BGP, but only because Cisco's
+IOS has a limit (200) on how many &quot;network&quot; statements can exist in a router,
+which is exceeded by their NetsCIDR. :-(
+-- 
+Brian Dickson,                                    Email: briand@teleglobe.net
+Teleglobe USA, Inc.,                              Tel  : +1 703 821 4818
+Suite 400, 8251 Greensboro Drive,                 Fax  : +1 703 821 4885
+McLean, Virginia, USA, 22102                      http://www.teleglobe.com
+
+
+

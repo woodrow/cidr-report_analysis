@@ -1,0 +1,153 @@
+# from /home/woodrow/proj/cidr-report_analysis/planning/cidr_report_emails/cidr_r_emails-old_index.txt:543
+# 2001-04-21 'The Cidr Report' from 'Tony Bates'
+# http://www.merit.edu/mail.archives/nanog/2001-04/msg00569.html
+
+
+The Cidr Report
+From: Tony Bates
+Date: Sat Apr 21 02:09:22 2001
+
+
+
+
+This is an auto-generated mail on Fri Apr 20 23:00:00 PDT 2001
+It is not checked before it leaves my workstation.  However, hopefully 
+you will find this report interesting and will take the time to look 
+through this to see if you can improve the amount of aggregation you 
+perform.
+
+The report is split into sections:
+
+   0) General Status
+   
+      List the route table history for the last week, list any possibly
+      bogus routes seen and give some status on ASes.
+
+   1) Gains by aggregating at the origin AS level
+
+      This lists the &quot;Top 30&quot; players who if they decided to aggregate
+      their announced classful prefixes at the origin AS level could 
+      make a significant difference in the reduction of the current 
+      size of the Internet routing table. This calculation does not 
+      take into account the inclusion of holes when forming an aggregate
+      so it is possible even larger reduction should be possible.
+
+   2) Weekly Delta
+
+      A summary of the last weeks changes in terms of withdrawn and
+      added routes. Please note that this is only a snapshot but does 
+      give some indication of ASes participating in CIDR. Clearly,
+      it is generally a good thing to see a large amont of withdrawls.
+
+   3) Interesting aggregates
+
+      Interesting here means not an aggregate made as a set of 
+      classful routes.      
+
+Thanks to xara.net for giving me access to their routing tables once a
+day. 
+
+Please send any comments about this report directly to me.
+
+Check http://www.employees.org/~tbates/cidr-report.html for a daily
+update of this report.
+
+
+
+------------------------------------------------------------------------------
+
+                        CIDR REPORT for 20Apr01
+
+
+0) General Status
+
+Table History
+-------------
+
+Date	Prefixes
+130401	99823
+140401	99656
+150401	99795
+160401	99731
+170401	99601
+180401	99779
+190401	99884
+200401	100216
+
+Check http://www.employees.org/~tbates/cidr.plot.html for a plot
+of the table history.
+
+
+Possible Bogus Routes
+---------------------
+
+*** Bogus 223.255.46.0 from AS6853
+*** Bogus 223.255.70.0 from AS6853
+
+AS Summary
+----------
+
+Number of ASes in routing system:                10519
+
+Number of ASes announcing only one prefix:        6219 (3531 cidr, 2688 classful)
+
+Largest number of  cidr routes:                   1218 announced by  AS705
+Largest number of classful routes:                1592 announced by AS1221
+
+
+
+1) Gains by aggregating at the origin AS level
+
+ --- 20Apr01 ---
+ASnum    NetsNow NetsCIDR  NetGain  % Gain   Description
+
+AS1221      1592     1194      398   25.0%   Telstra Pty Ltd
+AS701       1462     1276      186   12.7%   1
+AS705        368      251      117   31.8%   1
+AS6429       214      105      109   50.9%   1
+AS4151       247      139      108   43.7%   1
+AS6595       163       62      101   62.0%   1
+AS13999      104        8       96   92.3%   1
+AS4293       370      277       93   25.1%   1
+AS7018       694      605       89   12.8%   1
+AS15412      430      341       89   20.7%   FLAG Telecom Global Internet AS
+AS8013       319      236       83   26.0%   1
+AS4755       218      138       80   36.7%   Videsh Sanchar Nigam Ltd. Autonom
+AS577        241      172       69   28.6%   1
+AS5106       101       37       64   63.4%   1
+AS3749       120       59       61   50.8%   1
+AS9498        75       15       60   80.0%   BHARTI BT INTERNET LTD.
+AS3464       151       92       59   39.1%   1
+AS11252       92       34       58   63.0%   1
+AS724        203      146       57   28.1%   1
+AS16758       63        6       57   90.5%   1
+AS1          609      552       57    9.4%   1
+AS6413        67       11       56   83.6%   1
+AS226        149       93       56   37.6%   1
+AS7568        84       29       55   65.5%   C.S. Communications Co., Ltd.
+AS6471        99       46       53   53.5%   1
+AS4323       230      178       52   22.6%   1
+AS9269       116       67       49   42.2%   City Telecom (H.K.) Ltd.
+AS852        200      152       48   24.0%   1
+AS10692       62       14       48   77.4%   1
+AS9683        48        2       46   95.8%   Kyonggi Cable TV
+
+
+For the rest of the previous weeks gain information please see
+http://www.employees.org:80/~tbates/cidr-report.html
+
+2) Weekly Delta
+
+Please see
+http://www.employees.org:80/~tbates/cidr-report.html
+for this part of the report
+
+3) Interesting aggregates
+
+Please see
+http://www.employees.org:80/~tbates/cidr-report.html
+for this part of the report
+
+
+
+

@@ -1,0 +1,56 @@
+# from /home/woodrow/proj/cidr-report_analysis/planning/cidr_report_emails/cidr_r_emails-old_index.txt:317
+# 2004-11-12 'Re: The Cidr Report' from 'Christopher L. Morrow'
+# http://www.merit.edu/mail.archives/nanog/2004-11/msg00372.html
+
+
+Re: The Cidr Report
+From: Christopher L. Morrow
+Date: Fri Nov 12 22:35:18 2004
+
+
+
+
+On Fri, 12 Nov 2004, Randy Bush wrote:
+
+&gt; &gt;&gt;&gt; ASnum    NetsNow NetsAggr  NetGain   % Gain   Description
+&gt; &gt;&gt;&gt;
+&gt; &gt;&gt;&gt; AS18566      751        6      745    99.2%   CVAD Covad Communications
+&gt; &gt;&gt;&gt; AS4134       825      178      647    78.4%   CHINANET-BACKBONE
+&gt; &gt;&gt;&gt;                                                No.31,Jin-rong Street
+&gt; &gt;&gt;&gt; AS4323       794      223      571    71.9%   TWTC Time Warner Telecom
+&gt; &gt;&gt;&gt; AS6197       814      430      384    47.2%   BNS-14 BellSouth Network
+&gt; &gt;&gt;&gt;                                                Solutions, Inc
+&gt; &gt;&gt;&gt; AS22773      401       17      384    95.8%   CXA Cox Communications Inc.
+&gt; &gt;&gt;&gt; AS27364      413       45      368    89.1%   ARMC Armstrong Cable Services
+&gt; &gt;&gt;&gt; AS701       1230      884      346    28.1%   UU UUNET Technologies, Inc.
+&gt; &gt;&gt;&gt; AS22909      412       81      331    80.3%   CMCS Comcast Cable
+&gt; &gt;&gt;&gt;                                                Communications, Inc.
+&gt; &gt;&gt; e.g. is AS18566 the origin AS for 751 prefixes that could be
+&gt; &gt;&gt; collapsed to 6?
+&gt; &gt;
+&gt; &gt; not to justify the expense, but perhaps covad is renumbering from one
+&gt; &gt; block to another? Looking at their advertisments I see lots of /23 or /24
+&gt; &gt; blocks inside their larger covering routes... So either they deaggregated
+&gt; &gt; to renumber more gracefully, or they forgot their prefix-list outbound to
+&gt; &gt; williams and exodus ?
+&gt; &gt;
+&gt; &gt; perhaps covad can explain? or silently cover up the 'mistake' (which is
+&gt; &gt; acceptable as well...)
+&gt;
+&gt; it's not just covad.  they're just such an egregious case among
+&gt; many socially and technically irresponsible polluters.
+
+eh, since I singled out covad: (and I feel bad for it now)
+what about for COX? what about for UU (doh, thats me...or our tac or
+something, I'll look/ask), what about Comcast? and TWTC? ArmStrong?
+
+Of these listed 4 are cable companies, is there something in the cable
+modem networking that requires deaggregated routes beyond their borders?
+Is the problem that they might have seperate 'networks' for their regional
+parts and leak more specifics for these parts along with 'backup' routes
+via aggregates?
+
+-Chris
+
+
+

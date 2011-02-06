@@ -1,0 +1,137 @@
+# from /home/woodrow/proj/cidr-report_analysis/planning/cidr_report_emails/cidr_r_emails-old_index.txt:853
+# 1996-12-01 'Re: The Cidr Report' from 'Tony Bates'
+# http://www.merit.edu/mail.archives/nanog/1996-12/msg00001.html
+
+
+Re: The Cidr Report
+From: Tony Bates
+Date: Sun Dec 01 18:57:41 1996
+
+
+
+Well I did a bit of digging at the sudden difference we are seeing. A
+lot of this points to different levels of aggregation at different
+points in the Internet. I took a dump from Bill's box at ?LA? and from the
+xara.net router I use at Mae-east and saw one immediate example of
+this. Here's the prefixes announced out of the 206.16/16 (belongs to
+CERFNET) block.
+
+First from xara.net (12 prefixes)
+---------------------------------
+
+206.16.0.0/16 in AS1740
+206.16.192.0/18 in AS6077
+206.16.96.0 in AS6332
+206.16.97.0 in AS6332
+206.16.98.0 in AS6332
+206.16.99.0 in AS6332
+206.16.102.0 in AS6332
+206.16.105.0 in AS6332
+206.16.106.0 in AS6332
+206.16.111.0 in AS6332
+206.16.112.0 in AS6332
+206.16.113.0 in AS6332
+
+Then Bill's router (59 prefixes)
+--------------------------------
+
+206.16.12.0 in AS4262
+206.16.16.0 in AS4262
+206.16.18.0 in AS1740
+206.16.20.0 in AS1740
+206.16.21.0 in AS1740
+206.16.22.0 in AS1740
+206.16.23.0 in AS1740
+206.16.26.0 in AS1740
+206.16.29.0 in AS1740
+206.16.32.0 in AS4262
+206.16.40.0 in AS4262
+206.16.41.0 in AS4262
+206.16.42.0 in AS4262
+206.16.44.0 in AS4262
+206.16.47.0 in AS4262
+206.16.48.0 in AS4262
+206.16.74.0 in AS4262
+206.16.77.0 in AS4262
+206.16.78.0 in AS4262
+206.16.81.0 in AS4262
+206.16.82.0 in AS4262
+206.16.85.0 in AS4262
+206.16.86.0 in AS4262
+206.16.87.0 in AS4262
+206.16.90.0 in AS1740
+206.16.91.0 in AS1740
+206.16.92.0 in AS1740
+206.16.93.0 in AS1740
+206.16.94.0 in AS4262
+206.16.95.0 in AS1740
+206.16.96.0 in AS1740
+206.16.96.0 in AS6332
+206.16.97.0 in AS6332
+206.16.98.0 in AS6332
+206.16.99.0 in AS6332
+206.16.100.0 in AS1740
+206.16.102.0 in AS6332
+206.16.105.0 in AS1740
+206.16.105.0 in AS6332
+206.16.106.0 in AS6332
+206.16.107.0 in AS1740
+206.16.108.0 in AS1740
+206.16.109.0 in AS1740
+206.16.111.0 in AS6332
+206.16.112.0 in AS6332
+206.16.113.0 in AS6332
+206.16.140.0 in AS4262
+206.16.141.0 in AS4262
+206.16.142.0 in AS4262
+206.16.143.0 in AS4262
+206.16.150.0 in AS1740
+206.16.160.0 in AS1740
+206.16.188.0 in AS1740
+206.16.0.0/16 in AS1740
+206.16.10.0/23 in AS4262
+206.16.136.0/22 in AS4262
+206.16.168.0/21 in AS4262
+206.16.176.0/22 in AS4262
+206.16.192.0/18 in AS6077
+
+This is not to pick on CERFNET but just to highlight a problem of
+actually tracking the size of the routing table in general. This 
+CERFnet case seems to be this way becuase it is a direct peer of
+Bill's box even though I can see no reason why the more specifics are
+needed.
+
+Looking a little more it seems a large amount of more specifics are being
+announced to Bill's boxe which aren't being announced to the xara.net
+router. Perhaps ISPs are taking more care at places like MAE-East with
+their outbound filters than they are at Bill's peering point even though
+Bill only has 6 active EBGP neighbors and the xara.net router has 39
+;-(.
+
+At this point I am pretty happy with using a well connected box at
+MAE-East as the point of reference. Bill, if you want to start your
+own your collection and make the data available feel free from your
+vantage piont. 
+
+		--Tony
+
+
+ bmanning@ISI.EDU (Bill Manning) writes:
+  * &gt; 
+  * &gt; &gt; This is what I see from this neck of the woods:
+  * &gt; 
+  * &gt; which is not very useful with no historical data.
+  * &gt; 
+  * 
+  * 	True enough.  Perhaps tony would be willing
+  * 	to share his methods so the results may be
+  * 	comparable.  I've got about two months worth
+  * 	of data off sandbax.
+  * 
+  * 
+  * -- 
+  * --bill
+- - - - - - - - - - - - - - - - -
+
+
+

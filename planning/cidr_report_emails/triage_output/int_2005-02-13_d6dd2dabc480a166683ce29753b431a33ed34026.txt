@@ -1,0 +1,49 @@
+# from /home/woodrow/proj/cidr-report_analysis/planning/cidr_report_emails/cidr_r_emails-old_index.txt:265
+# 2005-02-13 'Re: The Cidr Report' from 'Philip Smith'
+# http://www.merit.edu/mail.archives/nanog/2005-02/msg00196.html
+
+
+Re: The Cidr Report
+From: Philip Smith
+Date: Sun Feb 13 00:50:20 2005
+
+
+
+Hi Stephen,
+
+Stephen J. Wilcox said the following on 13/02/2005 00:58:
+
+
+that applies to medium and large providers
+too reading this list - how often do they actually check what prefixes they are 
+sourcing, from my recent work at a couple of european IXes i had a number of 
+folks email me offlist as they hadnt realised til I sent out an email they had 
+deaggregation and once it was pointed out they just fixed it.
+
+I don't think many people have the time to check customers deaggregation 
+- it doesn't obviously help with their company's business/profits 
+therefore isn't on the radar. Or is a job done when they have time. Like 
+you, Hank and I (amongst many others) have spent quite a bit of time 
+pointing out possible leakages to providers - and most have been very 
+polite and appreciative of the advice. I've had a few negative 
+reactions, mostly questioning why this is any of my business. :(
+
+so to repeat my earlier suggestion - if transit providers, particularly the 
+larger ones setup scripts to notify their customers daily/weeks of routing 
+deaggregation do you think we might gain some traction in educating and fixing 
+this?
+
+Interesting thought - yes that might help, but then how many providers 
+would be willing to do this? The CIDR report website is available, 
+anyone can pop their ASN into the tool there, and they can figure out 
+what needs to be aggregated. Should the tool be packaged up as something 
+anyone can run from their web page, or a cron job? What would customers 
+think about this if their upstreams do it? Or should some third party do 
+it, like Geoff and I post our respective regional reports and 
+aggregation summaries...? How would this differ from spam - and anyway, 
+how would be get in touch with every ISP on the Internet... etc...
+
+philip
+--
+
+

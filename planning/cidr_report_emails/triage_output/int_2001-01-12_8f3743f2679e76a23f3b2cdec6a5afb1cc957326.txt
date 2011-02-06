@@ -1,0 +1,151 @@
+# from /home/woodrow/proj/cidr-report_analysis/planning/cidr_report_emails/cidr_r_emails-old_index.txt:563
+# 2001-01-12 'The Cidr Report' from 'Tony Bates'
+# http://www.merit.edu/mail.archives/nanog/2001-01/msg00323.html
+
+
+The Cidr Report
+From: Tony Bates
+Date: Fri Jan 12 15:13:42 2001
+
+
+
+
+This is an auto-generated mail on Fri Jan 12 12:00:00 PST 2001
+It is not checked before it leaves my workstation.  However, hopefully 
+you will find this report interesting and will take the time to look 
+through this to see if you can improve the amount of aggregation you 
+perform.
+
+The report is split into sections:
+
+   0) General Status
+   
+      List the route table history for the last week, list any possibly
+      bogus routes seen and give some status on ASes.
+
+   1) Gains by aggregating at the origin AS level
+
+      This lists the &quot;Top 30&quot; players who if they decided to aggregate
+      their announced classful prefixes at the origin AS level could 
+      make a significant difference in the reduction of the current 
+      size of the Internet routing table. This calculation does not 
+      take into account the inclusion of holes when forming an aggregate
+      so it is possible even larger reduction should be possible.
+
+   2) Weekly Delta
+
+      A summary of the last weeks changes in terms of withdrawn and
+      added routes. Please note that this is only a snapshot but does 
+      give some indication of ASes participating in CIDR. Clearly,
+      it is generally a good thing to see a large amont of withdrawls.
+
+   3) Interesting aggregates
+
+      Interesting here means not an aggregate made as a set of 
+      classful routes.      
+
+Thanks to xara.net for giving me access to their routing tables once a
+day. 
+
+Please send any comments about this report directly to me.
+
+Check http://www.employees.org/~tbates/cidr-report.html for a daily
+update of this report.
+
+
+
+------------------------------------------------------------------------------
+
+                        CIDR REPORT for 12Jan01
+
+
+0) General Status
+
+Table History
+-------------
+
+Date	Prefixes
+050101	95475
+060101	95482
+070101	95512
+080101	95490
+090101	95422
+100101	95551
+110101	99200
+120101	96318
+
+Check http://www.employees.org/~tbates/cidr.plot.html for a plot
+of the table history.
+
+
+Possible Bogus Routes
+---------------------
+
+
+AS Summary
+----------
+
+Number of ASes in routing system:                 7237
+
+Number of ASes announcing only one prefix:        3821 (1389 cidr, 2432 classful)
+
+Largest number of  cidr routes:                    637 announced by  AS701
+Largest number of classful routes:                1652 announced by AS1221
+
+
+
+1) Gains by aggregating at the origin AS level
+
+ --- 12Jan01 ---
+ASnum    NetsNow NetsCIDR  NetGain  % Gain   Description
+
+AS10501        2        1        1   50.0%   PacLink
+AS10390        2        1        1   50.0%   TELECHECK
+AS10240        2        1        1   50.0%   MOTLEYFOOL
+AS10173        2        1        1   50.0%   KSNET.Inc
+AS9995         1        1        0    0.0%   Japan Network Information Center
+AS9991         1        1        0    0.0%   Japan Network Information Center
+AS9983         1        1        0    0.0%   Australian Bureau of Statistics.
+AS9982         1        1        0    0.0%   PAICHAI UNIVERSITY
+AS9979         1        1        0    0.0%   KOREA EXCHANGE BANK
+AS9978         1        1        0    0.0%   The University of Seoul
+AS9974         1        1        0    0.0%   KOREA SECURITIES COMPUTER CORP. B
+AS9973         1        1        0    0.0%   KEB Futures Co.
+AS9968         1        1        0    0.0%   Kyobo Life Insurance
+AS9962         1        1        0    0.0%   Sunchon National University
+AS9960         1        1        0    0.0%   NEW C&amp;C CO.,LTD.
+AS9954         1        1        0    0.0%   Kunsan National University
+AS9953         1        1        0    0.0%   Hyundai Eng. &amp; Const. Co., Ltd.
+AS9951         1        1        0    0.0%   D3C Net
+AS9950         1        1        0    0.0%   INT Co.,Ltd.
+AS9935         1        1        0    0.0%   AGNS-Customer-KW
+AS9928         1        1        0    0.0%   Crystal Internet
+AS9927         1        1        0    0.0%   A Multihomed ISP Company
+AS9912         1        1        0    0.0%   Quality Internet Services
+AS9879         1        1        0    0.0%   OGILVY ASIA/PACIFIC
+AS9877         1        1        0    0.0%   Ngee Ann Polytechnic Computer Cen
+AS9875         1        1        0    0.0%   PT. Pasifik Satelit Nusantara
+AS9871         1        1        0    0.0%   JC Entertainment Co.
+AS9868         1        1        0    0.0%   Catholic University of TAEGU HYOS
+AS9866         1        1        0    0.0%   LGCAPITAL
+AS9862         1        1        0    0.0%   YES24 CO. LTD
+
+
+For the rest of the previous weeks gain information please see
+http://www.employees.org:80/~tbates/cidr-report.html
+
+2) Weekly Delta
+
+Please see
+http://www.employees.org:80/~tbates/cidr-report.html
+for this part of the report
+
+3) Interesting aggregates
+
+Please see
+http://www.employees.org:80/~tbates/cidr-report.html
+for this part of the report
+
+
+
+

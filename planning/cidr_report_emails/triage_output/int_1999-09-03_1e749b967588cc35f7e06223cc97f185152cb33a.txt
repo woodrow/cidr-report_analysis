@@ -1,0 +1,151 @@
+# from /home/woodrow/proj/cidr-report_analysis/planning/cidr_report_emails/cidr_r_emails-old_index.txt:676
+# 1999-09-03 'The Cidr Report' from 'Tony Bates'
+# http://www.merit.edu/mail.archives/nanog/1999-09/msg00027.html
+
+
+The Cidr Report
+From: Tony Bates
+Date: Fri Sep 03 15:03:38 1999
+
+
+
+
+This is an auto-generated mail on Fri Sep  3 12:00:00 PDT 1999
+It is not checked before it leaves my workstation.  However, hopefully 
+you will find this report interesting and will take the time to look 
+through this to see if you can improve the amount of aggregation you 
+perform.
+
+The report is split into sections:
+
+   0) General Status
+   
+      List the route table history for the last week, list any possibly
+      bogus routes seen and give some status on ASes.
+
+   1) Gains by aggregating at the origin AS level
+
+      This lists the &quot;Top 30&quot; players who if they decided to aggregate
+      their announced classful prefixes at the origin AS level could 
+      make a significant difference in the reduction of the current 
+      size of the Internet routing table. This calculation does not 
+      take into account the inclusion of holes when forming an aggregate
+      so it is possible even larger reduction should be possible.
+
+   2) Weekly Delta
+
+      A summary of the last weeks changes in terms of withdrawn and
+      added routes. Please note that this is only a snapshot but does 
+      give some indication of ASes participating in CIDR. Clearly,
+      it is generally a good thing to see a large amont of withdrawls.
+
+   3) Interesting aggregates
+
+      Interesting here means not an aggregate made as a set of 
+      classful routes.      
+
+Thanks to xara.net for giving me access to their routing tables once a
+day. 
+
+Please send any comments about this report directly to me.
+
+Check http://www.employees.org/~tbates/cidr-report.html for a daily
+update of this report.
+
+
+
+------------------------------------------------------------------------------
+
+                        CIDR REPORT for 03Sep99
+
+
+0) General Status
+
+Table History
+-------------
+
+Date	Prefixes
+270899	63124
+280899	62963
+290899	63479
+300899	63490
+310899	63472
+010999	63419
+020999	63310
+030999	63155
+
+Check http://www.employees.org/~tbates/cidr.plot.html for a plot
+of the table history.
+
+
+Possible Bogus Routes
+---------------------
+
+
+AS Summary
+----------
+
+Number of ASes in routing system:                 4055
+
+Number of ASes announcing only one prefix:        1630 (346 cidr, 1284 classful)
+
+Largest number of  cidr routes:                    181 announced by  AS701
+Largest number of classful routes:                 835 announced by  AS701
+
+
+
+1) Gains by aggregating at the origin AS level
+
+ --- 03Sep99 ---
+ASnum    NetsNow NetsCIDR  NetGain  % Gain   Description
+
+AS99           2        1        1   50.0%   INTEL-IWARP
+AS9536         2        1        1   50.0%   Sony Corporation of Hong Kong Ltd
+AS9511         2        1        1   50.0%   Wilson and Horton
+AS9468         2        1        1   50.0%   Timber Hill Honk Kong Ltd.
+AS9447         2        1        1   50.0%   Ford Motors
+AS9428         2        1        1   50.0%   The Net Effect Pty Ltd.
+AS9175         2        1        1   50.0%   VHB-DE
+AS9084         2        1        1   50.0%   Goldman Sachs International
+AS8963         2        1        1   50.0%   INTRASOFT Autonomous System
+AS8898         2        1        1   50.0%   Roche Diagnostics GmbH
+AS8673         2        1        1   50.0%   BusinessOnline AG, German ISP
+AS8672         2        1        1   50.0%   Orbitel Ltd. Autonomous system Nu
+AS8141         2        1        1   50.0%   TBAINFORMATICA
+AS7912         2        1        1   50.0%   STATEFARMINSCO
+AS7267         2        1        1   50.0%   GLOBALCOMMERCE
+AS6979         2        1        1   50.0%   SAP
+AS6830         2        1        1   50.0%   chello broadband
+AS6575         2        1        1   50.0%   Wilmington Internet Service Enter
+AS6434         2        1        1   50.0%   OpNet Inc
+AS6242         2        1        1   50.0%   TELEMAIL
+AS6234         2        1        1   50.0%   ETAK-NET2
+AS5839         2        1        1   50.0%   DDN-ASNBLK
+AS5647         2        1        1   50.0%   ASN-KODAK
+AS4939         2        1        1   50.0%   ASN-SOLECT
+AS3346         2        1        1   50.0%   HUNGARNET-GODOLLO
+AS2472         2        1        1   50.0%   FR-DOM-GUYANE
+AS1725         2        1        1   50.0%   FR-RENATER-CHAMPAITRE
+AS1665         2        1        1   50.0%   IBM Watson #2, Yorktown Heights, 
+AS13425        2        1        1   50.0%   UNKNOWN
+AS13366        3        2        1   33.3%   UNKNOWN
+
+
+For the rest of the previous weeks gain information please see
+http://www.employees.org:80/~tbates/cidr-report.html
+
+2) Weekly Delta
+
+Please see
+http://www.employees.org:80/~tbates/cidr-report.html
+for this part of the report
+
+3) Interesting aggregates
+
+Please see
+http://www.employees.org:80/~tbates/cidr-report.html
+for this part of the report
+
+
+
+

@@ -1,0 +1,33 @@
+# from /home/woodrow/proj/cidr-report_analysis/planning/cidr_report_emails/cidr_r_emails-old_index.txt:385
+# 2003-11-14 'Re: The Cidr Report' from 'Suresh Ramasubramanian'
+# http://www.merit.edu/mail.archives/nanog/2003-11/msg00456.html
+
+
+Re: The Cidr Report
+From: Suresh Ramasubramanian
+Date: Fri Nov 14 19:02:06 2003
+
+
+
+Stephen J. Wilcox writes on 11/14/2003 6:55 PM:
+
+
+So who's job is it to clean this up - I dont think proxy aggregation is a good 
+idea as someone suggested, the only people in a position to fix this are the ISP 
+themselves, their upstreams and their peers.
+
+Thank you for making my point for me.
+
+Nobody - other than the people actually announcing the routes (and their 
+upstreams and peers) can resolve this problem.
+
+So self discipline is the only solution - and that looks like it isn't 
+going to happen anytime soon.
+
+	srs
+
+--
+srs (postmaster|suresh)@outblaze.com // gpg : EDEDEFB9
+manager, outblaze.com security and antispam operations
+
+

@@ -1,0 +1,57 @@
+# from /home/woodrow/proj/cidr-report_analysis/planning/cidr_report_emails/cidr_r_emails-old_index.txt:323
+# 2004-11-12 'Re: The Cidr Report' from 'Daniel Roesen'
+# http://www.merit.edu/mail.archives/nanog/2004-11/msg00364.html
+
+
+Re: The Cidr Report
+From: Daniel Roesen
+Date: Fri Nov 12 19:35:06 2004
+
+
+
+On Fri, Nov 12, 2004 at 04:23:29PM -0800, Austin Schutz wrote:
+&gt; &gt; &gt; ASnum    NetsNow NetsAggr  NetGain   % Gain   Description
+&gt; &gt; &gt; 
+&gt; &gt; &gt; AS18566      751        6      745    99.2%   CVAD Covad Communications
+&gt; 
+&gt; &gt; are these numbers what i think, but hope not, they are?
+&gt; &gt; 
+&gt; &gt; e.g. is AS18566 the origin AS for 751 prefixes that could be
+&gt; &gt; collapsed to 6?
+&gt; 
+&gt; 	Sort of - from here it looks like they aren't actually announcing
+&gt; the supernets.
+
+So you don't see:
+64.105.0.0/16
+66.134.0.0/16
+66.166.0.0/15
+67.100.0.0/14
+68.164.0.0/14
+69.3.0.0/16
+
+?
+
+&gt; I don't see their stuff listed in the radb,
+
+They actually did register all that more-specific crap (determined by
+checking some 10 samples), so they do this fully intentional.
+
+Well, it boils down that if you have enough customers, you seem to
+get away with about any antisocial behaviour on the net.
+
+&gt; Plus the public hand slap is kind of amusing. But that's probably
+&gt; just me.
+
+The problem is that they probably couldn't care less. There is no
+public sanctioning and pressure.
+
+
+Regards,
+Daniel
+
+-- 
+CLUE-RIPE -- Jabber: dr@cluenet.de -- dr@IRCnet -- PGP: 0xA85C8AA0
+
+
+

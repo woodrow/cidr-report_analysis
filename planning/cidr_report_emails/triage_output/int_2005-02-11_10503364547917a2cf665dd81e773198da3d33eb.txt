@@ -1,0 +1,96 @@
+# from /home/woodrow/proj/cidr-report_analysis/planning/cidr_report_emails/cidr_r_emails-old_index.txt:277
+# 2005-02-11 'RE: The Cidr Report' from 'Stephen J. Wilcox'
+# http://www.merit.edu/mail.archives/nanog/2005-02/msg00183.html
+
+
+RE: The Cidr Report
+From: Stephen J. Wilcox
+Date: Fri Feb 11 17:59:20 2005
+
+
+
+On Fri, 11 Feb 2005, Mike Leber wrote:
+&gt; On Fri, 11 Feb 2005, Stephen J. Wilcox wrote:
+&gt; &gt; On Fri, 11 Feb 2005, Frotzler, Florian wrote:
+&gt; &gt; 
+&gt; &gt; &gt; 
+&gt; &gt; &gt; &gt; Recent Table History
+&gt; &gt; &gt; &gt;         Date      Prefixes    CIDR Agg
+&gt; &gt; &gt; &gt;         04-02-05    151613      103143
+&gt; &gt; &gt; &gt;         05-02-05    152142      103736
+&gt; &gt; &gt; &gt;         06-02-05    152231      103721
+&gt; &gt; &gt; &gt;         07-02-05    152353      103830
+&gt; &gt; &gt; &gt;         08-02-05    152514      103966
+&gt; &gt; &gt; &gt;         09-02-05    153855      104090
+&gt; &gt; &gt; &gt;         10-02-05    154283      104246
+&gt; &gt; &gt; &gt;         11-02-05    154341      104240
+&gt; &gt; &gt; &lt;...&gt;
+&gt; &gt; &gt; 
+&gt; &gt; &gt; ~ +3000 routes in one week? Anyone else frightened by this?
+&gt; &gt; &gt; 
+&gt; &gt; &gt; Florian
+&gt; &gt; 
+&gt; &gt; any thoughts on how to fix it? my peers keep sending these to me and i'll
+&gt; &gt; even admit my customers do too. telling people its bad doesnt appear to have
+&gt; &gt; an effect, at the small end networks seem to collect /24s and announce them
+&gt; &gt; freely, at the large end i'm still without an explanation as to why large
+&gt; &gt; networks require so many prefixes - none of them seem to comment?
+&gt; &gt; 
+&gt; &gt; if people arent self policing it seems the only other way is for the larger
+&gt; &gt; transit providers to stop accepting prefixes and telling their customers to
+&gt; &gt; fix their s**t. and i dont see them doing this.
+&gt; 
+&gt; It seems to me they get paid to carry prefixes by their customers.
+
+the payment would be the same if it was a /19 or 32x/24 announced at source
+
+&gt; And their peers listen to the prefixes because they make money by using
+&gt; those prefixes.
+&gt; 
+&gt; So, to the extent you make money listening to them, use the routes.
+
+so the problem is noone wants to be the first to jump as it costs money? so 
+whats the suggestion for how to not be first? ie is it possible for a small 
+group of large operators to agree a consensus? 
+
+you dont even have to actively filter to start this, if a script were run to 
+advise customers daily when they were announcing routes incompliant to the 
+transits 'routing policy' it would have some effect. one thing i've found from 
+some of my customers is they're actually ignorant to the problems they cause, 
+they think its cool to announce 10 prefixes and can be educated otherwise.
+
+Steve
+
+
+
+&gt; 
+&gt; And if they start to cause you problems you will have to take corrective
+&gt; action to stablize your network, as was done a long time ago (internet
+&gt; time):
+&gt; 
+&gt; http://www.merit.edu/mail.archives/nanog/1995-09/msg00047.html
+&gt; 
+&gt; (link grabbed at random from the archives, I'm sure there are better posts
+&gt; that actually list the full old school sprint filters.)
+&gt; 
+&gt; However, if you are the one filtering and all your competitors figure out
+&gt; how to handle 154,000 routes then you will be at a competitive
+&gt; disadvantage.
+&gt; 
+&gt; Coincidentally, the largest networks also spend the most with their
+&gt; vendors and get to tell the vendors what they want in the next generation
+&gt; of boxes they buy.
+&gt; 
+&gt; Mike.
+&gt; 
+&gt; +----------------- H U R R I C A N E - E L E C T R I C -----------------+
+&gt; | Mike Leber           Direct Internet Connections   Voice 510 580 4100 |
+&gt; | Hurricane Electric     Web Hosting  Colocation       Fax 510 580 4151 |
+&gt; | mleber@he.net                                       http://www.he.net |
+&gt; +-----------------------------------------------------------------------+
+&gt; 
+&gt; 
+
+
+
+

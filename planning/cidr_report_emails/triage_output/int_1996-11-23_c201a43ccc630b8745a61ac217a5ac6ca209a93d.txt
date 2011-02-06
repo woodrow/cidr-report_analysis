@@ -1,0 +1,38 @@
+# from /home/woodrow/proj/cidr-report_analysis/planning/cidr_report_emails/cidr_r_emails-old_index.txt:864
+# 1996-11-23 'Re: The Cidr Report' from 'Paul Ferguson'
+# http://www.merit.edu/mail.archives/nanog/1996-11/msg00292.html
+
+
+Re: The Cidr Report
+From: Paul Ferguson
+Date: Sat Nov 23 21:24:33 1996
+
+
+Maybe the 'Hall of Shame' approach *does* work after all.  ;-)
+
+- paul
+
+At 12:25 PM 11/23/96 PST, Randy Bush wrote:
+
+&gt;&gt; Date	Prefixes
+&gt;&gt; 171196	40844
+&gt;&gt; 171196	40868
+&gt;&gt; 181196	40933
+&gt;&gt; 191196	42076
+&gt;&gt; 201196	40674
+&gt;&gt; 211196	40583
+&gt;&gt; 221196	40525
+&gt;
+&gt;Tony, I suspect that you and your weekly report are, in a large part,
+&gt;responsible for this.  I thank you.  Our routers thank you.
+&gt;
+&gt;Frank, if you're out there, has the curve changed since Tony started
+&gt;publishing again?
+&gt;
+&gt;randy
+&gt;
+
+- - - - - - - - - - - - - - - - -
+
+
+

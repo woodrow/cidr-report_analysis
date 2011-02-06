@@ -1,0 +1,36 @@
+# from /home/woodrow/proj/cidr-report_analysis/planning/cidr_report_emails/cidr_r_emails-old_index.txt:329
+# 2004-11-05 'Re: The Cidr Report' from 'Patrick W Gilmore'
+# http://www.merit.edu/mail.archives/nanog/2004-11/msg00045.html
+
+
+Re: The Cidr Report
+From: Patrick W Gilmore
+Date: Fri Nov 05 08:40:22 2004
+
+
+
+On Nov 5, 2004, at 6:00 AM, cidr-report@potaroo.net wrote:
+
+
+Recent Table History
+        Date      Prefixes    CIDR Agg
+
+[...]
+
+        05-11-04    156315      103781
+
+
+Well, we broke 150K prefixes - and without someone deaggregating the 
+classical B space. :)  Impressive.
+
+Remember when the 'Net was supposed to have fallen over before now?
+
+Pat yourselves on the back everyone, you did the impossible.  
+Congratulations are in order.
+
+--
+TTFN,
+patrick
+
+
+

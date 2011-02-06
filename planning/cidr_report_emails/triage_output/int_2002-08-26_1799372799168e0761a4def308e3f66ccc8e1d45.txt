@@ -1,0 +1,54 @@
+# from /home/woodrow/proj/cidr-report_analysis/planning/cidr_report_emails/cidr_r_emails-old_index.txt:471
+# 2002-08-26 'FYI: CIDR Report changes' from 'Philip Smith'
+# http://www.merit.edu/mail.archives/nanog/2002-08/msg00847.html
+
+
+FYI: CIDR Report changes
+From: Philip Smith
+Date: Mon Aug 26 02:51:24 2002
+
+
+
+Hi,
+
+As most of you know, the CIDR Report was conceived by Tony Bates in 1995 as 
+a means to monitor and inform the community about the amount of CIDRisation 
+activities being carried out by Internet Service Providers.
+
+The CIDR Report has been highly successful, much referred to and well 
+respected snapshot of the growth in the Routing Table, as well as providing 
+information on the level of aggregation being carried out in our community.
+
+In recent years it has become more of a challenge to maintain the software 
+to keep up with the rapid growth in the Internet. Philip Smith, who has 
+produced a widely published Routing Table Report since late 1998, has 
+helped to keep the Report up to date with current allocation and assignment 
+information.
+
+But with the large number of views of the routing table, and with the 
+numerous requests many individuals and organisations have been making for 
+enhancements to the CIDR Report, we have agreed that the future of the CIDR 
+Report now rests alongside the very comprehensive BGP Table Analysis which 
+Geoff Huston has been running for the last year.
+
+This Friday's CIDR Report (23rd August) was the last one posted from Tony's 
+original system. As from the coming Friday (30th August), the CIDR Report 
+will come from Geoff Huston's new implementation. The e-mail will go to the 
+same operations mailing lists, will look very similar in layout, and will 
+have greatly updated information compared with the original. Furthermore, 
+the routing table view will be the summary from the RouteViews project.
+
+The supporting website for the CIDR Report has been vastly improved, with 
+greater detail, the ability to search on aggregation effort per AS, and so 
+on. A snapshot of Geoff's implementation can be found at 
+http://bgp.potaroo.net/cidr/. Regular users of the information contained in 
+the CIDR Report should check out the website and the new features in the 
+report.
+
+As ever, comments and feedback are most welcome; these should be sent to 
+&lt;cidr-report@potaroo.net&gt;.
+
+Tony Bates, Geoff Huston, Philip Smith
+
+
+

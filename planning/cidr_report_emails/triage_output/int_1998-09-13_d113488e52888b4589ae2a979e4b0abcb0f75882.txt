@@ -1,0 +1,71 @@
+# from /home/woodrow/proj/cidr-report_analysis/planning/cidr_report_emails/cidr_r_emails-old_index.txt:736
+# 1998-09-13 'Re: The Cidr Report' from 'John M. Brown'
+# http://www.merit.edu/mail.archives/nanog/1998-09/msg00268.html
+
+
+Re: The Cidr Report
+From: John M. Brown
+Date: Sun Sep 13 03:38:45 1998
+
+
+Why should they, there is no reason for them to.  Personally I wonder what
+would happen if we (the rest of us) started filtering on /19's or /20's :)
+
+But then you take UUNET (Alternet) and for example 207.170.32.0 /19
+is advertised as a /19 AND a stack of /24's  all with the same AS path
+and from what I can tell no special routes, at least not via nitrous.digex.net
+But what do I know, I am a lonely little guy... :)
+
+At 01:19 PM 9/11/98 -0700, Tim Wolfe wrote:
+&gt;Anyone care to comment on the fact that the top non-compliant companies
+never really seem
+&gt;to make any significant changes?
+&gt;
+&gt;&gt;  --- 11Sep98 ---
+&gt;&gt; ASnum    NetsNow NetsCIDR  NetGain  % Gain   Description
+&gt;&gt; 
+&gt;&gt; AS701       1185      956      229   19.3%   Alternet
+&gt;&gt; AS271        349      152      197   56.4%   BCnet Backbone
+&gt;&gt; AS4293       445      258      187   42.0%   IMCI
+&gt;&gt; AS174        789      611      178   22.6%   Performance Systems
+International
+&gt;&gt; AS3749       225       68      157   69.8%   TECNET
+&gt;&gt; AS2493       373      217      156   41.8%   iSTAR Internet, Inc.
+&gt;&gt; AS4200       192      100       92   47.9%   AGIS (Apex Global
+Information Ser
+&gt;&gt; AS5668       128       41       87   68.0%   Century Telephone Inc.
+&gt;&gt; AS2685       229      151       78   34.1%   IBM Global Network - US
+&gt;&gt; AS4755       125       49       76   60.8%   Videsh Sanchar Nigam Ltd.
+India
+&gt;&gt; AS3221       117       44       73   62.4%   EENet Autonomous System
+&gt;&gt; AS4740       404      336       68   16.8%   Ozemail Pty Ltd (ASN-OZEMAIL)
+&gt;&gt; AS3493       251      183       68   27.1%   INTERLINK
+&gt;&gt; AS7046       239      172       67   28.0%   UUNET-CUSTOMER
+&gt;&gt; AS3804       215      157       58   27.0%   Bell Solutions
+&gt;&gt; AS10928      101       46       55   54.5%   UNKNOWN
+&gt;&gt; AS549        204      151       53   26.0%   ONet Backbone
+&gt;&gt; AS8517       123       71       52   42.3%   ULAKNET-ASN
+&gt;&gt; AS6335        69       20       49   71.0%   NTRNET
+&gt;&gt; AS72          87       39       48   55.2%   Schlumberger Information
+Network
+&gt;&gt; AS1239       548      501       47    8.6%   SprintLink Backbone
+&gt;&gt; AS803         78       34       44   56.4%   SaskNet Backbone
+&gt;&gt; AS6181        66       26       40   60.6%   FUSE-NET
+&gt;&gt; AS4539        67       27       40   59.7%   NETROPOLIS
+&gt;&gt; AS852        159      120       39   24.5%   AGT Advance Communication
+&gt;&gt; AS3403       159      120       39   24.5%   TIAC
+&gt;&gt; AS7122       118       80       38   32.2%   MTS ADVANCED Network Policy
+&gt;&gt; AS10459       45       10       35   77.8%   WANSASN
+&gt;&gt; AS2707        64       31       33   51.6%   WEC
+&gt;&gt; AS6332        89       58       31   34.8%   TELNOR
+&gt;
+&gt;---------------------------------------------------
+&gt;	Tim Wolfe, Network Administrator
+&gt;	ClipperNet Internet Access Services
+&gt;tim@clipper.net	541.431.3360 voice 541.431.1176 fax
+&gt;   ...Across the Desktop and around the World...	
+&gt;---------------------------------------------------
+&gt; 
+
+
+

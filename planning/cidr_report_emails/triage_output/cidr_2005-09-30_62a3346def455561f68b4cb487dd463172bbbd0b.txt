@@ -1,0 +1,603 @@
+# from /home/woodrow/proj/cidr-report_analysis/planning/cidr_report_emails/cidr_r_emails-old_index.txt:209
+# 2005-09-30 'The Cidr Report' from 'cidr-report'
+# http://www.merit.edu/mail.archives/nanog/2005-09/msg01038.html
+
+
+The Cidr Report
+From: cidr-report
+Date: Fri Sep 30 08:06:08 2005
+
+
+
+This report has been generated at Fri Sep 30 21:45:58 2005 AEST.
+The report analyses the BGP Routing Table of an AS4637 (Reach) router
+and generates a report on aggregation potential within the table.
+
+Check http://www.cidr-report.org/as4637 for a current version of this report.
+
+Recent Table History
+        Date      Prefixes    CIDR Agg
+        23-09-05    166976      112159
+        24-09-05    167058      112019
+        25-09-05    166953      112176
+        26-09-05    167138      112254
+        27-09-05    167216      112265
+        28-09-05    167313      112503
+        29-09-05    167013      112474
+        30-09-05    167138      112512
+
+
+AS Summary
+         20489  Number of ASes in routing system
+          8512  Number of ASes announcing only one prefix
+          1494  Largest number of prefixes announced by an AS
+                AS7018 : ATT-INTERNET4 - AT&amp;T WorldNet Services
+      91327232  Largest address span announced by an AS (/32s)
+                AS721  : DLA-ASNBLOCK-AS - DoD Network Information Center
+
+
+Aggregation Summary
+The algorithm used in this report proposes aggregation only
+when there is a precise match using the AS path, so as 
+to preserve traffic transit policies. Aggregation is also
+proposed across non-advertised address space ('holes').
+
+ --- 30Sep05 ---
+ASnum    NetsNow NetsAggr  NetGain   % Gain   Description
+
+Table     167182   112526    54656    32.7%   All ASes
+
+AS18566      857        8      849    99.1%   COVAD - Covad Communications
+AS4323      1171      379      792    67.6%   TWTC - Time Warner Telecom
+AS721       1074      314      760    70.8%   DLA-ASNBLOCK-AS - DoD Network
+                                               Information Center
+AS4134       986      246      740    75.1%   CHINANET-BACKBONE
+                                               No.31,Jin-rong Street
+AS7018      1494      979      515    34.5%   ATT-INTERNET4 - AT&amp;T WorldNet
+                                               Services
+AS22773      543       33      510    93.9%   CCINET-2 - Cox Communications
+                                               Inc.
+AS3602       555      108      447    80.5%   SPRINT-CA-AS - Sprint Canada
+                                               Inc.
+AS6197       943      545      398    42.2%   BATI-ATL - BellSouth Network
+                                               Solutions, Inc
+AS17676      469      104      365    77.8%   JPNIC-JP-ASN-BLOCK Japan
+                                               Network Information Center
+AS6467       394       55      339    86.0%   ESPIRECOMM - e.spire
+                                               Communications, Inc.
+AS15270      338       28      310    91.7%   AS-PAETEC-NET - PaeTec.net -a
+                                               division of
+                                               PaeTecCommunications, Inc.
+AS4755       541      235      306    56.6%   VSNL-AS Videsh Sanchar Nigam
+                                               Ltd. Autonomous System
+AS4766       597      293      304    50.9%   KIXS-AS-KR Korea Telecom
+AS14654      293        6      287    98.0%   WAYPORT - Wayport
+AS812        305       25      280    91.8%   ROGERS-CABLE - Rogers Cable
+                                               Inc.
+AS9929       320       46      274    85.6%   CNCNET-CN China Netcom Corp.
+AS19916      369       99      270    73.2%   ASTRUM-0001 - OLM LLC
+AS6140       419      163      256    61.1%   IMPSAT-USA - ImpSat
+AS5668       490      237      253    51.6%   AS-5668 - CenturyTel Internet
+                                               Holdings, Inc.
+AS1239       855      604      251    29.4%   SPRINTLINK - Sprint
+AS17488      335       84      251    74.9%   HATHWAY-NET-AP Hathway IP Over
+                                               Cable Internet
+AS9583       796      551      245    30.8%   SIFY-AS-IN Sify Limited
+AS9498       341       99      242    71.0%   BBIL-AP BHARTI BT INTERNET
+                                               LTD.
+AS6167       333       92      241    72.4%   CELLCO-PART - Cellco
+                                               Partnership
+AS19115      264       25      239    90.5%   CHARTER-LEBANON - Charter
+                                               Communications
+AS2386       921      685      236    25.6%   INS-AS - AT&amp;T Data
+                                               Communications Services
+AS18101      253       24      229    90.5%   RIL-IDC Reliance Infocom Ltd
+                                               Internet Data Centre,
+AS6198       473      249      224    47.4%   BATI-MIA - BellSouth Network
+                                               Solutions, Inc
+AS16814      298       84      214    71.8%   NSS S.A.
+AS11456      287       74      213    74.2%   NUVOX - NuVox Communications,
+                                               Inc.
+
+Total      17314     6474    10840    62.6%   Top 30 total
+
+
+Possible Bogus Routes
+
+        24.246.0.0/17        AS7018  ATT-INTERNET4 - AT&amp;T WorldNet Services
+        24.246.78.0/24       AS25994 NPG-001 - NPG Cable, INC
+        24.246.128.0/18      AS7018  ATT-INTERNET4 - AT&amp;T WorldNet Services
+        64.17.32.0/24        AS13488 CBWU-13488 - Continental Broadband Florida, Inc DBA WebUnited
+        64.17.33.0/24        AS13488 CBWU-13488 - Continental Broadband Florida, Inc DBA WebUnited
+        64.17.37.0/24        AS13488 CBWU-13488 - Continental Broadband Florida, Inc DBA WebUnited
+        64.46.0.0/18         AS15277 I-NET - INET OF NEW MEXICO
+        64.111.96.0/19       AS26347 DREAMHOST-AS - New Dream Network, LLC
+        64.127.0.0/18        AS7018  ATT-INTERNET4 - AT&amp;T WorldNet Services
+        66.37.96.0/20        AS3764  IA-HOU-AS - Internet America, Inc.
+        66.187.96.0/24       AS10026 ANC Asia Netcom Corporation
+        66.187.100.0/24      AS18194 PMMSI-AS-AP Philippine Multi-Media
+        66.187.101.0/24      AS18194 PMMSI-AS-AP Philippine Multi-Media
+        66.187.102.0/24      AS18194 PMMSI-AS-AP Philippine Multi-Media
+        66.187.103.0/24      AS18194 PMMSI-AS-AP Philippine Multi-Media
+        66.187.104.0/24      AS18194 PMMSI-AS-AP Philippine Multi-Media
+        66.187.105.0/24      AS18194 PMMSI-AS-AP Philippine Multi-Media
+        66.187.106.0/24      AS18194 PMMSI-AS-AP Philippine Multi-Media
+        66.187.108.0/24      AS10026 ANC Asia Netcom Corporation
+        66.187.109.0/24      AS10026 ANC Asia Netcom Corporation
+        66.205.206.0/24      AS21510 TRISTAR - Tristar Communications
+        85.129.3.0/24        AS14585 CIFNET - CIFNet, Inc.
+        85.129.4.0/24        AS14585 CIFNET - CIFNet, Inc.
+        87.117.192.0/18      AS29131 RAPIDSWITCH-AS RapidSwitch Ltd
+        89.192.0.0/16        AS12654 RIPE-NCC-RIS-AS RIPE NCC RIS Project.
+        89.255.248.0/21      AS12654 RIPE-NCC-RIS-AS RIPE NCC RIS Project.
+        90.192.0.0/16        AS12654 RIPE-NCC-RIS-AS RIPE NCC RIS Project.
+        90.255.248.0/21      AS12654 RIPE-NCC-RIS-AS RIPE NCC RIS Project.
+        91.192.0.0/16        AS12654 RIPE-NCC-RIS-AS RIPE NCC RIS Project.
+        91.255.248.0/21      AS12654 RIPE-NCC-RIS-AS RIPE NCC RIS Project.
+        132.0.0.0/10         AS721   DLA-ASNBLOCK-AS - DoD Network Information Center
+        137.0.0.0/13         AS721   DLA-ASNBLOCK-AS - DoD Network Information Center
+        138.136.0.0/13       AS721   DLA-ASNBLOCK-AS - DoD Network Information Center
+        151.135.0.0/16       AS4763  TELSTRANZ-AS TelstraClear Ltd
+        158.0.0.0/13         AS721   DLA-ASNBLOCK-AS - DoD Network Information Center
+        163.142.0.0/16       AS2500  JPNIC-ASBLOCK-AP JPNIC
+        190.192.193.0/24     AS3301  TELIANET-SWEDEN TeliaNet Sweden
+        192.30.93.0/24       AS17757 HPAUS-AP HP Australia
+        192.30.94.0/24       AS17757 HPAUS-AP HP Australia
+        192.40.105.0/24      AS5515  SONERA-GLOBAL-IP Sonera Solution Autonomous System
+        192.43.230.0/24      AS7575  AARNET-AS-AP Australian Academic and Reasearch Network (AARNet)
+        192.44.0.0/19        AS702   AS702 MCI EMEA - Commercial IP service provider in Europe
+        192.44.0.0/24        AS5501  FRAUNHOFER-CLUSTER-BW Fraunhofer Gesellschaft
+        192.70.164.0/24      AS25689 NRCNET-AS - National Research Council of Canada
+        192.72.0.0/16        AS4780  SEEDNET Digital United Inc.
+        192.72.0.0/18        AS4780  SEEDNET Digital United Inc.
+        192.72.192.0/18      AS4780  SEEDNET Digital United Inc.
+        192.81.182.0/24      AS719   ELISA-AS Elisa Oyj
+        192.81.183.0/24      AS719   ELISA-AS Elisa Oyj
+        192.81.184.0/24      AS719   ELISA-AS Elisa Oyj
+        192.88.99.0/24       AS29259 DE-IABG-TELEPORT IABG Teleport, DE
+        192.96.1.0/24        AS3741  AFRINIC African Network Information Center
+        192.96.2.0/24        AS2018  AFRINIC African Network Information Center
+        192.96.3.0/24        AS3741  AFRINIC African Network Information Center
+        192.96.5.0/24        AS2018  AFRINIC African Network Information Center
+        192.96.7.0/24        AS2018  AFRINIC African Network Information Center
+        192.96.8.0/24        AS2018  AFRINIC African Network Information Center
+        192.96.10.0/24       AS5713  AFRINIC African Network Information Center
+        192.96.11.0/24       AS2018  AFRINIC African Network Information Center
+        192.96.12.0/24       AS2018  AFRINIC African Network Information Center
+        192.96.13.0/24       AS16637 AFRINIC African Network Information Center
+        192.96.14.0/24       AS16637 AFRINIC African Network Information Center
+        192.96.15.0/24       AS2018  AFRINIC African Network Information Center
+        192.96.20.0/23       AS2018  AFRINIC African Network Information Center
+        192.96.22.0/24       AS7460  AFRINIC African Network Information Center
+        192.96.25.0/24       AS6083  AFRINIC African Network Information Center
+        192.96.32.0/24       AS2905  UUNET-ZA uunet south africa
+        192.96.34.0/24       AS10474 AFRINIC African Network Information Center
+        192.96.36.0/24       AS5713  AFRINIC African Network Information Center
+        192.96.37.0/24       AS10474 AFRINIC African Network Information Center
+        192.96.38.0/24       AS3741  AFRINIC African Network Information Center
+        192.96.43.0/24       AS5713  AFRINIC African Network Information Center
+        192.96.46.0/24       AS3741  AFRINIC African Network Information Center
+        192.96.51.0/24       AS5713  AFRINIC African Network Information Center
+        192.96.57.0/24       AS3741  AFRINIC African Network Information Center
+        192.96.58.0/24       AS16416 AFRINIC African Network Information Center
+        192.96.87.0/24       AS2905  UUNET-ZA uunet south africa
+        192.96.88.0/24       AS2905  UUNET-ZA uunet south africa
+        192.96.89.0/24       AS3741  AFRINIC African Network Information Center
+        192.96.90.0/23       AS3741  AFRINIC African Network Information Center
+        192.96.92.0/24       AS3741  AFRINIC African Network Information Center
+        192.96.94.0/23       AS3741  AFRINIC African Network Information Center
+        192.96.96.0/24       AS2905  UUNET-ZA uunet south africa
+        192.96.97.0/24       AS2905  UUNET-ZA uunet south africa
+        192.96.98.0/23       AS2905  UUNET-ZA uunet south africa
+        192.96.109.0/24      AS2018  AFRINIC African Network Information Center
+        192.96.120.0/21      AS3741  AFRINIC African Network Information Center
+        192.96.128.0/22      AS3741  AFRINIC African Network Information Center
+        192.96.132.0/24      AS3741  AFRINIC African Network Information Center
+        192.96.133.0/24      AS3741  AFRINIC African Network Information Center
+        192.96.134.0/24      AS3741  AFRINIC African Network Information Center
+        192.96.139.0/24      AS3741  AFRINIC African Network Information Center
+        192.96.140.0/24      AS2018  AFRINIC African Network Information Center
+        192.96.142.0/24      AS2018  AFRINIC African Network Information Center
+        192.96.147.0/24      AS2905  UUNET-ZA uunet south africa
+        192.96.150.0/24      AS3741  AFRINIC African Network Information Center
+        192.96.177.0/24      AS6083  AFRINIC African Network Information Center
+        192.96.193.0/24      AS3741  AFRINIC African Network Information Center
+        192.96.194.0/24      AS3741  AFRINIC African Network Information Center
+        192.96.247.0/24      AS2018  AFRINIC African Network Information Center
+        192.96.248.0/23      AS2018  AFRINIC African Network Information Center
+        192.96.250.0/24      AS2018  AFRINIC African Network Information Center
+        192.96.251.0/24      AS3741  AFRINIC African Network Information Center
+        192.96.252.0/24      AS2018  AFRINIC African Network Information Center
+        192.107.104.0/24     AS6458  GUATEL
+        192.119.135.0/24     AS270   PSCNI-AS - National Aeronautics and Space Administration
+        192.124.252.0/22     AS680   DFN-IP service G-WiN
+        192.133.6.0/24       AS10282 EQUANT-CEEUR EQUANT AS for Central and Eastern Europe region
+        192.135.50.0/24      AS7018  ATT-INTERNET4 - AT&amp;T WorldNet Services
+        192.136.53.0/24      AS8346  SONATEL-AS Autonomous System
+        192.153.144.0/21     AS721   DLA-ASNBLOCK-AS - DoD Network Information Center
+        192.172.0.0/19       AS721   DLA-ASNBLOCK-AS - DoD Network Information Center
+        192.188.208.0/20     AS721   DLA-ASNBLOCK-AS - DoD Network Information Center
+        192.200.100.0/24     AS7018  ATT-INTERNET4 - AT&amp;T WorldNet Services
+        193.16.156.0/24      AS31494 DEVICE-MOBILE-INFONETS-AS Joint Stock Company &quot;INFONETS&quot;
+        193.32.19.0/24       AS702   AS702 MCI EMEA - Commercial IP service provider in Europe
+        193.32.20.0/23       AS702   AS702 MCI EMEA - Commercial IP service provider in Europe
+        193.36.1.0/24        AS8220  COLT COLT Telecommunications
+        193.37.69.0/24       AS2856  BT-UK-AS BTnet UK Regional network
+        193.37.236.0/24      AS702   AS702 MCI EMEA - Commercial IP service provider in Europe
+        193.110.77.0/24      AS3356  LEVEL3 Level 3 Communications
+        193.110.78.0/24      AS3356  LEVEL3 Level 3 Communications
+        193.110.79.0/24      AS3356  LEVEL3 Level 3 Communications
+        193.110.97.0/24      AS3356  LEVEL3 Level 3 Communications
+        194.31.227.0/24      AS21461 TRANSFAIRNET Transfair-net GmbH Krefeld
+        194.32.174.0/23      AS8426  CLARANET-AS ClaraNET
+        194.59.176.0/20      AS1273  CW Cable &amp; Wireless
+        194.59.178.0/24      AS8481  TRANSNET transnet INTERNET Services
+        194.153.156.0/24     AS24865 KMITCHELL-AS Keith Mitchell's Network
+        194.187.248.0/22     AS33970 OPENHOSTING Open Hosting Ltd
+        194.246.72.0/23      AS8893  ARTFILES-AS Artfiles New Media GmbH
+        196.3.162.0/24       AS6083  AFRINIC African Network Information Center
+        196.6.108.0/24       AS5713  AFRINIC African Network Information Center
+        196.6.121.0/24       AS5713  AFRINIC African Network Information Center
+        196.6.129.0/24       AS12258 AFRINIC African Network Information Center
+        196.6.133.0/24       AS3741  AFRINIC African Network Information Center
+        196.6.147.0/24       AS3741  AFRINIC African Network Information Center
+        196.6.149.0/24       AS3741  AFRINIC African Network Information Center
+        196.6.150.0/24       AS3741  AFRINIC African Network Information Center
+        196.6.151.0/24       AS3741  AFRINIC African Network Information Center
+        196.6.153.0/24       AS3741  AFRINIC African Network Information Center
+        196.6.175.0/24       AS3741  AFRINIC African Network Information Center
+        196.6.176.0/23       AS3741  AFRINIC African Network Information Center
+        196.6.183.0/24       AS3741  AFRINIC African Network Information Center
+        196.6.184.0/24       AS23058 AFRINIC African Network Information Center
+        196.6.196.0/24       AS3741  AFRINIC African Network Information Center
+        196.6.198.0/24       AS2018  AFRINIC African Network Information Center
+        196.6.199.0/24       AS3741  AFRINIC African Network Information Center
+        196.6.201.0/24       AS2018  AFRINIC African Network Information Center
+        196.6.208.0/24       AS3741  AFRINIC African Network Information Center
+        196.6.211.0/24       AS3741  AFRINIC African Network Information Center
+        196.6.212.0/23       AS3741  AFRINIC African Network Information Center
+        196.6.212.0/24       AS3741  AFRINIC African Network Information Center
+        196.6.214.0/24       AS10474 AFRINIC African Network Information Center
+        196.6.221.0/24       AS2018  AFRINIC African Network Information Center
+        196.6.222.0/23       AS3741  AFRINIC African Network Information Center
+        196.6.237.0/24       AS3741  AFRINIC African Network Information Center
+        196.6.241.0/24       AS3741  AFRINIC African Network Information Center
+        196.6.243.0/24       AS3741  AFRINIC African Network Information Center
+        196.6.251.0/24       AS3741  AFRINIC African Network Information Center
+        196.6.254.0/24       AS3741  AFRINIC African Network Information Center
+        196.10.101.0/24      AS16637 AFRINIC African Network Information Center
+        196.10.104.0/24      AS3741  AFRINIC African Network Information Center
+        196.10.112.0/22      AS17148 AFRINIC African Network Information Center
+        196.10.116.0/24      AS17148 AFRINIC African Network Information Center
+        196.10.117.0/24      AS17148 AFRINIC African Network Information Center
+        196.10.118.0/24      AS3741  AFRINIC African Network Information Center
+        196.10.119.0/24      AS2018  AFRINIC African Network Information Center
+        196.10.121.0/24      AS2018  AFRINIC African Network Information Center
+        196.10.124.0/22      AS3741  AFRINIC African Network Information Center
+        196.10.128.0/23      AS11845 AFRINIC African Network Information Center
+        196.10.130.0/23      AS3741  AFRINIC African Network Information Center
+        196.10.132.0/22      AS3741  AFRINIC African Network Information Center
+        196.10.136.0/22      AS3741  AFRINIC African Network Information Center
+        196.10.140.0/22      AS3741  AFRINIC African Network Information Center
+        196.10.150.0/23      AS3741  AFRINIC African Network Information Center
+        196.10.152.0/21      AS3741  AFRINIC African Network Information Center
+        196.10.160.0/19      AS3741  AFRINIC African Network Information Center
+        196.10.192.0/21      AS3741  AFRINIC African Network Information Center
+        196.10.203.0/24      AS2018  AFRINIC African Network Information Center
+        196.10.204.0/22      AS3741  AFRINIC African Network Information Center
+        196.10.208.0/22      AS3741  AFRINIC African Network Information Center
+        196.10.212.0/23      AS3741  AFRINIC African Network Information Center
+        196.10.224.0/24      AS3741  AFRINIC African Network Information Center
+        196.10.229.0/24      AS3741  AFRINIC African Network Information Center
+        196.10.231.0/24      AS3741  AFRINIC African Network Information Center
+        196.10.248.0/23      AS3741  AFRINIC African Network Information Center
+        196.10.249.0/24      AS3741  AFRINIC African Network Information Center
+        196.11.0.0/20        AS3741  AFRINIC African Network Information Center
+        196.11.16.0/21       AS3741  AFRINIC African Network Information Center
+        196.11.24.0/22       AS3741  AFRINIC African Network Information Center
+        196.11.28.0/23       AS3741  AFRINIC African Network Information Center
+        196.11.30.0/24       AS3741  AFRINIC African Network Information Center
+        196.11.40.0/21       AS3741  AFRINIC African Network Information Center
+        196.11.56.0/23       AS16637 AFRINIC African Network Information Center
+        196.11.58.0/24       AS3741  AFRINIC African Network Information Center
+        196.11.62.0/23       AS2905  UUNET-ZA uunet south africa
+        196.11.69.0/24       AS3741  AFRINIC African Network Information Center
+        196.11.70.0/24       AS3741  AFRINIC African Network Information Center
+        196.11.72.0/24       AS3741  AFRINIC African Network Information Center
+        196.11.98.0/24       AS2018  AFRINIC African Network Information Center
+        196.11.105.0/24      AS2905  UUNET-ZA uunet south africa
+        196.11.106.0/23      AS2905  UUNET-ZA uunet south africa
+        196.11.108.0/24      AS2905  UUNET-ZA uunet south africa
+        196.11.109.0/24      AS3741  AFRINIC African Network Information Center
+        196.11.110.0/23      AS3741  AFRINIC African Network Information Center
+        196.11.112.0/23      AS3741  AFRINIC African Network Information Center
+        196.11.114.0/24      AS3741  AFRINIC African Network Information Center
+        196.11.116.0/22      AS2905  UUNET-ZA uunet south africa
+        196.11.116.0/24      AS3741  AFRINIC African Network Information Center
+        196.11.120.0/23      AS2905  UUNET-ZA uunet south africa
+        196.11.122.0/24      AS3741  AFRINIC African Network Information Center
+        196.11.124.0/24      AS2018  AFRINIC African Network Information Center
+        196.11.126.0/24      AS17148 AFRINIC African Network Information Center
+        196.11.127.0/24      AS17148 AFRINIC African Network Information Center
+        196.11.128.0/24      AS17148 AFRINIC African Network Information Center
+        196.11.129.0/24      AS17148 AFRINIC African Network Information Center
+        196.11.130.0/24      AS17148 AFRINIC African Network Information Center
+        196.11.131.0/24      AS17148 AFRINIC African Network Information Center
+        196.11.132.0/24      AS17148 AFRINIC African Network Information Center
+        196.11.133.0/24      AS17148 AFRINIC African Network Information Center
+        196.11.134.0/24      AS17148 AFRINIC African Network Information Center
+        196.11.135.0/24      AS3741  AFRINIC African Network Information Center
+        196.11.136.0/21      AS2018  AFRINIC African Network Information Center
+        196.11.144.0/24      AS2018  AFRINIC African Network Information Center
+        196.11.146.0/24      AS12258 AFRINIC African Network Information Center
+        196.11.147.0/24      AS12258 AFRINIC African Network Information Center
+        196.11.148.0/23      AS3741  AFRINIC African Network Information Center
+        196.11.170.0/23      AS3741  AFRINIC African Network Information Center
+        196.11.172.0/23      AS3741  AFRINIC African Network Information Center
+        196.11.174.0/24      AS3741  AFRINIC African Network Information Center
+        196.11.188.0/23      AS3741  AFRINIC African Network Information Center
+        196.11.188.0/24      AS3741  AFRINIC African Network Information Center
+        196.11.190.0/24      AS3741  AFRINIC African Network Information Center
+        196.11.192.0/22      AS16637 AFRINIC African Network Information Center
+        196.11.196.0/24      AS16637 AFRINIC African Network Information Center
+        196.11.197.0/24      AS3741  AFRINIC African Network Information Center
+        196.11.200.0/24      AS2018  AFRINIC African Network Information Center
+        196.11.205.0/24      AS3741  AFRINIC African Network Information Center
+        196.11.209.0/24      AS3741  AFRINIC African Network Information Center
+        196.11.211.0/24      AS2905  UUNET-ZA uunet south africa
+        196.11.212.0/24      AS2905  UUNET-ZA uunet south africa
+        196.11.233.0/24      AS3741  AFRINIC African Network Information Center
+        196.11.235.0/24      AS2018  AFRINIC African Network Information Center
+        196.11.238.0/24      AS2905  UUNET-ZA uunet south africa
+        196.11.239.0/24      AS16637 AFRINIC African Network Information Center
+        196.11.240.0/22      AS16637 AFRINIC African Network Information Center
+        196.11.244.0/23      AS16637 AFRINIC African Network Information Center
+        196.11.246.0/24      AS16637 AFRINIC African Network Information Center
+        196.11.251.0/24      AS3741  AFRINIC African Network Information Center
+        196.13.1.0/24        AS2018  AFRINIC African Network Information Center
+        196.13.2.0/23        AS2018  AFRINIC African Network Information Center
+        196.13.4.0/22        AS2018  AFRINIC African Network Information Center
+        196.13.8.0/21        AS2018  AFRINIC African Network Information Center
+        196.13.16.0/21       AS2018  AFRINIC African Network Information Center
+        196.13.24.0/22       AS2018  AFRINIC African Network Information Center
+        196.13.28.0/23       AS2018  AFRINIC African Network Information Center
+        196.13.30.0/24       AS2018  AFRINIC African Network Information Center
+        196.13.31.0/24       AS3741  AFRINIC African Network Information Center
+        196.13.32.0/22       AS226   LOS-NETTOS-AS - Los Nettos
+        196.13.32.0/24       AS3741  AFRINIC African Network Information Center
+        196.13.33.0/24       AS3741  AFRINIC African Network Information Center
+        196.13.35.0/24       AS3741  AFRINIC African Network Information Center
+        196.13.36.0/24       AS3741  AFRINIC African Network Information Center
+        196.13.40.0/24       AS3741  AFRINIC African Network Information Center
+        196.13.41.0/24       AS3741  AFRINIC African Network Information Center
+        196.13.42.0/24       AS3741  AFRINIC African Network Information Center
+        196.13.48.0/24       AS3741  AFRINIC African Network Information Center
+        196.13.49.0/24       AS3741  AFRINIC African Network Information Center
+        196.13.53.0/24       AS3741  AFRINIC African Network Information Center
+        196.13.54.0/24       AS3741  AFRINIC African Network Information Center
+        196.13.55.0/24       AS3741  AFRINIC African Network Information Center
+        196.13.56.0/24       AS3741  AFRINIC African Network Information Center
+        196.13.58.0/24       AS3741  AFRINIC African Network Information Center
+        196.13.60.0/24       AS3741  AFRINIC African Network Information Center
+        196.13.62.0/24       AS3741  AFRINIC African Network Information Center
+        196.13.63.0/24       AS3741  AFRINIC African Network Information Center
+        196.13.64.0/21       AS3741  AFRINIC African Network Information Center
+        196.13.72.0/24       AS3741  AFRINIC African Network Information Center
+        196.13.73.0/24       AS3741  AFRINIC African Network Information Center
+        196.13.74.0/23       AS3741  AFRINIC African Network Information Center
+        196.13.76.0/22       AS3741  AFRINIC African Network Information Center
+        196.13.80.0/24       AS3741  AFRINIC African Network Information Center
+        196.13.93.0/24       AS3741  AFRINIC African Network Information Center
+        196.13.97.0/24       AS3741  AFRINIC African Network Information Center
+        196.13.102.0/23      AS2018  AFRINIC African Network Information Center
+        196.13.104.0/24      AS2018  AFRINIC African Network Information Center
+        196.13.108.0/24      AS3741  AFRINIC African Network Information Center
+        196.13.113.0/24      AS3741  AFRINIC African Network Information Center
+        196.13.115.0/24      AS2018  AFRINIC African Network Information Center
+        196.13.116.0/22      AS2018  AFRINIC African Network Information Center
+        196.13.126.0/24      AS2018  AFRINIC African Network Information Center
+        196.13.127.0/24      AS3741  AFRINIC African Network Information Center
+        196.13.128.0/22      AS3741  AFRINIC African Network Information Center
+        196.13.132.0/24      AS3741  AFRINIC African Network Information Center
+        196.13.138.0/23      AS2905  UUNET-ZA uunet south africa
+        196.13.140.0/22      AS2905  UUNET-ZA uunet south africa
+        196.13.144.0/22      AS2905  UUNET-ZA uunet south africa
+        196.13.150.0/24      AS2018  AFRINIC African Network Information Center
+        196.13.151.0/24      AS2905  UUNET-ZA uunet south africa
+        196.13.152.0/21      AS2905  UUNET-ZA uunet south africa
+        196.13.160.0/24      AS2905  UUNET-ZA uunet south africa
+        196.13.163.0/24      AS3741  AFRINIC African Network Information Center
+        196.13.164.0/24      AS3741  AFRINIC African Network Information Center
+        196.13.165.0/24      AS3741  AFRINIC African Network Information Center
+        196.13.184.0/24      AS2018  AFRINIC African Network Information Center
+        196.13.185.0/24      AS2018  AFRINIC African Network Information Center
+        196.13.187.0/24      AS2018  AFRINIC African Network Information Center
+        196.13.188.0/22      AS2018  AFRINIC African Network Information Center
+        196.13.200.0/24      AS2018  AFRINIC African Network Information Center
+        196.13.201.0/24      AS2018  AFRINIC African Network Information Center
+        196.13.202.0/24      AS2018  AFRINIC African Network Information Center
+        196.13.203.0/24      AS2018  AFRINIC African Network Information Center
+        196.13.204.0/24      AS2018  AFRINIC African Network Information Center
+        196.13.213.0/24      AS3741  AFRINIC African Network Information Center
+        196.13.214.0/23      AS3741  AFRINIC African Network Information Center
+        196.13.216.0/23      AS3741  AFRINIC African Network Information Center
+        196.13.225.0/24      AS3741  AFRINIC African Network Information Center
+        196.13.226.0/23      AS3741  AFRINIC African Network Information Center
+        196.13.228.0/22      AS16637 AFRINIC African Network Information Center
+        196.13.232.0/24      AS3741  AFRINIC African Network Information Center
+        196.13.249.0/24      AS5713  AFRINIC African Network Information Center
+        196.29.40.0/22       AS21391 TDA-AS TDA AS Maintainer
+        198.23.26.0/24       AS4390  BELLATLANTIC-COM - Bell Atlantic, Inc.
+        198.54.7.0/24        AS5713  AFRINIC African Network Information Center
+        198.54.20.0/22       AS3741  AFRINIC African Network Information Center
+        198.54.24.0/21       AS3741  AFRINIC African Network Information Center
+        198.54.32.0/21       AS3741  AFRINIC African Network Information Center
+        198.54.40.0/23       AS3741  AFRINIC African Network Information Center
+        198.54.42.0/24       AS3741  AFRINIC African Network Information Center
+        198.54.58.0/24       AS2018  AFRINIC African Network Information Center
+        198.54.64.0/24       AS3741  AFRINIC African Network Information Center
+        198.54.65.0/24       AS2018  AFRINIC African Network Information Center
+        198.54.66.0/24       AS2018  AFRINIC African Network Information Center
+        198.54.68.0/24       AS2018  AFRINIC African Network Information Center
+        198.54.71.0/24       AS3741  AFRINIC African Network Information Center
+        198.54.72.0/22       AS3741  AFRINIC African Network Information Center
+        198.54.80.0/24       AS3741  AFRINIC African Network Information Center
+        198.54.83.0/24       AS2018  AFRINIC African Network Information Center
+        198.54.84.0/24       AS3741  AFRINIC African Network Information Center
+        198.54.91.0/24       AS2018  AFRINIC African Network Information Center
+        198.54.148.0/24      AS2905  UUNET-ZA uunet south africa
+        198.54.149.0/24      AS3741  AFRINIC African Network Information Center
+        198.54.154.0/24      AS3741  AFRINIC African Network Information Center
+        198.54.155.0/24      AS2018  AFRINIC African Network Information Center
+        198.54.156.0/22      AS3741  AFRINIC African Network Information Center
+        198.54.160.0/23      AS3741  AFRINIC African Network Information Center
+        198.54.162.0/24      AS702   AS702 MCI EMEA - Commercial IP service provider in Europe
+        198.54.163.0/24      AS3741  AFRINIC African Network Information Center
+        198.54.165.0/24      AS3741  AFRINIC African Network Information Center
+        198.54.170.0/24      AS3741  AFRINIC African Network Information Center
+        198.54.173.0/24      AS2018  AFRINIC African Network Information Center
+        198.54.174.0/24      AS2018  AFRINIC African Network Information Center
+        198.54.184.0/22      AS3741  AFRINIC African Network Information Center
+        198.54.188.0/23      AS3741  AFRINIC African Network Information Center
+        198.54.192.0/22      AS3741  AFRINIC African Network Information Center
+        198.54.196.0/24      AS3741  AFRINIC African Network Information Center
+        198.54.202.0/24      AS5713  AFRINIC African Network Information Center
+        198.54.204.0/22      AS5734  AFRINIC African Network Information Center
+        198.54.204.0/24      AS5734  AFRINIC African Network Information Center
+        198.54.205.0/24      AS5734  AFRINIC African Network Information Center
+        198.54.206.0/24      AS5734  AFRINIC African Network Information Center
+        198.54.208.0/24      AS5734  AFRINIC African Network Information Center
+        198.54.219.0/24      AS3741  AFRINIC African Network Information Center
+        198.54.223.0/24      AS2018  AFRINIC African Network Information Center
+        198.54.225.0/24      AS3741  AFRINIC African Network Information Center
+        198.54.228.0/24      AS3741  AFRINIC African Network Information Center
+        198.54.247.0/24      AS5713  AFRINIC African Network Information Center
+        198.54.249.0/24      AS2018  AFRINIC African Network Information Center
+        198.54.250.0/24      AS2018  AFRINIC African Network Information Center
+        198.54.251.0/24      AS2018  AFRINIC African Network Information Center
+        198.54.253.0/24      AS3741  AFRINIC African Network Information Center
+        198.97.72.0/21       AS721   DLA-ASNBLOCK-AS - DoD Network Information Center
+        198.97.80.0/20       AS721   DLA-ASNBLOCK-AS - DoD Network Information Center
+        198.97.88.0/24       AS89    NUSC-CSTLNET-AS - Naval Underwater Systems Center
+        198.97.240.0/20      AS721   DLA-ASNBLOCK-AS - DoD Network Information Center
+        198.97.247.0/24      AS3475  LANT-AFLOAT - Department of the Navy
+        198.101.4.0/22       AS721   DLA-ASNBLOCK-AS - DoD Network Information Center
+        198.136.32.0/20      AS19329 MCNET - Martin County Board of County Commissioners
+        198.160.171.0/24     AS7046  UUNET-CUSTOMER - UUNET Technologies, Inc.
+        198.161.87.0/24      AS6539  GROUPTLCOM - GT Group Telecom Services Corp.
+        198.163.155.0/24     AS684   MTSAL-ASN - MTS Allstream Inc.
+        198.167.0.0/16       AS7456  INTERHOP - Interhop Network SERVICES Inc.
+        198.167.163.0/24     AS15290 ALLST-15290 - Allstream Corp. Corporation Allstream
+        198.168.0.0/16       AS701   ALTERNET-AS - UUNET Technologies, Inc.
+        198.169.0.0/16       AS803   SASKTEL - SaskTel
+        198.169.236.0/24     AS3602  SPRINT-CA-AS - Sprint Canada Inc.
+        198.232.133.0/24     AS23075 SKOTOS-AS - Skotos Tech, Inc
+        199.9.128.0/17       AS668   ASN-ASNET-NET-AS - Defense Research and Engineering Network
+        199.10.0.0/16        AS721   DLA-ASNBLOCK-AS - DoD Network Information Center
+        199.60.0.0/20        AS271   BCNET-AS - University of British Columbia
+        199.114.0.0/21       AS721   DLA-ASNBLOCK-AS - DoD Network Information Center
+        199.114.128.0/18     AS721   DLA-ASNBLOCK-AS - DoD Network Information Center
+        199.114.130.0/24     AS721   DLA-ASNBLOCK-AS - DoD Network Information Center
+        199.114.131.0/24     AS721   DLA-ASNBLOCK-AS - DoD Network Information Center
+        199.114.132.0/24     AS721   DLA-ASNBLOCK-AS - DoD Network Information Center
+        199.114.134.0/24     AS3541  ITSDN-U4 - DISA/UNRRA
+        199.114.136.0/24     AS27044 DDN-ASNBLK1 - DoD Network Information Center
+        199.114.138.0/24     AS721   DLA-ASNBLOCK-AS - DoD Network Information Center
+        199.114.140.0/24     AS3544  ITSDN-U7 - DISA/UNRRA
+        199.114.142.0/24     AS721   DLA-ASNBLOCK-AS - DoD Network Information Center
+        199.114.148.0/24     AS721   DLA-ASNBLOCK-AS - DoD Network Information Center
+        199.114.150.0/24     AS721   DLA-ASNBLOCK-AS - DoD Network Information Center
+        199.114.152.0/24     AS27033 DDN-ASNBLK1 - DoD Network Information Center
+        199.114.153.0/24     AS27034 DDN-ASNBLK1 - DoD Network Information Center
+        199.114.154.0/24     AS1733  CENTAF-SWA - AF DDN PMO
+        199.114.160.0/24     AS1733  CENTAF-SWA - AF DDN PMO
+        199.120.32.0/19      AS16582 NEXTLEVELINTERNET - NEXTLEVEL INTERNET, INC.
+        199.121.0.0/16       AS721   DLA-ASNBLOCK-AS - DoD Network Information Center
+        199.123.0.0/18       AS721   DLA-ASNBLOCK-AS - DoD Network Information Center
+        199.123.16.0/20      AS721   DLA-ASNBLOCK-AS - DoD Network Information Center
+        199.123.80.0/21      AS721   DLA-ASNBLOCK-AS - DoD Network Information Center
+        199.189.32.0/19      AS7332  IQUEST-AS - IQuest Internet
+        199.202.0.0/16       AS701   ALTERNET-AS - UUNET Technologies, Inc.
+        199.246.116.0/24     AS813   UUNET-AS1 - UUNET Technologies, Inc.
+        200.49.8.0/21        AS6140  IMPSAT-USA - ImpSat
+        201.214.0.0/16       AS22047 VTR BANDA ANCHA S.A.
+        202.58.110.0/24      AS10026 ANC Asia Netcom Corporation
+        202.58.113.0/24      AS19161 INNOCOM-TELECOM - INNOCOM TELECOM
+        202.86.252.0/22      AS9304  HUTCHISON-AS-AP Hutchison Global Communications
+        202.86.253.0/24      AS9304  HUTCHISON-AS-AP Hutchison Global Communications
+        202.86.254.0/24      AS9304  HUTCHISON-AS-AP Hutchison Global Communications
+        202.86.255.0/24      AS9304  HUTCHISON-AS-AP Hutchison Global Communications
+        202.93.0.0/20        AS4134  CHINANET-BACKBONE No.31,Jin-rong Street
+        202.131.64.0/19      AS9381  NEWTT-IP-AP Wharf T&amp;T Ltd.
+        203.62.0.0/17        AS7572  AARNET-ACT-RNO Australian Academic and Reasearch Network (AARNet)
+        203.78.48.0/20       AS9299  IPG-AS-AP Philippine Long Distance Telephone Company
+        203.89.133.0/24      AS15412 FLAG-AS Flag Telecom Global Internet AS
+        203.89.134.0/24      AS17557 PKTELECOM-AS-AP Pakistan Telecom
+        203.89.138.0/24      AS9237  HUTCHCA-AS Corporate Access (HK) Ltd.
+        203.89.139.0/24      AS17911 BRAINPK-AS-AP Brain Telecommunication Ltd.
+        203.89.143.0/24      AS17557 PKTELECOM-AS-AP Pakistan Telecom
+        203.89.144.0/24      AS17557 PKTELECOM-AS-AP Pakistan Telecom
+        203.89.145.0/24      AS4637  REACH Reach Network Border AS
+        203.89.146.0/24      AS4637  REACH Reach Network Border AS
+        203.89.147.0/24      AS17557 PKTELECOM-AS-AP Pakistan Telecom
+        203.89.148.0/24      AS17557 PKTELECOM-AS-AP Pakistan Telecom
+        203.89.149.0/24      AS17557 PKTELECOM-AS-AP Pakistan Telecom
+        203.89.150.0/24      AS17557 PKTELECOM-AS-AP Pakistan Telecom
+        203.89.151.0/24      AS17557 PKTELECOM-AS-AP Pakistan Telecom
+        203.89.153.0/24      AS17557 PKTELECOM-AS-AP Pakistan Telecom
+        203.89.154.0/24      AS17557 PKTELECOM-AS-AP Pakistan Telecom
+        203.89.158.0/24      AS9237  HUTCHCA-AS Corporate Access (HK) Ltd.
+        203.89.159.0/24      AS17557 PKTELECOM-AS-AP Pakistan Telecom
+        203.99.0.0/19        AS17746 ORCONINTERNET-NZ-AP Orcon Internet
+        203.99.142.0/24      AS9826  ILINK-HK-AP iLink.net Ltd
+        203.210.69.0/24      AS17536 PRODIGY-AS-AP Prodidgy Telecommunications
+        204.48.118.0/23      AS29912 CITIZENS-PROPERTY-INSURANCE-CORPORATION - Citizens Property Insurance Corporation
+        204.48.119.0/24      AS29912 CITIZENS-PROPERTY-INSURANCE-CORPORATION - Citizens Property Insurance Corporation
+        204.154.125.0/24     AS3952  TELLABS-ASN - TELLABS Operations, Inc.
+        204.154.126.0/24     AS3952  TELLABS-ASN - TELLABS Operations, Inc.
+        204.154.127.0/24     AS3952  TELLABS-ASN - TELLABS Operations, Inc.
+        205.150.0.0/15       AS701   ALTERNET-AS - UUNET Technologies, Inc.
+        206.108.96.0/19      AS577   BACOM - Bell Advanced Communications Inc.
+        206.128.104.0/21     AS11709 VIC - VIRTUAL INTERACTIVE CENTER
+        206.167.57.0/24      AS376   RISQ-AS - Reseau Interordinateurs Scientique Quebecois (RISQ)
+        206.191.64.0/18      AS15290 ALLST-15290 - Allstream Corp. Corporation Allstream
+        206.191.96.0/19      AS15290 ALLST-15290 - Allstream Corp. Corporation Allstream
+        207.231.96.0/19      AS11194 NUNETPA - NuNet Inc
+        208.138.48.0/20      AS6971  ESCH - Eschelon Telecommunications, Inc.
+        209.40.192.0/21      AS6487  CyberNet de Guatemala S.A.
+        209.40.200.0/21      AS6487  CyberNet de Guatemala S.A.
+        209.40.208.0/21      AS6487  CyberNet de Guatemala S.A.
+        209.40.216.0/21      AS6487  CyberNet de Guatemala S.A.
+        209.44.124.0/24      AS22241 ICCEPTS - Integrated Communications Concepts
+        209.205.69.0/24      AS21578 Universidad autonoma de Bucaramanga
+        209.205.70.0/24      AS21578 Universidad autonoma de Bucaramanga
+        209.205.81.0/24      AS15066 SkyNet de Colombia S.A.
+        209.205.82.0/24      AS15066 SkyNet de Colombia S.A.
+        209.205.84.0/24      AS15066 SkyNet de Colombia S.A.
+        209.213.32.0/19      AS10629 INTERPAC - Inter-Pacific Network Services
+        209.251.0.0/19       AS11036 SISCOM - SISCOM, Inc
+        216.37.110.0/23      AS4264  CERNET-ASN-BLOCK - California Education and Research Federation Network
+        216.82.160.0/20      AS20481 CALYX-NL Calyx Internet B.V. Netherlands
+        216.96.128.0/18      AS7018  ATT-INTERNET4 - AT&amp;T WorldNet Services
+        216.171.96.0/20      AS3356  LEVEL3 Level 3 Communications
+        216.178.37.0/24      AS3356  LEVEL3 Level 3 Communications
+        216.178.39.0/24      AS3356  LEVEL3 Level 3 Communications
+        216.178.42.0/24      AS3356  LEVEL3 Level 3 Communications
+        216.178.43.0/24      AS3356  LEVEL3 Level 3 Communications
+        216.228.64.0/21      AS6295  WHIDBEY1 - Whidbey Internet Services
+        216.240.240.0/20     AS7018  ATT-INTERNET4 - AT&amp;T WorldNet Services
+        216.240.242.0/24     AS7018  ATT-INTERNET4 - AT&amp;T WorldNet Services
+
+
+Please see http://www.cidr-report.org for the full report
+
+------------------------------------
+Copies of this report are mailed to:
+  nanog@merit.edu
+  eof-list@ripe.net
+  apops@apops.net
+  routing-wg@ripe.net
+  afnog@afnog.org
+
+
+

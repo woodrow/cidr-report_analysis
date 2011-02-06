@@ -1,0 +1,55 @@
+# from /home/woodrow/proj/cidr-report_analysis/planning/cidr_report_emails/cidr_r_emails-old_index.txt:792
+# 1997-11-10 'Re: The Cidr Report' from 'Tony Bates'
+# http://www.merit.edu/mail.archives/nanog/1997-11/msg00266.html
+
+
+Re: The Cidr Report
+From: Tony Bates
+Date: Mon Nov 10 11:53:04 1997
+
+
+For those of you who look at the report you may have noticed it looked
+a little odd for the last week. This is becuase my access to the router I use
+to gather the information got cut off by mistake last (from Nov 3rd in
+fact) week. It is now fixed. Check 
+
+http://www.employees.org/~tbates/cidr-report.html 
+
+if you'd like to see a daily snapshot otherwise it should be back up
+and running normally this Friday. Aplogies.
+
+		--Tony
+
+ Tony Bates &lt;tbates@cisco.com&gt; writes:
+  * 
+  * This is an auto-generated mail on Fri Nov  7 12:00:00 PST 1997
+  * It is not checked before it leaves my workstation.  However, hopefully 
+  * you will find this report interesting and will take the time to look 
+  * through this to see if you can improve the amount of aggregation you 
+  * perform.
+  * 
+[...]
+  *                         CIDR REPORT for 07Nov97
+  * 
+  * 
+  * 0) General Status
+  * 
+  * Table History
+  * -------------
+  * 
+  * Date	Prefixes
+  * 271097	46244
+  * 281097	47092
+  * 291097	47120
+  * 301097	47207
+  * 311097	46221
+  * 011197	46279
+  * 021197	46023
+  * 031197	46334
+  * 
+  * Check http://www.employees.org/~tbates/cidr.plot.html for a plot
+  * of the table history.
+[...]
+
+
+

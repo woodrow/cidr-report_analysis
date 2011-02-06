@@ -1,0 +1,151 @@
+# from /home/woodrow/proj/cidr-report_analysis/planning/cidr_report_emails/cidr_r_emails-old_index.txt:645
+# 2000-04-21 'The Cidr Report' from 'Tony Bates'
+# http://www.merit.edu/mail.archives/nanog/2000-04/msg00277.html
+
+
+The Cidr Report
+From: Tony Bates
+Date: Fri Apr 21 15:07:00 2000
+
+
+
+
+This is an auto-generated mail on Fri Apr 21 12:00:01 PDT 2000
+It is not checked before it leaves my workstation.  However, hopefully 
+you will find this report interesting and will take the time to look 
+through this to see if you can improve the amount of aggregation you 
+perform.
+
+The report is split into sections:
+
+   0) General Status
+   
+      List the route table history for the last week, list any possibly
+      bogus routes seen and give some status on ASes.
+
+   1) Gains by aggregating at the origin AS level
+
+      This lists the &quot;Top 30&quot; players who if they decided to aggregate
+      their announced classful prefixes at the origin AS level could 
+      make a significant difference in the reduction of the current 
+      size of the Internet routing table. This calculation does not 
+      take into account the inclusion of holes when forming an aggregate
+      so it is possible even larger reduction should be possible.
+
+   2) Weekly Delta
+
+      A summary of the last weeks changes in terms of withdrawn and
+      added routes. Please note that this is only a snapshot but does 
+      give some indication of ASes participating in CIDR. Clearly,
+      it is generally a good thing to see a large amont of withdrawls.
+
+   3) Interesting aggregates
+
+      Interesting here means not an aggregate made as a set of 
+      classful routes.      
+
+Thanks to xara.net for giving me access to their routing tables once a
+day. 
+
+Please send any comments about this report directly to me.
+
+Check http://www.employees.org/~tbates/cidr-report.html for a daily
+update of this report.
+
+
+
+------------------------------------------------------------------------------
+
+                        CIDR REPORT for 21Apr00
+
+
+0) General Status
+
+Table History
+-------------
+
+Date	Prefixes
+060400	74813
+070400	75152
+080400	75151
+090400	75137
+100400	75215
+110400	75403
+120400	75730
+130400	75919
+
+Check http://www.employees.org/~tbates/cidr.plot.html for a plot
+of the table history.
+
+
+Possible Bogus Routes
+---------------------
+
+
+AS Summary
+----------
+
+Number of ASes in routing system:                 4983
+
+Number of ASes announcing only one prefix:        1838 (0 cidr, 1838 classful)
+
+Largest number of  cidr routes:                      0 announced by       
+Largest number of classful routes:                1043 announced by  AS701
+
+
+
+1) Gains by aggregating at the origin AS level
+
+ --- 21Apr00 ---
+ASnum    NetsNow NetsCIDR  NetGain  % Gain   Description
+
+AS271        351      131      220   62.7%   BCnet Backbone
+AS7046       474      322      152   32.1%   COQUI-NET PRTC Internet
+AS9269       163       26      137   84.0%   Hong Kong CTI
+AS9706       153       30      123   80.4%   Pusan Metropolitan City Office of
+AS1221       468      357      111   23.7%   TELSTRA-AS
+AS2609       124       17      107   86.3%   EUnet-TN
+AS7657       268      170       98   36.6%   The Internet Group Limited
+AS7545       160       65       95   59.4%   TPG Internet Pty Ltd
+AS705        309      214       95   30.7%   ALTERNET-AS
+AS4293       305      215       90   29.5%   Internal ASN for C&amp;W
+AS174        558      470       88   15.8%   Performance Systems International
+AS7496       126       39       87   69.0%   Power Up
+AS6429       205      121       84   41.0%   RDC-INTERNET
+AS7029       153       72       81   52.9%   ALLTELNET
+AS9304       105       29       76   72.4%   Hutchcity
+AS577        250      174       76   30.4%   Bell Backbone
+AS209        458      385       73   15.9%   Qwest Communications
+AS9557        80       15       65   81.2%   Pakistan Telecommunication Compan
+AS1727       144       80       64   44.4%   MRMS-WEST
+AS724        205      143       62   30.2%   DLA-ASNBLOCK-AS
+AS3602       309      247       62   20.1%   Sprint Canada Inc.
+AS7260       109       49       60   55.0%   NORLIGHT
+AS701       1043      983       60    5.8%   Alternet
+AS7018       518      459       59   11.4%   AT&amp;T WorldNet Service Backbone
+AS3749       114       56       58   50.9%   TECNET
+AS816        333      277       56   16.8%   UUNET Canada (ASN-UUNETCA-AS4)
+AS4740       337      281       56   16.6%   Ozemail Pty Ltd (ASN-OZEMAIL)
+AS6595       101       48       53   52.5%   DODDSEUR
+AS7568        68       18       50   73.5%   C.S. Communications Co., Ltd.
+AS2563       125       76       49   39.2%   KoRean Education Network
+
+
+For the rest of the previous weeks gain information please see
+http://www.employees.org:80/~tbates/cidr-report.html
+
+2) Weekly Delta
+
+Please see
+http://www.employees.org:80/~tbates/cidr-report.html
+for this part of the report
+
+3) Interesting aggregates
+
+Please see
+http://www.employees.org:80/~tbates/cidr-report.html
+for this part of the report
+
+
+
+

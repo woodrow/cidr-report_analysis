@@ -1,0 +1,46 @@
+# from /home/woodrow/proj/cidr-report_analysis/planning/cidr_report_emails/cidr_r_emails-old_index.txt:328
+# 2004-11-05 'Fwd: The Cidr Report' from 'David Barak'
+# http://www.merit.edu/mail.archives/nanog/2004-11/msg00047.html
+
+
+Fwd: The Cidr Report
+From: David Barak
+Date: Fri Nov 05 09:38:56 2004
+
+
+
+
+
+--- cidr-report@potaroo.net wrote:
+
+&gt; AS701       6090      892     5198    85.4%   UU
+&gt; UUNET Technologies, Inc.
+&gt; AS705       2258     1009     1249    55.3%   UU
+&gt; UUNET Technologies, Inc.
+
+Top 20 Net Increased Routes per Originating AS
+ 
+Prefixes	  Change	  ASnum  	AS Description
+4861	  1224-&gt;6085	  AS701  	UU UUNET Technologies,
+Inc.
+1820	  437-&gt;2257	  AS705  	UU UUNET Technologies, Inc.
+758	  268-&gt;1026	  AS7046  	UU UUNET Technologies, Inc.
+
+Any idea what happened here?  Is this long-term?
+
+
+=====
+David Barak
+-fully RFC 1925 compliant-
+
+
+		
+__________________________________ 
+Do you Yahoo!? 
+Check out the new Yahoo! Front Page. 
+www.yahoo.com 
+ 
+
+
+
+

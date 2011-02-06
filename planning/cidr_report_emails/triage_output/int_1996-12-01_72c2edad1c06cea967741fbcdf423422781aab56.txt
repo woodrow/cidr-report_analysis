@@ -1,0 +1,43 @@
+# from /home/woodrow/proj/cidr-report_analysis/planning/cidr_report_emails/cidr_r_emails-old_index.txt:849
+# 1996-12-01 'Re: The Cidr Report' from 'Randy Bush'
+# http://www.merit.edu/mail.archives/nanog/1996-12/msg00005.html
+
+
+Re: The Cidr Report
+From: Randy Bush
+Date: Sun Dec 01 20:43:59 1996
+
+
+&gt; There is no &quot;absolute&quot; point at which to take these measurements. Any
+&gt; point will be coloured (colored) by its relative Internet location with
+&gt; respect to amounts of local detail and aggregated distant detail.
+
+Yes.  Dave Meyer is trying to overcome this with his new route viewer
+(route-views.uoregon.edu), analogous to Pushpendra's.  He is getting
+multi-hop BGP from Europe (thanks RIPE), Japan (thanks IIJ), and MAE-West
+(no, LA would probably not be an interesting addition:-) to get widely
+disparate and hence interesting views of the infrastructure.
+
+It would be prettier if he could
+
+    ip as-path access-list 142 permit ^NAS_
+    route-map peerN-in permit 1
+       match as-path 142
+       sed-path s/^NAS_//        ! or maybe
+       set as-path un-prepend NAS
+    ...
+    neighbor 42.666.7.11 remote-as NAS
+    neighbor 42.666.7.11 route-map peerN-in in
+
+to clean the first AS off the path, as it looks tacky.  But I suspect
+cisco would fear the impact of such a knob on their support folk.
+
+I do not think this approach would be overly useful for Tony's CIDR
+report.  It is not a debugging tool, but an overall trend chart.  The
+constant measurement point and relative measure is what I find useful.
+
+randy
+- - - - - - - - - - - - - - - - -
+
+
+

@@ -1,0 +1,69 @@
+# from /home/woodrow/proj/cidr-report_analysis/planning/cidr_report_emails/cidr_r_emails-old_index.txt:600
+# 2000-05-17 'Re: CIDR Report' from 'Valdis.Kletnieks'
+# http://www.merit.edu/mail.archives/nanog/2000-05/msg00360.html
+
+
+Re: CIDR Report
+From: Valdis.Kletnieks
+Date: Wed May 17 10:20:49 2000
+
+
+
+On Wed, 17 May 2000 02:04:55 PDT, &quot;Roeland Meyer (E-mail)&quot; said:
+&gt; &gt;&gt; &gt; Valdis.Kletnieks@vt.edu wrote:
+&gt; &gt; &gt; Sure, *any* good router vendor can build a router that can
+&gt; &gt; handle 100 million
+&gt; &gt; &gt; routing table entries.
+
+&gt; I tend to agree, the numbers I threw around earleir were strictly
+&gt; first-order approximations for raw sizes. Second-order would include
+&gt; performance issues and algorithm requirements. I see that Vadim ihas
+&gt; already arrived there.
+
+OK.. I meant the ability to *store* 100M table entries.  Flapping is
+another story, which just aggrivates the cost problem ;)
+
+&gt; Why $2M? From price ranges in the current market, I would think that
+&gt; they'd have to hit under $200K. Actually, I would have a difficult time
+&gt; convincing clients of anything over an additional $60K. This gets back
+&gt; to my earlier question, how many backbone routers are there (nearest
+&gt; order of magnitude should suffice here)?
+
+Exactly.  We can all *SAY* we want features X, Y, and Z, but who will
+actually *buy* them if they cost more?
+
+I tossed out $2M as a straw man - it just seemed like a good &quot;you could build
+almost anything for under that price, but nobody would buy&quot;.  If the added
+cost is $50K per box, that increases the number of boxes you can sell, but..
+
+The curve for price versus number sold is probably a hyperbolic (even
+if my old economics texts drew it as a straight line ;) , whose exact
+shape will depend *very* heavily on just how much price elasticity
+there is.  And most organizations being what they are, it probably
+will be pretty flabby until we get to the &quot;You need this level of
+router or you're screwed&quot; state of affairs, at which point there will
+be a mad rush to buy them. ;)
+
+&gt; Typical rough market guidelines are that development cost must be less
+&gt; than 1% of total market size or the project is a non-starter,
+&gt; business-wise. Typical costs for this sort of project are $1M to $3M,
+&gt; over 8 months, with COGm at about $50 (relative to a minimum Number of
+&gt; Goods sold [NOGs] and assuming that it is technically feasible).
+
+Hmm. 1%?  Based on what I've seen for cost estimates for other high-ticket
+low-volume stuff (mostly mainframe-class computers, etc) I would have guessed
+10%.  In any case, I think the point is made that we can talk all we want
+about how we want &lt;insert router vendor name here&gt; to provide a truly high-end
+router that solves everything, but the reality of the cost pressure does
+need to be considered....
+
+-- 
+				Valdis Kletnieks
+				Operating Systems Analyst
+				Virginia Tech
+
+
+
+
+
+

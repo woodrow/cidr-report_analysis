@@ -1,0 +1,63 @@
+# from /home/woodrow/proj/cidr-report_analysis/planning/cidr_report_emails/cidr_r_emails-old_index.txt:431
+# 2003-05-09 'Re: The Cidr Report' from 'Lee Howard'
+# http://www.merit.edu/mail.archives/nanog/2003-05/msg00261.html
+
+
+Re: The Cidr Report
+From: Lee Howard
+Date: Fri May 09 18:10:02 2003
+
+
+
+We're here, name differences notwithstanding.
+
+We do counsel our customers to set no-export on their more-specifics,
+and we're happy to show them how or set it up for them.   When I see
+customers on the CIDR report, I make sure they get a phone call to
+explain why aggregation is good and how we can help.
+
+Lee
+
+
+On Fri, 9 May 2003, Larry J. Blunk wrote:
+
+&gt; Date: Fri, 09 May 2003 11:19:21 -0400
+&gt; From: Larry J. Blunk &lt;ljb@merit.edu&gt;
+&gt; To: nanog@merit.edu
+&gt; Subject: Re: The Cidr Report
+&gt; 
+&gt; 
+&gt; 
+&gt;    Hmm, The USDA seems to be very active of late.
+&gt; CIDR Police (and UUnet) where are you?
+&gt; 
+&gt; 
+&gt; &gt; ASnum    NetsNow NetsAggr  NetGain   % Gain   Description
+&gt; 
+&gt; Feb 07
+&gt; &gt; AS4151       345       71      274    79.4%   USDA-1 USDA
+&gt; 
+&gt; March 14
+&gt; &gt; AS4151       535      109      426    79.6%   USDA-1 USDA
+&gt; 
+&gt; April 11
+&gt; &gt; AS4151       691       75      616    89.1%   USDA-1 USDA
+&gt; 
+&gt; May 09 
+&gt; &gt; AS4151      1083       77     1006    92.9%   USDA-1 USDA
+&gt; 
+&gt; 
+&gt;  SBC also seems to be moving up rapidly from out of nowhere.
+&gt; 
+&gt; &gt; ASnum    NetsNow NetsAggr  NetGain   % Gain   Description
+&gt; 
+&gt; April 11
+&gt; &gt; AS7132       802      414      388    48.4%   SBIS-AS SBC Internet Services
+&gt; 
+&gt; May 09
+&gt; &gt; AS7132       963      208      755    78.4%   SBIS-AS SBC Internet Services
+&gt; 
+
+
+
+

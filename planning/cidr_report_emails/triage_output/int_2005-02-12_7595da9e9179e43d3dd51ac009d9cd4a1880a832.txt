@@ -1,0 +1,53 @@
+# from /home/woodrow/proj/cidr-report_analysis/planning/cidr_report_emails/cidr_r_emails-old_index.txt:272
+# 2005-02-12 'Re: The Cidr Report' from 'Jon Lewis'
+# http://www.merit.edu/mail.archives/nanog/2005-02/msg00189.html
+
+
+Re: The Cidr Report
+From: Jon Lewis
+Date: Sat Feb 12 10:37:12 2005
+
+
+
+On Sat, 12 Feb 2005, Stephen J. Wilcox wrote:
+
+&gt; this is getting into what i was implying earlier.. you have wider experience
+&gt; than me - would you agree that most of the poor deaggregating is not intentional
+&gt; ie that they're announcing their '16 class Cs' or historically had 2 /21s and
+&gt; dont even realise they could fix it.. that applies to medium and large providers
+&gt; too reading this list - how often do they actually check what prefixes they are
+&gt; sourcing, from my recent work at a couple of european IXes i had a number of
+&gt; folks email me offlist as they hadnt realised til I sent out an email they had
+&gt; deaggregation and once it was pointed out they just fixed it.
+&gt;
+&gt; so to repeat my earlier suggestion - if transit providers, particularly the
+&gt; larger ones setup scripts to notify their customers daily/weeks of routing
+&gt; deaggregation do you think we might gain some traction in educating and fixing
+&gt; this?
+
+Why does it have to be transit providers (customer relationship, so it's
+not spam? :)  Anyone could look at the global table (or just take the CIDR
+Report data) and automate emailing the ASN contacts for each ASN a list of
+what they're announcing and a list of the routes they probably should be
+announcing instead.
+
+I've personally dealt with a customer not too long ago who when we turned
+them up was announcing 2 /20s, a /21, a /22, and several /23s and /24s all
+deaggregated as /24s.  Sprint and Qwest (their other upstreams at the
+time) apparently had no problem with this.  I saw what they were doing and
+asked them why.  &quot;That's how our router consultant set it up.&quot;  There was
+no technical reason for it.  I helped them reaggregate their BGP
+announcements.
+
+I'll bet there are at least hundreds of similar AS's that just need to
+be prodded (or maybe even some hand holding or config help) in order to
+clean up their announcements.
+
+----------------------------------------------------------------------
+ Jon Lewis                   |  I route
+ Senior Network Engineer     |  therefore you are
+ Atlantic Net                |
+_________ http://www.lewis.org/~jlewis/pgp for PGP public key_________
+
+
+

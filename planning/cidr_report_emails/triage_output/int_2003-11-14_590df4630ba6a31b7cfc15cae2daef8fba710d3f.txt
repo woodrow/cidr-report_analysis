@@ -1,0 +1,63 @@
+# from /home/woodrow/proj/cidr-report_analysis/planning/cidr_report_emails/cidr_r_emails-old_index.txt:386
+# 2003-11-14 'Re: The Cidr Report' from 'Stephen J. Wilcox'
+# http://www.merit.edu/mail.archives/nanog/2003-11/msg00455.html
+
+
+Re: The Cidr Report
+From: Stephen J. Wilcox
+Date: Fri Nov 14 18:57:46 2003
+
+
+
+On Fri, 14 Nov 2003, Suresh Ramasubramanian wrote:
+&gt; Stephen J. Wilcox writes on 11/14/2003 12:54 PM:
+&gt; 
+&gt; &gt; Yeah maybe but what about where the RIRs have assigned independent /24 space..  
+&gt; &gt; or ISPs have subdelegated the IPs to a multihomed customer, was more thinking
+&gt; &gt; about where a bunch of routes originating from a single ASN can be aggregated 
+&gt; &gt; rather than routing bloat in general. There are numerous such examples of people 
+&gt; &gt; with eg a /19 announcing 32x /24 etc
+&gt; 
+&gt; So how do you deal with one but not with the other?
+
+I think your confusing my point - they're different questions, legitimate
+announcement of /24s by multihoming corporates is at least in principal okay.
+But I do regulary see people announcing consecutive prefixes all originating in
+the same AS and (from my view) having the same policy.
+
+Ok look heres one example, looks like these guys have a /20:
+
+Broad Band Networks / ESINET BBNESINET-48 (NET-12-5-48-0-1) 
+                                  12.5.48.0 - 12.5.55.255
+Broad Band Networks / ESINET BROAD-BA16-56 (NET-12-5-56-0-1) 
+                                  12.5.56.0 - 12.5.59.255
+BROAD BAND NETWORK SERVICES BROAD-BA927-60 (NET-12-5-60-0-1) 
+                                  12.5.60.0 - 12.5.63.255
+
+So why do I see this lot from them? 11 routes where only one would suffice 
+(1100% more than needed for anyone mathematically challenged)..
+
+*  12.5.48.0/24      6453 1239 5778 12163 i
+*  12.5.48.0/21      6453 1239 5778 12163 i
+*  12.5.49.0/24      6453 1239 5778 12163 i
+*  12.5.50.0/23      6453 1239 5778 12163 i
+*  12.5.52.0/24      6453 1239 5778 12163 i   
+*  12.5.54.0/23      6453 1239 5778 12163 i
+*  12.5.56.0/23      6453 1239 5778 12163 i
+*  12.5.56.0/22      6453 1239 5778 12163 i
+*  12.5.58.0/24      6453 1239 5778 12163 i
+*  12.5.59.0/24      6453 1239 5778 12163 i
+*  12.5.60.0/22      6453 1239 5778 12163 i
+
+I'm sure these arent the worst offenders but they were the first I came across 
+in my sh ip bgp ...
+
+So who's job is it to clean this up - I dont think proxy aggregation is a good 
+idea as someone suggested, the only people in a position to fix this are the ISP 
+themselves, their upstreams and their peers.
+
+Steve
+
+
+
+

@@ -1,0 +1,772 @@
+# from /home/woodrow/proj/cidr-report_analysis/planning/cidr_report_emails/cidr_r_emails-old_index.txt:873
+# 1996-11-15 'The Cidr Report' from 'Tony Bates'
+# http://www.merit.edu/mail.archives/nanog/1996-11/msg00152.html
+
+
+The Cidr Report
+From: Tony Bates
+Date: Fri Nov 15 15:35:04 1996
+
+
+
+This is an auto-generated mail on Fri Nov 15 12:00:00 PST 1996
+It is not checked before it leaves my workstation.  However, hopefully 
+you will find this report interesting and will take the time to look 
+through this to see if you can improve the amount of aggregation you 
+perform.
+
+The report is split into sections:
+
+   0) General Status
+   
+      List the route table history for the last week, list any possibly
+      bogus routes seen and give some status on ASes.
+
+   1) Gains by aggregating at the origin AS level
+
+      This lists the &quot;Top 30&quot; players who if they decided to aggregate
+      their announced classful prefixes at the origin AS level could 
+      make a significant difference in the reduction of the current 
+      size of the Internet routing table. This calculation does not 
+      take into account the inclusion of holes when forming an aggregate
+      so it is possible even larger reduction should be possible.
+
+   2) Weekly Delta
+
+      A summary of the last weeks changes in terms of withdrawn and
+      added routes. Please note that this is only a snapshot but does 
+      give some indication of ASes participating in CIDR. Clearly,
+      it is generally a good thing to see a large amont of withdrawls.
+
+   3) Interesting aggregates
+
+      Interesting here means not an aggregate made as a set of 
+      classful routes.      
+
+Thanks to xara.net for giving me access to their routing tables once a
+day. 
+
+Please send any comments about this report directly to me.
+In the future I hope to put some (or most) of this report up on the
+web.
+
+
+
+------------------------------------------------------------------------------
+
+                        CIDR REPORT for 15Nov96
+
+
+0) General Status
+
+Table History
+-------------
+
+Date	Prefixes
+091196	42664
+101196	42653
+111196	42696
+121196	42728
+131196	43235
+141196	42370
+151196	42021
+
+Possible Bogus Routes
+---------------------
+
+
+AS Summary
+----------
+
+Number of ASes in routing system:                 1792
+
+Number of ASes announcing only one prefix:         737 (378 cidr, 359 classful)
+
+Largest number of  cidr routes:                    461 announced by AS3561
+Largest number of classful routes:                1266 announced by  AS174
+
+
+
+1) Gains by aggregating at the origin AS level
+
+ --- 15Nov96 ---
+ASnum    NetsNow NetsCIDR  NetGain  % Gain   Description
+
+AS174       1266      925      341   26.9%   Performance Systems International
+AS1          837      511      326   38.9%   BBN Planet backbone
+AS3602       652      344      308   47.2%   Intergrated Network Services Inc.
+AS2493       803      510      293   36.5%   i*internet
+AS3397       317      104      213   67.2%   EMI-AS
+AS2048       357      156      201   56.3%   State of Louisiana/Office of Tele
+AS3749       257       66      191   74.3%   Tennessee Board of Regents
+AS279        494      325      169   34.2%   SURAnet Southern AS
+AS3804       380      236      144   37.9%   Bell Blobal Solutions
+AS86         341      205      136   39.9%   SURAnet Northern AS
+AS1691       287      152      135   47.0%   BCTEL
+AS5769       187       74      113   60.4%   Le Groupe Videotron Ltee
+AS560        425      331       94   22.1%   BBN Planet, New England Region (N
+AS2386       228      134       94   41.2%   INS-AS
+AS813        308      219       89   28.9%   UUNET Canada (ASN-UUNETCA-AS1)
+AS3819       106       24       82   77.4%   SIGNET
+AS568        252      175       77   30.6%   JIS (Joint Interconnection Servic
+AS2871       162       87       75   46.3%   Internet Services GmbH &amp; Co
+AS2704       258      192       66   25.6%   HOOKUP-NET-A
+AS855        128       65       63   49.2%   NBTel
+AS7195       100       37       63   63.0%   INTERRED
+AS3450       109       46       63   57.8%   UTK
+AS3566       118       57       61   51.7%   JRIVER-LINK
+AS225        113       52       61   54.0%   University of Virginia (VIRnet)
+AS2711       109       52       57   52.3%   SUNBELT-AS
+AS4454        75       21       54   72.0%   OIR Telecommunications, State of 
+AS839         87       39       48   55.2%   North West Territories Regional N
+AS701        785      738       47    6.0%   Alternet
+AS3132        79       35       44   55.7%   Red Cientifica Peruana (ASN-RCP)
+AS3799        68       26       42   61.8%   IDS
+
+ --- 14Nov96 ---
+ASnum    NetsNow NetsCIDR  NetGain  % Gain   Description
+
+AS174       1271      925      346   27.2%   Performance Systems International
+AS1          838      513      325   38.8%   BBN Planet backbone
+AS3602       652      344      308   47.2%   Intergrated Network Services Inc.
+AS2493       805      511      294   36.5%   i*internet
+AS3397       317       99      218   68.8%   EMI-AS
+AS2048       356      155      201   56.5%   State of Louisiana/Office of Tele
+AS3749       258       64      194   75.2%   Tennessee Board of Regents
+AS279        494      325      169   34.2%   SURAnet Southern AS
+AS3804       380      236      144   37.9%   Bell Blobal Solutions
+AS86         340      206      134   39.4%   SURAnet Northern AS
+AS1691       282      150      132   46.8%   BCTEL
+AS5769       187       74      113   60.4%   Le Groupe Videotron Ltee
+AS2386       229      132       97   42.4%   INS-AS
+AS560        425      332       93   21.9%   BBN Planet, New England Region (N
+AS813        303      217       86   28.4%   UUNET Canada (ASN-UUNETCA-AS1)
+AS2704       275      196       79   28.7%   HOOKUP-NET-A
+AS568        254      176       78   30.7%   JIS (Joint Interconnection Servic
+AS2871       163       88       75   46.0%   Internet Services GmbH &amp; Co
+AS3819       103       30       73   70.9%   SIGNET
+AS3450       113       46       67   59.3%   UTK
+AS855        130       69       61   46.9%   NBTel
+AS225        114       53       61   53.5%   University of Virginia (VIRnet)
+AS3566       117       58       59   50.4%   JRIVER-LINK
+AS2711       110       53       57   51.8%   SUNBELT-AS
+AS4454        75       21       54   72.0%   OIR Telecommunications, State of 
+AS7195        85       34       51   60.0%   INTERRED
+AS839         86       38       48   55.8%   North West Territories Regional N
+AS3132        84       36       48   57.1%   Red Cientifica Peruana (ASN-RCP)
+AS701        802      755       47    5.9%   Alternet
+AS4175       465      420       45    9.7%   CONNECT-NCM
+
+ --- 13Nov96 ---
+ASnum    NetsNow NetsCIDR  NetGain  % Gain   Description
+
+AS174       1565     1097      468   29.9%   Performance Systems International
+AS1          832      511      321   38.6%   BBN Planet backbone
+AS3602       655      346      309   47.2%   Intergrated Network Services Inc.
+AS2493       801      508      293   36.6%   i*internet
+AS3397       315      106      209   66.3%   EMI-AS
+AS3749       258       62      196   76.0%   Tennessee Board of Regents
+AS2048       353      157      196   55.5%   State of Louisiana/Office of Tele
+AS279        489      325      164   33.5%   SURAnet Southern AS
+AS3804       379      235      144   38.0%   Bell Blobal Solutions
+AS86         340      205      135   39.7%   SURAnet Northern AS
+AS1691       277      150      127   45.8%   BCTEL
+AS5769       185       73      112   60.5%   Le Groupe Videotron Ltee
+AS560        431      335       96   22.3%   BBN Planet, New England Region (N
+AS2386       228      132       96   42.1%   INS-AS
+AS813        305      220       85   27.9%   UUNET Canada (ASN-UUNETCA-AS1)
+AS2704       276      195       81   29.3%   HOOKUP-NET-A
+AS568        251      174       77   30.7%   JIS (Joint Interconnection Servic
+AS4230       202      126       76   37.6%   Embratel Brazil
+AS2871       163       88       75   46.0%   Internet Services GmbH &amp; Co
+AS1967       155       81       74   47.7%   Middle East Technical University 
+AS3819       103       30       73   70.9%   SIGNET
+AS3450       113       46       67   59.3%   UTK
+AS7195       100       37       63   63.0%   INTERRED
+AS855        131       69       62   47.3%   NBTel
+AS225        115       54       61   53.0%   University of Virginia (VIRnet)
+AS3566       117       58       59   50.4%   JRIVER-LINK
+AS2711       110       53       57   51.8%   SUNBELT-AS
+AS4454        67       18       49   73.1%   OIR Telecommunications, State of 
+AS839         86       38       48   55.8%   North West Territories Regional N
+AS701        796      748       48    6.0%   Alternet
+
+ --- 12Nov96 ---
+ASnum    NetsNow NetsCIDR  NetGain  % Gain   Description
+
+AS174       1548     1090      458   29.6%   Performance Systems International
+AS3602       657      348      309   47.0%   Intergrated Network Services Inc.
+AS2493       810      511      299   36.9%   i*internet
+AS1          745      457      288   38.7%   BBN Planet backbone
+AS3397       315      102      213   67.6%   EMI-AS
+AS3749       257       65      192   74.7%   Tennessee Board of Regents
+AS2048       346      155      191   55.2%   State of Louisiana/Office of Tele
+AS279        516      351      165   32.0%   SURAnet Southern AS
+AS86         333      197      136   40.8%   SURAnet Northern AS
+AS1691       290      155      135   46.6%   BCTEL
+AS3804       367      238      129   35.1%   WorldLinx 3
+AS5769       185       73      112   60.5%   Le Groupe Videotron Ltee
+AS2386       234      135       99   42.3%   INS-AS
+AS813        309      214       95   30.7%   UUNET Canada (ASN-UUNETCA-AS1)
+AS560        425      335       90   21.2%   BBN Planet, New England Region (N
+AS4230       257      169       88   34.2%   Embratel Brazil
+AS2704       278      197       81   29.1%   HOOKUP-NET-A
+AS1967       165       84       81   49.1%   Middle East Technical University 
+AS568        254      176       78   30.7%   JIS (Joint Interconnection Servic
+AS2871       164       89       75   45.7%   Internet Services GmbH &amp; Co
+AS3819       103       30       73   70.9%   SIGNET
+AS3450       113       46       67   59.3%   UTK
+AS7195        98       37       61   62.2%   INTERRED
+AS225        115       54       61   53.0%   University of Virginia (VIRnet)
+AS855        130       71       59   45.4%   NBTel
+AS3566       117       58       59   50.4%   JRIVER-LINK
+AS2711       111       54       57   51.4%   SUNBELT-AS
+AS4454        75       21       54   72.0%   OIR Telecommunications, State of 
+AS839         86       38       48   55.8%   North West Territories Regional N
+AS3132        83       35       48   57.8%   Red Cientifica Peruana (ASN-RCP)
+
+ --- 11Nov96 ---
+ASnum    NetsNow NetsCIDR  NetGain  % Gain   Description
+
+AS174       1560     1094      466   29.9%   Performance Systems International
+AS3602       655      346      309   47.2%   Intergrated Network Services Inc.
+AS2493       810      511      299   36.9%   i*internet
+AS1          744      455      289   38.8%   BBN Planet backbone
+AS3397       301      110      191   63.5%   EMI-AS
+AS2048       344      153      191   55.5%   State of Louisiana/Office of Tele
+AS3749       248       60      188   75.8%   Tennessee Board of Regents
+AS279        522      349      173   33.1%   SURAnet Southern AS
+AS86         332      196      136   41.0%   SURAnet Northern AS
+AS1691       290      155      135   46.6%   BCTEL
+AS3804       367      238      129   35.1%   WorldLinx 3
+AS5769       184       72      112   60.9%   Le Groupe Videotron Ltee
+AS560        442      337      105   23.8%   BBN Planet, New England Region (N
+AS2386       234      135       99   42.3%   INS-AS
+AS813        310      213       97   31.3%   UUNET Canada (ASN-UUNETCA-AS1)
+AS4230       259      171       88   34.0%   Embratel Brazil
+AS1967       166       85       81   48.8%   Middle East Technical University 
+AS568        252      174       78   31.0%   JIS (Joint Interconnection Servic
+AS2704       274      196       78   28.5%   HOOKUP-NET-A
+AS2871       163       88       75   46.0%   Internet Services GmbH &amp; Co
+AS3819       103       30       73   70.9%   SIGNET
+AS3450       113       46       67   59.3%   UTK
+AS855        132       71       61   46.2%   NBTel
+AS7195        98       37       61   62.2%   INTERRED
+AS225        115       54       61   53.0%   University of Virginia (VIRnet)
+AS3566       117       57       60   51.3%   JRIVER-LINK
+AS2711       111       54       57   51.4%   SUNBELT-AS
+AS4454        75       21       54   72.0%   OIR Telecommunications, State of 
+AS839         86       38       48   55.8%   North West Territories Regional N
+AS701        798      750       48    6.0%   Alternet
+
+ --- 10Nov96 ---
+ASnum    NetsNow NetsCIDR  NetGain  % Gain   Description
+
+AS174       1535     1082      453   29.5%   Performance Systems International
+AS3602       653      345      308   47.2%   Intergrated Network Services Inc.
+AS2493       793      499      294   37.1%   i*internet
+AS1          745      456      289   38.8%   BBN Planet backbone
+AS3397       308       97      211   68.5%   EMI-AS
+AS3749       258       64      194   75.2%   Tennessee Board of Regents
+AS2048       349      155      194   55.6%   State of Louisiana/Office of Tele
+AS279        521      349      172   33.0%   SURAnet Southern AS
+AS86         331      195      136   41.1%   SURAnet Northern AS
+AS1691       290      155      135   46.6%   BCTEL
+AS3804       367      238      129   35.1%   WorldLinx 3
+AS5769       184       72      112   60.9%   Le Groupe Videotron Ltee
+AS560        441      336      105   23.8%   BBN Planet, New England Region (N
+AS813        329      231       98   29.8%   UUNET Canada (ASN-UUNETCA-AS1)
+AS2386       224      133       91   40.6%   INS-AS
+AS4230       259      171       88   34.0%   Embratel Brazil
+AS1967       166       85       81   48.8%   Middle East Technical University 
+AS2704       274      194       80   29.2%   HOOKUP-NET-A
+AS568        252      175       77   30.6%   JIS (Joint Interconnection Servic
+AS2871       164       89       75   45.7%   Internet Services GmbH &amp; Co
+AS3819       103       30       73   70.9%   SIGNET
+AS3450       112       46       66   58.9%   UTK
+AS855        130       68       62   47.7%   NBTel
+AS7195        98       37       61   62.2%   INTERRED
+AS3566       118       57       61   51.7%   JRIVER-LINK
+AS225        115       54       61   53.0%   University of Virginia (VIRnet)
+AS2711       109       52       57   52.3%   SUNBELT-AS
+AS4454        75       21       54   72.0%   OIR Telecommunications, State of 
+AS839         86       38       48   55.8%   North West Territories Regional N
+AS4175       462      418       44    9.5%   CONNECT-NCM
+
+ --- 09Nov96 ---
+ASnum    NetsNow NetsCIDR  NetGain  % Gain   Description
+
+AS174       1254      915      339   27.0%   Performance Systems International
+AS3602       653      345      308   47.2%   Intergrated Network Services Inc.
+AS2493       791      498      293   37.0%   i*internet
+AS1          743      455      288   38.8%   BBN Planet backbone
+AS3397       308       97      211   68.5%   EMI-AS
+AS3749       257       66      191   74.3%   Tennessee Board of Regents
+AS2048       347      157      190   54.8%   State of Louisiana/Office of Tele
+AS279        520      351      169   32.5%   SURAnet Southern AS
+AS1691       291      156      135   46.4%   BCTEL
+AS86         325      195      130   40.0%   SURAnet Northern AS
+AS3804       367      238      129   35.1%   WorldLinx 3
+AS5769       184       72      112   60.9%   Le Groupe Videotron Ltee
+AS560        432      332      100   23.1%   BBN Planet, New England Region (N
+AS813        334      235       99   29.6%   UUNET Canada (ASN-UUNETCA-AS1)
+AS2386       224      133       91   40.6%   INS-AS
+AS4230       259      171       88   34.0%   Embratel Brazil
+AS2704       276      195       81   29.3%   HOOKUP-NET-A
+AS1967       166       85       81   48.8%   Middle East Technical University 
+AS2871       166       91       75   45.2%   Internet Services GmbH &amp; Co
+AS3819       103       30       73   70.9%   SIGNET
+AS568        238      170       68   28.6%   JIS (Joint Interconnection Servic
+AS3450       113       46       67   59.3%   UTK
+AS7195       100       37       63   63.0%   INTERRED
+AS855        132       70       62   47.0%   NBTel
+AS3566       118       57       61   51.7%   JRIVER-LINK
+AS225        115       54       61   53.0%   University of Virginia (VIRnet)
+AS2711       110       53       57   51.8%   SUNBELT-AS
+AS4454        75       21       54   72.0%   OIR Telecommunications, State of 
+AS839         86       38       48   55.8%   North West Territories Regional N
+AS4175       462      418       44    9.5%   CONNECT-NCM
+
+ --- 08Nov96 ---
+ASnum    NetsNow NetsCIDR  NetGain  % Gain   Description
+
+AS174       1570     1098      472   30.1%   Performance Systems International
+AS3602       641      347      294   45.9%   Intergrated Network Services Inc.
+AS2493       795      501      294   37.0%   i*internet
+AS1          738      454      284   38.5%   BBN Planet backbone
+AS3397       311       96      215   69.1%   EMI-AS
+AS2048       354      154      200   56.5%   State of Louisiana/Office of Tele
+AS3749       259       61      198   76.4%   Tennessee Board of Regents
+AS279        514      347      167   32.5%   SURAnet Southern AS
+AS1691       292      156      136   46.6%   BCTEL
+AS86         326      195      131   40.2%   SURAnet Northern AS
+AS3804       367      241      126   34.3%   WorldLinx 3
+AS560        443      333      110   24.8%   BBN Planet, New England Region (N
+AS5769       182       79      103   56.6%   Le Groupe Videotron Ltee
+AS813        320      225       95   29.7%   UUNET Canada (ASN-UUNETCA-AS1)
+AS2386       225      133       92   40.9%   INS-AS
+AS4230       259      171       88   34.0%   Embratel Brazil
+AS2704       277      196       81   29.2%   HOOKUP-NET-A
+AS1967       163       84       79   48.5%   Middle East Technical University 
+AS568        252      174       78   31.0%   JIS (Joint Interconnection Servic
+AS2871       166       91       75   45.2%   Internet Services GmbH &amp; Co
+AS3819       102       29       73   71.6%   SIGNET
+AS3450       113       46       67   59.3%   UTK
+AS3566       118       57       61   51.7%   JRIVER-LINK
+AS225        115       54       61   53.0%   University of Virginia (VIRnet)
+AS855        133       73       60   45.1%   NBTel
+AS2711       109       52       57   52.3%   SUNBELT-AS
+AS4454        75       21       54   72.0%   OIR Telecommunications, State of 
+AS839         86       38       48   55.8%   North West Territories Regional N
+AS701        794      746       48    6.0%   Alternet
+AS7195        83       37       46   55.4%   INTERRED
+
+
+
+
+2) Weekly Delta
+
+This a daily snapshot of changes in classful routes being withdrawn and added.
+the deltas are calculated over a rolling 7 day period. Please bear in mind this
+is purely a &quot;snapshot&quot; and a large flucuation could be caused by a connectivity
+problem for example. However, this does give some indication of service
+providers that are moving to classless routing.
+
+
+Top 20 Withdrawn Routes from 08Nov96 to 15Nov96
+	-304  AS174 Performance Systems International
+	-258 AS4230 Embratel Brazil
+	-161 AS1967 Middle East Technical University 
+	 -59 AS1759 Telecom Finland iNET
+	 -55 AS4175 CONNECT-NCM
+	 -50 AS2914 WNA, premasticated for MCI :-)
+	 -33 AS1899 Fnet, EUnet-France
+	 -28 AS1324 ANS New York City - DNSS 35
+	 -24 AS5650 Electric Lightwave Inc. and XMiss
+	 -20  AS279 SURAnet Southern AS
+	 -19 AS3111 Internet Direct Inc. (ASN-DIRECT)
+	 -18  AS721 DLA-ASNBLOCK-AS
+	 -16 AS1785 NYSERNet Backbone
+	 -15 AS4242 Camino Real a Xochimilco No. 60
+	 -14   AS97 JvNCnet
+	 -13 AS1220 Infonet Services Corporation
+	 -12  AS813 UUNET Canada (ASN-UUNETCA-AS1)
+	 -10  AS549 ONet Backbone
+	  -9  AS701 Alternet
+	  -8 AS3267 RUNNet
+
+Top 20 Added Routes from 08Nov96 to 15Nov96
+	 103 AS3258 contrib.net section A
+	  99    AS1 BBN Planet backbone
+	  66 AS2907 SINET
+	  58 AS3632 INFOTEC-RTN
+	  34  AS816 UUNETCA-AS4
+	  28 AS2592 E.U. BAUM, Izmir, TURKIYE
+	  25 AS3343 RUNNet
+	  23 AS3836 THAISARN
+	  19 AS5772 UNINET-BR-RJ
+	  17 AS7195 INTERRED
+	  16 AS5583 FTNS NL utrecht
+	  15   AS86 SURAnet Northern AS
+	  13 AS3804 WorldLinx 3
+	  11 AS3602 Intergrated Network Services Inc.
+	  10 AS5501 Fraunhofer Gesellschaft
+	   9  AS271 BCnet Backbone
+	   8 AS3561 MCI
+	   7 AS2504 JNIC-ASN
+	   6 AS3397 EMI-AS
+	   5 AS1791 SprintLink Fort Worth TX
+
+
+
+3) Interesting aggregates
+
+
+
+            List of possibly interesting aggregates
+            ---------------------------------------
+
+	           aggregate	 origin-AS	AS Description
+
+	          9.2.0.0/16	    AS1747	IBM Watson, Yorktown Heights, 
+	         9.20.0.0/17	    AS2686	Autonomous System number for I
+	         9.67.0.0/19	    AS3561	MCI
+	          12.0.0.0/9	    AS7018	AT&amp;T worldnet network
+	        12.0.96.0/19	    AS6269	AT&amp;T NWCS backbone network
+	        12.1.96.0/19	    AS6269	AT&amp;T NWCS backbone network
+	        12.5.96.0/19	    AS6269	AT&amp;T NWCS backbone network
+	        12.8.96.0/19	    AS6269	AT&amp;T NWCS backbone network
+	        12.9.96.0/19	    AS6269	AT&amp;T NWCS backbone network
+	        57.12.0.0/16	    AS5384	Etisalat Emirates Internet
+	    128.145.228.0/24	     AS174	Performance Systems Internatio
+	      128.167.0.0/24	       AS1	BBN Planet backbone
+	      128.167.1.0/24	       AS1	BBN Planet backbone
+	      128.167.7.0/24	      AS86	SURAnet Northern AS
+	    128.167.252.0/24	       AS1	BBN Planet backbone
+	    128.167.254.0/24	       AS1	BBN Planet backbone
+	      128.188.1.0/24	     AS560	BBN Planet, New England Region
+	    129.181.216.0/22	     AS517	Xlink
+	    130.168.105.0/24	    AS1270	EUnet Germany
+	    130.168.115.0/24	    AS1270	EUnet Germany
+	    130.168.125.0/24	    AS1270	EUnet Germany
+	    131.114.192.0/18	    AS2598	Consiglio Nazionale delle Rice
+	      131.117.0.0/17	     AS559	SWITCH, Swiss Academic and Res
+	     131.192.48.0/24	       AS1	BBN Planet backbone
+	    132.235.204.0/24	    AS3561	MCI
+	      134.6.160.0/22	    AS2706	HKSUPER
+	      134.6.180.0/24	    AS2706	HKSUPER
+	     134.33.100.0/24	     AS701	Alternet
+	     134.129.64.0/18	    AS6263	NDIN
+	    134.133.184.0/24	    AS2548	DIGEX-AS
+	      134.198.8.0/21	    AS3593	Eastern Pennsylvania Internet 
+	     134.198.16.0/21	    AS3593	Eastern Pennsylvania Internet 
+	     134.198.24.0/21	    AS3593	Eastern Pennsylvania Internet 
+	     134.198.32.0/21	    AS3593	Eastern Pennsylvania Internet 
+	     134.198.40.0/21	    AS3593	Eastern Pennsylvania Internet 
+	     134.198.48.0/21	    AS3593	Eastern Pennsylvania Internet 
+	     134.198.56.0/21	    AS3593	Eastern Pennsylvania Internet 
+	     134.198.64.0/21	    AS3593	Eastern Pennsylvania Internet 
+	     134.198.72.0/21	    AS3593	Eastern Pennsylvania Internet 
+	     134.198.96.0/21	    AS3593	Eastern Pennsylvania Internet 
+	    134.198.168.0/21	    AS3593	Eastern Pennsylvania Internet 
+	    134.198.176.0/21	    AS3593	Eastern Pennsylvania Internet 
+	    134.198.192.0/21	    AS3593	Eastern Pennsylvania Internet 
+	    134.198.232.0/21	    AS3593	Eastern Pennsylvania Internet 
+	    134.198.240.0/21	    AS3593	Eastern Pennsylvania Internet 
+	     134.204.14.0/24	    AS3561	MCI
+	    134.204.176.0/24	    AS3561	MCI
+	    134.241.109.0/24	     AS560	BBN Planet, New England Region
+	     135.16.150.0/24	     AS560	BBN Planet, New England Region
+	       135.37.2.0/24	    AS3561	MCI
+	       135.37.4.0/24	    AS3561	MCI
+	      135.37.10.0/24	    AS3561	MCI
+	      135.40.66.0/24	    AS3561	MCI
+	      136.140.9.0/24	    AS3561	MCI
+	      137.15.34.0/24	    AS2493	i*internet
+	      137.15.39.0/24	    AS2493	i*internet
+	      137.15.41.0/24	    AS2493	i*internet
+	      137.15.54.0/24	    AS2493	i*internet
+	     137.62.197.0/24	    AS1794	SprintLink Pennsauken NJ
+	      138.95.80.0/24	     AS701	Alternet
+	    138.108.100.0/24	    AS3561	MCI
+	    138.182.252.0/24	    AS5855	Secretary of the Navy
+	    138.182.254.0/24	    AS5855	Secretary of the Navy
+	      139.46.35.0/24	     AS560	BBN Planet, New England Region
+	    139.162.128.0/17	    AS1136	Unisource Internet Service NL
+	     140.188.33.0/24	     AS174	Performance Systems Internatio
+	     140.188.64.0/24	     AS174	Performance Systems Internatio
+	     140.188.86.0/24	     AS174	Performance Systems Internatio
+	    140.188.129.0/24	     AS174	Performance Systems Internatio
+	    140.188.148.0/24	     AS174	Performance Systems Internatio
+	    140.188.198.0/24	     AS174	Performance Systems Internatio
+	    140.188.246.0/24	     AS174	Performance Systems Internatio
+	    140.188.248.0/24	     AS174	Performance Systems Internatio
+	     140.231.44.0/24	    AS3561	MCI
+	    141.227.111.0/24	    AS2529	Demon Internet Ltd
+	    142.218.120.0/24	    AS2551	NETCOM On-line Communication S
+	      143.93.32.0/19	     AS517	Xlink
+	    143.222.116.0/24	    AS3407	Interpath
+	     143.252.80.0/24	    AS2856	BTnet UK Regional network
+	    144.127.110.0/23	    AS2707	WEC
+	    144.127.112.0/20	    AS2707	WEC
+	    144.127.128.0/19	    AS2707	WEC
+	    144.127.160.0/21	    AS2707	WEC
+	    144.127.168.0/23	    AS2707	WEC
+	    144.199.161.0/24	    AS1238	ICM Malaysia (MIMOS) connectee
+	     145.17.100.0/24	    AS2856	BTnet UK Regional network
+	      145.72.32.0/19	    AS5484	BT Netherlands Regional Servic
+	      145.72.64.0/19	    AS5484	BT Netherlands Regional Servic
+	    145.248.112.0/24	    AS2706	HKSUPER
+	    145.248.155.0/24	    AS2706	HKSUPER
+	    145.248.157.0/24	    AS2706	HKSUPER
+	    145.248.159.0/24	    AS2706	HKSUPER
+	    145.248.161.0/24	    AS2706	HKSUPER
+	    145.248.165.0/24	    AS2706	HKSUPER
+	     146.75.251.0/24	    AS3301	TeliaNet Sweden
+	     146.75.254.0/24	    AS3301	TeliaNet Sweden
+	     146.193.60.0/22	    AS2860	IP Global, Informatica e Telec
+	      147.85.21.0/24	    AS3951	ICONNET
+	      147.85.25.0/24	    AS3951	ICONNET
+	      147.85.39.0/24	    AS3951	ICONNET
+	      147.85.44.0/24	    AS3951	ICONNET
+	      147.85.51.0/24	    AS3951	ICONNET
+	     147.85.115.0/24	    AS3951	ICONNET
+	      147.160.0.0/17	    AS3561	MCI
+	    147.160.128.0/18	    AS3561	MCI
+	    147.160.192.0/20	    AS3561	MCI
+	    147.160.200.0/21	    AS3561	MCI
+	    147.160.208.0/20	    AS3561	MCI
+	    147.160.224.0/20	    AS3561	MCI
+	    147.160.224.0/19	    AS3561	MCI
+	     147.206.20.0/24	    AS3561	MCI
+	       148.59.2.0/24	    AS2015	Msen, Inc.
+	       148.59.4.0/24	    AS2015	Msen, Inc.
+	      148.59.14.0/24	    AS2015	Msen, Inc.
+	      148.59.15.0/24	    AS2015	Msen, Inc.
+	      148.59.16.0/24	    AS2015	Msen, Inc.
+	      148.59.18.0/24	    AS2015	Msen, Inc.
+	      148.59.19.0/24	    AS2015	Msen, Inc.
+	     148.59.222.0/24	    AS2015	Msen, Inc.
+	     148.59.224.0/24	    AS2015	Msen, Inc.
+	     148.59.228.0/24	    AS2015	Msen, Inc.
+	     148.59.229.0/24	    AS2015	Msen, Inc.
+	     148.59.234.0/24	    AS2015	Msen, Inc.
+	     148.59.237.0/24	    AS2015	Msen, Inc.
+	     148.59.238.0/24	    AS2015	Msen, Inc.
+	     148.59.241.0/24	    AS2015	Msen, Inc.
+	     148.59.242.0/24	    AS2015	Msen, Inc.
+	     148.59.244.0/24	    AS2015	Msen, Inc.
+	     148.59.246.0/24	    AS2015	Msen, Inc.
+	     148.59.247.0/24	    AS2015	Msen, Inc.
+	     148.59.250.0/24	    AS2015	Msen, Inc.
+	     148.59.251.0/24	    AS2015	Msen, Inc.
+	     148.59.252.0/24	    AS2015	Msen, Inc.
+	     148.94.210.0/24	    AS5714	EDS-WEBS
+	     148.185.45.0/24	    AS1849	PIPEX, Public IP EXchange
+	     149.236.92.0/24	    AS6292	FCI
+	       150.61.5.1/32	    AS2500	WIDE Internet AS
+	      150.207.2.0/24	    AS1221	AARNET-AS
+	    150.207.128.0/24	    AS2764	CONNECT-NET
+	    152.129.186.0/24	    AS4478	PNET-STL
+	    152.163.232.0/23	    AS2056	AOL-AS
+	    152.163.234.0/23	    AS2056	AOL-AS
+	    152.175.128.0/17	    AS1667	ANS-BLK1
+	      152.179.0.0/17	    AS1321	ANS San Francisco - DNSS 11
+	    152.181.128.0/17	    AS-set	UNKNOWN
+	    152.181.184.0/22	    AS1667	ANS-BLK1
+	      152.187.0.0/17	    AS1321	ANS San Francisco - DNSS 11
+	    152.189.128.0/17	    AS1327	ANS Washington D.C. - DNSS 59
+	    152.189.184.0/22	    AS1667	ANS-BLK1
+	      153.96.10.0/24	    AS5501	Fraunhofer Gesellschaft
+	      153.96.56.0/24	    AS5501	Fraunhofer Gesellschaft
+	      153.96.80.0/21	     AS517	Xlink
+	      153.96.92.0/24	     AS517	Xlink
+	     153.96.108.0/24	    AS5501	Fraunhofer Gesellschaft
+	     153.96.132.0/24	    AS5501	Fraunhofer Gesellschaft
+	     153.96.150.0/24	    AS5501	Fraunhofer Gesellschaft
+	     153.96.188.0/22	     AS517	Xlink
+	     153.96.192.0/24	    AS5501	Fraunhofer Gesellschaft
+	     153.96.230.0/24	     AS517	Xlink
+	     153.96.244.0/22	    AS5501	Fraunhofer Gesellschaft
+	      153.97.64.0/18	    AS5501	Fraunhofer Gesellschaft
+	     153.110.50.0/24	    AS2120	DAXnet (Tele 3)
+	       154.11.1.0/24	    AS8013	PSINET-CA
+	       154.11.2.0/24	    AS8013	PSINET-CA
+	       154.11.8.0/24	    AS8013	PSINET-CA
+	      154.11.16.0/24	    AS8013	PSINET-CA
+	      154.11.24.0/24	    AS8013	PSINET-CA
+	      154.11.25.0/24	    AS8013	PSINET-CA
+	      154.11.32.0/24	    AS8013	PSINET-CA
+	      154.11.36.0/24	    AS8013	PSINET-CA
+	      154.11.37.0/24	    AS8013	PSINET-CA
+	      154.11.48.0/24	    AS8013	PSINET-CA
+	      154.11.64.0/24	    AS8013	PSINET-CA
+	      154.11.96.0/24	    AS8013	PSINET-CA
+	      154.11.96.0/21	    AS8013	PSINET-CA
+	      154.11.97.0/24	    AS8013	PSINET-CA
+	      154.11.98.0/24	    AS8013	PSINET-CA
+	      154.11.99.0/24	    AS8013	PSINET-CA
+	     154.11.108.0/24	    AS8013	PSINET-CA
+	     154.11.108.0/22	    AS8013	PSINET-CA
+	     154.11.109.0/24	    AS8013	PSINET-CA
+	     154.11.110.0/24	    AS8013	PSINET-CA
+	     154.11.126.0/24	    AS8013	PSINET-CA
+	     154.11.127.0/24	    AS8013	PSINET-CA
+	     155.39.191.0/24	    AS2685	IBM Global Network - US
+	     155.39.230.0/24	    AS2685	IBM Global Network - US
+	     155.134.60.0/24	     AS701	Alternet
+	    155.140.124.0/24	    AS1849	PIPEX, Public IP EXchange
+	    155.203.254.0/24	    AS3561	MCI
+	    155.229.176.0/21	    AS7045	WEATHER
+	     156.51.204.0/24	    AS3301	TeliaNet Sweden
+	    156.114.200.0/24	    AS2529	Demon Internet Ltd
+	    157.184.150.0/24	    AS1330	ANS St. Louis - DNSS 83
+	    157.232.100.0/24	    AS3561	MCI
+	     158.43.200.0/24	     AS701	Alternet
+	     158.118.51.0/24	     AS701	Alternet
+	    158.174.254.0/24	    AS2856	BTnet UK Regional network
+	       159.24.7.0/24	    AS4286	IMCI
+	      159.87.34.0/24	     AS200	BBN Planet Western Region
+	      159.179.0.0/24	    AS3561	MCI
+	    159.197.158.0/23	    AS2529	Demon Internet Ltd
+	     159.245.84.0/22	    AS1849	PIPEX, Public IP EXchange
+	    159.245.104.0/22	    AS1849	PIPEX, Public IP EXchange
+	     160.92.129.0/24	    AS2917	OLEANE - PIPEX International
+	      160.104.0.0/17	     AS701	Alternet
+	    160.104.128.0/17	    AS1290	PSINet UK Ltd.
+	        161.6.0.0/17	    AS3561	MCI
+	      161.6.128.0/17	    AS3561	MCI
+	     161.51.224.0/20	    AS1849	PIPEX, Public IP EXchange
+	      161.120.6.0/24	    AS3561	MCI
+	    161.173.243.0/24	    AS2386	INS-AS
+	    161.223.220.0/22	       AS1	BBN Planet backbone
+	    161.223.224.0/24	       AS1	BBN Planet backbone
+	     162.17.253.0/24	     AS174	Performance Systems Internatio
+	     162.81.141.0/24	    AS3561	MCI
+	       163.12.0.0/23	    AS3576	PREPnet-EAST
+	       163.12.5.0/24	    AS3576	PREPnet-EAST
+	       163.12.6.0/23	    AS3576	PREPnet-EAST
+	       163.12.8.0/21	    AS3576	PREPnet-EAST
+	      163.12.16.0/22	    AS3576	PREPnet-EAST
+	      163.12.21.0/24	    AS3576	PREPnet-EAST
+	      163.12.22.0/24	    AS3576	PREPnet-EAST
+	      163.12.22.0/23	    AS3576	PREPnet-EAST
+	      163.12.23.0/24	    AS3576	PREPnet-EAST
+	      163.12.24.0/21	    AS3576	PREPnet-EAST
+	      163.12.32.0/19	    AS3576	PREPnet-EAST
+	      163.12.64.0/20	    AS3576	PREPnet-EAST
+	      163.12.64.0/18	    AS3576	PREPnet-EAST
+	      163.12.81.0/24	    AS3576	PREPnet-EAST
+	      163.12.82.0/23	    AS3576	PREPnet-EAST
+	      163.12.84.0/22	    AS3576	PREPnet-EAST
+	      163.12.88.0/21	    AS3576	PREPnet-EAST
+	      163.12.96.0/19	    AS3576	PREPnet-EAST
+	     163.12.128.0/21	    AS3576	PREPnet-EAST
+	     163.12.136.0/22	    AS3576	PREPnet-EAST
+	     163.12.144.0/20	    AS3576	PREPnet-EAST
+	     163.12.160.0/19	    AS3576	PREPnet-EAST
+	     163.12.192.0/21	    AS3576	PREPnet-EAST
+	     163.12.240.0/20	    AS3576	PREPnet-EAST
+	     163.44.224.0/21	    AS4853	Justsystem Corporation
+	     163.44.240.0/21	    AS4853	Justsystem Corporation
+	     163.49.131.0/24	    AS3561	MCI
+	     163.49.132.0/22	    AS3561	MCI
+	     163.49.136.0/22	    AS3561	MCI
+	     163.49.140.0/23	    AS3561	MCI
+	     163.49.142.0/24	    AS3561	MCI
+	     163.249.43.0/24	    AS3739	NEWNET
+	     163.249.53.0/24	    AS3739	NEWNET
+	     163.249.54.0/24	    AS3739	NEWNET
+	     163.249.57.0/24	    AS3739	NEWNET
+	    163.249.140.0/22	    AS3739	NEWNET
+	    163.249.160.0/21	    AS3739	NEWNET
+	    163.249.168.0/24	    AS3739	NEWNET
+	    163.249.170.0/24	    AS3739	NEWNET
+	     164.52.249.0/24	    AS1982	Northwest Nexus, Inc.
+	      164.53.55.0/24	    AS2706	HKSUPER
+	     164.100.64.0/20	    AS3561	MCI
+	     164.100.80.0/24	    AS4755	Videsh Sanchar Nigam Ltd. Indi
+	     164.100.81.0/24	    AS3561	MCI
+	     164.100.82.0/23	    AS3561	MCI
+	     164.100.84.0/22	    AS3561	MCI
+	     164.100.88.0/21	    AS3561	MCI
+	     164.100.96.0/19	    AS3561	MCI
+	    164.100.167.0/24	    AS3561	MCI
+	    164.100.199.0/24	    AS4755	Videsh Sanchar Nigam Ltd. Indi
+	      164.103.3.0/24	    AS3561	MCI
+	    164.224.208.0/20	    AS5855	Secretary of the Navy
+	    165.108.130.0/24	    AS3561	MCI
+	    165.108.130.0/23	    AS3561	MCI
+	    165.108.132.0/22	    AS3561	MCI
+	    165.108.136.0/21	    AS3561	MCI
+	    165.108.144.0/22	    AS3561	MCI
+	    165.108.148.0/23	    AS3561	MCI
+	    165.113.197.0/24	    AS6006	UNKNOWN
+	    165.113.198.0/24	    AS6006	UNKNOWN
+	    165.113.199.0/24	    AS6006	UNKNOWN
+	    165.113.211.0/24	    AS6006	UNKNOWN
+	    165.113.219.0/24	    AS6006	UNKNOWN
+	    165.166.123.0/24	    AS3561	MCI
+	     165.215.64.0/18	    AS4183	CompuServe, Incorporated
+	    165.215.191.0/24	    AS5090	CWI-NYD
+	     165.247.33.0/24	    AS5696	Primary AS for GoodNet
+	     165.247.47.0/24	    AS5696	Primary AS for GoodNet
+	     165.247.77.0/24	    AS5696	Primary AS for GoodNet
+	      166.38.40.0/24	    AS3561	MCI
+	      166.147.0.0/18	    AS3561	MCI
+	     166.147.64.0/18	    AS3561	MCI
+	    166.147.128.0/18	    AS3561	MCI
+	    166.147.192.0/18	    AS3561	MCI
+	      166.150.0.0/18	    AS3561	MCI
+	     166.150.64.0/18	    AS3561	MCI
+	    166.150.128.0/18	    AS3561	MCI
+	    166.150.192.0/18	    AS3561	MCI
+	      166.151.0.0/18	    AS3561	MCI
+	     166.151.64.0/18	    AS3561	MCI
+	    166.151.128.0/18	    AS3561	MCI
+	    166.151.192.0/18	    AS3561	MCI
+	      167.77.32.0/24	    AS3561	MCI
+	    167.105.232.0/24	    AS3561	MCI
+	      167.170.6.0/23	    AS3313	I.Net S.p.A.
+	     167.170.32.0/23	    AS3313	I.Net S.p.A.
+	    167.208.125.0/24	    AS3561	MCI
+	       168.14.1.0/24	    AS3561	MCI
+	       168.14.2.0/23	    AS3561	MCI
+	       168.14.4.0/22	    AS3561	MCI
+	       168.14.8.0/21	    AS3561	MCI
+	      168.14.16.0/20	    AS3561	MCI
+	       168.29.0.0/17	    AS3492	ATLANTA
+	      168.97.37.0/24	    AS3561	MCI
+	     168.175.70.0/24	    AS3561	MCI
+	    168.175.170.0/24	    AS3561	MCI
+	    168.175.171.0/24	    AS3561	MCI
+	    168.175.172.0/24	    AS3561	MCI
+	    168.224.128.0/24	    AS2856	BTnet UK Regional network
+	    168.247.253.0/24	     AS174	Performance Systems Internatio
+	    168.247.254.0/24	     AS174	Performance Systems Internatio
+	     169.24.186.0/24	    AS2019	JP MORGAN
+	    169.137.170.0/24	    AS3407	Interpath
+	      169.200.1.0/24	    AS3561	MCI
+	    170.115.249.0/24	    AS4969	Net Access
+	     170.119.27.0/24	    AS6335	NTRNET
+	    170.119.229.0/24	    AS6335	NTRNET
+	     170.194.51.0/24	    AS1849	PIPEX, Public IP EXchange
+	       171.18.1.0/24	    AS3215	RAIN
+	     171.25.128.0/19	    AS3301	TeliaNet Sweden
+	     171.30.170.0/24	    AS2856	BTnet UK Regional network
+	   194.178.245.32/28	    AS5417	Demon Internet Ltd
+	    198.200.138.0/28	     AS174	Performance Systems Internatio
+	    199.99.247.32/27	     AS174	Performance Systems Internatio
+	     199.233.98.0/25	    AS6082	MAI Network Services
+	   199.233.98.128/25	    AS6082	MAI Network Services
+	    202.50.137.64/27	    AS2687	IBM Global Network - AP
+	     204.148.62.0/26	    AS1673	ANS-BLK1
+	     206.250.27.0/26	    AS4200	AGIS (Apex Global Information 
+	     206.250.40.0/25	    AS4200	AGIS (Apex Global Information 
+	    206.250.202.0/26	    AS4200	AGIS (Apex Global Information 
+	    206.250.203.0/26	    AS4200	AGIS (Apex Global Information 
+	    206.250.204.0/26	    AS4200	AGIS (Apex Global Information 
+- - - - - - - - - - - - - - - - -
+
+
+

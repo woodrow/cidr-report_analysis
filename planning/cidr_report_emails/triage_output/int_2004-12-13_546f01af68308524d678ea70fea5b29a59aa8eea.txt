@@ -1,0 +1,32 @@
+# from /home/woodrow/proj/cidr-report_analysis/planning/cidr_report_emails/cidr_r_emails-old_index.txt:298
+# 2004-12-13 'Re: The Cidr Report' from 'Michael.Dillon'
+# http://www.merit.edu/mail.archives/nanog/2004-12/msg00432.html
+
+
+Re: The Cidr Report
+From: Michael.Dillon
+Date: Mon Dec 13 11:25:52 2004
+
+
+
+More on BGP table size and the number of fragmentary 
+announcements in the Internet
+http://www.tm.uka.de/idrws/2004/contributions2004/IDRWS2004--04--Huston_Geoff--Allocations_and_Advertisements.pdf
+This is Geoff Huston's presentation at the Inter-Domain
+Routing Workshop in May 2004. Slides for all the
+other talks here http://www.tm.uka.de/idrws/2004/contributions2004/
+
+I suggest that if people find this stuff useful, they 
+might want to ask the authors to provide an update
+at the next NANOG meeting.
+
+As for Joe's lament about no new studies, I think
+that after it was pointed out that BGP table growth
+had halted http://www.netsys.com/library/papers/cengiz-bgp-2002-08.pdf
+many people probably thought that the problem had
+been solved forever by the telecom collapse.
+
+--Michael Dillon
+
+
+

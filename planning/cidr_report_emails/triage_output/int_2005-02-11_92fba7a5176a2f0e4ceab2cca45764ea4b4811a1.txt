@@ -1,0 +1,42 @@
+# from /home/woodrow/proj/cidr-report_analysis/planning/cidr_report_emails/cidr_r_emails-old_index.txt:282
+# 2005-02-11 'Re: The Cidr Report' from 'Philip Smith'
+# http://www.merit.edu/mail.archives/nanog/2005-02/msg00174.html
+
+
+Re: The Cidr Report
+From: Philip Smith
+Date: Fri Feb 11 11:05:00 2005
+
+
+
+Frotzler, Florian said the following on 11/02/2005 21:31:
+
+Recent Table History
+       Date      Prefixes    CIDR Agg
+       04-02-05    151613      103143
+       05-02-05    152142      103736
+       06-02-05    152231      103721
+       07-02-05    152353      103830
+       08-02-05    152514      103966
+       09-02-05    153855      104090
+       10-02-05    154283      104246
+       11-02-05    154341      104240
+
+
+~ +3000 routes in one week? Anyone else frightened by this?
+
+
+Yup.
+
+From my own Routing Report (due out in a couple of hours), a quick 
+glance shows that the vast majority of the increase comes from ASNs 
+assigned by ARIN (the ASNs from the other three registry regions show 
+minimal increase in announcements).
+
+Most seem to come from AS4323. Today they are announcing 2606 prefixes, 
+a week ago they were announcing 844 prefixes.
+
+philip
+--
+
+

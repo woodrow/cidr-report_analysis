@@ -1,0 +1,86 @@
+# from /home/woodrow/proj/cidr-report_analysis/planning/cidr_report_emails/cidr_r_emails-old_index.txt:260
+# 2005-02-13 'Re: The Cidr Report' from 'Warren Kumari, Ph.D, CCIE# 9190'
+# http://www.merit.edu/mail.archives/nanog/2005-02/msg00201.html
+
+
+Re: The Cidr Report
+From: Warren Kumari, Ph.D, CCIE# 9190
+Date: Sun Feb 13 10:20:13 2005
+
+
+
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA1
+
+
+On Feb 13, 2005, at 2:31 AM, Christopher L. Morrow wrote:
+
+
+
+
+On Sat, 12 Feb 2005, Alexander Koch wrote:
+
+
+
+On Sat, 12 February 2005 14:58:42 +0000, Stephen J. Wilcox wrote:
+
+From: &quot;Stephen J. Wilcox&quot; &lt;steve@telecomplete.co.uk&gt;
+[...]   - would you agree that most of the poor deaggregating is not 
+intentional
+ie that they're announcing their '16 class Cs' or historically had 2 
+/21s and
+
+Think about someone putting in a Null0 route and re-
+exporting stuff unconditionally, now after he originates
+his /19 he is then adding a /24 here, and a /25 there.
+Lack of experience, when you suggest to them they should
+remove these announcements they are afraid to change it,
+not understanding the implications, etc.
+
+Not to mention ppl using cisco and prefix lists, it is
+way too easy with cisco to say '/19 le 24', and then they
+use outbound prefix lists to their transit supplier
+(different, but related as I see it). Some transit ISPs
+use that a lot, and encourage the table growth.
+
+
+There are some business reasons to de-aggregate. Look at some outages
+caused by 'routing problems' (someone leaked my /24's to their peers,
+peers, peer and my traffic got blackholed, because the public net only
+knows me as a /20)
+
+There are multiple reasons for deaggregation aside from 'dumb 
+operator',
+some are even 'valid' if you look at them from the protection 
+standpoint.
+
+-Chris
+
+That and the &quot;I have 1 circuit to $good_provider and 1 circuit to 
+$bad_provider and the only way I can make them balance is to split my 
+space in half and announce more specifics out through each provider&quot;  
+argument. I have also often seen people do this without announcing the 
+aggregate because   &lt;some undefined bad thing&gt; will happen, usually 
+justified with much hand-waving.  The people who do this can usually 
+not be reasoned with....
+
+It happens all the time...
+
+Warren.
+
+
+
+
+- -- 
+&quot;He who laughs last, thinks slowest.&quot;
+	-- Anonymous
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.2.4 (Darwin)
+
+iD8DBQFCEMBhHSkNr4ucEScRArsVAKD98l4rpQLmPh6PBuCqvaYHFWYPhwCg1+Ua
+KP85z1snGejdGB+D7klo+U8=
+=Mz3a
+-----END PGP SIGNATURE-----
+
+
+

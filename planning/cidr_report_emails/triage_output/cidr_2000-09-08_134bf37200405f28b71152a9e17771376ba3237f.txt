@@ -1,0 +1,193 @@
+# from /home/woodrow/proj/cidr-report_analysis/planning/cidr_report_emails/cidr_r_emails-old_index.txt:579
+# 2000-09-08 'The Cidr Report' from 'Tony Bates'
+# http://www.merit.edu/mail.archives/nanog/2000-09/msg00202.html
+
+
+The Cidr Report
+From: Tony Bates
+Date: Fri Sep 08 15:09:11 2000
+
+
+
+
+This is an auto-generated mail on Fri Sep  8 12:00:00 PDT 2000
+It is not checked before it leaves my workstation.  However, hopefully 
+you will find this report interesting and will take the time to look 
+through this to see if you can improve the amount of aggregation you 
+perform.
+
+The report is split into sections:
+
+   0) General Status
+   
+      List the route table history for the last week, list any possibly
+      bogus routes seen and give some status on ASes.
+
+   1) Gains by aggregating at the origin AS level
+
+      This lists the &quot;Top 30&quot; players who if they decided to aggregate
+      their announced classful prefixes at the origin AS level could 
+      make a significant difference in the reduction of the current 
+      size of the Internet routing table. This calculation does not 
+      take into account the inclusion of holes when forming an aggregate
+      so it is possible even larger reduction should be possible.
+
+   2) Weekly Delta
+
+      A summary of the last weeks changes in terms of withdrawn and
+      added routes. Please note that this is only a snapshot but does 
+      give some indication of ASes participating in CIDR. Clearly,
+      it is generally a good thing to see a large amont of withdrawls.
+
+   3) Interesting aggregates
+
+      Interesting here means not an aggregate made as a set of 
+      classful routes.      
+
+Thanks to xara.net for giving me access to their routing tables once a
+day. 
+
+Please send any comments about this report directly to me.
+
+Check http://www.employees.org/~tbates/cidr-report.html for a daily
+update of this report.
+
+
+
+------------------------------------------------------------------------------
+
+                        CIDR REPORT for 08Sep00
+
+
+0) General Status
+
+Table History
+-------------
+
+Date	Prefixes
+010900	85543
+020900	85631
+030900	85544
+040900	85623
+050900	85693
+060900	85755
+070900	85753
+080900	85860
+
+Check http://www.employees.org/~tbates/cidr.plot.html for a plot
+of the table history.
+
+
+Possible Bogus Routes
+---------------------
+
+*** Bogus 65.0.0.0/14 from AS6172
+*** Bogus 65.128.0.0/14 from AS209
+*** Bogus 65.132.0.0/15 from AS209
+*** Bogus 65.134.0.0/17 from AS209
+*** Bogus 65.134.128.0/19 from AS209
+*** Bogus 65.228.9.0/24 from AS577
+*** Bogus 66.4.0.0/17 from AS11686
+*** Bogus 66.4.0.0/15 from AS11686
+*** Bogus 66.4.128.0/17 from AS11686
+*** Bogus 66.6.32.0/20 from AS701
+*** Bogus 66.6.64.0/20 from AS14480
+*** Bogus 66.6.96.0/20 from AS10970
+*** Bogus 66.6.128.0/20 from AS3561
+*** Bogus 66.6.192.0/20 from AS11282
+*** Bogus 217.0.0.0/13 from AS3320
+*** Bogus 217.8.0.0/20 from AS1299
+*** Bogus 217.8.32.0/20 from AS3220
+*** Bogus 217.8.160.0/20 from AS8246
+*** Bogus 217.9.32.0/20 from AS2686
+*** Bogus 217.9.96.0/20 from AS12658
+*** Bogus 217.9.128.0/20 from AS12969
+*** Bogus 217.9.224.0/20 from AS13124
+*** Bogus 217.10.0.0/20 from AS1270
+*** Bogus 217.10.64.0/20 from AS15594
+*** Bogus 217.10.96.0/20 from AS5556
+*** Bogus 217.10.128.0/20 from AS5378
+*** Bogus 217.10.160.0/23 from AS15641
+*** Bogus 217.10.162.0 from AS15641
+*** Bogus 217.10.192.0 from AS12302
+*** Bogus 217.11.0.0/20 from AS9034
+*** Bogus 217.11.64.0/20 from AS702
+*** Bogus 217.12.192.0/20 from AS15626
+*** Bogus 217.13.32.0 from AS15629
+*** Bogus 217.13.33.0 from AS15629
+*** Bogus 217.13.34.0 from AS15629
+*** Bogus 217.13.192.0/20 from AS9126
+*** Bogus 217.14.64.0/20 from AS3303
+*** Bogus 217.14.96.0/23 from AS13099
+*** Bogus 217.14.128.0/20 from AS8851
+*** Bogus 217.14.192.0/20 from AS3226
+*** Bogus 217.117.117.0 from AS2007
+*** Bogus 220.10.56.0 from AS3215
+
+AS Summary
+----------
+
+Number of ASes in routing system:                 8399
+
+Number of ASes announcing only one prefix:        4770 (2647 cidr, 2123 classful)
+
+Largest number of  cidr routes:                    902 announced by  AS701
+Largest number of classful routes:                1058 announced by  AS701
+
+
+
+1) Gains by aggregating at the origin AS level
+
+ --- 08Sep00 ---
+ASnum    NetsNow NetsCIDR  NetGain  % Gain   Description
+
+AS271        425      150      275   64.7%   BCnet Backbone
+AS1221       618      453      165   26.7%   TELSTRA-AS
+AS9706       198       52      146   73.7%   Pusan Metropolitan City Office of
+AS9269       174       44      130   74.7%   Hong Kong CTI
+AS2609       128        8      120   93.8%   EUnet-TN
+AS7657       318      206      112   35.2%   The Internet Group Limited
+AS1785       466      357      109   23.4%   AppliedTheory Communications
+AS816        506      400      106   20.9%   UUNET Canada (ASN-UUNETCA-AS4)
+AS7046       370      264      106   28.6%   COQUI-NET PRTC Internet
+AS7545       158       55      103   65.2%   TPG Internet Pty Ltd
+AS9304       117       21       96   82.1%   Hutchcity
+AS7496       126       35       91   72.2%   Power Up
+AS4293       339      251       88   26.0%   Internal ASN for C&amp;W
+AS6429       200      114       86   43.0%   FirstCom Internet
+AS4755       194      111       83   42.8%   Videsh Sanchar Nigam Ltd. India
+AS174        533      450       83   15.6%   Performance Systems International
+AS705        329      249       80   24.3%   ALTERNET-AS
+AS6595       133       56       77   57.9%   DODDSEUR
+AS3908       253      176       77   30.4%   Supernet, Inc.
+AS577        251      178       73   29.1%   Bell Backbone
+AS724        217      149       68   31.3%   DLA-ASNBLOCK-AS
+AS7018       575      507       68   11.8%   AT&amp;T WorldNet Service Backbone
+AS4792        77       11       66   85.7%   SK Telecom Co., Ltd.
+AS1727       151       86       65   43.0%   MRMS-WEST
+AS5106       101       37       64   63.4%   AADS-COLUMBUS
+AS3749       122       60       62   50.8%   TECNET
+AS3602       297      239       58   19.5%   Sprint Canada Inc.
+AS701       1058     1002       56    5.3%   Alternet
+AS5102        75       21       54   72.0%   AADS-CHAMPAIGN
+AS376        123       69       54   43.9%   RISQ
+
+
+For the rest of the previous weeks gain information please see
+http://www.employees.org:80/~tbates/cidr-report.html
+
+2) Weekly Delta
+
+Please see
+http://www.employees.org:80/~tbates/cidr-report.html
+for this part of the report
+
+3) Interesting aggregates
+
+Please see
+http://www.employees.org:80/~tbates/cidr-report.html
+for this part of the report
+
+
+
+

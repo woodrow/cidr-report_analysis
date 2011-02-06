@@ -1,0 +1,287 @@
+# from /home/woodrow/proj/cidr-report_analysis/planning/cidr_report_emails/cidr_r_emails-old_index.txt:884
+# 1996-09-27 'Cidr Report - part 2' from 'Tony Bates'
+# http://www.merit.edu/mail.archives/nanog/1996-09/msg00777.html
+
+
+Cidr Report - part 2
+From: Tony Bates
+Date: Fri Sep 27 21:55:58 1996
+
+
+1) Gains by aggregating at the origin AS level
+
+ --- 27Sep96 ---
+ASnum    NetsNow NetsCIDR  NetGain  % Gain   Description
+
+AS719       1011      601      410   40.6%   LANLINK autonomous system
+AS174       1268      924      344   27.1%   Performance Systems International
+AS279        850      508      342   40.2%   SURAnet Southern AS
+AS2493       756      479      277   36.6%   i*internet
+AS3602       586      335      251   42.8%   Intergrated Network Services Inc.
+AS3397       300       98      202   67.3%   EMI-AS
+AS3749       273       73      200   73.3%   Tennessee Board of Regents
+AS2048       342      153      189   55.3%   State of Louisiana/Office of Tele
+AS1          426      281      145   34.0%   BBN Planet backbone
+AS86         379      236      143   37.7%   SURAnet Northern AS
+AS3804       384      241      143   37.2%   WorldLinx 3
+AS1691       294      157      137   46.6%   ANS-BLK1
+AS4230       350      214      136   38.9%   Embratel Brazil
+AS568        370      259      111   30.0%   JIS (Joint Interconnection Servic
+AS2386       231      136       95   41.1%   INS-AS
+AS1790       335      250       85   25.4%   SprintLink Washington D.C.
+AS2704       266      186       80   30.1%   HOOKUP-NET-A
+AS721        335      259       76   22.7%   DLA-ASNBLOCK-AS
+AS3215       132       57       75   56.8%   RAIN
+AS560        399      325       74   18.5%   BBN Planet, New England Region (N
+AS3819        98       29       69   70.4%   SIGNET
+AS225        127       61       66   52.0%   University of Virginia (VIRnet)
+AS813        228      164       64   28.1%   UUNET Canada (ASN-UUNETCA-AS1)
+AS3450       110       47       63   57.3%   UTK
+AS3996       113       51       62   54.9%   FIRN
+AS1791       199      137       62   31.2%   SprintLink Fort Worth TX
+AS1785       285      225       60   21.1%   NYSERNet Backbone
+AS2711       109       50       59   54.1%   SUNBELT-AS
+AS855        125       67       58   46.4%   NBTel
+AS2871       139       82       57   41.0%   Internet Services GmbH &amp; Co
+
+ --- 26Sep96 ---
+ASnum    NetsNow NetsCIDR  NetGain  % Gain   Description
+
+AS719       1009      601      408   40.4%   LANLINK autonomous system
+AS174       1277      931      346   27.1%   Performance Systems International
+AS279        841      497      344   40.9%   SURAnet Southern AS
+AS2493       755      478      277   36.7%   i*internet
+AS3602       585      335      250   42.7%   Intergrated Network Services Inc.
+AS3749       274       73      201   73.4%   Tennessee Board of Regents
+AS2048       344      149      195   56.7%   State of Louisiana/Office of Tele
+AS3397       286      104      182   63.6%   EMI-AS
+AS1          425      280      145   34.1%   BBN Planet backbone
+AS86         379      236      143   37.7%   SURAnet Northern AS
+AS3804       385      242      143   37.1%   WorldLinx 3
+AS1691       293      156      137   46.8%   ANS-BLK1
+AS4230       346      211      135   39.0%   Embratel Brazil
+AS568        367      257      110   30.0%   JIS (Joint Interconnection Servic
+AS2386       232      137       95   40.9%   INS-AS
+AS1790       334      249       85   25.4%   SprintLink Washington D.C.
+AS721        349      268       81   23.2%   DLA-ASNBLOCK-AS
+AS2704       265      185       80   30.2%   HOOKUP-NET-A
+AS3215       132       57       75   56.8%   RAIN
+AS3819        98       29       69   70.4%   SIGNET
+AS813        228      161       67   29.4%   UUNET Canada (ASN-UUNETCA-AS1)
+AS225        127       61       66   52.0%   University of Virginia (VIRnet)
+AS3450       112       49       63   56.2%   UTK
+AS1791       202      140       62   30.7%   SprintLink Fort Worth TX
+AS3996       113       52       61   54.0%   FIRN
+AS1785       286      226       60   21.0%   NYSERNet Backbone
+AS2711       110       51       59   53.6%   SUNBELT-AS
+AS855        124       67       57   46.0%   NBTel
+AS2871       139       82       57   41.0%   Internet Services GmbH &amp; Co
+AS560        369      313       56   15.2%   BBN Planet, New England Region (N
+
+ --- 25Sep96 ---
+ASnum    NetsNow NetsCIDR  NetGain  % Gain   Description
+
+AS4230      1100      347      753   68.5%   Embratel Brazil
+AS174       1281      931      350   27.3%   Performance Systems International
+AS279        838      498      340   40.6%   SURAnet Southern AS
+AS2493       753      476      277   36.8%   i*internet
+AS3602       583      335      248   42.5%   Intergrated Network Services Inc.
+AS3749       279       75      204   73.1%   Tennessee Board of Regents
+AS3397       290      102      188   64.8%   EMI-AS
+AS2048       340      156      184   54.1%   State of Louisiana/Office of Tele
+AS1          456      294      162   35.5%   BBN Planet backbone
+AS86         365      224      141   38.6%   SURAnet Northern AS
+AS1691       287      153      134   46.7%   ANS-BLK1
+AS568        363      255      108   29.8%   JIS (Joint Interconnection Servic
+AS3804       325      218      107   32.9%   WorldLinx 3
+AS719        545      450       95   17.4%   LANLINK autonomous system
+AS2386       232      137       95   40.9%   INS-AS
+AS2704       271      184       87   32.1%   HOOKUP-NET-A
+AS1790       336      251       85   25.3%   SprintLink Washington D.C.
+AS721        346      265       81   23.4%   DLA-ASNBLOCK-AS
+AS3215       129       55       74   57.4%   RAIN
+AS3819        98       29       69   70.4%   SIGNET
+AS813        227      160       67   29.5%   UUNET Canada (ASN-UUNETCA-AS1)
+AS225        127       61       66   52.0%   University of Virginia (VIRnet)
+AS3450       111       46       65   58.6%   UTK
+AS1791       203      141       62   30.5%   SprintLink Fort Worth TX
+AS1785       283      223       60   21.2%   NYSERNet Backbone
+AS3996       110       51       59   53.6%   FIRN
+AS2711       109       50       59   54.1%   SUNBELT-AS
+AS855        123       67       56   45.5%   NBTel
+AS839         90       35       55   61.1%   North West Territories Regional N
+AS2551       348      293       55   15.8%   NETCOM On-line Communication Serv
+
+ --- 24Sep96 ---
+ASnum    NetsNow NetsCIDR  NetGain  % Gain   Description
+
+AS4230      1100      347      753   68.5%   Embratel Brazil
+AS174       1281      931      350   27.3%   Performance Systems International
+AS279        838      498      340   40.6%   SURAnet Southern AS
+AS2493       753      476      277   36.8%   i*internet
+AS3602       583      335      248   42.5%   Intergrated Network Services Inc.
+AS3749       279       75      204   73.1%   Tennessee Board of Regents
+AS3397       290      102      188   64.8%   EMI-AS
+AS2048       340      156      184   54.1%   State of Louisiana/Office of Tele
+AS1          456      294      162   35.5%   BBN Planet backbone
+AS86         365      224      141   38.6%   SURAnet Northern AS
+AS1691       287      153      134   46.7%   ANS-BLK1
+AS568        363      255      108   29.8%   JIS (Joint Interconnection Servic
+AS3804       325      218      107   32.9%   WorldLinx 3
+AS719        545      450       95   17.4%   LANLINK autonomous system
+AS2386       232      137       95   40.9%   INS-AS
+AS2704       271      184       87   32.1%   HOOKUP-NET-A
+AS1790       336      251       85   25.3%   SprintLink Washington D.C.
+AS721        346      265       81   23.4%   DLA-ASNBLOCK-AS
+AS3215       129       55       74   57.4%   RAIN
+AS3819        98       29       69   70.4%   SIGNET
+AS813        227      160       67   29.5%   UUNET Canada (ASN-UUNETCA-AS1)
+AS225        127       61       66   52.0%   University of Virginia (VIRnet)
+AS3450       111       46       65   58.6%   UTK
+AS1791       203      141       62   30.5%   SprintLink Fort Worth TX
+AS1785       283      223       60   21.2%   NYSERNet Backbone
+AS3996       110       51       59   53.6%   FIRN
+AS2711       109       50       59   54.1%   SUNBELT-AS
+AS855        123       67       56   45.5%   NBTel
+AS839         90       35       55   61.1%   North West Territories Regional N
+AS2551       348      293       55   15.8%   NETCOM On-line Communication Serv
+
+ --- 23Sep96 ---
+ASnum    NetsNow NetsCIDR  NetGain  % Gain   Description
+
+AS4230      1065      348      717   67.3%   Embratel Brazil
+AS279        903      520      383   42.4%   SURAnet Southern AS
+AS174       1271      924      347   27.3%   Performance Systems International
+AS2493       725      454      271   37.4%   i*internet
+AS3602       582      335      247   42.4%   Intergrated Network Services Inc.
+AS3749       280       72      208   74.3%   Tennessee Board of Regents
+AS3397       290      102      188   64.8%   EMI-AS
+AS3804       387      244      143   37.0%   WorldLinx 3
+AS2048       259      126      133   51.4%   State of Louisiana/Office of Tele
+AS1691       285      152      133   46.7%   ANS-BLK1
+AS568        373      264      109   29.2%   JIS (Joint Interconnection Servic
+AS719        542      447       95   17.5%   LANLINK autonomous system
+AS2386       230      136       94   40.9%   INS-AS
+AS1790       337      250       87   25.8%   SprintLink Washington D.C.
+AS1717       461      374       87   18.9%   RENATER
+AS2704       267      182       85   31.8%   HOOKUP-NET-A
+AS721        342      263       79   23.1%   DLA-ASNBLOCK-AS
+AS3215       129       55       74   57.4%   RAIN
+AS3819        98       29       69   70.4%   SIGNET
+AS813        227      162       65   28.6%   UUNET Canada (ASN-UUNETCA-AS1)
+AS3450       112       47       65   58.0%   UTK
+AS1791       204      142       62   30.4%   SprintLink Fort Worth TX
+AS1785       283      223       60   21.2%   NYSERNet Backbone
+AS3996       111       52       59   53.2%   FIRN
+AS2711       110       51       59   53.6%   SUNBELT-AS
+AS855        123       67       56   45.5%   NBTel
+AS839         90       35       55   61.1%   North West Territories Regional N
+AS2551       349      294       55   15.8%   NETCOM On-line Communication Serv
+AS701        789      739       50    6.3%   Alternet
+AS560        348      298       50   14.4%   BBN Planet, New England Region (N
+
+ --- 22Sep96 ---
+ASnum    NetsNow NetsCIDR  NetGain  % Gain   Description
+
+AS4230      1090      343      747   68.5%   Embratel Brazil
+AS719       1002      595      407   40.6%   LANLINK autonomous system
+AS279        898      517      381   42.4%   SURAnet Southern AS
+AS174       1256      913      343   27.3%   Performance Systems International
+AS2493       724      454      270   37.3%   i*internet
+AS3602       582      335      247   42.4%   Intergrated Network Services Inc.
+AS3749       281       73      208   74.0%   Tennessee Board of Regents
+AS3397       290      102      188   64.8%   EMI-AS
+AS2048       337      154      183   54.3%   State of Louisiana/Office of Tele
+AS3804       382      241      141   36.9%   WorldLinx 3
+AS1          407      268      139   34.2%   BBN Planet backbone
+AS1691       288      152      136   47.2%   ANS-BLK1
+AS568        349      249      100   28.7%   JIS (Joint Interconnection Servic
+AS2386       230      136       94   40.9%   INS-AS
+AS1717       460      370       90   19.6%   RENATER
+AS1790       337      250       87   25.8%   SprintLink Washington D.C.
+AS2704       268      182       86   32.1%   HOOKUP-NET-A
+AS721        342      263       79   23.1%   DLA-ASNBLOCK-AS
+AS3215       129       55       74   57.4%   RAIN
+AS3819        98       29       69   70.4%   SIGNET
+AS3450       112       47       65   58.0%   UTK
+AS1791       204      142       62   30.4%   SprintLink Fort Worth TX
+AS1785       284      222       62   21.8%   NYSERNet Backbone
+AS3996       111       52       59   53.2%   FIRN
+AS2711       109       50       59   54.1%   SUNBELT-AS
+AS813        215      158       57   26.5%   UUNET Canada (ASN-UUNETCA-AS1)
+AS855        122       67       55   45.1%   NBTel
+AS839         90       35       55   61.1%   North West Territories Regional N
+AS2551       350      295       55   15.7%   NETCOM On-line Communication Serv
+AS4454        61       11       50   82.0%   OIR Telecommunications, State of 
+
+ --- 21Sep96 ---
+ASnum    NetsNow NetsCIDR  NetGain  % Gain   Description
+
+AS4230       961      354      607   63.2%   Embratel Brazil
+AS719       1004      596      408   40.6%   LANLINK autonomous system
+AS279        873      513      360   41.2%   SURAnet Southern AS
+AS174       1273      926      347   27.3%   Performance Systems International
+AS2493       724      454      270   37.3%   i*internet
+AS3602       582      335      247   42.4%   Intergrated Network Services Inc.
+AS3749       280       75      205   73.2%   Tennessee Board of Regents
+AS3397       290      102      188   64.8%   EMI-AS
+AS1          461      297      164   35.6%   BBN Planet backbone
+AS2048       309      148      161   52.1%   State of Louisiana/Office of Tele
+AS3804       387      244      143   37.0%   WorldLinx 3
+AS1691       288      152      136   47.2%   ANS-BLK1
+AS568        371      261      110   29.6%   JIS (Joint Interconnection Servic
+AS86         298      189      109   36.6%   SURAnet Northern AS
+AS2386       230      136       94   40.9%   INS-AS
+AS1717       461      369       92   20.0%   RENATER
+AS560        429      339       90   21.0%   BBN Planet, New England Region (N
+AS1790       338      251       87   25.7%   SprintLink Washington D.C.
+AS2704       271      185       86   31.7%   HOOKUP-NET-A
+AS721        345      265       80   23.2%   DLA-ASNBLOCK-AS
+AS3215       129       55       74   57.4%   RAIN
+AS3819        98       29       69   70.4%   SIGNET
+AS813        225      159       66   29.3%   UUNET Canada (ASN-UUNETCA-AS1)
+AS3450       112       47       65   58.0%   UTK
+AS1791       204      142       62   30.4%   SprintLink Fort Worth TX
+AS1785       284      222       62   21.8%   NYSERNet Backbone
+AS3996       111       52       59   53.2%   FIRN
+AS2711       108       49       59   54.6%   SUNBELT-AS
+AS855        123       68       55   44.7%   NBTel
+AS839         90       35       55   61.1%   North West Territories Regional N
+
+ --- 20Sep96 ---
+ASnum    NetsNow NetsCIDR  NetGain  % Gain   Description
+
+AS279        985      560      425   43.1%   SURAnet Southern AS
+AS719       1004      596      408   40.6%   LANLINK autonomous system
+AS174       1305      944      361   27.7%   Performance Systems International
+AS2493       725      454      271   37.4%   i*internet
+AS3602       582      335      247   42.4%   Intergrated Network Services Inc.
+AS2048       344      150      194   56.4%   State of Louisiana/Office of Tele
+AS3749       264       74      190   72.0%   Tennessee Board of Regents
+AS3397       290      102      188   64.8%   EMI-AS
+AS1          462      298      164   35.5%   BBN Planet backbone
+AS3804       383      242      141   36.8%   WorldLinx 3
+AS1691       288      155      133   46.2%   ANS-BLK1
+AS4230       336      206      130   38.7%   Embratel Brazil
+AS86         299      190      109   36.5%   SURAnet Northern AS
+AS568        356      257       99   27.8%   JIS (Joint Interconnection Servic
+AS2386       233      138       95   40.8%   INS-AS
+AS1717       458      367       91   19.9%   RENATER
+AS560        429      340       89   20.7%   BBN Planet, New England Region (N
+AS2704       272      184       88   32.4%   HOOKUP-NET-A
+AS1790       338      251       87   25.7%   SprintLink Washington D.C.
+AS721        345      264       81   23.5%   DLA-ASNBLOCK-AS
+AS3215       129       55       74   57.4%   RAIN
+AS813        232      161       71   30.6%   UUNET Canada (ASN-UUNETCA-AS1)
+AS3819        98       29       69   70.4%   SIGNET
+AS3450       112       47       65   58.0%   UTK
+AS701        874      812       62    7.1%   Alternet
+AS1791       204      142       62   30.4%   SprintLink Fort Worth TX
+AS1785       284      222       62   21.8%   NYSERNet Backbone
+AS3996       114       53       61   53.5%   FIRN
+AS2711       110       51       59   53.6%   SUNBELT-AS
+AS855        125       68       57   45.6%   NBTel
+- - - - - - - - - - - - - - - - -
+
+
+

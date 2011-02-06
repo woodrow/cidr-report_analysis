@@ -1,0 +1,64 @@
+# from /home/woodrow/proj/cidr-report_analysis/planning/cidr_report_emails/cidr_r_emails-old_index.txt:601
+# 2000-05-17 'RE: CIDR Report' from 'Roeland Meyer (E-mail)'
+# http://www.merit.edu/mail.archives/nanog/2000-05/msg00355.html
+
+
+RE: CIDR Report
+From: Roeland Meyer (E-mail)
+Date: Wed May 17 05:09:01 2000
+
+
+
+&gt; Vadim Antonov: Wednesday, May 17, 2000 12:32 AM
+&gt;
+&gt; Valdis.Kletnieks@vt.edu wrote:
+&gt;
+&gt; &gt; Sure, *any* good router vendor can build a router that can
+&gt; handle 100 million
+&gt; &gt; routing table entries.
+&gt;
+&gt; Not.  The empirical evidence suggests that aggregate flap
+&gt; rate is proportional
+&gt; to the number of prefixes in RIB.  Now, when people talk
+&gt; about route update
+&gt; processing they tend to forget that IGP and routing table
+&gt; updates are easy;
+&gt; matching prefixes against routing policy filters is not.
+
+I tend to agree, the numbers I threw around earleir were strictly
+first-order approximations for raw sizes. Second-order would include
+performance issues and algorithm requirements. I see that Vadim ihas
+already arrived there.
+
+&gt; I would say that a computing device capable of doing today's border
+routing
+&gt; policies at 1M updates per second is well into the realm of science
+&gt; fiction.
+
+The other item usually included at this level should be bandwidth
+requirements. What is the size of an update, and how many Gbps load
+would be generated, at a rate of 1M updates per second? (I don't have
+the base quantity handy, would someone please provide?)
+
+&gt; &gt; The questions are (a) can they do it for a pricetag
+&gt; &gt; of under $2M, and (b) how many will they sell?
+
+Why $2M? From price ranges in the current market, I would think that
+they'd have to hit under $200K. Actually, I would have a difficult time
+convincing clients of anything over an additional $60K. This gets back
+to my earlier question, how many backbone routers are there (nearest
+order of magnitude should suffice here)?
+
+&gt; The question of profitability of cheese mining on the Moon is
+&gt; irrelevant, because Moon isn't made from cheese.
+
+Typical rough market guidelines are that development cost must be less
+than 1% of total market size or the project is a non-starter,
+business-wise. Typical costs for this sort of project are $1M to $3M,
+over 8 months, with COGm at about $50 (relative to a minimum Number of
+Goods sold [NOGs] and assuming that it is technically feasible).
+
+
+
+
+

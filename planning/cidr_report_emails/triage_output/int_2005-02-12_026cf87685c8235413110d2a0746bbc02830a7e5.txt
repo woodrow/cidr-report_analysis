@@ -1,0 +1,60 @@
+# from /home/woodrow/proj/cidr-report_analysis/planning/cidr_report_emails/cidr_r_emails-old_index.txt:266
+# 2005-02-12 'Re: The Cidr Report' from 'Philip Smith'
+# http://www.merit.edu/mail.archives/nanog/2005-02/msg00195.html
+
+
+Re: The Cidr Report
+From: Philip Smith
+Date: Sat Feb 12 23:52:46 2005
+
+
+
+I split my Routing Analysis based on registry region so that the 
+constituents of each region know what is going on in their area.
+
+As you know registries offer training if their membership ask for it. 
+APNIC and RIPE NCC membership seem to ask for training other than just 
+how to be an LIR.
+
+But how to be an LIR doesn't cover every single ASN who is announcing 
+address space. For example, APNIC has an extensive region wide 
+programme, but there is still large deaggregation here in the AP region...
+
+So I really don't see what RIR training has to do with this. It helps, 
+but it isn't the complete solution. If the industry is worried, the 
+industry has to do something about it.
+
+philip
+--
+Hank Nussbacher said the following on 13/02/2005 04:16:
+
+Duh!  No suprise there.  ARIN just gives IP space and only offers some
+measly online training:
+http://www.arin.net/library/training/index.html
+
+RIPE on the other hand, has 3-6 course a month, throughout Europe:
+http://www.ripe.net/training/lir/index.html
+http://www.ripe.net/cgi-bin/courselist.pl.cgi
+
+APNIC also has a number of courses and goes out to where it is needed:
+http://www.apnic.net/training/schedule.html
+
+As long as ARIN just doles out IP space with no education, the routing
+table will continue to grow.
+
+-Hank
+
+
+
+Most seem to come from AS4323. Today they are announcing 2606 prefixes,
+a week ago they were announcing 844 prefixes.
+
+philip
+
+
+
+
+
+
+
+

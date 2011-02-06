@@ -1,0 +1,48 @@
+# from /home/woodrow/proj/cidr-report_analysis/planning/cidr_report_emails/cidr_r_emails-old_index.txt:627
+# 2000-05-14 'Multi-home I (was CIDR Report)' from 'Rural CNE'
+# http://www.merit.edu/mail.archives/nanog/2000-05/msg00251.html
+
+
+Multi-home I (was CIDR Report)
+From: Rural CNE
+Date: Sun May 14 00:07:20 2000
+
+
+
+If I understand the thread correctly, part of the growth
+problem in the routing tables has been attributed to
+small clients with sub/24 address allocations implementing
+multi-homed solutions.
+
+As an Internet Access Provider (IAP), I thought I'd share a few opinions...
+
++ ip allocation +
+Address allocation is not very pretty when you start to
+move down from the tier 1's.  Upstream providers tend to
+grab the &quot;next available&quot; /22, /23, or /24, which is usually
+located about a thousand miles away from your current
+allocation.
+
+(Well, you should have planned for growth...)
+Agreed, but ARIN and most upstreams do not accept
+&quot;I think I'm gonna quadruple my customer base next year&quot;
+as a viable excuse.  And for good reason, given the allocation
+abuses that have occured in the past.
+
+So now we have these IAP's with multiple /24's scattered haphazardly
+across the upstream provider's delegated block.
+
+Now what happens when this IAP multi-homes?
+
+(There are very few valid reasons to multi-home, please consult
+with RFC x, BCP y, and an experienced network engineer.)
+Roger that.  
+ 
++ continued in Multi-home II +
+
+-brad (Rural CNE)
+
+
+
+
+

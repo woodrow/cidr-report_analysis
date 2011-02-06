@@ -1,0 +1,29 @@
+# from /home/woodrow/proj/cidr-report_analysis/planning/cidr_report_emails/cidr_r_emails-old_index.txt:797
+# 1997-10-06 'Re: The Cidr Report' from 'Phillip Vandry'
+# http://www.merit.edu/mail.archives/nanog/1997-10/msg00055.html
+
+
+Re: The Cidr Report
+From: Phillip Vandry
+Date: Mon Oct 06 12:38:10 1997
+
+
+&gt; Anyone have any idea what happened at iSTAR?
+&gt; 
+&gt; From the CIDR report:
+&gt; 
+&gt; 021097  46602
+&gt; 031097  47513
+&gt; 
+&gt; and 
+&gt; 
+&gt; on 021097: AS2493      1337      829      508   38.0%   iSTAR Internet, Inc.
+
+I noticed among other things that they exploded 209.29.0.0/16 into
+individual class C advertisements at some borders only. I have alerted
+them to this problem.
+
+-Phil
+
+
+

@@ -1,0 +1,58 @@
+# from /home/woodrow/proj/cidr-report_analysis/planning/cidr_report_emails/cidr_r_emails-old_index.txt:605
+# 2000-05-15 'Re: CIDR Report' from 'Rodney L Caston'
+# http://www.merit.edu/mail.archives/nanog/2000-05/msg00311.html
+
+
+Re: CIDR Report
+From: Rodney L Caston
+Date: Mon May 15 19:51:25 2000
+
+
+
+Giving this some thought, (something i never do before posting to nanog
+nromally), I assume initally only the larger ISPs would opt for such a
+purchase of that magnatude, lets say these new routers go into production,
+and only the largest ISPs buy them, now we have largest ISPs listening to
+the annoucements of /24s in space normally disallowed, now over time other
+ISPs will still refuse to listen to those annoucements except for the ones
+with these new magical routers. Consider that for a moment, Quickly
+customers will ditch their ISP for one of the few who will annouce and
+will listen to the networks. Image the Markering Dept nightmare with ISPs
+claiming to be able to &quot;Route more of the net then our competitor. This is
+why we have policy disallowing this, if ISPs aren't on the same page, this
+sort of nonsense scenario would happen, since we do have policy, and a
+ounce of sense, this scenario should never happen. The net must route, but
+lets all do it the same way, shall we?
+
+
+On Mon, 15 May 2000 Valdis.Kletnieks@vt.edu wrote:
+
+&gt; 
+&gt; On Mon, 15 May 2000 15:05:45 EDT, Chris Williams &lt;chris.williams@third-rail.net&gt;  said:
+&gt; &gt; &gt; &quot;routers with faster bgp implemetations are what is needed&quot; is what we
+&gt; &gt; &gt; say, but the question a vendor asks is &quot;does it increase my profit
+&gt; &gt; &gt; margin, revenues, or market position?&quot;.  what we &quot;want&quot; is mostly
+&gt; &gt; &gt; irrelevant.
+&gt; &gt; Don't you think introducing something which is A) In significant demand,
+&gt; &gt; and B) Nobody else has, generally works to increase one's market share?
+&gt; 
+&gt; You (and a lot of other people) seem to have forgotten a line item:
+&gt; 
+&gt; C) Price Point.  How much are people willing/able to PAY for such a feature,
+&gt; and how many do you have to sell at that price to offset the R&amp;D costs?
+&gt; 
+&gt; Sure, *any* good router vendor can build a router that can handle 100 million
+&gt; routing table entries.  The questions are (a) can they do it for a pricetag
+&gt; of under $2M, and (b) how many will they sell?
+&gt; 
+&gt; -- 
+&gt; 				Valdis Kletnieks
+&gt; 				Operating Systems Analyst
+&gt; 				Virginia Tech
+&gt; 
+&gt; 
+
+
+
+
+

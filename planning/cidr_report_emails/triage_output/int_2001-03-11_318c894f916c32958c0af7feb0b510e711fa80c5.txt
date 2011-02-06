@@ -1,0 +1,27 @@
+# from /home/woodrow/proj/cidr-report_analysis/planning/cidr_report_emails/cidr_r_emails-old_index.txt:549
+# 2001-03-11 'Re: [apops] The Cidr Report' from 'Mark Prior'
+# http://www.merit.edu/mail.archives/nanog/2001-03/msg00312.html
+
+
+Re: [apops] The Cidr Report
+From: Mark Prior
+Date: Sun Mar 11 07:24:55 2001
+
+
+
+      --- 09Mar01 ---
+     ASnum    NetsNow NetsCIDR  NetGain  % Gain   Description
+
+     AS1221      1612     1211      401   24.9%   Telstra Pty Ltd
+     AS2764       754      539      215   28.5%   connect.com.au pty ltd
+
+Sorry about that, one of our upstream providers decided to ignore the
+&quot;no-export&quot; community we were setting on specifics within our provider
+blocks. We have stopped advertising the specifics to them while we
+yell at them to fix it :-)
+
+Mark.
+
+
+
+

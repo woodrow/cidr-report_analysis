@@ -1,0 +1,33 @@
+# from /home/woodrow/proj/cidr-report_analysis/planning/cidr_report_emails/cidr_r_emails-old_index.txt:845
+# 1996-12-02 'Re: The Cidr Report' from 'Alex.Bligh'
+# http://www.merit.edu/mail.archives/nanog/1996-12/msg00010.html
+
+
+Re: The Cidr Report
+From: Alex.Bligh
+Date: Mon Dec 02 04:57:42 1996
+
+
+Bill et al,
+&gt; 	It may only be a trend as seen from the xara.net boxen.
+
+This may or may not be true. FYI the routing table on there
+is basically AGIS full table union Sprint full table union
+UUnet full table union adverts of about 75% of the peers adverts
+MAE-East. [Sprint and UUnet come via other AS's but there's
+no filtering].
+
+For reasons two complicated to go into I've got entirely
+different full routing on a box in London, and yes, it's
+a different size (smaller actually last time I looked).
+
+Alex Bligh
+Xara Networks
+
+
+
+
+- - - - - - - - - - - - - - - - -
+
+
+

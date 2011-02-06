@@ -1,0 +1,43 @@
+# from /home/woodrow/proj/cidr-report_analysis/planning/cidr_report_emails/cidr_r_emails-old_index.txt:326
+# 2004-11-12 'Re: The Cidr Report' from 'Randy Bush'
+# http://www.merit.edu/mail.archives/nanog/2004-11/msg00354.html
+
+
+Re: The Cidr Report
+From: Randy Bush
+Date: Fri Nov 12 17:49:53 2004
+
+
+
+&gt; ASnum    NetsNow NetsAggr  NetGain   % Gain   Description
+&gt; 
+&gt; AS18566      751        6      745    99.2%   CVAD Covad Communications
+&gt; AS4134       825      178      647    78.4%   CHINANET-BACKBONE
+&gt;                                                No.31,Jin-rong Street
+&gt; AS4323       794      223      571    71.9%   TWTC Time Warner Telecom
+&gt; AS6197       814      430      384    47.2%   BNS-14 BellSouth Network
+&gt;                                                Solutions, Inc
+&gt; AS22773      401       17      384    95.8%   CXA Cox Communications Inc.
+&gt; AS27364      413       45      368    89.1%   ARMC Armstrong Cable Services
+&gt; AS701       1230      884      346    28.1%   UU UUNET Technologies, Inc.
+&gt; AS22909      412       81      331    80.3%   CMCS Comcast Cable
+&gt;                                                Communications, Inc.
+
+are these numbers what i think, but hope not, they are?
+
+e.g. is AS18566 the origin AS for 751 prefixes that could be
+collapsed to 6?
+
+if not, then perhaps the report could use some work.
+
+if so, then
+  o why are providers indulging is such extremely sick
+    behavior
+  o and who can hack the perl to generate filters for this
+    so we can listen only to the aggregates
+
+randy
+
+
+
+

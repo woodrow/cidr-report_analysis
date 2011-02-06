@@ -1,0 +1,150 @@
+# from /home/woodrow/proj/cidr-report_analysis/planning/cidr_report_emails/cidr_r_emails-old_index.txt:536
+# 2001-06-30 'The Cidr Report' from 'Tony Bates'
+# http://www.merit.edu/mail.archives/nanog/2001-06/msg01046.html
+
+
+The Cidr Report
+From: Tony Bates
+Date: Sat Jun 30 02:05:37 2001
+
+
+
+
+This is an auto-generated mail on Fri Jun 29 23:00:01 PDT 2001
+It is not checked before it leaves my workstation.  However, hopefully 
+you will find this report interesting and will take the time to look 
+through this to see if you can improve the amount of aggregation you 
+perform.
+
+The report is split into sections:
+
+   0) General Status
+   
+      List the route table history for the last week, list any possibly
+      bogus routes seen and give some status on ASes.
+
+   1) Gains by aggregating at the origin AS level
+
+      This lists the &quot;Top 30&quot; players who if they decided to aggregate
+      their announced classful prefixes at the origin AS level could 
+      make a significant difference in the reduction of the current 
+      size of the Internet routing table. This calculation does not 
+      take into account the inclusion of holes when forming an aggregate
+      so it is possible even larger reduction should be possible.
+
+   2) Weekly Delta
+
+      A summary of the last weeks changes in terms of withdrawn and
+      added routes. Please note that this is only a snapshot but does 
+      give some indication of ASes participating in CIDR. Clearly,
+      it is generally a good thing to see a large amont of withdrawls.
+
+   3) Interesting aggregates
+
+      Interesting here means not an aggregate made as a set of 
+      classful routes.      
+
+Thanks to GX Networks for giving me access to their routing tables once a
+day. 
+
+Please send any comments about this report directly to me.
+
+Check http://www.employees.org/~tbates/cidr-report.html for a daily
+update of this report.
+
+
+
+------------------------------------------------------------------------------
+
+                        CIDR REPORT for 29Jun01
+
+
+0) General Status
+
+Table History
+-------------
+
+Date	Prefixes
+220601	101078
+230601	100823
+240601	100985
+250601	101071
+260601	101116
+270601	100751
+280601	100644
+290601	100654
+
+Check http://www.employees.org/~tbates/cidr.plot.html for a plot
+of the table history.
+
+
+Possible Bogus Routes
+---------------------
+
+
+AS Summary
+----------
+
+Number of ASes in routing system:                11095
+
+Number of ASes announcing only one prefix:        6545 (3732 cidr, 2813 classful)
+
+Largest number of  cidr routes:                   1029 announced by  AS701
+Largest number of classful routes:                1429 announced by  AS701
+
+
+
+1) Gains by aggregating at the origin AS level
+
+ --- 29Jun01 ---
+ASnum    NetsNow NetsCIDR  NetGain  % Gain   Description
+
+AS1221      1366     1019      347   25.4%   TELSTRA-AS
+AS701       1429     1216      213   14.9%   Alternet
+AS4293       398      283      115   28.9%   part of AS assignment AS4287 - AS
+AS6595       157       58       99   63.1%   DoD Education Activity Network As
+AS705        237      141       96   40.5%   part of AS assignment AS701 - AS7
+AS6429       202      107       95   47.0%   ATT LA Internet Chile
+AS7018       734      648       86   11.7%   AT&amp;T WorldNet Service Backbone
+AS4755       211      129       82   38.9%   Videsh Sanchar Nigam Ltd. Autonom
+AS4151       159       77       82   51.6%   part of AS assignment AS4151 - AS
+AS8013       300      220       80   26.7%   PSINet Ltd. Canada 
+AS13999       98       18       80   81.6%   Mega Cable S.A. de C.V. 
+AS577        246      173       73   29.7%   Bell Advanced Communications Inc.
+AS724        238      166       72   30.3%   part of AS assignment AS721 - AS7
+AS6471       113       50       63   55.8%   ENTEL CHILE S.A. 
+AS7046       306      245       61   19.9%   UUNET Technologies, Inc. 
+AS3464       151       90       61   40.4%   Alabama Research and Education Ne
+AS1          585      526       59   10.1%   GTE Internetworking
+AS16758       63        6       57   90.5%   IKON Office Solutions 
+AS1239       446      391       55   12.3%   SprintLink Backbone
+AS226        144       91       53   36.8%   Los Nettos
+AS6413        65       13       52   80.0%   Southern Online Systems, Inc. 
+AS3908       207      155       52   25.1%   Supernet, Inc.
+AS17561      112       61       51   45.5%   Internet service provision to Wes
+AS9842        54        5       49   90.7%   Lotte Data Communication Company
+AS852        211      163       48   22.7%   Telus Advanced Communications 
+AS5106        82       34       48   58.5%   Ameritech Advanced Data Services,
+AS2149       300      252       48   16.0%   PSINET-2
+AS15290      237      190       47   19.8%   AT&amp;T Canada IES
+AS855        143       97       46   32.2%   part of AS assignment AS853 - AS1
+AS3602       226      180       46   20.4%   Sprint Canada Inc.
+
+
+For the rest of the previous weeks gain information please see
+http://www.employees.org:80/~tbates/cidr-report.html
+
+2) Weekly Delta
+
+Please see
+http://www.employees.org:80/~tbates/cidr-report.html
+for this part of the report
+
+3) Interesting aggregates
+
+Please see
+http://www.employees.org:80/~tbates/cidr-report.html
+for this part of the report
+
+
+

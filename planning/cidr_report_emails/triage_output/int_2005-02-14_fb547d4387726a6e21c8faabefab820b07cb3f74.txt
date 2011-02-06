@@ -1,0 +1,38 @@
+# from /home/woodrow/proj/cidr-report_analysis/planning/cidr_report_emails/cidr_r_emails-old_index.txt:243
+# 2005-02-14 'RE: The Cidr Report' from 'Barry Raveendran Greene'
+# http://www.merit.edu/mail.archives/nanog/2005-02/msg00238.html
+
+
+RE: The Cidr Report
+From: Barry Raveendran Greene
+Date: Mon Feb 14 19:56:25 2005
+
+
+
+
+Based on the experience with the CIDR Police project
+(http://www.nanog.org/mtg-0302/cidr.html), you can encourge operators to
+aggregate. My observation during that time was that operators:
+
+-&gt; Didn't know they had a problem.
+-&gt; Didn't know how to set up an aggregation policy
+-&gt; Had no one paying attention to the advertisements
+-&gt; Never had time to deal with the problem. 
+
+Usually, nudging, encouragement, and clue helped. Having the NANOG Tutorials
+on-line helped - since we use them as on-line learning tools to tactfully
+clue-in people.
+
+Perhaps it is time for a new crew to get together to form a new CIDR Police
+team? Every week would get people from the CIDR Police knocking on the doors
+of their peers offering their help and asstance to enhance their
+aggregation. Hank and I are occupied with another project, but I'm sure we
+can brain dump to any who would like to build this new team.
+
+My $.02,
+
+Barry
+
+
+
+

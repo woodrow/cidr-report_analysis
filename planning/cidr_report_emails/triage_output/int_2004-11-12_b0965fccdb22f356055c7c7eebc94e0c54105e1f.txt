@@ -1,0 +1,44 @@
+# from /home/woodrow/proj/cidr-report_analysis/planning/cidr_report_emails/cidr_r_emails-old_index.txt:321
+# 2004-11-12 'Re: The Cidr Report' from 'Randy Bush'
+# http://www.merit.edu/mail.archives/nanog/2004-11/msg00367.html
+
+
+Re: The Cidr Report
+From: Randy Bush
+Date: Fri Nov 12 20:12:34 2004
+
+
+
+&gt;&gt;&gt; ASnum    NetsNow NetsAggr  NetGain   % Gain   Description
+&gt;&gt;&gt;
+&gt;&gt;&gt; AS18566      751        6      745    99.2%   CVAD Covad Communications
+&gt;&gt;&gt; AS4134       825      178      647    78.4%   CHINANET-BACKBONE
+&gt;&gt;&gt;                                                No.31,Jin-rong Street
+&gt;&gt;&gt; AS4323       794      223      571    71.9%   TWTC Time Warner Telecom
+&gt;&gt;&gt; AS6197       814      430      384    47.2%   BNS-14 BellSouth Network
+&gt;&gt;&gt;                                                Solutions, Inc
+&gt;&gt;&gt; AS22773      401       17      384    95.8%   CXA Cox Communications Inc.
+&gt;&gt;&gt; AS27364      413       45      368    89.1%   ARMC Armstrong Cable Services
+&gt;&gt;&gt; AS701       1230      884      346    28.1%   UU UUNET Technologies, Inc.
+&gt;&gt;&gt; AS22909      412       81      331    80.3%   CMCS Comcast Cable
+&gt;&gt;&gt;                                                Communications, Inc.
+&gt;&gt; e.g. is AS18566 the origin AS for 751 prefixes that could be
+&gt;&gt; collapsed to 6?
+&gt; 
+&gt; not to justify the expense, but perhaps covad is renumbering from one
+&gt; block to another? Looking at their advertisments I see lots of /23 or /24
+&gt; blocks inside their larger covering routes... So either they deaggregated
+&gt; to renumber more gracefully, or they forgot their prefix-list outbound to
+&gt; williams and exodus ?
+&gt; 
+&gt; perhaps covad can explain? or silently cover up the 'mistake' (which is
+&gt; acceptable as well...)
+
+it's not just covad.  they're just such an egregious case among
+many socially and technically irresponsible polluters.
+
+randy
+
+
+
+

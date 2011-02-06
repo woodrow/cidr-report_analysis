@@ -1,0 +1,50 @@
+# from /home/woodrow/proj/cidr-report_analysis/planning/cidr_report_emails/cidr_r_emails-old_index.txt:614
+# 2000-05-15 'Re: CIDR Report' from 'Chris Williams'
+# http://www.merit.edu/mail.archives/nanog/2000-05/msg00298.html
+
+
+Re: CIDR Report
+From: Chris Williams
+Date: Mon May 15 11:42:49 2000
+
+
+
+&gt; Gee..., why didn't anyone else think of that?
+&gt; Cisco, are you listening?  You need to make a GSR that does BGP
+&gt; updates faster, ok?  While you're at it, you need to write bug-free
+&gt; software and build routers that never fail, ok?
+
+C'mon. I'm obviously not suggesting it is as easy as &quot;ask and ye shall
+receive&quot;. My point here is that demand drives the market, and if it
+becomes clear that routers with faster BGP implementations are what is
+needed, that is just what the vendors will (eventually, at least)
+develope. Do you think vendors have been madly increasing the throughput
+of their switches and routers over the last couple years just for the
+fun of it? I doubt it. It's because increased bandwidth is *what's in
+demand*.
+If there's a theoretical limit that prevents routers from processing BGP
+updates faster than they do today, I'd love to hear an explanation --
+then again, I also heard convincing arguments that modems could never
+get faster than 9600 baud.
+
+&gt; As for the &quot;imposing limitations on end-users which make the
+&gt; (I)internet less useful&quot;, well, personally, I'd trade &quot;less useful&quot;
+&gt; for &quot;available&quot; is a second.  Though you should understand that
+&gt; those limitations aren't imposed because folks have nothing better
+&gt; to do, they're imposed because people with experience attempt to
+&gt; design things that are reliable, scale well, and are manageable.
+&gt; Having worked for several large service providers, I assure you,
+&gt; hacks and one-offs don't scale well.
+
+I'm not suggesting that the limitations are being imposed for no good
+reason -- I'm simply saying that imposing that kind of limitation *is
+not a long-term solution*, if what users of the network actually need is
+something else. Also, keep in mind that in the case we are talking
+about, the *exact reason* that users need portable /24s is for
+reliability -- so at least for those users, I'm sure they would rather
+each provider be 10% less reliable, if it meant they could multihome to
+multiple providers.
+
+
+
+

@@ -1,0 +1,63 @@
+# from /home/woodrow/proj/cidr-report_analysis/planning/cidr_report_emails/cidr_r_emails-old_index.txt:621
+# 2000-05-14 'Re: CIDR Report' from 'Danny McPherson'
+# http://www.merit.edu/mail.archives/nanog/2000-05/msg00273.html
+
+
+Re: CIDR Report
+From: Danny McPherson
+Date: Sun May 14 15:50:06 2000
+
+
+
+
+&gt; 1) Routing Table size
+&gt; 	Is this as important of an issue as it was 3 years ago? Nope, not
+&gt; with M40s and GSRs as standard backbone routes. 100K routes is no sweat
+&gt; with these boxes. Of course, some of the big carriers would have to
+&gt; finally replace some of those older 7505s floating around their networks. 
+
+Route and forwarding table memory and processors speeds are pretty 
+much the same between GSRs, M40s, and 7500s.  The packet processing
+capabilities are where the relevant differences are.  As for if it 
+still matters, well, the fact that it takes &gt; 4-5 minutes for some 
+routers to pickup a full BGP table from a single peer, or generate
+the updates to send to a new peer, well, not worrying about this sure
+isn't going to increase network availability any.
+ 
+&gt; 2) IP Address Space Scarcity
+&gt; 	There is no real address space scarcity. We still have most of
+&gt; 64/2 to go through. And there is always an easy answer to this &quot;problem&quot; -
+&gt; turn IP space into a commodity and have an exchange system where folks
+&gt; purchased address space from each other. This would result in the hoarded
+&gt; &quot;class A&quot; space being thrown back into circulation, as the companies that
+&gt; had them would have an incentive to unload them - money. As IP space is
+&gt; really not that scarce (and would be less so with the Class A's in
+&gt; circulation), the prices would be reasonable. When they became
+&gt; unreasonable, there would be a market-driven move to IPv6. Ah, capitalism.
+&gt; 
+&gt; The answer to most of these issues is to allow much smaller allocations in
+&gt; a specific block - say 65/8. Allow /24-/21 allocations in this block for
+&gt; smaller multihomed enterprises. Then, start cracking down on the other
+&gt; blocks by filtering smaller prefixes. This would enforce necessary
+&gt; aggregation where possible, but still allow multihomed enterprises to
+&gt; obtain an appropriate amount of IP space on their own.
+
+I'd venture to say that if routers were capable of maintaining 100K+
+prefix filters, and secure, reliable registries were available to
+populate the filters, and these longer prefixes (/21-/24, or maybe even 
+longer) were allocated and registered in a reasonable manner, and tools 
+were in place to efficiently manage all of this, and again, the routers 
+were capable of handling all of this, well, I doubt Randy or others 
+would have as big a problem accepting appropriately identified longer 
+prefixes from peers.
+
+Of course, until the fairy dust is sprinkled over all our networks
+and these things are no longer a problem, we'll just have to deal 
+with them, in the way that the individuals, and their employers see 
+fit.
+
+-danny
+
+
+
+

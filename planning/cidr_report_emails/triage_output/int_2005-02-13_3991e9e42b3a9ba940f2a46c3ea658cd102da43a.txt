@@ -1,0 +1,45 @@
+# from /home/woodrow/proj/cidr-report_analysis/planning/cidr_report_emails/cidr_r_emails-old_index.txt:264
+# 2005-02-13 'Re: The Cidr Report' from 'Christopher L. Morrow'
+# http://www.merit.edu/mail.archives/nanog/2005-02/msg00197.html
+
+
+Re: The Cidr Report
+From: Christopher L. Morrow
+Date: Sun Feb 13 02:34:53 2005
+
+
+
+
+On Sat, 12 Feb 2005, Alexander Koch wrote:
+
+&gt;
+&gt; On Sat, 12 February 2005 14:58:42 +0000, Stephen J. Wilcox wrote:
+&gt; &gt; From: &quot;Stephen J. Wilcox&quot; &lt;steve@telecomplete.co.uk&gt;
+&gt; &gt; [...]   - would you agree that most of the poor deaggregating is not intentional
+&gt; &gt; ie that they're announcing their '16 class Cs' or historically had 2 /21s and
+&gt;
+&gt; Think about someone putting in a Null0 route and re-
+&gt; exporting stuff unconditionally, now after he originates
+&gt; his /19 he is then adding a /24 here, and a /25 there.
+&gt; Lack of experience, when you suggest to them they should
+&gt; remove these announcements they are afraid to change it,
+&gt; not understanding the implications, etc.
+&gt;
+&gt; Not to mention ppl using cisco and prefix lists, it is
+&gt; way too easy with cisco to say '/19 le 24', and then they
+&gt; use outbound prefix lists to their transit supplier
+&gt; (different, but related as I see it). Some transit ISPs
+&gt; use that a lot, and encourage the table growth.
+
+There are some business reasons to de-aggregate. Look at some outages
+caused by 'routing problems' (someone leaked my /24's to their peers,
+peers, peer and my traffic got blackholed, because the public net only
+knows me as a /20)
+
+There are multiple reasons for deaggregation aside from 'dumb operator',
+some are even 'valid' if you look at them from the protection standpoint.
+
+-Chris
+
+
+

@@ -1,0 +1,51 @@
+# from /home/woodrow/proj/cidr-report_analysis/planning/cidr_report_emails/cidr_r_emails-old_index.txt:276
+# 2005-02-12 'RE: The Cidr Report' from 'Neil J. McRae'
+# http://www.merit.edu/mail.archives/nanog/2005-02/msg00185.html
+
+
+RE: The Cidr Report
+From: Neil J. McRae
+Date: Sat Feb 12 06:07:27 2005
+
+
+
+Mike,
+
+&gt; It seems to me they get paid to carry prefixes by their customers.
+&gt; 
+&gt; And their peers listen to the prefixes because they make 
+&gt; money by using those prefixes.
+
+I'm sure this type of statement helps drug dealers to sleep at night! :-)
+If the top 100 AS's de-aggregated and increased the routes they
+announce by 6000 each would we be so content?
+
+&gt; However, if you are the one filtering and all your 
+&gt; competitors figure out how to handle 154,000 routes then you 
+&gt; will be at a competitive disadvantage.
+
+But its not just 154,000 routes though is it?! If we all start
+doing this at a much increased rate [as we've seen in recent times]
+then it will be more like 1,540,000 routes.
+
+When we cleaned the issue from 8220 we found that a lot of the issues 
+were config issues and ancient history transient workarounds for 
+problems that were not fixed after the event. The issue we see is 
+bad aggregation - the root cause is bad practise and processes 
+that manifest into bad aggregation. I would argue that 
+networks with poor aggregation are also networks that will tend to 
+have more routeing issues and other outages although I have no
+data to back that claim up.
+
+&gt; Coincidentally, the largest networks also spend the most with 
+&gt; their vendors and get to tell the vendors what they want in 
+&gt; the next generation of boxes they buy.
+
+And look how well that's worked out not notably on this issue.
+
+Regards,
+Neil.
+
+
+
+

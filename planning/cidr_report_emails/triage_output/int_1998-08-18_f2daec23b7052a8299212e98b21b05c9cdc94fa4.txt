@@ -1,0 +1,41 @@
+# from /home/woodrow/proj/cidr-report_analysis/planning/cidr_report_emails/cidr_r_emails-old_index.txt:744
+# 1998-08-18 'Re: The Cidr Report' from 'Sean M. Doran'
+# http://www.merit.edu/mail.archives/nanog/1998-08/msg00285.html
+
+
+Re: The Cidr Report
+From: Sean M. Doran
+Date: Tue Aug 18 06:48:36 1998
+
+
+Tli asked:
+
+| Exercise for the reader: If prefixes of length F and longer are filtered,
+| and a domain has a prefix of length N, how many prefixes can they propagate
+| into the backbone?  How many before people start proxy aggregating them?
+
+A/      (2 ** F) - 1.   [assuming nobody imposes exact-match prefix filters]
+
+B/      When we can easily do:
+
+	&quot;router bgp N
+         proxy-aggregate route-map Lazy-Types
+
+	! exceptions
+	route-map Lazy-Types deny 10
+        match as-path 100
+
+	! the rule
+	route-map Lazy-Types permit 20
+	match originated-prefix-count 16&quot;
+	
+	then the number 16 strikes me as a starting point,
+	although I probably want to re-read Dennis's comments
+	from a few years ago.
+
+Do I pass?
+
+	Sean.
+
+
+

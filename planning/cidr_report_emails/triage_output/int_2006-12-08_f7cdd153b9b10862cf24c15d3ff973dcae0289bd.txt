@@ -1,0 +1,130 @@
+# from /home/woodrow/proj/cidr-report_analysis/planning/cidr_report_emails/cidr_r_emails-old_index.txt:144
+# 2006-12-08 'Re: Whatever happened to &quot;The Cidr Repor' from 'Adam Jacob Muller'
+# http://www.merit.edu/mail.archives/nanog/2006-12/msg00099.html
+
+
+Re: Whatever happened to &quot;The Cidr Report&quot;?
+From: Adam Jacob Muller
+Date: Fri Dec 08 20:21:10 2006
+
+
+
+According to my archives, the last CIDR report was badly broken:
+
+
+
+Recent Table History
+        Date      Prefixes    CIDR Agg
+        03-11-06    199409      129843
+        04-11-06    199323      129829
+        05-11-06    199330      129854
+        06-11-06    199273      129854
+        07-11-06  -1077936760      129854
+        08-11-06  672037797      129854
+        09-11-06  -1077937324      129854
+        10-11-06  134555024      129854
+
+
+
+After someone noticed we got this:
+
+
+
+Geoff Huston wrote:
+When my zebra BGP daemin looses its grip on life and dies a  
+horrible death the rest to the scripts wander into a strange  
+twilight zone and make up numbers
+
+
+There were no more CIDR reports following that, perhaps he never got  
+around to fixing it?
+
+-Adam
+
+
+On Dec 8, 2006, at 4:00 PM, Alan Spicer wrote:
+
+
+
+Okay, am I the only one who misses this being posted to the list?
+
+
+Winters: Lieutenant Sobel does not hate Easy Company, Private  
+Randleman. He just hates you. (from HBO Series: Band of Brothers #1)
+
+According to my kept messages of Nanog List, they were coming every  
+7 days. I have them back from 6/2/2006 up to 11/3/2006. Maybe they  
+had a script or job quit on them that emailed the thing.
+
+---
+Alan Spicer (a_spicer@bellsouth.net),
+(aspicer@telecom.dyndns.biz), (alanspicertelecom@gmail.com)
+
+DBA Alan Spicer Telcom
+Computer Services, Wired/Wireless Networking,
+Marine Cell/Sat/Landline Communications,
+Marine Internet Access
+
+* http://telecom.dyndns.biz/
+* IPv6 http://[2001:5c0:8104::1]/
+*
+* 954-683-3426 Business Mobile
+* 866-977-5245 Toll Free 800#
+* 954-977-5245 Home Office
+
+
+----- Original Message ----- From: &quot;Etaoin Shrdlu&quot;  
+&lt;shrdlu@deaddrop.org&gt;
+To: &lt;nanog@merit.edu&gt;
+Sent: Friday, December 08, 2006 1:43 PM
+Subject: Whatever happened to &quot;The Cidr Report&quot;?
+
+
+
+cidr-report@potaroo.net wrote:
+
+
+This report has been generated at Fri Nov 10 21:40:01 2006 AEST.
+
+
+Okay, am I the only one who misses this being posted to the list?  
+Yes, I know that I can go to the site for the report, but it just  
+suddenly vanished (at least to me), without warning. Was I the  
+only one still reading it from the mailing list? Was there an  
+announcement, and I just missed it?
+
+Please see http://www.cidr-report.org for the full report
+
+------------------------------------
+Copies of this report are mailed to:
+ nanog@merit.edu
+
+
+
+Private replies okay, but I bet I'm not the only one for whom it  
+just suddenly vanished. I like my stuff in plain text when I can  
+get it; the web site is nice, but I'm not point and clicky type.
+
+--
+The Eighties:        I tried being reasonable once. I didn't like it.
+Cats are smarter than dogs. You can't teach eight cats to pull a  
+sled.
+Stupid is doing the same thing over and over and expecting
+different results.
+
+
+
+
+
+--
+No virus found in this incoming message.
+Checked by AVG Free Edition.
+Version: 7.5.432 / Virus Database: 268.15.15/579 - Release Date:  
+12/7/2006 1:31 PM
+
+
+
+
+
+
+

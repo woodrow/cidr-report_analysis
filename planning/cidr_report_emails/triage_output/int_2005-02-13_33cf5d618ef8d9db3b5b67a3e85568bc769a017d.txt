@@ -1,0 +1,153 @@
+# from /home/woodrow/proj/cidr-report_analysis/planning/cidr_report_emails/cidr_r_emails-old_index.txt:248
+# 2005-02-13 'Re: The Cidr Report' from 'Warren Kumari, Ph.D, CCIE# 9190'
+# http://www.merit.edu/mail.archives/nanog/2005-02/msg00215.html
+
+
+Re: The Cidr Report
+From: Warren Kumari, Ph.D, CCIE# 9190
+Date: Sun Feb 13 20:58:50 2005
+
+
+
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA1
+
+
+On Feb 13, 2005, at 6:19 PM, Christopher L. Morrow wrote:
+
+
+
+On Sun, 13 Feb 2005, Michael Smith wrote:
+
+From: &quot;Warren Kumari, Ph.D, CCIE# 9190&quot; &lt;warren@kumari.net&gt;
+On Feb 13, 2005, at 2:31 AM, Christopher L. Morrow wrote:
+
+That and the &quot;I have 1 circuit to $good_provider and 1 circuit to
+$bad_provider and the only way I can make them balance is to split my
+space in half and announce more specifics out through each provider&quot;
+argument. I have also often seen people do this without announcing 
+the
+aggregate because   &lt;some undefined bad thing&gt; will happen, usually
+justified with much hand-waving.  The people who do this can usually
+not be reasoned with....
+
+So, say  I'm a provider that has received a /22 from UUNet (just for 
+example
+Chris :-) ) and I now get another transit provider and announce the 
+/22
+there.  So, I call UUNet and ask them to announce the /22 as a more 
+specific
+
+Meaning you have PA space from UUNET, and you have BGP so you can
+multi-home... I'd expect you to know how to deaggregate yourself. You
+MIGHT even know how to send no-export on deaggregated prefixes, or use 
+the
+1996 policies to influence preferences/prepends internal to 701, yes?
+
+because I don't want a de-facto asymmetric configuration.  I *want* 
+to get a
+/20 from ARIN but my usage doesn't justify it yet, so I have to ride 
+the /22
+for some time.
+
+
+I'm not clear as to how the /22 to /20 discussion goes, or how it's 
+even
+relevant... but it's been a long day. Can you elaborate?
+
+By the long string of anecdotal attacks in the string to date, 
+listing most
+or all such providers as &quot;bad&quot; or &quot;uninformed&quot; how do you separate 
+out those
+providers who are legitimately interested in routing redundancy and 
+not clue
+
+a /22 in both directions seems like safe 'redundancy'. Adding no-export
+/24's or /32's if you want (yuck) would get you more preference inside 
+one
+provider or the other.
+
+I'm also fairly sure I didn't say: &quot;bad&quot; or &quot;uniformed&quot; the 'bad 
+provider'
+is from Warren, not I.
+
+Whoops, I guess I wasn't very clear. By $good_provider and 
+$bad_provider I wasn't meaning to imply that $good_provider ran their 
+network &quot;better&quot; or
+&quot;cleaner&quot; than $bad_provider, merely that (by default and without 
+tuning) more traffic travels via $good_provider than via $bad_provider 
+(e.g. $bad_provider buys transit from $good_provider). I guess I should 
+have used big_provider and little_provider or something.
+
+
+
+impaired?  Do we just say &quot;too bad, routing table bloat is more 
+important
+than your need for redundancy small guy!&quot;?
+
+No, I don't think anybody was saying that, just that many people are 
+needlessly de-aggregating space. I have seen someone with a single T3 
+(and obviously a single provider!) announcing his PA  /19 as a bunch of 
+/24s, redistributed into BGP from OSPF! Some consultant had come in, 
+set it up and left. After a bit of help, said person turned off BGP and 
+has been running fine ever since. No-one was trying to take away your 
+redundancy, just limit the number of unnecessary announcements. See 
+Chris's comments above on how to get redundancy without making others 
+pay for it....
+
+
+
+
+I think that folks have been pushed toward multihoming with multiple
+providers (not just 'redundant T1' or 'shadow T1' services inside the 
+same
+provider) over the last few years. That means some bloat is bound to
+occur. I'm not measuring it myself, but the renesys folks and LCS folks
+have been I think? Perhaps they can comment on that phenomenon?
+
+I find it interesting that the general theme is one of &quot;we're smarter 
+than
+they are because we aggregate more routes&quot; as if clue were directly
+correlated to aggregated routing announcements.
+
+Well, often lack of aggregation is directly caused by lacy of clue. 
+Obviously there are legitimate reasons for de-aggregating a big block 
+(otherwise we would all just carry 0/0 :-) ) but if there is no 
+additional information in the more specifics, then there is no reason 
+for them the be announced.
+
+
+it's not? :) (joking of course) As I said before some folks feel they 
+have
+a legitimate reason for deaggregating. If you can spend some time 
+chatting
+them up about their reasons and either:
+1) realizing they hav a point
+2) re-purpose their thoughts toward 'better cidr management' (as pfs 
+said)
+
+then good for you... and everyone else :) I have spent sometime on
+occasion doing this, sometimes it works out, othertimes it doesn't :( 
+It's
+always an experience though.
+
+It certainly is...
+
+
+
+-Chris
+
+
+
+- -- 
+Militant Agnostic--I don't know and you don't either!
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.2.4 (Darwin)
+
+iD8DBQFCEAWZHSkNr4ucEScRAoz3AKD6qP+le+n38KEodea6WsoWB/av9gCdH/bu
+4YG3VVrMNd/61Lr5ZZBgnRY=
+=/Ebs
+-----END PGP SIGNATURE-----
+
+
+

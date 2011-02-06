@@ -1,0 +1,1287 @@
+# from /home/woodrow/proj/cidr-report_analysis/planning/cidr_report_emails/cidr_r_emails-old_index.txt:825
+# 1997-05-02 'The Cidr Report' from 'Tony Bates'
+# http://www.merit.edu/mail.archives/nanog/1997-05/msg00050.html
+
+
+The Cidr Report
+From: Tony Bates
+Date: Fri May 02 15:34:29 1997
+
+
+
+This is an auto-generated mail on Fri May  2 12:00:00 PDT 1997
+It is not checked before it leaves my workstation.  However, hopefully 
+you will find this report interesting and will take the time to look 
+through this to see if you can improve the amount of aggregation you 
+perform.
+
+The report is split into sections:
+
+   0) General Status
+   
+      List the route table history for the last week, list any possibly
+      bogus routes seen and give some status on ASes.
+
+   1) Gains by aggregating at the origin AS level
+
+      This lists the &quot;Top 30&quot; players who if they decided to aggregate
+      their announced classful prefixes at the origin AS level could 
+      make a significant difference in the reduction of the current 
+      size of the Internet routing table. This calculation does not 
+      take into account the inclusion of holes when forming an aggregate
+      so it is possible even larger reduction should be possible.
+
+   2) Weekly Delta
+
+      A summary of the last weeks changes in terms of withdrawn and
+      added routes. Please note that this is only a snapshot but does 
+      give some indication of ASes participating in CIDR. Clearly,
+      it is generally a good thing to see a large amont of withdrawls.
+
+   3) Interesting aggregates
+
+      Interesting here means not an aggregate made as a set of 
+      classful routes.      
+
+Thanks to xara.net for giving me access to their routing tables once a
+day. 
+
+Please send any comments about this report directly to me.
+
+Check http://www.employees.org/~tbates/cidr-report.html for a daily
+update of this report.
+
+
+
+------------------------------------------------------------------------------
+
+                        CIDR REPORT for 02May97
+
+
+0) General Status
+
+Table History
+-------------
+
+Date	Prefixes
+250497	45179
+260497	44513
+270497	44787
+280497	44878
+290497	45036
+300497	45080
+010597	45238
+020597	44926
+
+Check http://www.employees.org/~tbates/cidr.plot.html for a plot
+of the table history.
+
+
+Possible Bogus Routes
+---------------------
+
+*** Bogus 192.168.1.0 from AS174
+*** Bogus 192.168.36.0 from AS174
+*** Bogus 192.168.160.0 from AS174
+*** Bogus 192.168.161.0 from AS174
+
+AS Summary
+----------
+
+Number of ASes in routing system:                 2271
+
+Number of ASes announcing only one prefix:         980 (491 cidr, 489 classful)
+
+Largest number of  cidr routes:                    523 announced by AS3561
+Largest number of classful routes:                1451 announced by AS1221
+
+
+
+1) Gains by aggregating at the origin AS level
+
+ --- 02May97 ---
+ASnum    NetsNow NetsCIDR  NetGain  % Gain   Description
+
+AS174       1210      862      348   28.8%   Performance Systems International
+AS2493       820      505      315   38.4%   i*internet
+AS1221      1451     1177      274   18.9%   AARNET-AS
+AS3602       563      330      233   41.4%   Sprint Canada Inc.
+AS1         1149      940      209   18.2%   BBN Planet backbone
+AS1691       311      172      139   44.7%   BCTEL
+AS2048       255      124      131   51.4%   State of Louisiana/Office of Tele
+AS3804       185       86       99   53.5%   Bell Blobal Solutions
+AS839        115       31       84   73.0%   North West Territories Regional N
+AS2704       267      189       78   29.2%   HOOKUP-NET-A
+AS816        288      217       71   24.7%   UUNETCA-AS4
+AS855        134       65       69   51.5%   NBTel
+AS7195       114       46       68   59.6%   INTERRED
+AS2386       179      113       66   36.9%   INS-AS
+AS4293        96       33       63   65.6%   IMCI
+AS701        868      808       60    6.9%   Alternet
+AS813        231      175       56   24.2%   UUNET Canada (ASN-UUNETCA-AS1)
+AS3491       138       88       50   36.2%   CAIS-ASN
+AS6181        53        4       49   92.5%   FUSE-NET
+AS3561       951      902       49    5.2%   MCI
+AS4648       160      112       48   30.0%   NZIX 2
+AS3799        73       25       48   65.8%   IDS
+AS4454        63       16       47   74.6%   OIR Telecommunications, State of 
+AS3397        67       21       46   68.7%   EMI-AS
+AS549        209      164       45   21.5%   ONet Backbone
+AS3464       109       64       45   41.3%   ASC-NET
+AS97         171      127       44   25.7%   JvNCnet
+AS3749        72       28       44   61.1%   Tennessee Board of Regents
+AS225         75       31       44   58.7%   University of Virginia (VIRnet)
+AS1717       270      226       44   16.3%   RENATER
+
+ --- 01May97 ---
+ASnum    NetsNow NetsCIDR  NetGain  % Gain   Description
+
+AS174       1212      863      349   28.8%   Performance Systems International
+AS2493       824      509      315   38.2%   i*internet
+AS1221      1444     1171      273   18.9%   AARNET-AS
+AS1         1151      940      211   18.3%   BBN Planet backbone
+AS3602       503      301      202   40.2%   Sprint Canada Inc.
+AS1691       310      172      138   44.5%   BCTEL
+AS2048       246      114      132   53.7%   State of Louisiana/Office of Tele
+AS3804       185       86       99   53.5%   Bell Blobal Solutions
+AS839        115       31       84   73.0%   North West Territories Regional N
+AS1967       159       77       82   51.6%   Middle East Technical University 
+AS2704       263      187       76   28.9%   HOOKUP-NET-A
+AS7195       117       43       74   63.2%   INTERRED
+AS816        294      222       72   24.5%   UUNETCA-AS4
+AS855        134       65       69   51.5%   NBTel
+AS4293        96       33       63   65.6%   IMCI
+AS2386       177      115       62   35.0%   INS-AS
+AS701        866      805       61    7.0%   Alternet
+AS4454        84       24       60   71.4%   OIR Telecommunications, State of 
+AS813        229      174       55   24.0%   UUNET Canada (ASN-UUNETCA-AS1)
+AS3491       139       89       50   36.0%   CAIS-ASN
+AS6181        53        4       49   92.5%   FUSE-NET
+AS3561       952      903       49    5.1%   MCI
+AS4648       160      112       48   30.0%   NZIX 2
+AS3799        73       25       48   65.8%   IDS
+AS549        208      161       47   22.6%   ONet Backbone
+AS3397        67       21       46   68.7%   EMI-AS
+AS97         190      146       44   23.2%   JvNCnet
+AS225         74       30       44   59.5%   University of Virginia (VIRnet)
+AS1717       266      222       44   16.5%   RENATER
+AS3749        73       30       43   58.9%   Tennessee Board of Regents
+
+ --- 30Apr97 ---
+ASnum    NetsNow NetsCIDR  NetGain  % Gain   Description
+
+AS174       1212      862      350   28.9%   Performance Systems International
+AS2493       825      507      318   38.5%   i*internet
+AS1221      1476     1195      281   19.0%   AARNET-AS
+AS1         1197      962      235   19.6%   BBN Planet backbone
+AS3602       564      335      229   40.6%   Sprint Canada Inc.
+AS1691       308      173      135   43.8%   BCTEL
+AS2048       254      124      130   51.2%   State of Louisiana/Office of Tele
+AS3804       185       86       99   53.5%   Bell Blobal Solutions
+AS839        115       31       84   73.0%   North West Territories Regional N
+AS2704       265      190       75   28.3%   HOOKUP-NET-A
+AS7195       117       43       74   63.2%   INTERRED
+AS816        296      224       72   24.3%   UUNETCA-AS4
+AS855        132       64       68   51.5%   NBTel
+AS2386       177      115       62   35.0%   INS-AS
+AS701        873      812       61    7.0%   Alternet
+AS4454        84       24       60   71.4%   OIR Telecommunications, State of 
+AS4293        95       36       59   62.1%   IMCI
+AS813        231      175       56   24.2%   UUNET Canada (ASN-UUNETCA-AS1)
+AS3491       138       88       50   36.2%   CAIS-ASN
+AS6181        53        4       49   92.5%   FUSE-NET
+AS4648       179      130       49   27.4%   NZIX 2
+AS3561       950      901       49    5.2%   MCI
+AS3799        73       25       48   65.8%   IDS
+AS549        208      161       47   22.6%   ONet Backbone
+AS3464       110       63       47   42.7%   ASC-NET
+AS3397        66       20       46   69.7%   EMI-AS
+AS97         192      148       44   22.9%   JvNCnet
+AS225         75       31       44   58.7%   University of Virginia (VIRnet)
+AS1717       268      224       44   16.4%   RENATER
+AS3749        73       30       43   58.9%   Tennessee Board of Regents
+
+ --- 29Apr97 ---
+ASnum    NetsNow NetsCIDR  NetGain  % Gain   Description
+
+AS174       1183      849      334   28.2%   Performance Systems International
+AS2493       828      511      317   38.3%   i*internet
+AS1221      1467     1192      275   18.7%   AARNET-AS
+AS3602       566      335      231   40.8%   Sprint Canada Inc.
+AS1         1166      950      216   18.5%   BBN Planet backbone
+AS1691       310      171      139   44.8%   BCTEL
+AS2048       252      122      130   51.6%   State of Louisiana/Office of Tele
+AS3804       185       86       99   53.5%   Bell Blobal Solutions
+AS839        115       31       84   73.0%   North West Territories Regional N
+AS1967       159       77       82   51.6%   Middle East Technical University 
+AS2704       263      186       77   29.3%   HOOKUP-NET-A
+AS816        292      220       72   24.7%   UUNETCA-AS4
+AS855        132       64       68   51.5%   NBTel
+AS7195       114       46       68   59.6%   INTERRED
+AS685        213      145       68   31.9%   NorthWestNet Primary AS
+AS2386       177      115       62   35.0%   INS-AS
+AS701        866      805       61    7.0%   Alternet
+AS4454        84       24       60   71.4%   OIR Telecommunications, State of 
+AS4293        95       35       60   63.2%   IMCI
+AS813        232      176       56   24.1%   UUNET Canada (ASN-UUNETCA-AS1)
+AS3491       139       89       50   36.0%   CAIS-ASN
+AS4648       179      130       49   27.4%   NZIX 2
+AS3561       952      903       49    5.1%   MCI
+AS3799        73       25       48   65.8%   IDS
+AS549        207      161       46   22.2%   ONet Backbone
+AS3464       105       59       46   43.8%   ASC-NET
+AS3397        66       20       46   69.7%   EMI-AS
+AS6181        52        8       44   84.6%   FUSE-NET
+AS3749        74       30       44   59.5%   Tennessee Board of Regents
+AS225         75       31       44   58.7%   University of Virginia (VIRnet)
+
+ --- 28Apr97 ---
+ASnum    NetsNow NetsCIDR  NetGain  % Gain   Description
+
+AS174       1215      865      350   28.8%   Performance Systems International
+AS2493       824      508      316   38.3%   i*internet
+AS1221      1469     1192      277   18.9%   AARNET-AS
+AS3602       591      340      251   42.5%   Sprint Canada Inc.
+AS1         1155      946      209   18.1%   BBN Planet backbone
+AS1691       311      172      139   44.7%   BCTEL
+AS2048       243      125      118   48.6%   State of Louisiana/Office of Tele
+AS3804       185       86       99   53.5%   Bell Blobal Solutions
+AS839        115       31       84   73.0%   North West Territories Regional N
+AS1967       155       76       79   51.0%   Middle East Technical University 
+AS2704       262      188       74   28.2%   HOOKUP-NET-A
+AS816        291      219       72   24.7%   UUNETCA-AS4
+AS7195       116       44       72   62.1%   INTERRED
+AS855        132       64       68   51.5%   NBTel
+AS685        214      146       68   31.8%   NorthWestNet Primary AS
+AS2386       178      116       62   34.8%   INS-AS
+AS4454        85       25       60   70.6%   OIR Telecommunications, State of 
+AS4293        93       35       58   62.4%   IMCI
+AS701        860      803       57    6.6%   Alternet
+AS813        231      176       55   23.8%   UUNET Canada (ASN-UUNETCA-AS1)
+AS4648       179      130       49   27.4%   NZIX 2
+AS3799        73       25       48   65.8%   IDS
+AS3491       140       92       48   34.3%   CAIS-ASN
+AS549        209      162       47   22.5%   ONet Backbone
+AS3561       947      900       47    5.0%   MCI
+AS3397        66       20       46   69.7%   EMI-AS
+AS6181        52        8       44   84.6%   FUSE-NET
+AS3749        73       29       44   60.3%   Tennessee Board of Regents
+AS3464       105       61       44   41.9%   ASC-NET
+AS225         75       31       44   58.7%   University of Virginia (VIRnet)
+
+ --- 27Apr97 ---
+ASnum    NetsNow NetsCIDR  NetGain  % Gain   Description
+
+AS174       1210      862      348   28.8%   Performance Systems International
+AS2493       813      505      308   37.9%   i*internet
+AS1221      1469     1191      278   18.9%   AARNET-AS
+AS3602       590      340      250   42.4%   Sprint Canada Inc.
+AS1         1155      946      209   18.1%   BBN Planet backbone
+AS1691       311      172      139   44.7%   BCTEL
+AS2048       242      127      115   47.5%   State of Louisiana/Office of Tele
+AS3804       185       86       99   53.5%   Bell Blobal Solutions
+AS839        115       31       84   73.0%   North West Territories Regional N
+AS1967       154       75       79   51.3%   Middle East Technical University 
+AS7195       117       44       73   62.4%   INTERRED
+AS2704       261      188       73   28.0%   HOOKUP-NET-A
+AS816        292      220       72   24.7%   UUNETCA-AS4
+AS855        132       64       68   51.5%   NBTel
+AS685        214      146       68   31.8%   NorthWestNet Primary AS
+AS2386       178      116       62   34.8%   INS-AS
+AS4293        95       35       60   63.2%   IMCI
+AS701        866      808       58    6.7%   Alternet
+AS4454        81       23       58   71.6%   OIR Telecommunications, State of 
+AS813        234      177       57   24.4%   UUNET Canada (ASN-UUNETCA-AS1)
+AS4648       176      127       49   27.8%   NZIX 2
+AS3799        73       25       48   65.8%   IDS
+AS3491       140       92       48   34.3%   CAIS-ASN
+AS549        209      162       47   22.5%   ONet Backbone
+AS3561       946      899       47    5.0%   MCI
+AS3464       110       64       46   41.8%   ASC-NET
+AS3397        66       20       46   69.7%   EMI-AS
+AS6181        52        8       44   84.6%   FUSE-NET
+AS3749        73       29       44   60.3%   Tennessee Board of Regents
+AS225         75       31       44   58.7%   University of Virginia (VIRnet)
+
+ --- 26Apr97 ---
+ASnum    NetsNow NetsCIDR  NetGain  % Gain   Description
+
+AS174       1213      869      344   28.4%   Performance Systems International
+AS2493       825      508      317   38.4%   i*internet
+AS1221      1467     1189      278   19.0%   AARNET-AS
+AS3602       595      342      253   42.5%   Sprint Canada Inc.
+AS1         1153      931      222   19.3%   BBN Planet backbone
+AS1691       311      172      139   44.7%   BCTEL
+AS2048       258      121      137   53.1%   State of Louisiana/Office of Tele
+AS3804       268      143      125   46.6%   Bell Blobal Solutions
+AS839        115       31       84   73.0%   North West Territories Regional N
+AS1967       154       75       79   51.3%   Middle East Technical University 
+AS2704       264      188       76   28.8%   HOOKUP-NET-A
+AS816        289      217       72   24.9%   UUNETCA-AS4
+AS685        222      151       71   32.0%   NorthWestNet Primary AS
+AS7195       114       44       70   61.4%   INTERRED
+AS855        133       64       69   51.9%   NBTel
+AS2386       179      116       63   35.2%   INS-AS
+AS4454        86       26       60   69.8%   OIR Telecommunications, State of 
+AS701        899      840       59    6.6%   Alternet
+AS4293        95       37       58   61.1%   IMCI
+AS813        234      177       57   24.4%   UUNET Canada (ASN-UUNETCA-AS1)
+AS4648       176      127       49   27.8%   NZIX 2
+AS3799        73       25       48   65.8%   IDS
+AS3491       139       91       48   34.5%   CAIS-ASN
+AS549        212      165       47   22.2%   ONet Backbone
+AS3397        67       21       46   68.7%   EMI-AS
+AS6181        52        8       44   84.6%   FUSE-NET
+AS3749        71       27       44   62.0%   Tennessee Board of Regents
+AS225         75       31       44   58.7%   University of Virginia (VIRnet)
+AS97         186      143       43   23.1%   JvNCnet
+AS3464       107       64       43   40.2%   ASC-NET
+
+ --- 25Apr97 ---
+ASnum    NetsNow NetsCIDR  NetGain  % Gain   Description
+
+AS174       1213      869      344   28.4%   Performance Systems International
+AS2493       825      508      317   38.4%   i*internet
+AS1221      1467     1189      278   19.0%   AARNET-AS
+AS3602       595      342      253   42.5%   Sprint Canada Inc.
+AS1         1153      931      222   19.3%   BBN Planet backbone
+AS1691       311      172      139   44.7%   BCTEL
+AS2048       258      121      137   53.1%   State of Louisiana/Office of Tele
+AS3804       268      143      125   46.6%   Bell Blobal Solutions
+AS839        115       31       84   73.0%   North West Territories Regional N
+AS1967       154       75       79   51.3%   Middle East Technical University 
+AS2704       264      188       76   28.8%   HOOKUP-NET-A
+AS816        289      217       72   24.9%   UUNETCA-AS4
+AS685        222      151       71   32.0%   NorthWestNet Primary AS
+AS7195       114       44       70   61.4%   INTERRED
+AS855        133       64       69   51.9%   NBTel
+AS2386       179      116       63   35.2%   INS-AS
+AS4454        86       26       60   69.8%   OIR Telecommunications, State of 
+AS701        899      840       59    6.6%   Alternet
+AS4293        95       37       58   61.1%   IMCI
+AS813        234      177       57   24.4%   UUNET Canada (ASN-UUNETCA-AS1)
+AS4648       176      127       49   27.8%   NZIX 2
+AS3799        73       25       48   65.8%   IDS
+AS3491       139       91       48   34.5%   CAIS-ASN
+AS549        212      165       47   22.2%   ONet Backbone
+AS3397        67       21       46   68.7%   EMI-AS
+AS6181        52        8       44   84.6%   FUSE-NET
+AS3749        71       27       44   62.0%   Tennessee Board of Regents
+AS225         75       31       44   58.7%   University of Virginia (VIRnet)
+AS97         186      143       43   23.1%   JvNCnet
+AS3464       107       64       43   40.2%   ASC-NET
+
+
+
+
+2) Weekly Delta
+
+This a daily snapshot of changes in classful routes being withdrawn and added.
+the deltas are calculated over a rolling 7 day period. Please bear in mind this
+is purely a &quot;snapshot&quot; and a large flucuation could be caused by a connectivity
+problem for example. However, this does give some indication of service
+providers that are moving to classless routing.
+
+
+Top 20 Withdrawn Classful Routes from 25Apr97 to 02May97
+	-153 AS1967 Middle East Technical University 
+	-131  AS685 NorthWestNet Primary AS
+	 -83 AS3804 Bell Blobal Solutions
+	 -37 AS4926 Telintar S.A.
+	 -32 AS3602 Sprint Canada Inc.
+	 -31  AS701 Alternet
+	 -23 AS4454 OIR Telecommunications, State of 
+	 -21 AS6663 InterComp Bucharest
+	 -16 AS1221 AARNET-AS
+	 -15   AS97 JvNCnet
+	 -14 AS3847 Genuity Inc
+	 -12 AS5501 Fraunhofer Gesellschaft
+	 -10 AS6494 IDCI
+	  -9 AS3249 Estpak Data Ltd.
+	  -8 AS5615 World Online BV
+	  -6  AS764 Prime Minister Office
+	  -5 AS5427 TCP/IP GmbH Contrib.Net, Germany
+	  -4 AS3111 Internet Direct Inc. (ASN-DIRECT)
+	  -3 AS3388 UNM-AS
+	  -2 AS6754 DPN location Frankfurt
+
+Top 20 Added Classful Routes from 25Apr97 to 02May97
+	  64  AS705 ALTERNET-AS
+	  54 AS1241 FORTHnet
+	  39 AS3561 MCI
+	  37 AS6140 IMPSAT CORP
+	  30 AS1717 RENATER
+	  19 AS6367 NWLINK
+	  13 AS6897 Global-One Spain
+	  12 AS3550 Philippine Network Foundation, In
+	  10  AS721 DLA-ASNBLOCK-AS
+	   9 AS1329 ANS Greensboro - DNSS 75
+	   8 AS7018 AT&amp;T worldnet network
+	   7 AS7814 CNS-NETWORK
+	   6 AS2548 DIGEX-AS
+	   5 AS7477 TereDonn Computer Engineering
+	   4 AS3267 RUNNet
+	   3 AS3576 PREPnet-EAST
+	   2 AS2828 InterNex Information Services
+	   1  AS271 BCnet Backbone
+
+This a daily snapshot of changes in classles routes being withdrawn and added.
+
+
+Top 20 Withdrawn Classles Routes from 25Apr97 to 02May97
+	 -15 AS1221 AARNET-AS
+	 -14   AS97 JvNCnet
+	  -9 AS4742 AT&amp;T EasyLink Services Australia 
+	  -8  AS701 Alternet
+	  -6 AS7051 ASN-SNS
+	  -5 AS3847 Genuity Inc
+	  -4 AS5427 TCP/IP GmbH Contrib.Net, Germany
+	  -3 AS4695 URBAN-URBAN_INTERNET
+	  -2 AS6754 DPN location Frankfurt
+	  -1 AS5519 Xara Networks Ltd
+
+Top 20 Added Classles Routes from 25Apr97 to 02May97
+	  37 AS2056 AOL-AS
+	  24 AS4454 OIR Telecommunications, State of 
+	  23 AS3563 Pilot Network Services, Inc.
+	  20 AS3561 MCI
+	  16 AS5696 Primary AS for GoodNet
+	  12 AS3602 Sprint Canada Inc.
+	   7 AS2018 The research and academic network
+	   6 AS5465 Global One Services AS Norway
+	   5 AS5639 Telecommunications Services of Tr
+	   4 AS7770 TRITON
+	   3 AS6648 SKY-INTERNET
+	   2 AS1333 ANS Atlanta - DNSS 107
+	   1 AS3421 AADS-CHICAGO
+
+
+
+3) Interesting aggregates
+
+
+
+            List of possibly interesting aggregates
+            ---------------------------------------
+
+         Aggregate | Origin | AS Description          | Netname                
+-------------------------------------------------------------------------------
+      62.48.0.0/19 | AS8271 | CH-IBS Autonomous Syste | European Regional Inter
+   157.22.160.0/19 | AS8046 | NAPANET                 | Zocalo Engineering (NET
+   157.22.192.0/21 | AS8046 | NAPANET                 | Zocalo Engineering (NET
+     24.226.0.0/19 | AS7992 | COGECOWAVE              | @Home Network (NETBLK-A
+     24.128.6.0/24 | AS7922 | MediaOne-Continental Ca | @Home Network (NETBLK-A
+  153.34.154.73/32 | AS7777 | VIX2                    | UUNET Technologies, Inc
+ 153.34.214.215/32 | AS7777 | VIX2                    | UUNET Technologies, Inc
+   199.97.97.68/32 | AS7777 | VIX2                    | The Interactive Connect
+    151.164.1.2/32 | AS7777 | VIX2                    | Southwestern Bell (NET-
+    200.9.212.3/32 | AS7777 | VIX2                    | SatLink Uucp /Internet 
+      38.8.32.0/24 | AS7777 | VIX2                    | Performance Systems Int
+     38.26.41.0/24 | AS7777 | VIX2                    | Performance Systems Int
+     38.29.18.0/24 | AS7777 | VIX2                    | Performance Systems Int
+    38.11.102.0/24 | AS7777 | VIX2                    | Performance Systems Int
+    38.223.82.0/24 | AS7777 | VIX2                    | Performance Systems Int
+   38.216.110.0/24 | AS7777 | VIX2                    | Performance Systems Int
+   38.220.191.0/24 | AS7777 | VIX2                    | Performance Systems Int
+   206.170.76.0/28 | AS7777 | VIX2                    | Pacific Bell Internet S
+  204.183.192.1/32 | AS7777 | VIX2                    | Microserve (NETBLK-SPRI
+204.183.199.231/32 | AS7777 | VIX2                    | Microserve (NETBLK-SPRI
+206.216.217.254/32 | AS7777 | VIX2                    | MCS Automation Engineer
+ 207.156.166.10/32 | AS7777 | VIX2                    | LI Net Inc. (NETBLK-LI-
+   208.129.49.4/32 | AS7777 | VIX2                    | LAS VEGAS INTERNET (NET
+ 192.104.107.27/32 | AS7777 | VIX2                    | K &amp; R Group Inc. (NETBL
+  204.214.132.5/32 | AS7777 | VIX2                    | Hamilton Telephone Comp
+206.139.182.100/32 | AS7777 | VIX2                    | GameNet Corporation (NE
+    207.41.8.10/32 | AS7777 | VIX2                    | Expertise Plus (NETBLK-
+ 207.217.56.116/32 | AS7777 | VIX2                    | EarthLink Network, Inc.
+  205.197.247.3/32 | AS7777 | VIX2                    | DIGEX, Inc. (NETBLK-NET
+ 206.173.241.99/32 | AS7777 | VIX2                    | Concentric Research Cor
+    130.166.1.8/32 | AS7777 | VIX2                    | California State Univer
+ 205.136.220.60/32 | AS7777 | VIX2                    | Cable &amp; Wireless Commun
+   168.75.227.0/24 | AS7777 | VIX2                    | CRL Network Operations 
+  205.152.80.21/32 | AS7777 | VIX2                    | BellSouth.net, Inc. (NE
+ 207.120.161.73/32 | AS7777 | VIX2                    | BBN Planet (NETBLK-BBN-
+ 207.120.43.133/32 | AS7777 | VIX2                    | BBN Planet (NETBLK-BBN-
+ 204.160.192.50/32 | AS7777 | VIX2                    | BBN BARRNET, Inc. (NETB
+206.222.107.192/29 | AS7777 | VIX2                    | American Communications
+  198.83.19.113/32 | AS7777 | VIX2                    | Advanced Network and Se
+  207.141.244.2/32 | AS7777 | VIX2                    | AT&amp;T WorldNet Services 
+  206.185.158.2/32 | AS7777 | VIX2                    | AGIS/Net99 (NETBLK-NET9
+  206.88.47.160/28 | AS7777 | VIX2                    | ADP Autonet (NETBLK-ADP
+ 207.247.16.208/28 | AS7777 | VIX2                    | ACCLAIM COMMUNICATION (
+    143.177.1.5/32 | AS7777 | VIX2                    | *                      
+    204.71.0.43/32 | AS7777 | VIX2                    | *                      
+    204.71.1.40/32 | AS7777 | VIX2                    | *                      
+     24.130.0.0/18 | AS7757 | CCI-AS2-BLK             | @Home Network (NETBLK-A
+   24.131.128.0/18 | AS7756 | CCI-AS2-BLK             | @Home Network (NETBLK-A
+   142.205.36.0/23 | AS7734 | AS for TDBANK           | Canadian Research Netwo
+   142.205.64.0/23 | AS7734 | AS for TDBANK           | Canadian Research Netwo
+  142.205.208.0/23 | AS7734 | AS for TDBANK           | Canadian Research Netwo
+  142.205.212.0/23 | AS7734 | AS for TDBANK           | Canadian Research Netwo
+  142.205.232.0/23 | AS7734 | AS for TDBANK           | Canadian Research Netwo
+  142.205.240.0/23 | AS7734 | AS for TDBANK           | Canadian Research Netwo
+  142.205.248.0/23 | AS7734 | AS for TDBANK           | *                      
+      24.88.0.0/18 | AS7725 | MEDIA1-CAB              | @Home Network (NETBLK-A
+      24.88.0.0/18 | AS7725 | MEDIA1-CAB              | @Home Network (NETBLK-A
+   129.231.48.0/21 | AS7435 | ATM-CIN                 | Digital Commnications A
+   129.231.56.0/24 | AS7435 | ATM-CIN                 | Digital Commnications A
+   129.231.59.0/24 | AS7435 | ATM-CIN                 | Digital Commnications A
+   129.231.67.0/24 | AS7435 | ATM-CIN                 | Digital Commnications A
+     138.87.1.0/24 | AS7386 | ILLINOIS-STATE-UNIV     | Illinois State Universi
+     138.87.7.0/24 | AS7386 | ILLINOIS-STATE-UNIV     | Illinois State Universi
+     138.87.8.0/24 | AS7386 | ILLINOIS-STATE-UNIV     | Illinois State Universi
+    138.87.11.0/24 | AS7386 | ILLINOIS-STATE-UNIV     | Illinois State Universi
+    138.87.57.0/24 | AS7386 | ILLINOIS-STATE-UNIV     | Illinois State Universi
+    138.87.58.0/24 | AS7386 | ILLINOIS-STATE-UNIV     | Illinois State Universi
+   138.87.126.0/24 | AS7386 | ILLINOIS-STATE-UNIV     | Illinois State Universi
+  146.115.132.0/23 | AS7174 | Onward Technologies, In | UltraNet Communications
+    130.213.0.0/17 | AS7046 | UUNET-CUSTOMER          | Rational (NET-RATNET)  
+  130.213.128.0/17 | AS7046 | UUNET-CUSTOMER          | Rational (NET-RATNET)  
+     24.129.0.0/18 | AS7017 | CCI-AS-BLK              | @Home Network (NETBLK-A
+     24.131.0.0/18 | AS7016 | CCI-AS-BLK              | @Home Network (NETBLK-A
+     24.128.0.0/18 | AS7015 | CCI-AS-BLK              | @Home Network (NETBLK-A
+     24.113.0.0/19 | AS6997 | Rogers Network Services | @Home Network (NETBLK-A
+   160.81.156.0/24 | AS6718 | Global One Italy        | Sprint International (N
+   160.81.252.0/24 | AS6718 | Global One Italy        | Sprint International (N
+      24.96.0.0/18 | AS6541 | GTE Intelligent Network | @Home Network (NETBLK-A
+     24.112.0.0/19 | AS6463 | Rogers Network Services | @Home Network (NETBLK-A
+  168.234.128.0/24 | AS6458 | EMPRESSA GUATEMALTECA D | Universidad del Valle d
+  168.234.135.0/24 | AS6458 | EMPRESSA GUATEMALTECA D | Universidad del Valle d
+      24.64.0.0/19 | AS6327 | Shaw Fiberlink Ltd.     | @Home Network (NETBLK-A
+     24.64.32.0/19 | AS6327 | Shaw Fiberlink Ltd.     | @Home Network (NETBLK-A
+    134.129.0.0/18 | AS6263 | NDIN                    | North Dakota State Univ
+   134.129.64.0/18 | AS6263 | NDIN                    | North Dakota State Univ
+  134.129.128.0/17 | AS6263 | NDIN                    | North Dakota State Univ
+     165.88.1.0/24 | AS6254 | EGGINC                  | EG&amp;G, Inc./ Corporate H
+    165.88.10.0/24 | AS6254 | EGGINC                  | EG&amp;G, Inc./ Corporate H
+    165.88.11.0/24 | AS6254 | EGGINC                  | EG&amp;G, Inc./ Corporate H
+    165.88.14.0/24 | AS6254 | EGGINC                  | EG&amp;G, Inc./ Corporate H
+    165.88.15.0/24 | AS6254 | EGGINC                  | EG&amp;G, Inc./ Corporate H
+    165.88.17.0/24 | AS6254 | EGGINC                  | EG&amp;G, Inc./ Corporate H
+    165.88.19.0/24 | AS6254 | EGGINC                  | EG&amp;G, Inc./ Corporate H
+    165.88.23.0/24 | AS6254 | EGGINC                  | EG&amp;G, Inc./ Corporate H
+    165.88.24.0/24 | AS6254 | EGGINC                  | EG&amp;G, Inc./ Corporate H
+    165.88.27.0/24 | AS6254 | EGGINC                  | EG&amp;G, Inc./ Corporate H
+    165.88.28.0/24 | AS6254 | EGGINC                  | EG&amp;G, Inc./ Corporate H
+    165.88.29.0/24 | AS6254 | EGGINC                  | EG&amp;G, Inc./ Corporate H
+    165.88.30.0/24 | AS6254 | EGGINC                  | EG&amp;G, Inc./ Corporate H
+    165.88.35.0/24 | AS6254 | EGGINC                  | EG&amp;G, Inc./ Corporate H
+    165.88.36.0/24 | AS6254 | EGGINC                  | EG&amp;G, Inc./ Corporate H
+    165.88.37.0/24 | AS6254 | EGGINC                  | EG&amp;G, Inc./ Corporate H
+    165.88.38.0/24 | AS6254 | EGGINC                  | EG&amp;G, Inc./ Corporate H
+    165.88.39.0/24 | AS6254 | EGGINC                  | EG&amp;G, Inc./ Corporate H
+    165.88.40.0/24 | AS6254 | EGGINC                  | EG&amp;G, Inc./ Corporate H
+    165.88.41.0/24 | AS6254 | EGGINC                  | EG&amp;G, Inc./ Corporate H
+    165.88.42.0/24 | AS6254 | EGGINC                  | EG&amp;G, Inc./ Corporate H
+    165.88.43.0/24 | AS6254 | EGGINC                  | EG&amp;G, Inc./ Corporate H
+    165.88.44.0/24 | AS6254 | EGGINC                  | EG&amp;G, Inc./ Corporate H
+    165.88.45.0/24 | AS6254 | EGGINC                  | EG&amp;G, Inc./ Corporate H
+    165.88.46.0/24 | AS6254 | EGGINC                  | EG&amp;G, Inc./ Corporate H
+    165.88.47.0/24 | AS6254 | EGGINC                  | EG&amp;G, Inc./ Corporate H
+    165.88.49.0/24 | AS6254 | EGGINC                  | EG&amp;G, Inc./ Corporate H
+    165.88.50.0/24 | AS6254 | EGGINC                  | EG&amp;G, Inc./ Corporate H
+    165.88.94.0/24 | AS6254 | EGGINC                  | EG&amp;G, Inc./ Corporate H
+   165.88.101.0/24 | AS6254 | EGGINC                  | EG&amp;G, Inc./ Corporate H
+   165.88.102.0/24 | AS6254 | EGGINC                  | EG&amp;G, Inc./ Corporate H
+   165.88.103.0/24 | AS6254 | EGGINC                  | EG&amp;G, Inc./ Corporate H
+   165.88.104.0/24 | AS6254 | EGGINC                  | EG&amp;G, Inc./ Corporate H
+   165.88.105.0/24 | AS6254 | EGGINC                  | EG&amp;G, Inc./ Corporate H
+   165.88.106.0/24 | AS6254 | EGGINC                  | EG&amp;G, Inc./ Corporate H
+   165.88.107.0/24 | AS6254 | EGGINC                  | EG&amp;G, Inc./ Corporate H
+   165.88.108.0/24 | AS6254 | EGGINC                  | EG&amp;G, Inc./ Corporate H
+   165.88.109.0/24 | AS6254 | EGGINC                  | EG&amp;G, Inc./ Corporate H
+   165.88.110.0/24 | AS6254 | EGGINC                  | EG&amp;G, Inc./ Corporate H
+   165.88.111.0/24 | AS6254 | EGGINC                  | EG&amp;G, Inc./ Corporate H
+   165.88.112.0/24 | AS6254 | EGGINC                  | EG&amp;G, Inc./ Corporate H
+   165.88.113.0/24 | AS6254 | EGGINC                  | EG&amp;G, Inc./ Corporate H
+   165.88.114.0/24 | AS6254 | EGGINC                  | EG&amp;G, Inc./ Corporate H
+   165.88.115.0/24 | AS6254 | EGGINC                  | EG&amp;G, Inc./ Corporate H
+   165.88.116.0/24 | AS6254 | EGGINC                  | EG&amp;G, Inc./ Corporate H
+   165.88.117.0/24 | AS6254 | EGGINC                  | EG&amp;G, Inc./ Corporate H
+   165.88.118.0/24 | AS6254 | EGGINC                  | EG&amp;G, Inc./ Corporate H
+   165.88.119.0/24 | AS6254 | EGGINC                  | EG&amp;G, Inc./ Corporate H
+   165.88.121.0/24 | AS6254 | EGGINC                  | EG&amp;G, Inc./ Corporate H
+   165.88.122.0/24 | AS6254 | EGGINC                  | EG&amp;G, Inc./ Corporate H
+   165.88.135.0/24 | AS6254 | EGGINC                  | EG&amp;G, Inc./ Corporate H
+   165.88.151.0/24 | AS6254 | EGGINC                  | EG&amp;G, Inc./ Corporate H
+   165.88.152.0/24 | AS6254 | EGGINC                  | EG&amp;G, Inc./ Corporate H
+   165.88.154.0/24 | AS6254 | EGGINC                  | EG&amp;G, Inc./ Corporate H
+   165.88.155.0/24 | AS6254 | EGGINC                  | EG&amp;G, Inc./ Corporate H
+   165.88.158.0/24 | AS6254 | EGGINC                  | EG&amp;G, Inc./ Corporate H
+   165.88.159.0/24 | AS6254 | EGGINC                  | EG&amp;G, Inc./ Corporate H
+   165.88.160.0/24 | AS6254 | EGGINC                  | EG&amp;G, Inc./ Corporate H
+   165.88.166.0/24 | AS6254 | EGGINC                  | EG&amp;G, Inc./ Corporate H
+   165.88.168.0/24 | AS6254 | EGGINC                  | EG&amp;G, Inc./ Corporate H
+   165.88.175.0/24 | AS6254 | EGGINC                  | EG&amp;G, Inc./ Corporate H
+   165.88.177.0/24 | AS6254 | EGGINC                  | EG&amp;G, Inc./ Corporate H
+   165.88.179.0/24 | AS6254 | EGGINC                  | EG&amp;G, Inc./ Corporate H
+   165.88.182.0/24 | AS6254 | EGGINC                  | EG&amp;G, Inc./ Corporate H
+   165.88.195.0/24 | AS6254 | EGGINC                  | EG&amp;G, Inc./ Corporate H
+   165.88.200.0/24 | AS6254 | EGGINC                  | EG&amp;G, Inc./ Corporate H
+   165.88.206.0/24 | AS6254 | EGGINC                  | EG&amp;G, Inc./ Corporate H
+   165.88.209.0/24 | AS6254 | EGGINC                  | EG&amp;G, Inc./ Corporate H
+   165.88.217.0/24 | AS6254 | EGGINC                  | EG&amp;G, Inc./ Corporate H
+   165.88.219.0/24 | AS6254 | EGGINC                  | EG&amp;G, Inc./ Corporate H
+   165.88.230.0/24 | AS6254 | EGGINC                  | EG&amp;G, Inc./ Corporate H
+   165.88.235.0/24 | AS6254 | EGGINC                  | EG&amp;G, Inc./ Corporate H
+   165.88.236.0/24 | AS6254 | EGGINC                  | EG&amp;G, Inc./ Corporate H
+   165.88.240.0/24 | AS6254 | EGGINC                  | EG&amp;G, Inc./ Corporate H
+   165.88.242.0/24 | AS6254 | EGGINC                  | EG&amp;G, Inc./ Corporate H
+   165.88.243.0/24 | AS6254 | EGGINC                  | EG&amp;G, Inc./ Corporate H
+   165.88.251.0/24 | AS6254 | EGGINC                  | EG&amp;G, Inc./ Corporate H
+   165.88.252.0/24 | AS6254 | EGGINC                  | EG&amp;G, Inc./ Corporate H
+   165.88.253.0/24 | AS6254 | EGGINC                  | EG&amp;G, Inc./ Corporate H
+   165.88.254.0/24 | AS6254 | EGGINC                  | EG&amp;G, Inc./ Corporate H
+   165.88.123.0/24 | AS6254 | EGGINC                  | *                      
+   165.88.124.0/24 | AS6254 | EGGINC                  | *                      
+   165.88.125.0/24 | AS6254 | EGGINC                  | *                      
+   165.88.126.0/24 | AS6254 | EGGINC                  | *                      
+   165.88.128.0/24 | AS6254 | EGGINC                  | *                      
+   165.88.129.0/24 | AS6254 | EGGINC                  | *                      
+   165.88.130.0/24 | AS6254 | EGGINC                  | *                      
+   165.88.131.0/24 | AS6254 | EGGINC                  | *                      
+   165.88.132.0/24 | AS6254 | EGGINC                  | *                      
+   165.88.133.0/24 | AS6254 | EGGINC                  | *                      
+   165.88.134.0/24 | AS6254 | EGGINC                  | *                      
+   146.115.96.0/22 | AS6249 | UltraNet RI             | UltraNet Communications
+  207.100.210.0/30 | AS6235 | Intermedia Communicatio | Intermedia Communicatio
+  207.100.210.4/30 | AS6235 | Intermedia Communicatio | Intermedia Communicatio
+     24.227.0.0/19 | AS6235 | Intermedia Communicatio | @Home Network (NETBLK-A
+   207.65.42.16/28 | AS6203 | ISDN-Net Inc.           | ISDN-Net Inc. (NETBLK-I
+   207.65.70.64/28 | AS6203 | ISDN-Net Inc.           | ISDN-Net Inc. (NETBLK-I
+  207.65.70.128/27 | AS6203 | ISDN-Net Inc.           | ISDN-Net Inc. (NETBLK-I
+  207.65.70.224/28 | AS6203 | ISDN-Net Inc.           | ISDN-Net Inc. (NETBLK-I
+  170.147.200.0/21 | AS6176 | SPRINTLINK10            | Intelcom Group (NET-ICG
+  170.147.208.0/21 | AS6176 | SPRINTLINK10            | Intelcom Group (NET-ICG
+  170.147.216.0/22 | AS6176 | SPRINTLINK10            | Intelcom Group (NET-ICG
+  170.147.220.0/24 | AS6176 | SPRINTLINK10            | Intelcom Group (NET-ICG
+       24.0.0.0/14 | AS6172 | HOME-NET-1              | @Home Network (NETBLK-A
+       24.0.0.0/18 | AS6172 | HOME-NET-1              | @Home Network (NETBLK-A
+       24.1.0.0/17 | AS6172 | HOME-NET-1              | @Home Network (NETBLK-A
+   169.130.52.0/24 | AS6153 | ASN-SPRN-NYSERNET       | Sprint, Business Servic
+  165.113.197.0/24 | AS6086 | INFOMAGIC               | CRL Network Services, I
+  165.113.198.0/24 | AS6086 | INFOMAGIC               | CRL Network Services, I
+  165.113.199.0/24 | AS6086 | INFOMAGIC               | CRL Network Services, I
+  165.113.211.0/24 | AS6086 | INFOMAGIC               | CRL Network Services, I
+   161.223.90.0/23 | AS6077 | Network Intensive - A D | Indian Health Service (
+    148.94.35.0/24 | AS5714 | EDS-WEBS                | EDS Network Naming &amp; Ad
+   148.94.210.0/24 | AS5714 | EDS-WEBS                | EDS Network Naming &amp; Ad
+    135.14.65.0/24 | AS5696 | Primary AS for GoodNet  | Lucent Technologies (NE
+   139.61.102.0/23 | AS5696 | Primary AS for GoodNet  | Litton Computer Service
+   165.247.10.0/24 | AS5696 | Primary AS for GoodNet  | Internet Direct, Inc. (
+   165.247.29.0/24 | AS5696 | Primary AS for GoodNet  | Internet Direct, Inc. (
+   165.247.31.0/24 | AS5696 | Primary AS for GoodNet  | Internet Direct, Inc. (
+   165.247.33.0/24 | AS5696 | Primary AS for GoodNet  | Internet Direct, Inc. (
+   165.247.36.0/24 | AS5696 | Primary AS for GoodNet  | Internet Direct, Inc. (
+   165.247.38.0/25 | AS5696 | Primary AS for GoodNet  | Internet Direct, Inc. (
+   165.247.47.0/24 | AS5696 | Primary AS for GoodNet  | Internet Direct, Inc. (
+   165.247.49.0/24 | AS5696 | Primary AS for GoodNet  | Internet Direct, Inc. (
+   165.247.50.0/24 | AS5696 | Primary AS for GoodNet  | Internet Direct, Inc. (
+   165.247.58.0/24 | AS5696 | Primary AS for GoodNet  | Internet Direct, Inc. (
+   165.247.70.0/24 | AS5696 | Primary AS for GoodNet  | Internet Direct, Inc. (
+   165.247.73.0/24 | AS5696 | Primary AS for GoodNet  | Internet Direct, Inc. (
+   165.247.76.0/24 | AS5696 | Primary AS for GoodNet  | Internet Direct, Inc. (
+   165.247.77.0/24 | AS5696 | Primary AS for GoodNet  | Internet Direct, Inc. (
+   165.247.78.0/24 | AS5696 | Primary AS for GoodNet  | Internet Direct, Inc. (
+   165.247.81.0/24 | AS5696 | Primary AS for GoodNet  | Internet Direct, Inc. (
+   165.247.88.0/24 | AS5696 | Primary AS for GoodNet  | Internet Direct, Inc. (
+   165.247.92.0/24 | AS5696 | Primary AS for GoodNet  | Internet Direct, Inc. (
+  165.247.101.0/24 | AS5696 | Primary AS for GoodNet  | Internet Direct, Inc. (
+  165.247.134.0/24 | AS5696 | Primary AS for GoodNet  | Internet Direct, Inc. (
+  165.247.210.0/24 | AS5696 | Primary AS for GoodNet  | Internet Direct, Inc. (
+  165.247.236.0/24 | AS5696 | Primary AS for GoodNet  | Internet Direct, Inc. (
+  165.247.241.0/24 | AS5696 | Primary AS for GoodNet  | Internet Direct, Inc. (
+  165.247.245.0/24 | AS5696 | Primary AS for GoodNet  | Internet Direct, Inc. (
+  165.247.246.0/24 | AS5696 | Primary AS for GoodNet  | Internet Direct, Inc. (
+  165.247.248.0/24 | AS5696 | Primary AS for GoodNet  | Internet Direct, Inc. (
+  157.232.100.0/24 | AS5696 | Primary AS for GoodNet  | Health Data Sciences Co
+    148.160.6.0/24 | AS5556 | Telenordia AB           | Boras Energi (NET-BS-EN
+    153.96.76.0/24 | AS5501 | Fraunhofer Gesellschaft | Fraunhofer Institut fue
+    153.97.64.0/18 | AS5501 | Fraunhofer Gesellschaft | Fraunhofer Institut fue
+  194.151.154.1/32 | AS5484 | BT Netherlands Regional | European Regional Inter
+    131.114.0.0/17 | AS5444 | Routing domain of the G | CNR - Istituto CNUCE (N
+  131.114.128.0/18 | AS5444 | Routing domain of the G | CNR - Istituto CNUCE (N
+ 195.11.247.128/25 | AS5417 | Demon Internet Ltd      | European Regional Inter
+      57.12.0.0/16 | AS5384 | Etisalat Emirates Inter | SITA-Societe Internatio
+  141.130.174.0/24 | AS5090 | CWI-NYD                 | FESTO KG (NETBLK-6)    
+  165.215.191.0/24 | AS5090 | CWI-NYD                 | Bell &amp; Howell Company (
+      12.64.0.0/12 | AS5074 | ATT-WN-DP               | AT&amp;T ITS (NET-ATT)     
+  166.102.153.0/24 | AS4993 | NET99-4-7-BLK           | ALLTEL Corporation (NET
+  166.102.163.0/24 | AS4993 | NET99-4-7-BLK           | ALLTEL Corporation (NET
+  166.102.164.0/24 | AS4993 | NET99-4-7-BLK           | ALLTEL Corporation (NET
+  166.102.165.0/24 | AS4993 | NET99-4-7-BLK           | ALLTEL Corporation (NET
+   160.81.101.0/24 | AS4861 | Global IP / Global Spri | Sprint International (N
+   163.44.224.0/23 | AS4853 | Justsystem Corporation  | Justsystem Corporation 
+   164.100.80.0/24 | AS4755 | Videsh Sanchar Nigam Lt | National Informatics Ce
+  164.100.199.0/24 | AS4755 | Videsh Sanchar Nigam Lt | National Informatics Ce
+     158.40.3.0/24 | AS4740 | OzEmail ISP             | Department of Prime Min
+     158.40.4.0/24 | AS4740 | OzEmail ISP             | Department of Prime Min
+    134.65.92.0/24 | AS4736 | Magnadata Australia Pty | Avon Products Incorpora
+   202.69.3.192/26 | AS4639 | Planet Internet Limited | Asia Pacific Network In
+   146.222.11.0/24 | AS4637 | Hong Kong Telecom       | Hewlett-Packard Company
+  146.222.198.0/23 | AS4637 | Hong Kong Telecom       | Hewlett-Packard Company
+     168.29.0.0/17 | AS4565 | Epoch Internet - Former | State of Georgia/Board 
+ 199.250.158.96/27 | AS4565 | Epoch Internet - Former | Internet South, Inc. (N
+ 199.250.179.64/28 | AS4565 | Epoch Internet - Former | Internet South, Inc. (N
+ 199.250.186.32/27 | AS4565 | Epoch Internet - Former | Internet South, Inc. (N
+199.250.186.128/26 | AS4565 | Epoch Internet - Former | Internet South, Inc. (N
+199.250.190.128/25 | AS4565 | Epoch Internet - Former | Internet South, Inc. (N
+199.250.178.192/26 | AS4565 | Epoch Internet - Former | American Red Cross (NET
+  152.129.186.0/24 | AS4478 | PNET-STL                | Department of Veterans 
+   128.193.32.0/19 | AS4201 | Oregon State University | Oregon State University
+   128.193.64.0/19 | AS4201 | Oregon State University | Oregon State University
+   128.193.96.0/19 | AS4201 | Oregon State University | Oregon State University
+  128.193.128.0/19 | AS4201 | Oregon State University | Oregon State University
+  128.193.160.0/19 | AS4201 | Oregon State University | Oregon State University
+  128.193.192.0/19 | AS4201 | Oregon State University | Oregon State University
+  128.193.224.0/19 | AS4201 | Oregon State University | Oregon State University
+   206.250.40.0/25 | AS4200 | AGIS (Apex Global Infor | Overland Network (NET-O
+ 206.250.40.128/25 | AS4200 | AGIS (Apex Global Infor | Overland Network (NET-O
+   166.102.93.0/24 | AS4200 | AGIS (Apex Global Infor | ALLTEL Corporation (NET
+   166.102.94.0/24 | AS4200 | AGIS (Apex Global Infor | ALLTEL Corporation (NET
+   166.102.95.0/24 | AS4200 | AGIS (Apex Global Infor | ALLTEL Corporation (NET
+   166.102.96.0/24 | AS4200 | AGIS (Apex Global Infor | ALLTEL Corporation (NET
+   166.102.97.0/24 | AS4200 | AGIS (Apex Global Infor | ALLTEL Corporation (NET
+   166.102.98.0/24 | AS4200 | AGIS (Apex Global Infor | ALLTEL Corporation (NET
+   166.102.99.0/24 | AS4200 | AGIS (Apex Global Infor | ALLTEL Corporation (NET
+  166.102.101.0/24 | AS4200 | AGIS (Apex Global Infor | ALLTEL Corporation (NET
+  166.102.102.0/24 | AS4200 | AGIS (Apex Global Infor | ALLTEL Corporation (NET
+  166.102.103.0/24 | AS4200 | AGIS (Apex Global Infor | ALLTEL Corporation (NET
+  166.102.104.0/24 | AS4200 | AGIS (Apex Global Infor | ALLTEL Corporation (NET
+  166.102.105.0/24 | AS4200 | AGIS (Apex Global Infor | ALLTEL Corporation (NET
+  166.102.106.0/24 | AS4200 | AGIS (Apex Global Infor | ALLTEL Corporation (NET
+  166.102.107.0/24 | AS4200 | AGIS (Apex Global Infor | ALLTEL Corporation (NET
+  166.102.108.0/24 | AS4200 | AGIS (Apex Global Infor | ALLTEL Corporation (NET
+  166.102.109.0/24 | AS4200 | AGIS (Apex Global Infor | ALLTEL Corporation (NET
+  166.102.110.0/24 | AS4200 | AGIS (Apex Global Infor | ALLTEL Corporation (NET
+  166.102.111.0/24 | AS4200 | AGIS (Apex Global Infor | ALLTEL Corporation (NET
+  166.102.112.0/24 | AS4200 | AGIS (Apex Global Infor | ALLTEL Corporation (NET
+  166.102.113.0/24 | AS4200 | AGIS (Apex Global Infor | ALLTEL Corporation (NET
+  166.102.114.0/23 | AS4200 | AGIS (Apex Global Infor | ALLTEL Corporation (NET
+  166.102.116.0/24 | AS4200 | AGIS (Apex Global Infor | ALLTEL Corporation (NET
+  166.102.117.0/24 | AS4200 | AGIS (Apex Global Infor | ALLTEL Corporation (NET
+  166.102.118.0/23 | AS4200 | AGIS (Apex Global Infor | ALLTEL Corporation (NET
+  166.102.120.0/24 | AS4200 | AGIS (Apex Global Infor | ALLTEL Corporation (NET
+  166.102.121.0/24 | AS4200 | AGIS (Apex Global Infor | ALLTEL Corporation (NET
+  166.102.122.0/24 | AS4200 | AGIS (Apex Global Infor | ALLTEL Corporation (NET
+  166.102.123.0/24 | AS4200 | AGIS (Apex Global Infor | ALLTEL Corporation (NET
+  166.102.150.0/23 | AS4200 | AGIS (Apex Global Infor | ALLTEL Corporation (NET
+  166.102.152.0/24 | AS4200 | AGIS (Apex Global Infor | ALLTEL Corporation (NET
+   206.250.27.0/26 | AS4200 | AGIS (Apex Global Infor | AGIS/Net99 (NETBLK-NET9
+  205.199.213.0/25 | AS4200 | AGIS (Apex Global Infor | AGIS/Net99 (NETBLK-NET9
+  206.250.203.0/25 | AS4200 | AGIS (Apex Global Infor | AGIS/Net99 (NETBLK-NET9
+  206.250.204.0/26 | AS4200 | AGIS (Apex Global Infor | AGIS/Net99 (NETBLK-NET9
+  206.250.27.64/26 | AS4200 | AGIS (Apex Global Infor | AGIS/Net99 (NETBLK-NET9
+205.199.213.128/25 | AS4200 | AGIS (Apex Global Infor | AGIS/Net99 (NETBLK-NET9
+  150.207.128.0/24 | AS4175 | CONNECT-NCM             | AWA Defence Industries 
+    139.44.13.0/24 | AS4174 | CONNECT-COM             | Port of Melbourne Autho
+    163.124.7.0/24 | AS4058 | Primary AS for LinkAGE  | Lehman Brothers. (NET-S
+  163.124.221.0/24 | AS4058 | Primary AS for LinkAGE  | Lehman Brothers. (NET-S
+    156.5.252.0/23 | AS4004 | Global IP               | Unilever (NET-UNILEVER2
+      24.72.0.0/18 | AS4004 | Global IP               | @Home Network (NETBLK-A
+    147.85.21.0/24 | AS3951 | ICONNET                 | Nomura Research Institu
+    147.85.25.0/24 | AS3951 | ICONNET                 | Nomura Research Institu
+    147.85.39.0/24 | AS3951 | ICONNET                 | Nomura Research Institu
+    147.85.44.0/24 | AS3951 | ICONNET                 | Nomura Research Institu
+    147.85.51.0/24 | AS3951 | ICONNET                 | Nomura Research Institu
+    147.85.54.0/24 | AS3951 | ICONNET                 | Nomura Research Institu
+    147.85.98.0/24 | AS3951 | ICONNET                 | Nomura Research Institu
+   147.85.115.0/24 | AS3951 | ICONNET                 | Nomura Research Institu
+  149.112.251.0/24 | AS3803 | UltraNet MA             | US Robotics (NET-USR-1)
+  149.112.252.0/23 | AS3803 | UltraNet MA             | US Robotics (NET-USR-1)
+  149.112.254.0/24 | AS3803 | UltraNet MA             | US Robotics (NET-USR-1)
+   163.249.43.0/24 | AS3739 | NEWNET                  | Commanding Officer Navy
+   163.249.53.0/24 | AS3739 | NEWNET                  | Commanding Officer Navy
+   163.249.54.0/24 | AS3739 | NEWNET                  | Commanding Officer Navy
+   163.249.57.0/24 | AS3739 | NEWNET                  | Commanding Officer Navy
+  163.249.140.0/22 | AS3739 | NEWNET                  | Commanding Officer Navy
+  163.249.160.0/21 | AS3739 | NEWNET                  | Commanding Officer Navy
+  163.249.168.0/24 | AS3739 | NEWNET                  | Commanding Officer Navy
+  163.249.169.0/24 | AS3739 | NEWNET                  | Commanding Officer Navy
+  163.249.170.0/24 | AS3739 | NEWNET                  | Commanding Officer Navy
+   148.207.38.0/24 | AS3632 | INFOTEC-RTN             | Consejo Nacional de Cie
+     163.12.0.0/23 | AS3576 | PREPnet-EAST            | navy aviation supply of
+     163.12.5.0/24 | AS3576 | PREPnet-EAST            | navy aviation supply of
+     163.12.6.0/23 | AS3576 | PREPnet-EAST            | navy aviation supply of
+     163.12.8.0/21 | AS3576 | PREPnet-EAST            | navy aviation supply of
+    163.12.16.0/22 | AS3576 | PREPnet-EAST            | navy aviation supply of
+    163.12.21.0/24 | AS3576 | PREPnet-EAST            | navy aviation supply of
+    163.12.22.0/23 | AS3576 | PREPnet-EAST            | navy aviation supply of
+    163.12.22.0/24 | AS3576 | PREPnet-EAST            | navy aviation supply of
+    163.12.23.0/24 | AS3576 | PREPnet-EAST            | navy aviation supply of
+    163.12.24.0/21 | AS3576 | PREPnet-EAST            | navy aviation supply of
+    163.12.32.0/19 | AS3576 | PREPnet-EAST            | navy aviation supply of
+    163.12.64.0/18 | AS3576 | PREPnet-EAST            | navy aviation supply of
+    163.12.64.0/20 | AS3576 | PREPnet-EAST            | navy aviation supply of
+    163.12.81.0/24 | AS3576 | PREPnet-EAST            | navy aviation supply of
+    163.12.82.0/23 | AS3576 | PREPnet-EAST            | navy aviation supply of
+    163.12.84.0/22 | AS3576 | PREPnet-EAST            | navy aviation supply of
+    163.12.88.0/21 | AS3576 | PREPnet-EAST            | navy aviation supply of
+    163.12.96.0/19 | AS3576 | PREPnet-EAST            | navy aviation supply of
+   163.12.128.0/21 | AS3576 | PREPnet-EAST            | navy aviation supply of
+   163.12.136.0/22 | AS3576 | PREPnet-EAST            | navy aviation supply of
+   163.12.144.0/20 | AS3576 | PREPnet-EAST            | navy aviation supply of
+   163.12.160.0/19 | AS3576 | PREPnet-EAST            | navy aviation supply of
+   163.12.192.0/21 | AS3576 | PREPnet-EAST            | navy aviation supply of
+   163.12.240.0/20 | AS3576 | PREPnet-EAST            | navy aviation supply of
+   157.126.10.0/24 | AS3563 | Pilot Network Services, | J.M. Huber Corp. (NET-H
+   157.126.12.0/24 | AS3563 | Pilot Network Services, | J.M. Huber Corp. (NET-H
+   157.126.17.0/24 | AS3563 | Pilot Network Services, | J.M. Huber Corp. (NET-H
+   157.126.20.0/24 | AS3563 | Pilot Network Services, | J.M. Huber Corp. (NET-H
+   157.126.34.0/24 | AS3563 | Pilot Network Services, | J.M. Huber Corp. (NET-H
+   157.126.44.0/24 | AS3563 | Pilot Network Services, | J.M. Huber Corp. (NET-H
+   157.126.52.0/24 | AS3563 | Pilot Network Services, | J.M. Huber Corp. (NET-H
+   157.126.60.0/24 | AS3563 | Pilot Network Services, | J.M. Huber Corp. (NET-H
+   157.126.80.0/24 | AS3563 | Pilot Network Services, | J.M. Huber Corp. (NET-H
+   157.126.84.0/24 | AS3563 | Pilot Network Services, | J.M. Huber Corp. (NET-H
+   157.126.92.0/24 | AS3563 | Pilot Network Services, | J.M. Huber Corp. (NET-H
+  157.126.100.0/24 | AS3563 | Pilot Network Services, | J.M. Huber Corp. (NET-H
+  157.126.108.0/24 | AS3563 | Pilot Network Services, | J.M. Huber Corp. (NET-H
+  157.126.114.0/24 | AS3563 | Pilot Network Services, | J.M. Huber Corp. (NET-H
+  157.126.140.0/24 | AS3563 | Pilot Network Services, | J.M. Huber Corp. (NET-H
+  157.126.156.0/24 | AS3563 | Pilot Network Services, | J.M. Huber Corp. (NET-H
+  157.126.162.0/24 | AS3563 | Pilot Network Services, | J.M. Huber Corp. (NET-H
+  157.126.164.0/24 | AS3563 | Pilot Network Services, | J.M. Huber Corp. (NET-H
+  157.126.172.0/24 | AS3563 | Pilot Network Services, | J.M. Huber Corp. (NET-H
+  157.126.188.0/24 | AS3563 | Pilot Network Services, | J.M. Huber Corp. (NET-H
+  157.126.209.0/24 | AS3563 | Pilot Network Services, | J.M. Huber Corp. (NET-H
+  157.126.212.0/24 | AS3563 | Pilot Network Services, | J.M. Huber Corp. (NET-H
+  157.126.228.0/24 | AS3563 | Pilot Network Services, | J.M. Huber Corp. (NET-H
+  157.126.236.0/24 | AS3563 | Pilot Network Services, | J.M. Huber Corp. (NET-H
+      161.6.0.0/17 | AS3561 | MCI                     | Western Kentucky Univer
+    161.6.128.0/17 | AS3561 | MCI                     | Western Kentucky Univer
+  158.106.253.0/24 | AS3561 | MCI                     | VA Power Co. (NET-VANCP
+   148.212.48.0/20 | AS3561 | MCI                     | Universidad Autonoma de
+   148.212.64.0/18 | AS3561 | MCI                     | Universidad Autonoma de
+  148.212.128.0/17 | AS3561 | MCI                     | Universidad Autonoma de
+  165.237.108.0/24 | AS3561 | MCI                     | Time Warner Cable (NET-
+  165.237.220.0/24 | AS3561 | MCI                     | Time Warner Cable (NET-
+    161.38.67.0/24 | AS3561 | MCI                     | The Art Institutes Inte
+    164.103.3.0/24 | AS3561 | MCI                     | Telecommunications Depa
+   163.49.131.0/24 | AS3561 | MCI                     | TDK Corporation (NET-TD
+   163.49.132.0/22 | AS3561 | MCI                     | TDK Corporation (NET-TD
+   163.49.136.0/22 | AS3561 | MCI                     | TDK Corporation (NET-TD
+   163.49.140.0/23 | AS3561 | MCI                     | TDK Corporation (NET-TD
+   163.49.142.0/24 | AS3561 | MCI                     | TDK Corporation (NET-TD
+     168.14.1.0/24 | AS3561 | MCI                     | State of Georgia/Board 
+     168.14.2.0/23 | AS3561 | MCI                     | State of Georgia/Board 
+     168.14.4.0/22 | AS3561 | MCI                     | State of Georgia/Board 
+     168.14.8.0/21 | AS3561 | MCI                     | State of Georgia/Board 
+    168.14.16.0/20 | AS3561 | MCI                     | State of Georgia/Board 
+    166.147.0.0/18 | AS3561 | MCI                     | Service Provider Corpor
+    166.150.0.0/18 | AS3561 | MCI                     | Service Provider Corpor
+    166.151.0.0/18 | AS3561 | MCI                     | Service Provider Corpor
+   166.147.64.0/18 | AS3561 | MCI                     | Service Provider Corpor
+   166.150.64.0/18 | AS3561 | MCI                     | Service Provider Corpor
+   166.151.64.0/18 | AS3561 | MCI                     | Service Provider Corpor
+  166.147.128.0/18 | AS3561 | MCI                     | Service Provider Corpor
+  166.147.192.0/18 | AS3561 | MCI                     | Service Provider Corpor
+  166.150.192.0/18 | AS3561 | MCI                     | Service Provider Corpor
+  166.151.128.0/18 | AS3561 | MCI                     | Service Provider Corpor
+  166.151.192.0/18 | AS3561 | MCI                     | Service Provider Corpor
+   134.204.14.0/24 | AS3561 | MCI                     | Seagate Technology (NET
+  134.204.176.0/24 | AS3561 | MCI                     | Seagate Technology (NET
+  155.203.254.0/24 | AS3561 | MCI                     | Safety-Kleen Corporatio
+  132.235.204.0/24 | AS3561 | MCI                     | Ohio University (NET-OH
+   147.206.20.0/24 | AS3561 | MCI                     | Ochsner Foundation (NET
+    161.120.6.0/24 | AS3561 | MCI                     | Norton Company (NET-SGC
+   161.181.37.0/24 | AS3561 | MCI                     | Nordstrom, Inc. (NET-NO
+   164.100.64.0/20 | AS3561 | MCI                     | National Informatics Ce
+   164.100.81.0/24 | AS3561 | MCI                     | National Informatics Ce
+   164.100.82.0/23 | AS3561 | MCI                     | National Informatics Ce
+   164.100.84.0/22 | AS3561 | MCI                     | National Informatics Ce
+   164.100.88.0/21 | AS3561 | MCI                     | National Informatics Ce
+   164.100.96.0/19 | AS3561 | MCI                     | National Informatics Ce
+  164.100.167.0/24 | AS3561 | MCI                     | National Informatics Ce
+    159.179.0.0/24 | AS3561 | MCI                     | MIGROSBANK (NET-MIGROSB
+    166.38.40.0/24 | AS3561 | MCI                     | MCI Telecommunications 
+    166.49.16.0/22 | AS3561 | MCI                     | MCI Telecommunications 
+  165.166.123.0/24 | AS3561 | MCI                     | Info Avenue Internet Se
+  165.108.130.0/23 | AS3561 | MCI                     | ITOCHU Corporation (NET
+  165.108.132.0/22 | AS3561 | MCI                     | ITOCHU Corporation (NET
+  165.108.136.0/21 | AS3561 | MCI                     | ITOCHU Corporation (NET
+  165.108.144.0/22 | AS3561 | MCI                     | ITOCHU Corporation (NET
+  165.108.148.0/23 | AS3561 | MCI                     | ITOCHU Corporation (NET
+   147.116.63.0/24 | AS3561 | MCI                     | Hercules, Inc. (NET-HER
+   147.116.64.0/23 | AS3561 | MCI                     | Hercules, Inc. (NET-HER
+  147.116.160.0/21 | AS3561 | MCI                     | Hercules, Inc. (NET-HER
+  147.116.168.0/22 | AS3561 | MCI                     | Hercules, Inc. (NET-HER
+  167.208.125.0/24 | AS3561 | MCI                     | Harcourt Brace &amp; Co. (N
+    158.60.20.0/24 | AS3561 | MCI                     | Gage Marketing Group (N
+  137.170.136.0/24 | AS3561 | MCI                     | Freudenberg-NOK (NET-FN
+    136.140.9.0/24 | AS3561 | MCI                     | Ford Motor Company (NET
+   168.175.70.0/24 | AS3561 | MCI                     | First Union National Ba
+  168.175.170.0/24 | AS3561 | MCI                     | First Union National Ba
+  168.175.171.0/24 | AS3561 | MCI                     | First Union National Ba
+  168.175.172.0/24 | AS3561 | MCI                     | First Union National Ba
+    167.77.32.0/24 | AS3561 | MCI                     | Dequesne Light Company 
+   164.84.105.0/24 | AS3561 | MCI                     | Cytec Industries Inc. (
+    147.160.0.0/17 | AS3561 | MCI                     | Concurrent Technologies
+  147.160.128.0/18 | AS3561 | MCI                     | Concurrent Technologies
+  147.160.192.0/20 | AS3561 | MCI                     | Concurrent Technologies
+  147.160.200.0/21 | AS3561 | MCI                     | Concurrent Technologies
+  147.160.208.0/20 | AS3561 | MCI                     | Concurrent Technologies
+  147.160.224.0/19 | AS3561 | MCI                     | Concurrent Technologies
+  147.160.224.0/20 | AS3561 | MCI                     | Concurrent Technologies
+  167.105.232.0/24 | AS3561 | MCI                     | Coca-Cola Enterprises (
+  159.140.213.0/24 | AS3561 | MCI                     | Cerner Corporation (NET
+  159.140.254.0/24 | AS3561 | MCI                     | Cerner Corporation (NET
+    168.97.37.0/24 | AS3561 | MCI                     | Carlson Companies (NET-
+    135.40.66.0/24 | AS3561 | MCI                     | AT&amp;T ITS (NETBLK-ATT-13
+     135.37.2.0/24 | AS3561 | MCI                     | AT&amp;T ITS (NET-ATT-135-3
+     135.37.4.0/24 | AS3561 | MCI                     | AT&amp;T ITS (NET-ATT-135-3
+    135.37.10.0/24 | AS3561 | MCI                     | AT&amp;T ITS (NET-ATT-135-3
+  138.108.100.0/24 | AS3561 | MCI                     | A.C. Nielsen Company (N
+      24.88.0.0/18 | AS3561 | MCI                     | @Home Network (NETBLK-A
+     24.104.0.0/19 | AS3561 | MCI                     | @Home Network (NETBLK-A
+     24.124.0.0/18 | AS3561 | MCI                     | @Home Network (NETBLK-A
+  166.150.128.0/18 | AS3561 | MCI                     | *                      
+   163.180.96.0/19 | AS3559 | KORNET-3559 Autonomous- | Kyunghee Univ. Computer
+  163.180.128.0/17 | AS3559 | KORNET-3559 Autonomous- | Kyunghee Univ. Computer
+  207.226.209.0/26 | AS3491 | CAIS-ASN                | CAIS Internet (NETBLK-C
+  143.222.116.0/24 | AS3407 | Interpath               | *                      
+  149.172.150.0/24 | AS3402 | TerraNet, Inc.          | Ikos Systems Incorporat
+  164.167.103.0/24 | AS3392 | Infinet Norfolk - MAE-E | Bureau of Medicine and 
+   163.49.143.0/24 | AS3384 | New York Net            | TDK Corporation (NET-TD
+   163.49.144.0/22 | AS3384 | New York Net            | TDK Corporation (NET-TD
+    167.170.6.0/23 | AS3313 | I.Net S.p.A.            | MEMC Electronic Materia
+   167.170.32.0/23 | AS3313 | I.Net S.p.A.            | MEMC Electronic Materia
+    131.164.0.2/32 | AS3308 | TeliaNet Denmark        | Danish Network (NET-DKN
+ 194.183.203.44/30 | AS3305 | Internet Service Provid | European Regional Inter
+   156.51.150.0/24 | AS3301 | TeliaNet Sweden         | Vasakronan (NET-VASAKRO
+   156.51.204.0/24 | AS3301 | TeliaNet Sweden         | Vasakronan (NET-VASAKRO
+   164.10.140.0/24 | AS3301 | TeliaNet Sweden         | No match for &quot;164.10.0.
+  164.10.27.128/26 | AS3301 | TeliaNet Sweden         | No match for &quot;164.10.0.
+   146.75.251.0/24 | AS3301 | TeliaNet Sweden         | Nexus AB (NET-COMBITECH
+   146.75.254.0/24 | AS3301 | TeliaNet Sweden         | Nexus AB (NET-COMBITECH
+   171.25.128.0/19 | AS3301 | TeliaNet Sweden         | European Regional Inter
+  148.160.250.0/24 | AS3301 | TeliaNet Sweden         | Boras Energi (NET-BS-EN
+    149.212.0.0/18 | AS3292 | Tele Danmark Internet E | Siemens-Nixdorf Informa
+ 194.44.209.199/32 | AS3261 | DIPT                    | European Regional Inter
+ 194.135.241.16/30 | AS3255 | Ukrainian Academic and  | European Regional Inter
+ 194.44.209.152/29 | AS3255 | Ukrainian Academic and  | European Regional Inter
+ 194.44.209.160/29 | AS3255 | Ukrainian Academic and  | European Regional Inter
+ 194.44.209.199/32 | AS3255 | Ukrainian Academic and  | European Regional Inter
+ 194.44.212.168/30 | AS3255 | Ukrainian Academic and  | European Regional Inter
+   139.160.64.0/22 | AS3215 | RAIN                    | Merlin Gerin (NET-MGLAN
+     171.18.1.0/24 | AS3215 | RAIN                    | European Regional Inter
+   139.61.102.0/24 | AS3111 | Internet Direct Inc. (A | Litton Computer Service
+   139.61.103.0/24 | AS3111 | Internet Direct Inc. (A | Litton Computer Service
+  165.212.230.0/24 | AS2941 | CSCNS-AS                | USA.NET, Inc. (NET-USAN
+  165.212.158.0/24 | AS2941 | CSCNS-AS                | *                      
+   160.92.129.0/24 | AS2917 | OLEANE - UUNET PIPEX In | Axime S.A. (NET-SEGIN) 
+   146.193.60.0/22 | AS2860 | IP Global, Informatica  | INESC (NET-INESC)      
+  132.146.220.0/24 | AS2856 | BTnet UK Regional netwo | British Telecom Researc
+   171.30.170.0/24 | AS2856 | BTnet UK Regional netwo | BR Telecommunications L
+   143.252.80.0/24 | AS2856 | BTnet UK Regional netwo | *                      
+   145.17.100.0/24 | AS2856 | BTnet UK Regional netwo | *                      
+  158.174.254.0/24 | AS2856 | BTnet UK Regional netwo | *                      
+    159.142.0.0/18 | AS2714 | General Services Admini | General Services Admini
+   159.142.64.0/18 | AS2714 | General Services Admini | General Services Admini
+  159.142.128.0/18 | AS2714 | General Services Admini | General Services Admini
+  159.142.192.0/18 | AS2714 | General Services Admini | General Services Admini
+  144.127.110.0/23 | AS2707 | WEC                     | *                      
+  144.127.112.0/20 | AS2707 | WEC                     | *                      
+  144.127.128.0/19 | AS2707 | WEC                     | *                      
+  144.127.160.0/21 | AS2707 | WEC                     | *                      
+  144.127.168.0/23 | AS2707 | WEC                     | *                      
+  145.248.155.0/24 | AS2706 | HKSUPER                 | No match for &quot;145.248.0
+  145.248.157.0/24 | AS2706 | HKSUPER                 | No match for &quot;145.248.0
+  145.248.159.0/24 | AS2706 | HKSUPER                 | No match for &quot;145.248.0
+  145.248.161.0/24 | AS2706 | HKSUPER                 | No match for &quot;145.248.0
+  145.248.165.0/24 | AS2706 | HKSUPER                 | No match for &quot;145.248.0
+    164.53.55.0/24 | AS2706 | HKSUPER                 | National Australia Bank
+    134.6.160.0/22 | AS2706 | HKSUPER                 | Maxtor Corporation (NET
+    134.6.180.0/24 | AS2706 | HKSUPER                 | Maxtor Corporation (NET
+  145.248.112.0/24 | AS2706 | HKSUPER                 | *                      
+       9.20.0.0/17 | AS2686 | Autonomous System numbe | IBM Corporation (NET-IB
+   155.39.191.0/24 | AS2685 | IBM Global Network - US | Putnam Investments (NET
+   155.39.230.0/24 | AS2685 | IBM Global Network - US | Putnam Investments (NET
+      32.96.0.0/16 | AS2685 | IBM Global Network - US | Norsk Informasjonstekno
+  131.114.192.0/18 | AS2598 | Consiglio Nazionale del | *                      
+    137.98.96.0/24 | AS2571 | DHLNET                  | DHL Systems, Inc. (NET-
+    137.98.97.0/24 | AS2571 | DHLNET                  | DHL Systems, Inc. (NET-
+    137.98.98.0/24 | AS2571 | DHLNET                  | DHL Systems, Inc. (NET-
+    137.98.99.0/24 | AS2571 | DHLNET                  | DHL Systems, Inc. (NET-
+   137.98.100.0/24 | AS2571 | DHLNET                  | DHL Systems, Inc. (NET-
+   137.98.101.0/24 | AS2571 | DHLNET                  | DHL Systems, Inc. (NET-
+   137.98.102.0/24 | AS2571 | DHLNET                  | DHL Systems, Inc. (NET-
+   137.98.196.0/24 | AS2571 | DHLNET                  | DHL Systems, Inc. (NET-
+   137.98.200.0/24 | AS2571 | DHLNET                  | DHL Systems, Inc. (NET-
+   137.98.203.0/24 | AS2571 | DHLNET                  | DHL Systems, Inc. (NET-
+   137.98.204.0/24 | AS2571 | DHLNET                  | DHL Systems, Inc. (NET-
+   137.98.208.0/24 | AS2571 | DHLNET                  | DHL Systems, Inc. (NET-
+   137.98.209.0/24 | AS2571 | DHLNET                  | DHL Systems, Inc. (NET-
+   137.98.217.0/24 | AS2571 | DHLNET                  | DHL Systems, Inc. (NET-
+   137.98.223.0/24 | AS2571 | DHLNET                  | DHL Systems, Inc. (NET-
+   137.98.224.0/24 | AS2571 | DHLNET                  | DHL Systems, Inc. (NET-
+   137.98.225.0/24 | AS2571 | DHLNET                  | DHL Systems, Inc. (NET-
+   137.98.235.0/24 | AS2571 | DHLNET                  | DHL Systems, Inc. (NET-
+   137.98.239.0/24 | AS2571 | DHLNET                  | DHL Systems, Inc. (NET-
+   137.98.240.0/24 | AS2571 | DHLNET                  | DHL Systems, Inc. (NET-
+  133.194.226.0/24 | AS2554 | PSINet-PSI_Japan        | Institute for Supercomp
+  142.218.120.0/24 | AS2551 | NETCOM On-line Communic | *                      
+  141.227.111.0/24 | AS2529 | Demon Internet Ltd      | Societe Nationale Elf A
+  156.114.200.0/24 | AS2529 | Demon Internet Ltd      | Baring Securities Limit
+  133.246.142.0/24 | AS2500 | WIDE Internet AS        | Japan Network Informati
+    129.237.0.0/18 | AS2495 | KANREN                  | University of Kansas (N
+  155.194.200.0/24 | AS2493 | i*internet              | City of Kitchener (NET-
+    137.15.34.0/24 | AS2493 | i*internet              | Central Mapping Agency 
+    137.15.35.0/24 | AS2493 | i*internet              | Central Mapping Agency 
+    137.15.39.0/24 | AS2493 | i*internet              | Central Mapping Agency 
+    137.15.41.0/24 | AS2493 | i*internet              | Central Mapping Agency 
+    137.15.43.0/24 | AS2493 | i*internet              | Central Mapping Agency 
+    137.15.44.0/24 | AS2493 | i*internet              | Central Mapping Agency 
+    137.15.52.0/24 | AS2493 | i*internet              | Central Mapping Agency 
+    137.15.54.0/24 | AS2493 | i*internet              | Central Mapping Agency 
+  163.155.120.0/24 | AS2493 | i*internet              | Canada Mortgage and Hou
+  161.173.243.0/24 | AS2386 | INS-AS                  | Wal-Mart Stores, Inc. (
+  145.247.128.0/18 | AS2120 | DAXnet (Tele 3)         | *                      
+    146.192.0.0/17 | AS2119 | Telenor Internett, Norw | Allianse Informasionssy
+  146.192.128.0/17 | AS2116 | EUnet Norway            | Allianse Informasionssy
+    152.169.1.0/24 | AS2056 | AOL-AS                  | America Online, Inc (NE
+    152.169.2.0/24 | AS2056 | AOL-AS                  | America Online, Inc (NE
+    152.169.3.0/24 | AS2056 | AOL-AS                  | America Online, Inc (NE
+    152.169.8.0/21 | AS2056 | AOL-AS                  | America Online, Inc (NE
+    152.171.0.0/21 | AS2056 | AOL-AS                  | America Online, Inc (NE
+    152.171.8.0/21 | AS2056 | AOL-AS                  | America Online, Inc (NE
+    152.172.0.0/20 | AS2056 | AOL-AS                  | America Online, Inc (NE
+   152.168.32.0/20 | AS2056 | AOL-AS                  | America Online, Inc (NE
+   152.168.72.0/21 | AS2056 | AOL-AS                  | America Online, Inc (NE
+   152.168.80.0/20 | AS2056 | AOL-AS                  | America Online, Inc (NE
+   152.169.16.0/21 | AS2056 | AOL-AS                  | America Online, Inc (NE
+   152.169.24.0/21 | AS2056 | AOL-AS                  | America Online, Inc (NE
+   152.169.32.0/21 | AS2056 | AOL-AS                  | America Online, Inc (NE
+   152.170.64.0/20 | AS2056 | AOL-AS                  | America Online, Inc (NE
+   152.170.80.0/20 | AS2056 | AOL-AS                  | America Online, Inc (NE
+   152.170.96.0/20 | AS2056 | AOL-AS                  | America Online, Inc (NE
+   152.171.16.0/20 | AS2056 | AOL-AS                  | America Online, Inc (NE
+   152.171.32.0/20 | AS2056 | AOL-AS                  | America Online, Inc (NE
+   152.171.48.0/21 | AS2056 | AOL-AS                  | America Online, Inc (NE
+   152.171.56.0/21 | AS2056 | AOL-AS                  | America Online, Inc (NE
+   152.171.64.0/20 | AS2056 | AOL-AS                  | America Online, Inc (NE
+   152.171.80.0/20 | AS2056 | AOL-AS                  | America Online, Inc (NE
+   152.171.96.0/20 | AS2056 | AOL-AS                  | America Online, Inc (NE
+   152.172.16.0/20 | AS2056 | AOL-AS                  | America Online, Inc (NE
+   152.172.32.0/20 | AS2056 | AOL-AS                  | America Online, Inc (NE
+   152.172.48.0/20 | AS2056 | AOL-AS                  | America Online, Inc (NE
+   152.172.64.0/21 | AS2056 | AOL-AS                  | America Online, Inc (NE
+   152.172.72.0/21 | AS2056 | AOL-AS                  | America Online, Inc (NE
+   152.172.80.0/20 | AS2056 | AOL-AS                  | America Online, Inc (NE
+   152.172.96.0/20 | AS2056 | AOL-AS                  | America Online, Inc (NE
+  152.168.128.0/21 | AS2056 | AOL-AS                  | America Online, Inc (NE
+  152.168.160.0/21 | AS2056 | AOL-AS                  | America Online, Inc (NE
+  152.168.168.0/21 | AS2056 | AOL-AS                  | America Online, Inc (NE
+  152.168.240.0/21 | AS2056 | AOL-AS                  | America Online, Inc (NE
+  152.168.248.0/22 | AS2056 | AOL-AS                  | America Online, Inc (NE
+  152.169.192.0/21 | AS2056 | AOL-AS                  | America Online, Inc (NE
+  152.169.216.0/21 | AS2056 | AOL-AS                  | America Online, Inc (NE
+  152.169.224.0/21 | AS2056 | AOL-AS                  | America Online, Inc (NE
+  152.170.112.0/20 | AS2056 | AOL-AS                  | America Online, Inc (NE
+  152.170.128.0/20 | AS2056 | AOL-AS                  | America Online, Inc (NE
+  152.170.144.0/20 | AS2056 | AOL-AS                  | America Online, Inc (NE
+  152.170.160.0/20 | AS2056 | AOL-AS                  | America Online, Inc (NE
+  152.170.176.0/21 | AS2056 | AOL-AS                  | America Online, Inc (NE
+  152.171.112.0/21 | AS2056 | AOL-AS                  | America Online, Inc (NE
+  152.171.120.0/21 | AS2056 | AOL-AS                  | America Online, Inc (NE
+  152.171.128.0/20 | AS2056 | AOL-AS                  | America Online, Inc (NE
+  152.171.144.0/20 | AS2056 | AOL-AS                  | America Online, Inc (NE
+  152.171.160.0/20 | AS2056 | AOL-AS                  | America Online, Inc (NE
+  152.171.176.0/20 | AS2056 | AOL-AS                  | America Online, Inc (NE
+  152.171.192.0/20 | AS2056 | AOL-AS                  | America Online, Inc (NE
+  152.171.208.0/20 | AS2056 | AOL-AS                  | America Online, Inc (NE
+  152.171.224.0/20 | AS2056 | AOL-AS                  | America Online, Inc (NE
+  152.171.240.0/21 | AS2056 | AOL-AS                  | America Online, Inc (NE
+  152.171.248.0/21 | AS2056 | AOL-AS                  | America Online, Inc (NE
+  152.172.112.0/20 | AS2056 | AOL-AS                  | America Online, Inc (NE
+  152.163.195.0/25 | AS2056 | AOL-AS                  | America Online (NET-ANS
+  152.163.197.0/25 | AS2056 | AOL-AS                  | America Online (NET-ANS
+  152.163.205.0/25 | AS2056 | AOL-AS                  | America Online (NET-ANS
+  152.163.206.0/25 | AS2056 | AOL-AS                  | America Online (NET-ANS
+  152.163.207.0/25 | AS2056 | AOL-AS                  | America Online (NET-ANS
+152.163.195.128/25 | AS2056 | AOL-AS                  | America Online (NET-ANS
+152.163.197.128/25 | AS2056 | AOL-AS                  | America Online (NET-ANS
+152.163.205.128/25 | AS2056 | AOL-AS                  | America Online (NET-ANS
+152.163.206.128/25 | AS2056 | AOL-AS                  | America Online (NET-ANS
+    152.201.0.0/20 | AS2056 | AOL-AS                  | ANS CO+RE Systems, Inc.
+   152.200.40.0/21 | AS2056 | AOL-AS                  | ANS CO+RE Systems, Inc.
+   152.200.48.0/20 | AS2056 | AOL-AS                  | ANS CO+RE Systems, Inc.
+   152.200.64.0/20 | AS2056 | AOL-AS                  | ANS CO+RE Systems, Inc.
+   152.200.80.0/21 | AS2056 | AOL-AS                  | ANS CO+RE Systems, Inc.
+   152.200.88.0/21 | AS2056 | AOL-AS                  | ANS CO+RE Systems, Inc.
+   152.200.96.0/20 | AS2056 | AOL-AS                  | ANS CO+RE Systems, Inc.
+   152.201.16.0/21 | AS2056 | AOL-AS                  | ANS CO+RE Systems, Inc.
+   152.201.24.0/21 | AS2056 | AOL-AS                  | ANS CO+RE Systems, Inc.
+   152.201.32.0/20 | AS2056 | AOL-AS                  | ANS CO+RE Systems, Inc.
+  152.200.112.0/20 | AS2056 | AOL-AS                  | ANS CO+RE Systems, Inc.
+  152.200.128.0/21 | AS2056 | AOL-AS                  | ANS CO+RE Systems, Inc.
+  152.200.136.0/21 | AS2056 | AOL-AS                  | ANS CO+RE Systems, Inc.
+  152.200.144.0/20 | AS2056 | AOL-AS                  | ANS CO+RE Systems, Inc.
+  152.200.160.0/20 | AS2056 | AOL-AS                  | ANS CO+RE Systems, Inc.
+  152.200.176.0/21 | AS2056 | AOL-AS                  | ANS CO+RE Systems, Inc.
+  152.200.184.0/21 | AS2056 | AOL-AS                  | ANS CO+RE Systems, Inc.
+  152.200.192.0/20 | AS2056 | AOL-AS                  | ANS CO+RE Systems, Inc.
+  152.200.208.0/20 | AS2056 | AOL-AS                  | ANS CO+RE Systems, Inc.
+  152.200.224.0/21 | AS2056 | AOL-AS                  | ANS CO+RE Systems, Inc.
+  152.200.232.0/21 | AS2056 | AOL-AS                  | ANS CO+RE Systems, Inc.
+  152.200.240.0/20 | AS2056 | AOL-AS                  | ANS CO+RE Systems, Inc.
+   152.169.72.0/21 | AS2056 | AOL-AS                  | *                      
+   152.169.80.0/21 | AS2056 | AOL-AS                  | *                      
+   152.169.88.0/21 | AS2056 | AOL-AS                  | *                      
+   152.169.96.0/21 | AS2056 | AOL-AS                  | *                      
+   152.173.16.0/20 | AS2056 | AOL-AS                  | *                      
+   152.173.32.0/21 | AS2056 | AOL-AS                  | *                      
+   152.173.40.0/21 | AS2056 | AOL-AS                  | *                      
+   152.173.48.0/20 | AS2056 | AOL-AS                  | *                      
+   152.173.64.0/20 | AS2056 | AOL-AS                  | *                      
+   152.200.16.0/20 | AS2056 | AOL-AS                  | *                      
+   152.200.32.0/21 | AS2056 | AOL-AS                  | *                      
+  152.169.136.0/21 | AS2056 | AOL-AS                  | *                      
+  152.169.144.0/21 | AS2056 | AOL-AS                  | *                      
+  152.169.152.0/21 | AS2056 | AOL-AS                  | *                      
+  152.169.160.0/21 | AS2056 | AOL-AS                  | *                      
+  152.169.168.0/21 | AS2056 | AOL-AS                  | *                      
+  152.169.176.0/21 | AS2056 | AOL-AS                  | *                      
+  152.169.184.0/21 | AS2056 | AOL-AS                  | *                      
+  152.172.128.0/21 | AS2056 | AOL-AS                  | *                      
+  152.172.136.0/21 | AS2056 | AOL-AS                  | *                      
+  152.172.144.0/20 | AS2056 | AOL-AS                  | *                      
+  152.172.160.0/21 | AS2056 | AOL-AS                  | *                      
+  152.172.168.0/21 | AS2056 | AOL-AS                  | *                      
+  152.172.176.0/20 | AS2056 | AOL-AS                  | *                      
+  152.172.192.0/20 | AS2056 | AOL-AS                  | *                      
+  152.172.208.0/20 | AS2056 | AOL-AS                  | *                      
+  152.172.224.0/20 | AS2056 | AOL-AS                  | *                      
+  152.172.240.0/21 | AS2056 | AOL-AS                  | *                      
+  152.172.248.0/21 | AS2056 | AOL-AS                  | *                      
+  152.175.128.0/17 | AS2056 | AOL-AS                  | *                      
+  152.175.176.0/20 | AS2056 | AOL-AS                  | *                      
+   157.151.64.0/19 | AS2041 | CRL-GATE                | Information Access Tech
+   169.24.186.0/24 | AS2019 | JP MORGAN               | J.P. Morgan &amp; Co. (NETB
+     148.59.4.0/24 | AS2015 | Msen, Inc.              | Msen, Inc. (NET-MSEN)  
+   148.59.224.0/24 | AS2015 | Msen, Inc.              | Msen, Inc. (NET-MSEN)  
+   148.59.241.0/24 | AS2015 | Msen, Inc.              | Msen, Inc. (NET-MSEN)  
+   148.59.244.0/24 | AS2015 | Msen, Inc.              | Msen, Inc. (NET-MSEN)  
+   148.59.246.0/24 | AS2015 | Msen, Inc.              | Msen, Inc. (NET-MSEN)  
+    198.11.42.0/27 | AS2015 | Msen, Inc.              | InterNIC Registration (
+    198.11.51.0/27 | AS2015 | Msen, Inc.              | InterNIC Registration (
+   198.11.42.64/27 | AS2015 | Msen, Inc.              | InterNIC Registration (
+    161.231.0.0/21 | AS2011 | WACHOVIA                | Wachovia Operational Se
+    161.231.8.0/21 | AS2011 | WACHOVIA                | Wachovia Operational Se
+   164.52.249.0/24 | AS1982 | Northwest Nexus, Inc.   | Associated Grocers, Inc
+    157.25.64.0/23 | AS1887 | NASK                    | Advanced Technology Man
+   161.51.224.0/20 | AS1849 | PIPEX, Public IP EXchan | The M.W. Kellogg Compan
+  148.176.225.0/24 | AS1849 | PIPEX, Public IP EXchan | ScottishPower (NET-SCOT
+   159.245.84.0/22 | AS1849 | PIPEX, Public IP EXchan | GEC ALSTHOM NV (NET-GEC
+  159.245.104.0/22 | AS1849 | PIPEX, Public IP EXchan | GEC ALSTHOM NV (NET-GEC
+   170.194.51.0/24 | AS1849 | PIPEX, Public IP EXchan | Deloitte Touche Tohmats
+     171.30.0.0/17 | AS1849 | PIPEX, Public IP EXchan | BR Telecommunications L
+  150.185.128.0/18 | AS1800 | ICM-Atlantic            | Consejo Nacional de Inv
+  150.185.192.0/18 | AS1800 | ICM-Atlantic            | Consejo Nacional de Inv
+  144.232.100.0/24 | AS1790 | SprintLink Washington D | *                      
+   169.130.31.0/24 | AS1785 | NYSERNet Backbone       | Sprint, Business Servic
+   169.130.54.0/24 | AS1785 | NYSERNet Backbone       | Sprint, Business Servic
+   149.212.64.0/20 | AS1759 | Telecom Finland iNET    | Siemens-Nixdorf Informa
+        9.2.0.0/16 | AS1747 | IBM Watson, Yorktown He | IBM Corporation (NET-IB
+      24.48.0.0/18 | AS1677 | ANS  Hartford - CNSS 53 | @Home Network (NETBLK-A
+    152.164.0.0/21 | AS1667 | ANS-DC2                 | ANS CO+RE Systems, Inc.
+  157.184.150.0/24 | AS1330 | ANS St. Louis - DNSS 83 | Lexmark International I
+  149.112.246.0/24 | AS1327 | ANS Washington D.C. - D | US Robotics (NET-USR-1)
+  149.112.247.0/24 | AS1327 | ANS Washington D.C. - D | US Robotics (NET-USR-1)
+  149.112.248.0/24 | AS1327 | ANS Washington D.C. - D | US Robotics (NET-USR-1)
+  149.112.249.0/24 | AS1327 | ANS Washington D.C. - D | US Robotics (NET-USR-1)
+     24.48.33.0/24 | AS1325 | ANS Cleveland - DNSS 43 | @Home Network (NETBLK-A
+     24.48.34.0/23 | AS1325 | ANS Cleveland - DNSS 43 | @Home Network (NETBLK-A
+     24.48.36.0/22 | AS1325 | ANS Cleveland - DNSS 43 | @Home Network (NETBLK-A
+     24.48.40.0/21 | AS1325 | ANS Cleveland - DNSS 43 | @Home Network (NETBLK-A
+     24.48.48.0/22 | AS1325 | ANS Cleveland - DNSS 43 | @Home Network (NETBLK-A
+     24.48.52.0/23 | AS1325 | ANS Cleveland - DNSS 43 | @Home Network (NETBLK-A
+     24.48.54.0/24 | AS1325 | ANS Cleveland - DNSS 43 | @Home Network (NETBLK-A
+    148.212.1.0/24 | AS1292 | ITESM Campus -- Monterr | Universidad Autonoma de
+    148.212.2.0/24 | AS1292 | ITESM Campus -- Monterr | Universidad Autonoma de
+    148.212.3.0/24 | AS1292 | ITESM Campus -- Monterr | Universidad Autonoma de
+    148.212.4.0/24 | AS1292 | ITESM Campus -- Monterr | Universidad Autonoma de
+    148.212.5.0/24 | AS1292 | ITESM Campus -- Monterr | Universidad Autonoma de
+    148.212.6.0/24 | AS1292 | ITESM Campus -- Monterr | Universidad Autonoma de
+    148.212.7.0/24 | AS1292 | ITESM Campus -- Monterr | Universidad Autonoma de
+    148.212.8.0/24 | AS1292 | ITESM Campus -- Monterr | Universidad Autonoma de
+    148.212.9.0/24 | AS1292 | ITESM Campus -- Monterr | Universidad Autonoma de
+   148.212.10.0/24 | AS1292 | ITESM Campus -- Monterr | Universidad Autonoma de
+   148.212.11.0/24 | AS1292 | ITESM Campus -- Monterr | Universidad Autonoma de
+   148.212.12.0/24 | AS1292 | ITESM Campus -- Monterr | Universidad Autonoma de
+   148.212.13.0/24 | AS1292 | ITESM Campus -- Monterr | Universidad Autonoma de
+   148.212.14.0/24 | AS1292 | ITESM Campus -- Monterr | Universidad Autonoma de
+   148.212.15.0/24 | AS1292 | ITESM Campus -- Monterr | Universidad Autonoma de
+   148.212.16.0/20 | AS1292 | ITESM Campus -- Monterr | Universidad Autonoma de
+   148.212.32.0/20 | AS1292 | ITESM Campus -- Monterr | Universidad Autonoma de
+  160.104.128.0/17 | AS1290 | PSINet UK Ltd.          | Tadpole Technology, Inc
+ 192.151.12.171/32 | AS1290 | PSINet UK Ltd.          | Hewlett Packard (NET-HP
+   146.75.253.0/24 | AS1257 | SWIPnet Swedish IP Netw | Nexus AB (NET-COMBITECH
+     147.27.1.0/24 | AS1241 | FORTHnet                | Technical University of
+     147.27.2.0/24 | AS1241 | FORTHnet                | Technical University of
+     147.27.5.0/24 | AS1241 | FORTHnet                | Technical University of
+    147.27.15.0/24 | AS1241 | FORTHnet                | Technical University of
+    147.27.20.0/24 | AS1241 | FORTHnet                | Technical University of
+   136.198.82.0/24 | AS1238 | ICM Malaysia (MIMOS) co | Victor Company of Japan
+  144.199.161.0/24 | AS1238 | ICM Malaysia (MIMOS) co | *                      
+    163.180.0.0/18 | AS1237 | SERI Autonomous System  | Kyunghee Univ. Computer
+   163.180.64.0/19 | AS1237 | SERI Autonomous System  | Kyunghee Univ. Computer
+   139.163.18.0/24 | AS1221 | AARNET-AS               | QANTAS Airways Limited 
+   159.99.128.0/19 | AS1221 | AARNET-AS               | Honeywell Ltd Australia
+   159.99.160.0/21 | AS1221 | AARNET-AS               | Honeywell Ltd Australia
+    20.22.200.0/24 | AS1221 | AARNET-AS               | Computer Sciences Corpo
+    150.207.2.0/24 | AS1221 | AARNET-AS               | AWA Defence Industries 
+     24.192.0.0/18 | AS1221 | AARNET-AS               | @Home Network (NETBLK-A
+     159.99.0.0/17 | AS1221 | AARNET-AS               | *                      
+    144.55.12.0/24 | AS1221 | AARNET-AS               | *                      
+   158.155.24.0/22 | AS1221 | AARNET-AS               | *                      
+  139.162.128.0/17 | AS1136 | Unisource Internet Serv | Nedlloyd Computer Servi
+    145.100.0.0/18 | AS1103 | SURFnet                 | *                      
+     24.108.0.0/18 |  AS852 | AGT Advance Communicati | @Home Network (NETBLK-A
+    24.112.32.0/19 |  AS812 | Rogers Communications I | @Home Network (NETBLK-A
+    24.113.32.0/19 |  AS812 | Rogers Communications I | @Home Network (NETBLK-A
+      163.1.0.0/24 |  AS786 | The JANET IP Service    | Oxford University Compu
+      160.5.0.0/24 |  AS786 | The JANET IP Service    | Computer Centre (Centra
+    149.20.64.0/24 |  AS701 | Alternet                | Vixie Enterprises (NET-
+     168.86.1.0/24 |  AS701 | Alternet                | United Artists Theater 
+    160.104.0.0/17 |  AS701 | Alternet                | Tadpole Technology, Inc
+     134.6.77.0/24 |  AS701 | Alternet                | Maxtor Corporation (NET
+   158.118.51.0/24 |  AS701 | Alternet                | Matsushita Electric Wor
+  167.152.251.0/24 |  AS701 | Alternet                | EMI Communications Corp
+   134.33.100.0/24 |  AS701 | Alternet                | Codex Corporation (NET-
+   164.218.95.0/24 |  AS701 | Alternet                | Bureau of Naval Personn
+   155.134.60.0/24 |  AS701 | Alternet                | Best Foods Baking Group
+      155.7.0.0/19 |  AS701 | Alternet                | American Forces Informa
+     155.7.40.0/23 |  AS701 | Alternet                | American Forces Informa
+    130.188.2.0/24 |  AS565 | VTT autonomous system   | Technical Research Cent
+  130.188.170.0/24 |  AS565 | VTT autonomous system   | Technical Research Cent
+  130.188.250.0/24 |  AS565 | VTT autonomous system   | Technical Research Cent
+    131.117.0.0/17 |  AS559 | SWITCH, Swiss Academic  | *                      
+      53.64.4.0/22 |  AS517 | Xlink                   | cap debis ccs (NET-DB-N
+    153.96.80.0/21 |  AS517 | Xlink                   | Fraunhofer Institut fue
+    153.96.92.0/24 |  AS517 | Xlink                   | Fraunhofer Institut fue
+   153.96.230.0/24 |  AS517 | Xlink                   | Fraunhofer Institut fue
+  129.181.208.0/21 |  AS517 | Xlink                   | Bull Louveciennes (NET-
+  129.181.216.0/22 |  AS517 | Xlink                   | Bull Louveciennes (NET-
+    143.93.32.0/19 |  AS517 | Xlink                   | *                      
+    204.6.116.0/30 |  AS174 | Performance Systems Int | Performance Systems Int
+  128.145.228.0/24 |  AS174 | Performance Systems Int | Performance Systems Int
+  199.99.247.32/27 |  AS174 | Performance Systems Int | Performance Systems Int
+   136.161.17.0/24 |  AS174 | Performance Systems Int | PSI Network One (NET-PS
+   162.17.253.0/24 |  AS174 | Performance Systems Int | Compass Design Automati
+    204.6.116.2/32 |  AS174 | Performance Systems Int | *                      
+    204.6.117.0/30 |  AS174 | Performance Systems Int | *                      
+   129.35.208.0/24 |  AS163 | IBM-RESEARCH-AS         | IBM Corporation (NET-IB
+    130.199.6.0/23 |   AS43 | Brookhaven National Lab | Brookhaven National Lab
+    166.4.174.0/24 |    AS1 | BBN Planet backbone     | US Forest Service (NETB
+ 199.14.184.128/26 |    AS1 | BBN Planet backbone     | U.S. Sprint (NETBLK-SPR
+  134.241.109.0/24 |    AS1 | BBN Planet backbone     | Massachusetts Higher Ed
+  161.223.220.0/22 |    AS1 | BBN Planet backbone     | Indian Health Service (
+  161.223.224.0/24 |    AS1 | BBN Planet backbone     | Indian Health Service (
+  151.124.250.0/24 |    AS1 | BBN Planet backbone     | Carnival Cruise Lines (
+   135.16.150.0/24 |    AS1 | BBN Planet backbone     | AT&amp;T ITS (NET-ATT-135-1
+    159.87.34.0/24 |    AS1 | BBN Planet backbone     | *                      
+- - - - - - - - - - - - - - - - -
+
+
+

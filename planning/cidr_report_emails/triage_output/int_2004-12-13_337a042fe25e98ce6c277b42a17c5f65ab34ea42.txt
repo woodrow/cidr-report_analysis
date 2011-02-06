@@ -1,0 +1,73 @@
+# from /home/woodrow/proj/cidr-report_analysis/planning/cidr_report_emails/cidr_r_emails-old_index.txt:299
+# 2004-12-13 'Re: The Cidr Report' from 'Michael.Dillon'
+# http://www.merit.edu/mail.archives/nanog/2004-12/msg00423.html
+
+
+Re: The Cidr Report
+From: Michael.Dillon
+Date: Mon Dec 13 06:39:58 2004
+
+
+
+&gt; - this month, another knee was at 150k [Dec 4th] and similarly 
+&gt;   garbled results came out. Again, no response.
+&gt; ...in this one year we've seen the shape of the climb return to the 
+&gt; curve characterized by two years 99-01. Going for e?  I'm not quite 
+&gt; sure what the current point of the report is if no-one responds to
+&gt; even it breaking.
+
+Knee? Shape? Curve? Are you reading the same CIDR report
+that I see here every Friday? The report that I see is
+basically a dump of raw data. Perhaps the author needs
+to remember the distinction between data and information
+and make the CIDR report into something that people
+*WANT* to read. This posting of yours contained far more
+information than any CIDR report.
+
+&gt; Those believing otherwise are encouraged to send real, hard data.
+&gt; There is no meaningful data I can find since the Bellovin/Bush/
+&gt; Griffin/Rexford 2001 paper.
+
+I don't know why people like to post cryptic references
+to documents or meetings etc. Perhaps there is an implicit
+desire to hide it from outsiders who are not part of the
+secret inner circle? Perhaps this type of behavior is at
+the root of the growing problems, i.e. clue is not being
+spread around because people are too cliquish in the way
+that they present this info. I'm not talking about NANOG
+meetings here, just the list, which arguably reaches more
+people than the meetings.
+
+Now, on to Bellovin et al. Janet Rexford wrote this paper
+on filtering http://www.research.att.com/~jrex/papers/filter.pdf
+This was presented at NANOG but the NANOG site here
+http://www.nanog.org/mtg-0105/prefix.html points to
+Janet's site here http://www.research.att.com/~jrex/nanog/lost.html
+(note the word LOST in the URL) which points to Randy's
+slides here http://psg.com/~randy/010521.nanog/
+unfortunately those appear to be lost...
+But there is some video from IETF 51 here
+http://videolab.uoregon.edu/events/ietf/ietf51.html
+which might be the same stuff. Bush talks on
+Routing Issues.
+
+One would think that if the problems noted in 2001
+are not being solved, then perhaps a review of this
+material might prove more fruitful than more 
+studies of the data. According to the plot here
+http://www.cidr-report.org/ the average announcements
+per origin AS has actually taken a turn for the better.
+And the chart of the BGP table here 
+http://bgp.potaroo.net/ seems more like a power
+curve than the exponential curve prior to 2001.
+
+--Michael Dillon
+
+
+
+
+--Michael Dillon
+
+
+
+

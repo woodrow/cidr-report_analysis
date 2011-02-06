@@ -1,0 +1,53 @@
+# from /home/woodrow/proj/cidr-report_analysis/planning/cidr_report_emails/cidr_r_emails-old_index.txt:280
+# 2005-02-11 'RE: The Cidr Report' from 'Jon Lewis'
+# http://www.merit.edu/mail.archives/nanog/2005-02/msg00180.html
+
+
+RE: The Cidr Report
+From: Jon Lewis
+Date: Fri Feb 11 15:14:11 2005
+
+
+
+On Fri, 11 Feb 2005, Neil J. McRae wrote:
+
+&gt;
+&gt; &gt; ~ +3000 routes in one week? Anyone else frightened by this?
+&gt;
+&gt; Only people who have stock in vendors welcome it. Be prepared
+&gt; for another huge glut of unnecessary outages, hardware and
+&gt; memory upgrades soon folks!
+
+Actually, from a quick look at the following:
+http://www.cidr-report.org/as4637/aggrweek.html
+http://www.cidr-report.org/as4637/as-announce.txt
+http://www.cidr-report.org/as4637/as-wdl.txt
+
+either I'm misreading the data, or the script that generates the email is
+broken and giving wrong numbers of total routes.
+
+FWIW, my I'm not seeing any more than 152843 routes in the global
+table...but I reject anything longer than /24.
+
+According to the weekly agg in the first link, there are 151999 routes in
+the table today and were 151889 on 11Feb05, which is the date the emailed
+report goes up to.
+
+According to the weekly add/withdraw data, 1732 routes were added and 1964
+routes were withdrawn, a decrease of 232 routes in the week, and looking
+at the aggrweek.html page gives a net decrease of 232 routes for the week
+(12Feb05 - 05Feb05).
+
+Time Warner apparently had some sort of deaggregation accident where they
+went from 962 nets on 07Feb05 to 2238 routes 08Feb05, 2602 routes 09Feb05,
+and finally back down to 1031 on 11Feb05.  Anyone know what happened
+there?
+
+----------------------------------------------------------------------
+ Jon Lewis                   |  I route
+ Senior Network Engineer     |  therefore you are
+ Atlantic Net                |
+_________ http://www.lewis.org/~jlewis/pgp for PGP public key_________
+
+
+

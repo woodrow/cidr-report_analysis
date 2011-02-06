@@ -1,0 +1,60 @@
+# from /home/woodrow/proj/cidr-report_analysis/planning/cidr_report_emails/cidr_r_emails-old_index.txt:296
+# 2004-12-13 'Re: The Cidr Report' from 'Joe Provo'
+# http://www.merit.edu/mail.archives/nanog/2004-12/msg00437.html
+
+
+Re: The Cidr Report
+From: Joe Provo
+Date: Mon Dec 13 13:27:26 2004
+
+
+
+On Mon, Dec 13, 2004 at 01:08:39PM -0500, Patrick W Gilmore wrote:
+&gt; On Dec 13, 2004, at 6:39 AM, Michael.Dillon@radianz.com wrote:
+&gt; [my attribution clipped -jzp]
+&gt; &gt;&gt;- this month, another knee was at 150k [Dec 4th] and similarly
+&gt; &gt;&gt;  garbled results came out. Again, no response.
+&gt; &gt;&gt;...in this one year we've seen the shape of the climb return to the
+&gt; &gt;&gt;curve characterized by two years 99-01. Going for e?  I'm not quite
+&gt; &gt;&gt;sure what the current point of the report is if no-one responds to
+&gt; &gt;&gt;even it breaking.
+&gt; &gt;
+&gt; &gt;Knee? Shape? Curve? Are you reading the same CIDR report
+&gt; &gt;that I see here every Friday? The report that I see is
+&gt; &gt;basically a dump of raw data. Perhaps the author needs
+&gt; &gt;to remember the distinction between data and information
+&gt; &gt;and make the CIDR report into something that people
+&gt; &gt;*WANT* to read. This posting of yours contained far more
+&gt; &gt;information than any CIDR report.
+[snip]
+&gt; 
+&gt; Also, as for the &quot;knee&quot; Joe mentioned, I think he is talking about the 
+&gt; fact the report went wonky.  Look at the data presented in the last 
+&gt; CIDR report - it is nonsense, obviously in error.  This is not the 
+&gt; &quot;shape&quot; of the &quot;curve&quot;, it is the data itself.
+
+Correct on 'knee' but for crying out loud, follow the pointy clicky
+references to the website. Of course there isn't going to be a curve 
+in email [you want ascii plots? how 1980s], but the email quite 
+clearly points you the way to the site where there is some analysis 
+of the raw data.  
+
+For many of us, the mail is a reminder 'here's the current raw info, 
+check the detailed stuff over here'.  There is no secret cabal or
+hidden ionfo, the report email
+
+Joe, finding it a sad state of affairs that he must cut and paste
+&quot;http://www.cidr-report.org/cgi-bin/plota?file=%2fvar%2fdata%2fbgp%2fas4637%2fbgp%2dactive%2etxt&amp;descr=Active%20BGP%20entries%20%28FIB%29&amp;ylabel=Active%20BGP%20entries%20%28FIB%29&amp;with=step&quot; into this message for people to 
+   actually look at the graph. 
+
+PS &quot;2001 bellovin bush griffin rexford&quot; entered into google hits the
+ specific reference quite nicely - sorry i didn't include the title. 
+  as michael pointed out the specific links migrate all the time, so 
+  i was purposefully avoiding 'where it can be found at this moment'
+  [try http://www.research.att.com/~jrex/papers/filter.pdf]
+
+-- 
+             RSUC / GweepNet / Spunk / FnB / Usenix / SAGE
+
+
+

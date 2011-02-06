@@ -1,0 +1,81 @@
+# from /home/woodrow/proj/cidr-report_analysis/planning/cidr_report_emails/cidr_r_emails-old_index.txt:254
+# 2005-02-13 'Re: The Cidr Report' from 'Christopher L. Morrow'
+# http://www.merit.edu/mail.archives/nanog/2005-02/msg00209.html
+
+
+Re: The Cidr Report
+From: Christopher L. Morrow
+Date: Sun Feb 13 18:20:30 2005
+
+
+
+
+On Sun, 13 Feb 2005, Michael Smith wrote:
+&gt; &gt; From: &quot;Warren Kumari, Ph.D, CCIE# 9190&quot; &lt;warren@kumari.net&gt;
+&gt; &gt; On Feb 13, 2005, at 2:31 AM, Christopher L. Morrow wrote:
+&gt; &gt;
+&gt; &gt; That and the &quot;I have 1 circuit to $good_provider and 1 circuit to
+&gt; &gt; $bad_provider and the only way I can make them balance is to split my
+&gt; &gt; space in half and announce more specifics out through each provider&quot;
+&gt; &gt; argument. I have also often seen people do this without announcing the
+&gt; &gt; aggregate because   &lt;some undefined bad thing&gt; will happen, usually
+&gt; &gt; justified with much hand-waving.  The people who do this can usually
+&gt; &gt; not be reasoned with....
+&gt;
+&gt; So, say  I'm a provider that has received a /22 from UUNet (just for example
+&gt; Chris :-) ) and I now get another transit provider and announce the /22
+&gt; there.  So, I call UUNet and ask them to announce the /22 as a more specific
+
+Meaning you have PA space from UUNET, and you have BGP so you can
+multi-home... I'd expect you to know how to deaggregate yourself. You
+MIGHT even know how to send no-export on deaggregated prefixes, or use the
+1996 policies to influence preferences/prepends internal to 701, yes?
+
+&gt; because I don't want a de-facto asymmetric configuration.  I *want* to get a
+&gt; /20 from ARIN but my usage doesn't justify it yet, so I have to ride the /22
+&gt; for some time.
+&gt;
+
+I'm not clear as to how the /22 to /20 discussion goes, or how it's even
+relevant... but it's been a long day. Can you elaborate?
+
+&gt; By the long string of anecdotal attacks in the string to date, listing most
+&gt; or all such providers as &quot;bad&quot; or &quot;uninformed&quot; how do you separate out those
+&gt; providers who are legitimately interested in routing redundancy and not clue
+
+a /22 in both directions seems like safe 'redundancy'. Adding no-export
+/24's or /32's if you want (yuck) would get you more preference inside one
+provider or the other.
+
+I'm also fairly sure I didn't say: &quot;bad&quot; or &quot;uniformed&quot; the 'bad provider'
+is from Warren, not I.
+
+&gt; impaired?  Do we just say &quot;too bad, routing table bloat is more important
+&gt; than your need for redundancy small guy!&quot;?
+&gt;
+
+I think that folks have been pushed toward multihoming with multiple
+providers (not just 'redundant T1' or 'shadow T1' services inside the same
+provider) over the last few years. That means some bloat is bound to
+occur. I'm not measuring it myself, but the renesys folks and LCS folks
+have been I think? Perhaps they can comment on that phenomenon?
+
+&gt; I find it interesting that the general theme is one of &quot;we're smarter than
+&gt; they are because we aggregate more routes&quot; as if clue were directly
+&gt; correlated to aggregated routing announcements.
+&gt;
+
+it's not? :) (joking of course) As I said before some folks feel they have
+a legitimate reason for deaggregating. If you can spend some time chatting
+them up about their reasons and either:
+1) realizing they hav a point
+2) re-purpose their thoughts toward 'better cidr management' (as pfs said)
+
+then good for you... and everyone else :) I have spent sometime on
+occasion doing this, sometimes it works out, othertimes it doesn't :( It's
+always an experience though.
+
+-Chris
+
+
+

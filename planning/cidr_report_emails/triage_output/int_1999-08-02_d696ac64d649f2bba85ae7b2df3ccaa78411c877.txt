@@ -1,0 +1,43 @@
+# from /home/woodrow/proj/cidr-report_analysis/planning/cidr_report_emails/cidr_r_emails-old_index.txt:682
+# 1999-08-02 'Re: The Cidr Report' from 'Peter Galbavy'
+# http://www.merit.edu/mail.archives/nanog/1999-08/msg00001.html
+
+
+Re: The Cidr Report
+From: Peter Galbavy
+Date: Mon Aug 02 04:07:04 1999
+
+
+
+On Fri, Jul 30, 1999 at 12:00:02PM -0700, Tony Bates wrote:
+&gt; Date	Prefixes
+&gt; 230799	61494
+&gt; 240799	61486
+&gt; 250799	61391
+&gt; 260799	61592
+&gt; 270799	61488
+&gt; 280799	61707
+&gt; 290799	61808
+&gt; 300799	61912
+
+Erm, I know I posted about this a while back, but I think this is
+potentially an important one. I haven't got a graphical browser just
+now - so I cannot look at the graphs online - so this may be all
+complete speculation, but can someone please extrapolate when we
+will hit 2^16 routes in the general world ? Subtract a few week
+window for local routes to push people over the 2^16 number and
+then can we sit back and wonder how many routers / vendors / software
+implementations will have some bug at that number ?
+
+If I were being a millenial sceptic, I could hazard a guess at about
+New Years Eve for that date ... :-)
+
+Regards,
+-- 
+Peter Galbavy
+Knowledge Matters Ltd
+http://www.knowledge.com/
+
+
+
+

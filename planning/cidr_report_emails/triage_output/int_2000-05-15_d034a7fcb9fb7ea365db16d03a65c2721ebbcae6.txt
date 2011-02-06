@@ -1,0 +1,45 @@
+# from /home/woodrow/proj/cidr-report_analysis/planning/cidr_report_emails/cidr_r_emails-old_index.txt:615
+# 2000-05-15 'Re: CIDR Report' from 'Chris Williams'
+# http://www.merit.edu/mail.archives/nanog/2000-05/msg00295.html
+
+
+Re: CIDR Report
+From: Chris Williams
+Date: Mon May 15 11:26:11 2000
+
+
+
+&gt; &quot;Faster BGP&quot; and &quot;Handling 250k routes&quot; is not just a function of
+&gt; CPU speed and memory capacity. You have to consider network topology,
+&gt; latency/packetloss, router software (as well as hardware, so you can
+&gt; throw in your CPU and hardware here), peering patterns, route
+&gt; filtering, IGP/iBGP behaviour and some liberal application of fairy
+&gt; dust.
+
+Just to clarify, I wasn't speaking so much in terms of actually making
+BGP faster, as in terms of route policy management, which was an issue
+brought up earlier in this thread. So, I wasn't suggesting that
+&quot;doubling the number of routes in a network might not bring up new
+issues&quot;, my argument was more along the lines of &quot;if you can keep track
+of policies for 10K routes, you can probably keep track of policies for
+20K or 200K routes&quot;. Which of course is not to say that your router can
+nessecarily handle 200K pieces of policy data, although I would think
+that _is_ more of a hardware/software issue than a
+protocol/network-behavior issue.
+If the emerging network topologies and route-informaton volumes are
+bringing out non-performance limitations in our routing protocols, then
+obviously we need new protocols, and certainly there have been a number
+of links to papers on different routing schemes posted in the last week.
+Really, the core of what I was saying was, &quot;instead of complaining about
+the headaches rapid growth causes us and trying to change user behavior,
+let's really focus our efforts on solving the underlying problems&quot;. I am
+not trying to start a fight here -- I believe the majority of posts so
+far on this topic have been in exactly the spirit of working together
+for a better solution.
+I just hope that the final solution takes into account the actual needs
+of different types of companies and individuals on the internet, rather
+than being purely based upon what is easiest for backbones providers.
+
+
+
+

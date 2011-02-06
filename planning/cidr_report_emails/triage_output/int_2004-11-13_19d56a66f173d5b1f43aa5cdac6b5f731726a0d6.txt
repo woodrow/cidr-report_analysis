@@ -1,0 +1,39 @@
+# from /home/woodrow/proj/cidr-report_analysis/planning/cidr_report_emails/cidr_r_emails-old_index.txt:310
+# 2004-11-13 'Re: The Cidr Report' from 'Geoff Huston'
+# http://www.merit.edu/mail.archives/nanog/2004-11/msg00416.html
+
+
+Re: The Cidr Report
+From: Geoff Huston
+Date: Sat Nov 13 19:20:04 2004
+
+
+
+At 09:47 AM 13/11/2004, Randy Bush wrote:
+
+&gt; ASnum    NetsNow NetsAggr  NetGain   % Gain   Description
+&gt;
+&gt; AS18566      751        6      745    99.2%   CVAD Covad Communications
+
+are these numbers what i think, but hope not, they are?
+
+e.g. is AS18566 the origin AS for 751 prefixes that could be
+collapsed to 6?
+
+
+yup - see http://www.cidr-report.org/cgi-bin/as-report?as=AS18566&amp;view=4637
+
+
+
+if not, then perhaps the report could use some work.
+
+
+I'm more than happy to do further work on this report to improve its 
+accuracy and helpfulness to the operator community, but in this case I'm 
+not sure what such work would be, as I believe that the report is accurate 
+about the potential level of prefix removal at a global BGP level.
+
+Geoff
+
+
+

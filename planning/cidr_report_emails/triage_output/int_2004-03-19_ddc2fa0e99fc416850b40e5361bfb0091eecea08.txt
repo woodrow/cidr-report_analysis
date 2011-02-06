@@ -1,0 +1,34 @@
+# from /home/woodrow/proj/cidr-report_analysis/planning/cidr_report_emails/cidr_r_emails-old_index.txt:363
+# 2004-03-19 'Re: The Cidr Report' from 'Patrick W.Gilmore'
+# http://www.merit.edu/mail.archives/nanog/2004-03/msg00927.html
+
+
+Re: The Cidr Report
+From: Patrick W.Gilmore
+Date: Fri Mar 19 10:58:45 2004
+
+
+
+On Mar 19, 2004, at 9:00 AM, Mike Lewinski wrote:
+
+
+Last June I promised here that AS13345 was working on the issues 
+preventing aggregation internally....
+
+Top 20 Net Decreased Routes per Originating AS
+
+Prefixes	  Change	  ASnum  	AS Description
+-36	          91-&gt;55	  AS13345  	RKCI Rockynet.com, Inc
+
+We're not done yet, but did make the biggest possible gains in the 
+last week.
+
+I'd just like to publicly thank and commend anyone who spends what we 
+all know are limited time and resources on this.
+
+--
+TTFN,
+patrick
+
+
+

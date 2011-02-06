@@ -1,0 +1,31 @@
+# from /home/woodrow/proj/cidr-report_analysis/planning/cidr_report_emails/cidr_r_emails-old_index.txt:320
+# 2004-11-12 'RE: The Cidr Report' from 'Randy Bush'
+# http://www.merit.edu/mail.archives/nanog/2004-11/msg00368.html
+
+
+RE: The Cidr Report
+From: Randy Bush
+Date: Fri Nov 12 20:42:27 2004
+
+
+
+geoff,
+
+your proggy already knows what filter list(s) would keep us
+from carrying the polluters' rubbish.  any chance you could
+generate the filter code for juniper, procket, and cisco so
+automated router builds could fetch it with batch wget or ncftp
+or whatever?
+
+another cutie would be if whovever is maintaining peval this
+week could add an option to not deliver covered prefixes from
+the same origin?
+
+no slur intended on any particular polluter.  but i think what
+we have here is the strafing of the commons.  enough is enough.
+
+randy
+
+
+
+

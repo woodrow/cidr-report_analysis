@@ -1,0 +1,113 @@
+# from /home/woodrow/proj/cidr-report_analysis/planning/cidr_report_emails/cidr_r_emails-old_index.txt:256
+# 2005-02-13 'Re: The Cidr Report' from 'Peter Walker'
+# http://www.merit.edu/mail.archives/nanog/2005-02/msg00205.html
+
+
+Re: The Cidr Report
+From: Peter Walker
+Date: Sun Feb 13 15:30:15 2005
+
+
+
+
+
+--On 13 February 2005 01:36 -0600 Jerry Pasker &lt;info@n-connect.net&gt; 
+wrote:
+
+
+Until there's deep shame, or real financial incentive to not being
+listed as a member of the dirty 30, nothing is going to happen in
+terms of aggregation.
+
+Unfortunately, an automated email going out to each of the dirty 30
+weekly from the Cidr Report saying that their network again made
+the list of top 30 most shameful examples of how to participate as
+an active member in the global routing table would probably have
+little effect.  If they cared, they'd already be doing something
+about it.
+
+Nothing is going to happen unless enough people (ASNs) take a
+simultaneous, and  UNITED stand, and make it painful for those that
+don't care about the routes they leak to the net.
+
+Here's an idea, it's probably not the best idea, and has a *lot* of
+potential problems, but it's just an idea:
+
+Pick the top 1 or two worst offenders every week, and automatically
+dump them into a route distribution server would work in the same
+way as the Team Cymru bogon server list.  I bet THAT would get
+people to scramble aggregate!  Want to make a clear business case
+for spending time to clean up routes?  How about &quot;global
+routability&quot; ?  Every week, the top of the list would be singled
+out, and  they could be placed on the server, and anyone that
+wanted to null route them based on that information could do so.  A
+level of automation would be required to quickly remove them from
+the blacklist as soon as they aggregated, and quickly re-add them
+without warning if they decide to deaggregate within a certain time
+frame of being on the blacklist. If the addition/removal was
+automated, it would be clear cut as to why the &quot;victim&quot; was placed
+on the list.  No favoritism or politics would come in to play.
+
+It would get results.  I'm not sure what those results would be,
+and the result might just be a bunch of really mad and aggravated
+people, and a slightly more broken internet, but there'd definitely
+be results.
+
+Or something.    ;-)
+
+(I bet it would be a lot like the early days of DNS-RBL for mail
+servers)
+
+I'm sure someone on this list who is wiser than me, has a better
+idea.  I'd love to hear it discussed.
+
+I'm going to repeat what I typed earlier:
+
+Nothing is going to happen unless enough people (ASNs) take a
+simultaneous, and  UNITED stand, and make it painful for those that
+don't care about the routes they leak to the net.
+
+-Jerry
+
+
+
+Perhaps another way this could happen might be by somewhat widespread 
+use of something along the lines of
+
+================= Cisco Version ========================
+
+route-map CIDR_Top10 deny 10
+ match as-path 10
+ match ip address prefix-list deagg_pollution
+
+route-map CIDR_Abusers permit 1000
+
+ip as-path access-list 10 permit _4323$
+ip as-path access-list 10 permit _18566$
+ip as-path access-list 10 permit _4134$
+ip as-path access-list 10 permit _721$
+ip as-path access-list 10 permit _22773$
+ip as-path access-list 10 permit _7018$
+ip as-path access-list 10 permit _27364$
+ip as-path access-list 10 permit _6197$
+ip as-path access-list 10 permit _3602$
+ip as-path access-list 10 permit _6478$
+
+ip prefix-list deagg_pollution seq 10 permit 0.0.0.0/1 ge 21
+ip prefix-list deagg_pollution seq 20 permit 128.0.0.0/2 ge 21
+ip prefix-list deagg_pollution seq 30 permit 192.0.0.0/3 ge 24
+
+========================================================
+
+The as-path could easily be changed to include the top n abusers or 
+to include downstream ASs rather than just source ASs.
+
+Just thinking out loud
+
+	Peter Walker
+
+
+
+ 
+
+

@@ -1,0 +1,45 @@
+# from /home/woodrow/proj/cidr-report_analysis/planning/cidr_report_emails/cidr_r_emails-old_index.txt:261
+# 2005-02-13 'Re: The Cidr Report' from 'Christopher L. Morrow'
+# http://www.merit.edu/mail.archives/nanog/2005-02/msg00200.html
+
+
+Re: The Cidr Report
+From: Christopher L. Morrow
+Date: Sun Feb 13 03:35:05 2005
+
+
+
+
+On Sun, 13 Feb 2005, Alexander Koch wrote:
+
+&gt; On Sun, 13 February 2005 07:31:16 +0000, Christopher L. Morrow wrote:
+&gt; [..]
+&gt; &gt; There are some business reasons to de-aggregate. Look at some outages
+&gt; &gt; caused by 'routing problems' (someone leaked my /24's to their peers,
+&gt; &gt; peers, peer and my traffic got blackholed, because the public net only
+&gt; &gt; knows me as a /20)
+&gt;
+&gt; I am surprised you bring such an argument up. While we can
+&gt; surely agree on this happening on the net, I have yet to
+&gt; hear from someone saying this is happening more than once
+&gt; a month or so. Maybe Todd from Renesys has other examples
+&gt; besides the Yahoo incident.^
+
+if it happens once to you and lasts long enough... I'm not condoning it,
+nor saying it's even a valid reason to do it, just pointing out that it
+does happen :(
+
+&gt;
+&gt; &gt; There are multiple reasons for deaggregation aside from 'dumb operator',
+&gt; &gt; some are even 'valid' if you look at them from the protection standpoint.
+&gt;
+&gt; I won't argue that, but how many ISPs are using this line
+&gt; of argument? I have not heard anyone yet telling me this,
+&gt; not in years.
+&gt;
+
+a few have... recently in fact.
+
+
+
+

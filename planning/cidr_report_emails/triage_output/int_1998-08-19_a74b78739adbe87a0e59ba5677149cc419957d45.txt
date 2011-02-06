@@ -1,0 +1,42 @@
+# from /home/woodrow/proj/cidr-report_analysis/planning/cidr_report_emails/cidr_r_emails-old_index.txt:742
+# 1998-08-19 'Re: The Cidr Report' from 'Sean M. Doran'
+# http://www.merit.edu/mail.archives/nanog/1998-08/msg00313.html
+
+
+Re: The Cidr Report
+From: Sean M. Doran
+Date: Wed Aug 19 07:47:17 1998
+
+
+
+| &gt; B/      When we can easily do:
+| &gt; 
+| &gt; 	&quot;router bgp N
+| &gt;          proxy-aggregate route-map Lazy-Types
+|
+| I may be misunderstanding, but does this (proposed) config statement
+| automaticly suppress (aggregate) any prefixes that are exactly the
+| same as another prefix except in the length? For example given
+|
+| 128.8.0.0/16
+| 128.8.0.0/24
+| 128.8.1.0/24
+|
+| the last two would not be propogated? That would be cool!
+
+Right, essentially.  This is particularly easy if all the
+attributes are the same, notably the AS_Path.
+
+In IOS there is already a pretty good set of tools to choose what
+one proxy-aggregates -- and how -- that were developed several
+years ago; a tool to choose when to apply a set of these would also
+be useful.
+
+One policy that I think would be useful would be: &quot;Does the origin
+AS announce more than N prefixes?  If so, aggregate/drop more specifics
+as follows...&quot; 
+
+	Sean.
+
+
+

@@ -1,0 +1,72 @@
+# from /home/woodrow/proj/cidr-report_analysis/planning/cidr_report_emails/cidr_r_emails-old_index.txt:245
+# 2005-02-14 'RE: The Cidr Report' from 'John van Oppen'
+# http://www.merit.edu/mail.archives/nanog/2005-02/msg00219.html
+
+
+RE: The Cidr Report
+From: John van Oppen
+Date: Mon Feb 14 04:32:02 2005
+
+
+
+Hank and Warren are right on.   I have seen several ISPs (one of which has been around a long time) who don't even understand the basics of CIDR routing or why they should aggregate their announcements.   This same group are the ones who are not subscribed to this mailing list and don't go to Nanog events, and there are surly a large number of them.
+
+I think one thing the CIDR report glosses over, with its ranking system is the sheer number of ASes which announce extra routes.   At least that is what strikes me when I start punching my local peer (not customer) ASes into the cidr-report website, virtually all of them have an aggregation problem and by percentage of junk announcements, the small ASes are often far worse than the big guys.
+
+That being said, perhaps we need some sort of nanog outreach or BGP support community that larger (or clue full) providers can point their less clue full BGP customers towards.   The question then becomes, who would maintain such a group and how do we get the large number of currently non-participating ASes involved?
+
+John van Oppen
+PocketiNet Communications
+AS23265 (which yes, is fully aggregated)
+
+
+-----Ursprüngliche Nachricht-----
+Von: Hank Nussbacher [mailto:hank@mail.iucc.ac.il] 
+Gesendet: Monday, February 14, 2005 12:26 AM
+An: Philip Smith
+Cc: Nanog
+Betreff: Re: The Cidr Report
+
+
+At 10:27 AM 14-02-05 +1000, Philip Smith wrote:
+
+Well said.  At NANOG you get the clueful people cuz they at least knew to 
+come.  That is a start.  But there are hundreds of ISPs out there who don't 
+have a clue.  RIPE realized this without having to do a membership poll and 
+rightly so, goes and does training where it is needed (and believe me - I 
+am their biggest critic and all-around pain in the ass when it comes to 
+their expenses as Leo and Rob can attest).
+
+NANOG is not the place to do it.  ARIN, as part of their overhead should do 
+an east coast, west coast and Chicago area tutorial at least once a 
+year.  And guess what - most of the training material has already been 
+written by the other RIRs.
+
+-Hank
+
+
+&gt;The BGP tutorials I've been doing on Sundays at NANOG all cover 
+&gt;aggregation - at least, I seem to end up talking about aggregation in each 
+&gt;one. Maybe I need to be more direct? But then again, who am I preaching 
+&gt;to? The choir maybe, I don't know. Maybe we need a specific aggregation 
+&gt;tutorial for those who don't know how to? Those who have operational and 
+&gt;technical reasons not to aggregate have made that decision with prior 
+&gt;knowledge. We should try and give everyone else the knowledge, then at 
+&gt;least we will know that all de-aggregation is done for a reason.
+&gt;
+&gt;Then it begs the question, is NANOG the conference actually reaching the 
+&gt;people who'd most benefit from it? I say this as I'm in transit in 
+&gt;Singapore heading back from a hugely successful and enjoyable SANOG (South 
+&gt;Asia NOG) in Bangladesh. Similar idea to NANOG, but heavier emphasis on 
+&gt;education (workshops &amp; tutorials), and we had ISPs falling over themselves 
+&gt;to participate in the first Internet operations meeting held in that country.
+&gt;
+&gt;philip
+&gt;--
+&gt;+++++++++++++++++++++++++++++++++++++++++++
+&gt;This Mail Was Scanned By Mail-seCure System
+&gt;at the Tel-Aviv University CC.
+
+
+
+

@@ -1,0 +1,36 @@
+# from /home/woodrow/proj/cidr-report_analysis/planning/cidr_report_emails/cidr_r_emails-old_index.txt:638
+# 2000-05-13 'Re: CIDR Report' from 'Vijay Gill'
+# http://www.merit.edu/mail.archives/nanog/2000-05/msg00238.html
+
+
+Re: CIDR Report
+From: Vijay Gill
+Date: Sat May 13 12:06:47 2000
+
+
+
+On Sat, 13 May 2000, Christian Nielsen wrote:
+
+
+ [ # of routing table entries growing]
+
+&gt; connections and announcing maybe only a /24 or /23. Of course, Verio
+&gt; will filter them saying it is good for the net. Tho they forget that
+&gt; they send out what they claim to filter. Seems they might have another
+&gt; motive for filtering... 
+
+Their customers are paying them for the service and buy the extra cpu and
+memory and routing table slots.  You could filter on the same boundaries
+as Verio.... do unto others before others do unto you?
+
+&gt; Our routers carry 1.1 million paths + in their tables today. I have seen
+
+That is impressive. 
+
+/vijay
+
+
+
+
+
+

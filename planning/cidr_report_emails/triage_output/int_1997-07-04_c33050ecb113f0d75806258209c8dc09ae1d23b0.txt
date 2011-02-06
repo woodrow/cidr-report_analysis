@@ -1,0 +1,82 @@
+# from /home/woodrow/proj/cidr-report_analysis/planning/cidr_report_emails/cidr_r_emails-old_index.txt:813
+# 1997-07-04 '? re: Tony Bates' CIDR Report' from 'Larry Vaden'
+# http://www.merit.edu/mail.archives/nanog/1997-07/msg00107.html
+
+
+? re: Tony Bates' CIDR Report
+From: Larry Vaden
+Date: Fri Jul 04 22:28:51 1997
+
+
+On another list, we're discussing whether small ISPs should be able to
+obtain globally routable /19s.
+
+A well respected member of the NANOG community has suggested that &quot;routers
+would fall over&quot; if the /19s were granted.
+
+As you know, Tony Bates publishes the weekly CIDR report;  therein he makes
+the following comment:
+
+&quot;This lists the &quot;Top 30&quot; players who if they decided to aggregate their
+announced classful prefixes at the origin AS level could make a significant
+difference in the reduction of the current size of the Internet routing
+table. This calculation does not take into account the inclusion of holes
+when forming an aggregate so it is possible even larger reduction should be
+possible.&quot;
+
+Today's data indicates 2,791 router slots are involved in the &quot;Top 30&quot;.
+
+Could these router slots really be made available as Tony suggests?
+
+If not, why not?
+
+Thank you for your time and for your responses.  If you will, respond to
+pagans@texoma.net also.
+
+If you prefer to remain off the record, reply privately with *OFF THE
+RECORD* in your subject line.
+
+Here's today's data as published at
+&lt;http://www.employees.org/~tbates/cidr-report.html#General_Status&gt;:
+
+ --- 04Jul97 ---
+ASnum    NetsNow NetsCIDR  NetGain  % Gain   Description
+
+AS174       1148      819      329   28.7%   Performance Systems International
+AS2493       766      460      306   39.9%   i*internet
+AS3602       556      309      247   44.4%   Sprint Canada Inc.
+AS2048       251      120      131   52.2%   LANET-1
+AS1691       301      172      129   42.9%   BCTEL
+AS6541       186       59      127   68.3%   GTE Intelligent Network Services 
+AS3804       248      135      113   45.6%   Bell Solutions
+AS1         1032      922      110   10.7%   BBNPLANET
+AS1967       186       82      104   55.9%   Middle East Technical University 
+AS839        125       26       99   79.2%   North West Territories Regional N
+AS701        972      875       97   10.0%   Alternet
+AS7195       121       43       78   64.5%   INTERRED
+AS816        318      248       70   22.0%   UUNET Canada (ASN-UUNETCA-AS4)
+AS2704       256      186       70   27.3%   HOOKUP-NET-A
+AS4293       108       44       64   59.3%   IMCI
+AS549        250      189       61   24.4%   ONet Backbone
+AS5668        72       13       59   81.9%   Century Telephone Inc.
+AS4648       190      134       56   29.5%   NZIX 2
+AS3561       942      890       52    5.5%   MCI
+AS6181        53        4       49   92.5%   FUSE-NET
+AS3799        74       26       48   64.9%   IDS
+AS97         175      128       47   26.9%   JvNCnet
+AS813        208      161       47   22.6%   UUNET Canada (ASN-UUNETCA-AS1)
+AS719        565      518       47    8.3%   LANLINK autonomous system
+AS4454        74       27       47   63.5%   TNET-AS
+AS4763       100       56       44   44.0%   Telstra New Zealand
+AS2711        98       57       41   41.8%   SUNBELT-AS
+AS271         98       57       41   41.8%   BCnet Backbone
+AS3749        75       35       40   53.3%   TECNET
+AS225         63       25       38   60.3%   VIRGINIA-AS
+                              ----
+                              2791
+
+
+
+
+
+

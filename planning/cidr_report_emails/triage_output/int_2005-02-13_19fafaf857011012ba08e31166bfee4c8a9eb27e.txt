@@ -1,0 +1,48 @@
+# from /home/woodrow/proj/cidr-report_analysis/planning/cidr_report_emails/cidr_r_emails-old_index.txt:262
+# 2005-02-13 'Re: The Cidr Report' from 'Alexander Koch'
+# http://www.merit.edu/mail.archives/nanog/2005-02/msg00199.html
+
+
+Re: The Cidr Report
+From: Alexander Koch
+Date: Sun Feb 13 03:09:46 2005
+
+
+
+On Sun, 13 February 2005 07:31:16 +0000, Christopher L. Morrow wrote:
+[..]
+&gt; There are some business reasons to de-aggregate. Look at some outages
+&gt; caused by 'routing problems' (someone leaked my /24's to their peers,
+&gt; peers, peer and my traffic got blackholed, because the public net only
+&gt; knows me as a /20)
+
+I am surprised you bring such an argument up. While we can
+surely agree on this happening on the net, I have yet to
+hear from someone saying this is happening more than once
+a month or so. Maybe Todd from Renesys has other examples
+besides the Yahoo incident.^
+
+&gt; There are multiple reasons for deaggregation aside from 'dumb operator',
+&gt; some are even 'valid' if you look at them from the protection standpoint.
+
+I won't argue that, but how many ISPs are using this line
+of argument? I have not heard anyone yet telling me this,
+not in years.
+
+And surely you can get notification for any more specific
+prefixes in your networks from Renesys and likely others
+already, if you do not write a script yourself that has a
+look on routeviews or other similar services and notifies
+you.
+
+Also things like conditional announcements and no-export
+are often not known, and if you have two POPs and lack the
+'backbone' capacity between these there are still other
+ways than just announce more specifics all around the
+place.
+
+Alexander
+
+
+
+

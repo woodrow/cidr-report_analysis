@@ -1,0 +1,43 @@
+# from /home/woodrow/proj/cidr-report_analysis/planning/cidr_report_emails/cidr_r_emails-old_index.txt:551
+# 2001-03-03 'Re: The Cidr Report' from 'Simon Leinen'
+# http://www.merit.edu/mail.archives/nanog/2001-03/msg00042.html
+
+
+Re: The Cidr Report
+From: Simon Leinen
+Date: Sat Mar 03 07:28:20 2001
+
+
+
+&gt;&gt;&gt;&gt;&gt; &quot;tb&quot; == Tony Bates &lt;tbates@cisco.com&gt; writes:
+[...]
+&gt; 1) Gains by aggregating at the origin AS level
+&gt; 
+&gt;  --- 02Mar01 ---
+&gt; ASnum    NetsNow NetsCIDR  NetGain  % Gain   Description
+
+It might be interesting to look at an alternative ordering of this, so
+that the relative rather than the absolute benefit of proper
+aggregation is highlighted (but we still want a lower threshold for
+the absolute benefit).  This makes those cases stand out that are
+smaller but may be easiest to fix.  So this is Tony's list piped
+through &quot;sort -k 4 -n -r | head&quot; (or something):
+
+AS11170       64        1       63   98.4%   Bewell Net 
+AS13999      109        7      102   93.6%   Mega Cable S.A. de C.V. 
+AS16758       63        6       57   90.5%   IKON Office Solutions 
+AS8006       145       19      126   86.9%   Systems &amp; Software Consortium, In
+AS6413        67       11       56   83.6%   Southern Online Systems, Inc. 
+AS9498        87       20       67   77.0%   BHARTI BT INTERNET LTD.
+AS9269       161       52      109   67.7%   Internet service Provider in Hong
+AS5106       101       37       64   63.4%   Ameritech Advanced Data Services,
+AS7545       190       70      120   63.2%   TPG Internet Pty Ltd
+AS6595       165       63      102   61.8%   DoD Education Activity Network As
+
+Know anybody at one of these?
+-- 
+Simon.
+
+
+
+

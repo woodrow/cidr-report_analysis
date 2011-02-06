@@ -1,0 +1,53 @@
+# from /home/woodrow/proj/cidr-report_analysis/planning/cidr_report_emails/cidr_r_emails-old_index.txt:616
+# 2000-05-15 'Re: CIDR Report' from 'Adrian Chadd'
+# http://www.merit.edu/mail.archives/nanog/2000-05/msg00294.html
+
+
+Re: CIDR Report
+From: Adrian Chadd
+Date: Mon May 15 11:15:19 2000
+
+
+
+On Mon, May 15, 2000, Chris Williams wrote:
+
+[snip]
+
+&gt; Also, I don't really buy the &quot;how do we manage 250K routes?&quot; arguement.
+&gt; Any well-designed system which can effectively manage 10K of something,
+&gt; in general, ought to be able to handle 250K of it; it's just a question
+&gt; of scaling it up, and there's no question that processors and getting
+&gt; faster and memory cheaper every day. If there's some magic number of
+&gt; routes that suddenly becomes unmanagable, I'd love to hear why.
+
+I agree with everything you said about /24 multihoming except this.
+If it were just a question of scaling it up to be faster, then
+it would have been solved for now and we wouldn't be discussing it.
+&quot;Making BGP go faster&quot; isn't a &quot;throw more RAM and CPU at it&quot;, its
+a &quot;Actually research the problem with the data we have today and
+develop new solutions which solve these problems.&quot; People in general
+have this strange concept of well designed; there is no absolute
+concept of well designed, only &quot;well designed with a given set of
+data and a given level of knowledge&quot;. BGPv4 was designed with different
+goals, different data and with different ways of thinking, so how
+do you expect it to scale with _todays_ demands?
+
+&quot;Faster BGP&quot; and &quot;Handling 250k routes&quot; is not just a function of
+CPU speed and memory capacity. You have to consider network topology,
+latency/packetloss, router software (as well as hardware, so you can
+throw in your CPU and hardware here), peering patterns, route
+filtering, IGP/iBGP behaviour and some liberal application of fairy
+dust.
+
+Read Craig and Abha's presentations on BGP convergence at the last
+two NANOG meetings. It might shed some light on the issues and
+behaviour involved.
+
+
+
+Adrian
+
+
+
+
+

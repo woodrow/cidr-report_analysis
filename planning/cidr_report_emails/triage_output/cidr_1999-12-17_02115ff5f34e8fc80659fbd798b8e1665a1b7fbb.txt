@@ -1,0 +1,184 @@
+# from /home/woodrow/proj/cidr-report_analysis/planning/cidr_report_emails/cidr_r_emails-old_index.txt:665
+# 1999-12-17 'The Cidr Report' from 'Tony Bates'
+# http://www.merit.edu/mail.archives/nanog/1999-12/msg00257.html
+
+
+The Cidr Report
+From: Tony Bates
+Date: Fri Dec 17 15:03:14 1999
+
+
+
+
+This is an auto-generated mail on Fri Dec 17 12:00:00 PST 1999
+It is not checked before it leaves my workstation.  However, hopefully 
+you will find this report interesting and will take the time to look 
+through this to see if you can improve the amount of aggregation you 
+perform.
+
+The report is split into sections:
+
+   0) General Status
+   
+      List the route table history for the last week, list any possibly
+      bogus routes seen and give some status on ASes.
+
+   1) Gains by aggregating at the origin AS level
+
+      This lists the &quot;Top 30&quot; players who if they decided to aggregate
+      their announced classful prefixes at the origin AS level could 
+      make a significant difference in the reduction of the current 
+      size of the Internet routing table. This calculation does not 
+      take into account the inclusion of holes when forming an aggregate
+      so it is possible even larger reduction should be possible.
+
+   2) Weekly Delta
+
+      A summary of the last weeks changes in terms of withdrawn and
+      added routes. Please note that this is only a snapshot but does 
+      give some indication of ASes participating in CIDR. Clearly,
+      it is generally a good thing to see a large amont of withdrawls.
+
+   3) Interesting aggregates
+
+      Interesting here means not an aggregate made as a set of 
+      classful routes.      
+
+Thanks to xara.net for giving me access to their routing tables once a
+day. 
+
+Please send any comments about this report directly to me.
+
+Check http://www.employees.org/~tbates/cidr-report.html for a daily
+update of this report.
+
+
+
+------------------------------------------------------------------------------
+
+                        CIDR REPORT for 17Dec99
+
+
+0) General Status
+
+Table History
+-------------
+
+Date	Prefixes
+101299	67903
+111299	67955
+121299	67842
+131299	67917
+141299	67952
+151299	68032
+161299	68301
+171299	68465
+
+Check http://www.employees.org/~tbates/cidr.plot.html for a plot
+of the table history.
+
+
+Possible Bogus Routes
+---------------------
+
+*** Bogus 64.4.64.0/19 from AS7398
+*** Bogus 64.4.128.0/19 from AS13932
+*** Bogus 64.5.0.0/19 from AS14107
+*** Bogus 64.5.64.0/19 from AS6601
+*** Bogus 64.6.32.0/20 from AS13740
+*** Bogus 64.6.64.0/20 from AS10726
+*** Bogus 64.6.96.0/20 from AS8049
+*** Bogus 64.6.160.0/23 from AS11354
+*** Bogus 64.6.160.0/20 from AS11354
+*** Bogus 64.6.162.0/24 from AS11354
+*** Bogus 64.6.192.0/21 from AS14215
+*** Bogus 64.6.204.0/23 from AS14215
+*** Bogus 64.6.206.0/23 from AS14215
+*** Bogus 64.7.0.0/24 from AS6461
+*** Bogus 64.7.2.0/23 from AS3967
+*** Bogus 64.7.4.0/23 from AS3967
+*** Bogus 64.8.0.0/20 from AS7843
+*** Bogus 64.8.24.0/21 from AS7843
+*** Bogus 64.9.0.0/19 from AS7843
+*** Bogus 64.9.32.0/20 from AS701
+*** Bogus 64.9.48.0/20 from AS1239
+*** Bogus 64.9.128.0/18 from AS5003
+*** Bogus 64.10.0.0/16 from AS816
+*** Bogus 64.10.10.0/24 from AS705
+*** Bogus 64.14.0.0/19 from AS3967
+*** Bogus 64.14.32.0/19 from AS3967
+*** Bogus 64.14.64.0/20 from AS3967
+*** Bogus 64.14.80.0/20 from AS3967
+*** Bogus 64.14.96.0/20 from AS3967
+*** Bogus 64.14.112.0/20 from AS3967
+*** Bogus 64.14.128.0/20 from AS3967
+*** Bogus 219.91.160.0/22 from AS7742
+*** Bogus 219.91.164.0/23 from AS7742
+
+AS Summary
+----------
+
+Number of ASes in routing system:                 6269
+
+Number of ASes announcing only one prefix:        3337 (1827 cidr, 1510 classful)
+
+Largest number of  cidr routes:                    668 announced by  AS701
+Largest number of classful routes:                 973 announced by  AS701
+
+
+
+1) Gains by aggregating at the origin AS level
+
+ --- 17Dec99 ---
+ASnum    NetsNow NetsCIDR  NetGain  % Gain   Description
+
+AS271        383      141      242   63.2%   BCnet Backbone
+AS7046       398      256      142   35.7%   UUNET-CUSTOMER
+AS2609       125       11      114   91.2%   EUnet-TN
+AS9269       133       20      113   85.0%   Hong Kong CTI
+AS1221       635      524      111   17.5%   TELSTRA-AS
+AS7657       271      175       96   35.4%   The Internet Group Limited
+AS9706       110       15       95   86.4%   Pusan Metropolitan City Office of
+AS1653       129       38       91   70.5%   SUNET Swedish University Network
+AS4293       238      150       88   37.0%   Internal ASN for C&amp;W
+AS174        568      482       86   15.1%   Performance Systems International
+AS7496       114       38       76   66.7%   Power Up
+AS3749       136       62       74   54.4%   TECNET
+AS4449        91       19       72   79.1%   ASN-GALSTAR
+AS705        215      145       70   32.6%   ALTERNET-AS
+AS4200       172      105       67   39.0%   AGIS (Apex Global Information Ser
+AS577        234      173       61   26.1%   Bell Canada Backbone
+AS816        249      190       59   23.7%   UUNET Canada (ASN-UUNETCA-AS4)
+AS4740       347      289       58   16.7%   Ozemail Pty Ltd (ASN-OZEMAIL)
+AS209        341      287       54   15.8%   Qwest Communications
+AS684         92       46       46   50.0%   Manitoba Regional Network Backbon
+AS9304        64       19       45   70.3%   Hutchcity
+AS701        973      932       41    4.2%   Alternet
+AS1          520      479       41    7.9%   GTE Internetworking
+AS6528        45        7       38   84.4%   WORLD-LYNX
+AS7029        77       40       37   48.1%   ALLTELNET
+AS8013       130       94       36   27.7%   PSINET-CA
+AS4755       105       69       36   34.3%   Videsh Sanchar Nigam Ltd. India
+AS11127      114       79       35   30.7%   UNKNOWN
+AS3737        98       65       33   33.7%   PenTeleData Inc. (ASN-PTD)
+AS549        193      161       32   16.6%   ONet Backbone
+
+
+For the rest of the previous weeks gain information please see
+http://www.employees.org:80/~tbates/cidr-report.html
+
+2) Weekly Delta
+
+Please see
+http://www.employees.org:80/~tbates/cidr-report.html
+for this part of the report
+
+3) Interesting aggregates
+
+Please see
+http://www.employees.org:80/~tbates/cidr-report.html
+for this part of the report
+
+
+
+

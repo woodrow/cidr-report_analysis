@@ -1,0 +1,149 @@
+# from /home/woodrow/proj/cidr-report_analysis/planning/cidr_report_emails/cidr_r_emails-old_index.txt:715
+# 1999-01-08 'The Cidr Report' from 'Tony Bates'
+# http://www.merit.edu/mail.archives/nanog/1999-01/msg00111.html
+
+
+The Cidr Report
+From: Tony Bates
+Date: Fri Jan 08 15:21:33 1999
+
+
+
+This is an auto-generated mail on Fri Jan  8 12:00:00 PST 1999
+It is not checked before it leaves my workstation.  However, hopefully 
+you will find this report interesting and will take the time to look 
+through this to see if you can improve the amount of aggregation you 
+perform.
+
+The report is split into sections:
+
+   0) General Status
+   
+      List the route table history for the last week, list any possibly
+      bogus routes seen and give some status on ASes.
+
+   1) Gains by aggregating at the origin AS level
+
+      This lists the &quot;Top 30&quot; players who if they decided to aggregate
+      their announced classful prefixes at the origin AS level could 
+      make a significant difference in the reduction of the current 
+      size of the Internet routing table. This calculation does not 
+      take into account the inclusion of holes when forming an aggregate
+      so it is possible even larger reduction should be possible.
+
+   2) Weekly Delta
+
+      A summary of the last weeks changes in terms of withdrawn and
+      added routes. Please note that this is only a snapshot but does 
+      give some indication of ASes participating in CIDR. Clearly,
+      it is generally a good thing to see a large amont of withdrawls.
+
+   3) Interesting aggregates
+
+      Interesting here means not an aggregate made as a set of 
+      classful routes.      
+
+Thanks to xara.net for giving me access to their routing tables once a
+day. 
+
+Please send any comments about this report directly to me.
+
+Check http://www.employees.org/~tbates/cidr-report.html for a daily
+update of this report.
+
+
+
+------------------------------------------------------------------------------
+
+                        CIDR REPORT for 08Jan99
+
+
+0) General Status
+
+Table History
+-------------
+
+Date	Prefixes
+010199	55011
+020199	55001
+030199	54615
+040199	54770
+050199	54954
+060199	54958
+070199	55003
+080199	54976
+
+Check http://www.employees.org/~tbates/cidr.plot.html for a plot
+of the table history.
+
+
+Possible Bogus Routes
+---------------------
+
+
+AS Summary
+----------
+
+Number of ASes in routing system:                 4389
+
+Number of ASes announcing only one prefix:        2167 (1158 cidr, 1009 classful)
+
+Largest number of  cidr routes:                    351 announced by AS3561
+Largest number of classful routes:                1010 announced by  AS701
+
+
+
+1) Gains by aggregating at the origin AS level
+
+ --- 08Jan99 ---
+ASnum    NetsNow NetsCIDR  NetGain  % Gain   Description
+
+AS271        391      145      246   62.9%   UNKNOWN
+AS3749       231       71      160   69.3%   UNKNOWN
+AS701       1010      861      149   14.8%   UNKNOWN
+AS2493       326      179      147   45.1%   UNKNOWN
+AS174        669      546      123   18.4%   UNKNOWN
+AS5668       131       35       96   73.3%   UNKNOWN
+AS4200       188       97       91   48.4%   UNKNOWN
+AS4755       150       68       82   54.7%   UNKNOWN
+AS1267       111       30       81   73.0%   UNKNOWN
+AS4293       207      135       72   34.8%   UNKNOWN
+AS549        220      154       66   30.0%   UNKNOWN
+AS4740       393      329       64   16.3%   UNKNOWN
+AS8517       133       74       59   44.4%   UNKNOWN
+AS1221       381      323       58   15.2%   UNKNOWN
+AS7046       251      195       56   22.3%   UNKNOWN
+AS72          89       37       52   58.4%   UNKNOWN
+AS7657       140       89       51   36.4%   UNKNOWN
+AS3493       248      197       51   20.6%   UNKNOWN
+AS7545       114       64       50   43.9%   UNKNOWN
+AS1239       530      483       47    8.9%   UNKNOWN
+AS10928       95       48       47   49.5%   UNKNOWN
+AS7496        74       28       46   62.2%   UNKNOWN
+AS577        205      160       45   22.0%   UNKNOWN
+AS852        175      133       42   24.0%   UNKNOWN
+AS719        452      410       42    9.3%   UNKNOWN
+AS3221        84       42       42   50.0%   UNKNOWN
+AS803         71       35       36   50.7%   UNKNOWN
+AS7122       109       75       34   31.2%   UNKNOWN
+AS1          503      470       33    6.6%   UNKNOWN
+AS6897        46       14       32   69.6%   UNKNOWN
+
+
+For the rest of the previous weeks gain information please see
+http://www.employees.org:80/~tbates/cidr-report.html
+
+2) Weekly Delta
+
+Please see
+http://www.employees.org:80/~tbates/cidr-report.html
+for this part of the report
+
+3) Interesting aggregates
+
+Please see
+http://www.employees.org:80/~tbates/cidr-report.html
+for this part of the report
+
+
+

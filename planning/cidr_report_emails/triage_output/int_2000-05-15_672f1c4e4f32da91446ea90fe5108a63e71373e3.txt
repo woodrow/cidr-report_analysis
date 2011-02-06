@@ -1,0 +1,67 @@
+# from /home/woodrow/proj/cidr-report_analysis/planning/cidr_report_emails/cidr_r_emails-old_index.txt:608
+# 2000-05-15 'RE: CIDR Report' from 'Roeland Meyer (E-mail)'
+# http://www.merit.edu/mail.archives/nanog/2000-05/msg00306.html
+
+
+RE: CIDR Report
+From: Roeland Meyer (E-mail)
+Date: Mon May 15 15:34:53 2000
+
+
+
+&gt; brett watson: Monday, May 15, 2000 11:44 AM
+
+&gt; &gt; C'mon. I'm obviously not suggesting it is as easy as &quot;ask
+&gt; and ye shall
+&gt; &gt; receive&quot;. My point here is that demand drives the market, and if it
+&gt; &gt; becomes clear that routers with faster BGP implementations
+&gt; are what is
+&gt; &gt; needed, that is just what the vendors will (eventually, at least)
+&gt; &gt; develope.
+&gt;
+&gt; you're forgetting (or not admitting here) that a corporation's primary
+&gt; motivators are profit and shareholder value.  a vendor will surely
+&gt; develop anything that gains them significant market share, or
+&gt; significant increase in profits, or significant increase in revenues.
+&gt; driven by demand alone, a market is not.
+&gt;
+&gt; &quot;routers with faster bgp implemetations are what is needed&quot; is what we
+&gt; say, but the question a vendor asks is &quot;does it increase my profit
+&gt; margin, revenues, or market position?&quot;.  what we &quot;want&quot; is mostly
+&gt; irrelevant.
+
+I beg to differ, the real issues are &quot;find what the market wants, give
+it to them&quot;. The problem is that they haven't figured out how to give it
+to us. We have to help them, if we want it bad enough.
+
+A lot of us, in the new dot-com arena, have a certifiable need for a
+portable /24. Truthfully, that's about all we do need. What we also have
+a need for is multi-homing over a very large and diverse area. The usual
+reasons for this (availability/reliability) is not the ONLY reason for
+this requirement. Actually, I listed three scenarios; small company with
+intercontinental locations; large dot-com with regional many
+co-locations; virtual companies with large collaboration networks.
+
+Under the current system, what we are forced to do is either obtain a
+/24 for each location (even when there are &lt;16 hosts there), or
+&quot;engineer&quot; our way into a portable /20 so we can participate in peering.
+Either method burns IP addresses (one engineering trick is to stop using
+NAT) in huge gulps. Most of us, being more than a little bit social
+conscious, cringe at the act of burning the IPs. But, the system makes
+us do it anyway. Alternatively, we let the system dictate our
+business-model and stop developing global dot-coms (not! -  try flying
+*that* past a VC &lt;heh&gt; I'll even let you borrow my flame-suit).
+
+The real short-term answer is to universally allow /24 announcements (I
+disagree with going below /26). If router capabilities do not support
+this than then the vendors will have to be encouraged to beef up their
+equipment. (Having just bought three Cisco Catalyst 6509s, with 3524XL
+end nodes, in the past six months, another few $20K wouldn't send my CPA
+into a tail-spin.) However, no amount of hardware is going to change
+filtering policies and that's why I bring this up here. What are the
+operational alternatives?
+
+
+
+
+

@@ -1,0 +1,47 @@
+# from /home/woodrow/proj/cidr-report_analysis/planning/cidr_report_emails/cidr_r_emails-old_index.txt:747
+# 1998-08-14 'Re: The Cidr Report' from 'Sean M. Doran'
+# http://www.merit.edu/mail.archives/nanog/1998-08/msg00200.html
+
+
+Re: The Cidr Report
+From: Sean M. Doran
+Date: Fri Aug 14 16:10:18 1998
+
+
+
+| 1) Gains by aggregating at the origin AS level
+|
+|  --- 13Aug98 ---
+| ASnum    NetsNow NetsCIDR  NetGain  % Gain   Description
+|
+| AS3602       554      322      232   41.9%   Sprint Canada Inc.
+| AS701       1133      933      200   17.7%   Alternet
+| AS4293       442      255      187   42.3%   IMCI
+| AS174        719      584      135   18.8%   Performance Systems International
+| AS4200       192      100       92   47.9%   AGIS (Apex Global Information Ser
+| AS2685       238      153       85   35.7%   IBM Global Network - US
+| AS7046       229      163       66   28.8%   UUNET-CUSTOMER
+| AS1239       535      487       48    9.0%   SprintLink Backbone
+
+Sigh, bad trend.  The big guys don't seem to care about aggregation
+any more.
+
+ob. NANOG: It's a *PLOT* to *CRUSH* the small providers, who
+           are reliant on small and stable routing tables!
+           Call the FTC!!!!!!!
+
+Funniest part:
+
+| AS762        118       81       37   31.4%   WELLFLEET-AS
+
+Boy, *THEY* don't get it, that's for sure.
+
+Or maybe they want to be the ones to *SUPPLY THE BIGGER ROUTERS*
+to the poor small ISPs who will have to upgrade!!
+
+It's a PLOT!
+
+	Sean.
+
+
+

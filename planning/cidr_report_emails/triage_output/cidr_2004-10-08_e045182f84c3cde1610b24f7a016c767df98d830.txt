@@ -1,0 +1,255 @@
+# from /home/woodrow/proj/cidr-report_analysis/planning/cidr_report_emails/cidr_r_emails-old_index.txt:334
+# 2004-10-08 'The Cidr Report' from 'cidr-report'
+# http://www.merit.edu/mail.archives/nanog/2004-10/msg00061.html
+
+
+The Cidr Report
+From: cidr-report
+Date: Fri Oct 08 08:05:51 2004
+
+
+
+This report has been generated at Fri Oct  8 21:44:22 2004 AEST.
+The report analyses the BGP Routing Table of an AS4637 (Reach) router
+and generates a report on aggregation potential within the table.
+
+Check http://www.cidr-report.org/as4637 for a current version of this report.
+
+Recent Table History
+        Date      Prefixes    CIDR Agg
+        01-10-04    145932      100119
+        02-10-04    146075       99905
+        03-10-04    145755      100267
+        04-10-04    146184      100294
+        05-10-04    146297      100252
+        06-10-04    146316      100325
+        07-10-04    146253      100429
+        08-10-04    146340      100450
+
+
+AS Summary
+         18121  Number of ASes in routing system
+          7375  Number of ASes announcing only one prefix
+          1392  Largest number of prefixes announced by an AS
+                AS7018 : ATTW AT&amp;T WorldNet Services
+      86706432  Largest address span announced by an AS (/32s)
+                AS721  : DNIC DoD Network Information Center
+
+
+Aggregation Summary
+The algorithm used in this report proposes aggregation only
+when there is a precise match using the AS path, so as 
+to preserve traffic transit policies. Aggregation is also
+proposed across non-advertised address space ('holes').
+
+ --- 08Oct04 ---
+ASnum    NetsNow NetsAggr  NetGain   % Gain   Description
+
+Table     146447   100449    45998    31.4%   All ASes
+
+AS18566      743        7      736    99.1%   CVAD Covad Communications
+AS4134       814      178      636    78.1%   CHINANET-BACKBONE
+                                               No.31,Jin-rong Street
+AS4323       789      220      569    72.1%   TWTC Time Warner Telecom
+AS7018      1392      967      425    30.5%   ATTW AT&amp;T WorldNet Services
+AS6197       789      382      407    51.6%   BNS-14 BellSouth Network
+                                               Solutions, Inc
+AS22773      403       21      382    94.8%   CXA Cox Communications Inc.
+AS27364      411       37      374    91.0%   ARMC Armstrong Cable Services
+AS6467       390       30      360    92.3%   ACSI e.spire Communications,
+                                               Inc.
+AS701       1252      907      345    27.6%   UU UUNET Technologies, Inc.
+AS22909      383       38      345    90.1%   CMCS Comcast Cable
+                                               Communications, Inc.
+AS1239       953      639      314    32.9%   SPRN Sprint
+AS17676      368       61      307    83.4%   JPNIC-JP-ASN-BLOCK Japan
+                                               Network Information Center
+AS9929       334       33      301    90.1%   CNCNET-CN China Netcom Corp.
+AS6478       379       79      300    79.2%   ATTW AT&amp;T WorldNet Services
+AS4355       381       99      282    74.0%   ERSD EARTHLINK, INC
+AS21502      269        3      266    98.9%   ASN-NUMERICABLE NUMERICABLE is
+                                               a cabled network in France,
+AS4766       529      266      263    49.7%   KIXS-AS-KR Korea Telecom
+AS14654      260        6      254    97.7%   WAYPOR-3 Wayport
+AS9443       357      108      249    69.7%   INTERNETPRIMUS-AS-AP Primus
+                                               Telecommunications
+AS6140       370      134      236    63.8%   IMPSA ImpSat
+AS15557      334      104      230    68.9%   LDCOMNET LDCOM NETWORKS
+AS2386       841      612      229    27.2%   ADCS-1 AT&amp;T Data
+                                               Communications Services
+AS1221       815      587      228    28.0%   ASN-TELSTRA Telstra Pty Ltd
+AS25844      244       16      228    93.4%   SASMFL-2 Skadden, Arps, Slate,
+                                               Meagher &amp; Flom LLP
+AS9583       529      306      223    42.2%   SIFY-AS-IN Sify Limited
+AS7843       488      266      222    45.5%   ADELPH-13 Adelphia Corp.
+AS6198       432      214      218    50.5%   BNS-14 BellSouth Network
+                                               Solutions, Inc
+AS13083      217        8      209    96.3%   Mannesmann Datenverarbeitung
+                                               Autonomes System
+AS721        718      513      205    28.6%   DNIC DoD Network Information
+                                               Center
+AS3356       647      445      202    31.2%   LEVEL3 Level 3 Communications
+
+Total      16831     7286     9545    56.7%   Top 30 total
+
+
+Possible Bogus Routes
+
+        24.138.80.0/20       AS11260 AHSICHCL Andara High Speed Internet c/o Halifax Cable Ltd.
+        24.246.0.0/17        AS7018  ATTW AT&amp;T WorldNet Services
+        24.246.38.0/24       AS25994 NPGCAB NPG Cable, INC
+        24.246.128.0/18      AS7018  ATTW AT&amp;T WorldNet Services
+        64.46.4.0/22         AS11711 TULARO TULAROSA COMMUNICATIONS
+        64.46.27.0/24        AS8674  NETNOD-IX Netnod Internet Exchange Sverige AB
+        64.46.34.0/24        AS3408  
+        64.46.63.0/24        AS7850  IHIGHW iHighway.net, Inc.
+        64.83.96.0/19        AS26956 NETFR NetFree Communications
+        64.127.0.0/18        AS7018  ATTW AT&amp;T WorldNet Services
+        66.114.0.0/19        AS16526 BIRCHT Birch Telecom, Inc.
+        69.26.32.0/19        AS17307 VIRTEL-15 Virtela Communications
+        111.0.0.0/24         AS7563  KII-AS Korea Internet Infrastructure
+        132.0.0.0/10         AS721   DNIC DoD Network Information Center
+        137.0.0.0/13         AS721   DNIC DoD Network Information Center
+        138.136.0.0/13       AS721   DNIC DoD Network Information Center
+        158.0.0.0/13         AS721   DNIC DoD Network Information Center
+        192.30.93.0/24       AS17757 HPAUS-AP HP Australia
+        192.30.94.0/24       AS17757 HPAUS-AP HP Australia
+        192.30.127.0/24      AS719   LANLINK Elisa Oyj
+        192.40.105.0/24      AS5515  SONERA-GLOBAL-IP Sonera Solution Autonomous System
+        192.44.0.0/19        AS702   AS702 MCI EMEA - Commercial IP service provider in Europe
+        192.70.164.0/24      AS25689 NRCC-2 National Research Council of Canada
+        192.80.64.0/19       AS1     LVLT Level 3 Communications, Inc.
+        192.81.182.0/24      AS719   LANLINK Elisa Oyj
+        192.81.183.0/24      AS719   LANLINK Elisa Oyj
+        192.81.184.0/24      AS719   LANLINK Elisa Oyj
+        192.107.144.0/22     AS1     LVLT Level 3 Communications, Inc.
+        192.119.135.0/24     AS270   NASA National Aeronautics and Space Administration
+        192.124.252.0/22     AS680   DFN-IP service G-WiN
+        192.133.6.0/24       AS4004  GLOBALONE-EQUANT-UK Equant UK  &amp; Greece Autonomous System
+        192.135.50.0/24      AS7018  ATTW AT&amp;T WorldNet Services
+        192.138.208.0/20     AS1     LVLT Level 3 Communications, Inc.
+        192.153.144.0/21     AS721   DNIC DoD Network Information Center
+        192.172.0.0/19       AS721   DNIC DoD Network Information Center
+        192.188.208.0/20     AS721   DNIC DoD Network Information Center
+        192.190.16.0/21      AS1     LVLT Level 3 Communications, Inc.
+        192.243.32.0/23      AS2044  PALINA Palin Aquisitions Inc.
+        196.2.95.0/24        AS8668  TELONE-AS TelOne Zimbabwe P/L
+        198.23.26.0/24       AS4390  BELLAT-7 Bell Atlantic, Inc.
+        198.97.72.0/21       AS721   DNIC DoD Network Information Center
+        198.97.80.0/20       AS721   DNIC DoD Network Information Center
+        198.97.88.0/24       AS89    NUSC-1 Naval Underwater Systems Center
+        198.97.240.0/20      AS721   DNIC DoD Network Information Center
+        198.97.247.0/24      AS3475  DEPART-52 Department of the Navy
+        198.101.4.0/22       AS721   DNIC DoD Network Information Center
+        198.136.32.0/20      AS19329 MCBCC Martin County Board of County Commissioners
+        198.144.32.0/19      AS3998  CITY CityNet, Inc.
+        198.161.87.0/24      AS6539  GTGR GT Group Telecom Services Corp.
+        198.161.165.0/24     AS852   AGTA Telus Advanced Communications
+        198.163.155.0/24     AS684   MRN Manitoba Regional Network
+        198.167.0.0/16       AS7456  INS-51 Interhop Network SERVICES Inc.
+        198.167.163.0/24     AS15290 ACCA-2 Allstream Corp. Corporation Allstream
+        198.168.0.0/16       AS701   UU UUNET Technologies, Inc.
+        198.169.0.0/16       AS803   SASK SaskTel
+        198.232.133.0/24     AS23075 SKOTOS Skotos Tech, Inc
+        199.10.0.0/16        AS721   DNIC DoD Network Information Center
+        199.60.0.0/20        AS271   UBC-3 University of British Columbia
+        199.96.44.0/23       AS19092 360NE-1 360Networks (USA) Inc.
+        199.96.46.0/24       AS19092 360NE-1 360Networks (USA) Inc.
+        199.114.0.0/18       AS568   DISOUN DISO-UNRRA
+        199.114.0.0/21       AS721   DNIC DoD Network Information Center
+        199.114.128.0/18     AS721   DNIC DoD Network Information Center
+        199.114.130.0/24     AS721   DNIC DoD Network Information Center
+        199.114.132.0/24     AS721   DNIC DoD Network Information Center
+        199.114.134.0/24     AS1913  DLA-8 Defense Logistics Agency
+        199.114.136.0/24     AS1913  DLA-8 Defense Logistics Agency
+        199.114.138.0/24     AS721   DNIC DoD Network Information Center
+        199.114.140.0/24     AS3544  DISAUN DISA/UNRRA
+        199.114.142.0/24     AS721   DNIC DoD Network Information Center
+        199.114.144.0/24     AS721   DNIC DoD Network Information Center
+        199.114.148.0/24     AS721   DNIC DoD Network Information Center
+        199.114.150.0/24     AS721   DNIC DoD Network Information Center
+        199.114.152.0/24     AS1913  DLA-8 Defense Logistics Agency
+        199.114.154.0/24     AS1733  ADP-41 AF DDN PMO
+        199.114.156.0/24     AS1913  DLA-8 Defense Logistics Agency
+        199.114.160.0/24     AS1733  ADP-41 AF DDN PMO
+        199.120.32.0/19      AS16582 NXLI NEXTLEVEL INTERNET, INC.
+        199.121.0.0/16       AS721   DNIC DoD Network Information Center
+        199.123.0.0/18       AS721   DNIC DoD Network Information Center
+        199.123.16.0/20      AS721   DNIC DoD Network Information Center
+        199.123.80.0/21      AS721   DNIC DoD Network Information Center
+        199.189.32.0/19      AS7332  IQUEST IQuest Internet
+        199.197.8.0/22       AS21814 PARSON-18 Parsons Corp.
+        199.202.0.0/16       AS701   UU UUNET Technologies, Inc.
+        202.47.1.0/24        AS7491  PI-PH-AS-AP PI-PHILIPINES
+        202.70.28.0/24       AS4515  ERX-STAR Star Internet Services Ltd.
+        202.73.128.0/22      AS4058  LINKAGENET-AP CPCNet Hong Kong Ltd.
+        202.93.0.0/20        AS4134  CHINANET-BACKBONE No.31,Jin-rong Street
+        202.133.3.0/24       AS9335  CIP-JAPAN-AS-AP ATT IPlus
+        202.164.224.0/19     AS7599  IPXC-AS-AP IP Exchange
+        203.32.4.0/23        AS7617  
+        203.62.0.0/17        AS7572  AARNET-ACT-RNO Australian Academic and Reasearch Network (AARNet)
+        203.84.192.0/19      AS17433 PHILWEB-AP PhilWeb.Com, Inc.
+        203.84.192.0/20      AS17433 PHILWEB-AP PhilWeb.Com, Inc.
+        203.84.208.0/20      AS17433 PHILWEB-AP PhilWeb.Com, Inc.
+        203.210.69.0/24      AS17536 PRODIGY-AS-AP Prodidgy Telecommunications
+        204.154.125.0/24     AS3952  TELLAB-1 TELLABS Operations, Inc.
+        204.154.126.0/24     AS3952  TELLAB-1 TELLABS Operations, Inc.
+        204.154.127.0/24     AS3952  TELLAB-1 TELLABS Operations, Inc.
+        204.194.110.0/23     AS30653 EXOBI Exobit Networks Inc.
+        204.196.0.0/14       AS1     LVLT Level 3 Communications, Inc.
+        205.150.0.0/15       AS701   UU UUNET Technologies, Inc.
+        205.159.72.0/24      AS1660  ANSCOM-5 ANS Communications
+        206.167.57.0/24      AS376   RISQR-3 Reseau Interordinateurs Scientique Quebecois (RISQ)
+        206.191.64.0/18      AS15290 ACCA-2 Allstream Corp. Corporation Allstream
+        206.251.69.0/24      AS27429 TIL-33 Telesat International Ltd.
+        206.253.190.0/23     AS8123  POLYBA Polybase
+        207.47.254.0/24      AS701   UU UUNET Technologies, Inc.
+        207.231.96.0/19      AS11194 NUNETI NuNet Inc
+        208.81.187.0/24      AS19194 SNL-8 Sentris Network LLC
+        209.172.0.0/18       AS7770  TRTI Triton Technologies, Inc.
+        209.205.69.0/24      AS21578 Universidad autonoma de Bucaramanga
+        209.205.70.0/24      AS21578 Universidad autonoma de Bucaramanga
+        209.205.81.0/24      AS15066 SkyNet de Colombia S.A.
+        209.205.82.0/24      AS15066 SkyNet de Colombia S.A.
+        209.205.84.0/24      AS15066 SkyNet de Colombia S.A.
+        209.213.32.0/19      AS10629 INS-52 Inter-Pacific Network Services
+        209.213.48.0/24      AS10629 INS-52 Inter-Pacific Network Services
+        209.213.49.0/24      AS10629 INS-52 Inter-Pacific Network Services
+        209.213.50.0/24      AS10629 INS-52 Inter-Pacific Network Services
+        209.213.55.0/24      AS10629 INS-52 Inter-Pacific Network Services
+        209.213.56.0/24      AS10629 INS-52 Inter-Pacific Network Services
+        209.251.0.0/19       AS11036 SISCOM-1 SISCOM, Inc
+        216.37.110.0/23      AS4264  CERFN California Education and Research Federation Network
+        216.96.128.0/18      AS7018  ATTW AT&amp;T WorldNet Services
+        216.145.130.0/24     AS11937 TRXI TRX Inc.
+        216.145.132.0/24     AS11937 TRXI TRX Inc.
+        216.145.134.0/24     AS11937 TRXI TRX Inc.
+        216.145.156.0/24     AS20304 JIS-32 JVLNET Internet Services
+        216.145.158.0/24     AS20304 JIS-32 JVLNET Internet Services
+        216.145.176.0/21     AS20304 JIS-32 JVLNET Internet Services
+        216.145.177.0/24     AS20304 JIS-32 JVLNET Internet Services
+        216.145.178.0/24     AS20304 JIS-32 JVLNET Internet Services
+        216.145.184.0/21     AS10758 INWAVE INWave Internet, Inc
+        216.145.200.0/21     AS20304 JIS-32 JVLNET Internet Services
+        216.186.151.0/24     AS3356  LEVEL3 Level 3 Communications
+        216.186.152.0/21     AS3356  LEVEL3 Level 3 Communications
+        216.186.160.0/23     AS3356  LEVEL3 Level 3 Communications
+        216.186.164.0/22     AS3356  LEVEL3 Level 3 Communications
+        216.186.192.0/22     AS3356  LEVEL3 Level 3 Communications
+        216.186.198.0/23     AS3356  LEVEL3 Level 3 Communications
+        216.186.248.0/23     AS3356  LEVEL3 Level 3 Communications
+
+
+Please see http://www.cidr-report.org for the full report
+
+------------------------------------
+Copies of this report are mailed to:
+  nanog@merit.edu
+  eof-list@ripe.net
+  apops@apops.net
+  routing-wg@ripe.net
+  afnog@afnog.org
+  swinog@swinog.ch
+
+
+

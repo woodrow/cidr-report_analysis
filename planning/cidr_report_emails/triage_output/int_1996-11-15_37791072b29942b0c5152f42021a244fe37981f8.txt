@@ -1,0 +1,54 @@
+# from /home/woodrow/proj/cidr-report_analysis/planning/cidr_report_emails/cidr_r_emails-old_index.txt:872
+# 1996-11-15 'Re: The Cidr Report' from 'Scott Huddle'
+# http://www.merit.edu/mail.archives/nanog/1996-11/msg00153.html
+
+
+Re: The Cidr Report
+From: Scott Huddle
+Date: Fri Nov 15 16:17:35 1996
+
+
+Hey TB, neat stuff as always.  A few comments for you and others
+below.
+
+-scott
+
+--
+Tony Bates &lt;tbates@cisco.com&gt; wrote
+&gt; AS Summary
+&gt; ----------
+&gt;Number of ASes in routing system:                 1792
+&gt;
+&gt; Number of ASes announcing only one prefix:         737 (378 cidr, 359 classful
+
+Wow!  Is a correct assumption that some 40% of the ASs could be 
+reclaimed?
+
+&gt; 
+&gt; Largest number of  cidr routes:                    461 announced by AS3561
+&gt; Largest number of classful routes:                1266 announced by  AS174
+&gt; 
+
+Neat stuff.  Could you list the top ten or five of each of these?
+
+&gt; 2) Weekly Delta
+&gt; 
+&gt; Top 20 Withdrawn Routes from 08Nov96 to 15Nov96
+&gt; 	-304  AS174 Performance Systems International
+
+Are congrats due to PSI?
+
+&gt; 	 -50 AS2914 WNA, premasticated for MCI :-)
+
+???
+
+--PAA17218.848089776/new6.Reston.mci.net--
+
+
+
+----- End Included Message -----
+
+- - - - - - - - - - - - - - - - -
+
+
+

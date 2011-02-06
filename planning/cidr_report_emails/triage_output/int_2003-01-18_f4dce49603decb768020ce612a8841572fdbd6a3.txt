@@ -1,0 +1,95 @@
+# from /home/woodrow/proj/cidr-report_analysis/planning/cidr_report_emails/cidr_r_emails-old_index.txt:448
+# 2003-01-18 'Re: The Cidr Report' from 'Hank Nussbacher'
+# http://www.merit.edu/mail.archives/nanog/2003-01/msg00392.html
+
+
+Re: The Cidr Report
+From: Hank Nussbacher
+Date: Sat Jan 18 12:11:56 2003
+
+
+
+At 11:33 AM 17-01-03 -0500, Larry J. Blunk wrote:
+
+
+
+&gt;
+&gt; Previously, cidr-report@potaroo.net (cidr-report@potaroo.net) wrote:
+&gt; &gt; AS690        521      326      195    37.4%   MERIT-AS-27 Merit 
+Network Inc
+&gt;.
+&gt;
+&gt; Come on, Susan, have your folks get with the program. :-)
+&gt;
+&gt; --
+&gt; Douglas A. Dever  doug@e-xpedient.com
+&gt; 216.373.8517 - DID
+&gt; 216.401.5888 - Cell
+
+
+   AS690 was originally aquired by Merit for the NSFNET T3 network
+and subsequently assumed by ANS --&gt;  AOL --&gt;  UUNET --&gt; WorldCom
+(I'm not entirely sure if this ordering is correct).
+I've nagged Lee Howard a couple times to get this transferred
+over.  Perhaps I need to go through a less busy person.
+
+Well, here is an email I sent last month that didn't result in a single 
+response - either human or auto-response:
+
+Date: Wed, 25 Dec 2002 14:47:06 +0200
+To: michnet.operations@merit.edu, trouble@merit.edu, srh@merit.edu
+From: Hank Nussbacher &lt;hank@att.net.il&gt;
+Subject: Global routing table bloat - AS690
+Cc: &quot;Barry Raveendran Greene&quot; &lt;bgreene@cisco.com&gt;, pfs@cisco.com
+
+AS690 has been lately seen to be sending out too many prefixes not based 
+on CIDR boundries, thereby increasing the global router table size:
+
+ASnum    NetsNow NetsCIDR  NetGain  % Gain   Description
+AS690    513     319       194       37.8%   MERIT-AS-27 Merit Network Inc.
+
+See http://www.mcvax.org/~jhma/routing/ and http://bgp.potaroo.net/cidr/ 
+and http://bgp.potaroo.net/cgi-bin/as-report?as=AS690&amp;view=4637
+for further details.
+
+I hope you can take the time to add the appropriate BGP filters so that 
+the we all do not suffer from global router table bloat.
+
+Thanks,
+Hank
+
+You really ought to update your ARIN entry:
+
+OrgName:  Merit Network Inc.
+OrgID:    MICH
+
+ASNumber: 690
+ASName:   MERIT-AS-27
+ASHandle: AS690
+Comment:
+RegDate:  1990-06-28
+Updated:  2002-10-01
+
+OrgTechHandle: MICHN-ARIN
+OrgTechName:   MichNet Operations
+OrgTechPhone:  +1-734-936-0822
+OrgTechEmail:  michnet.operations@merit.edu
+
+OrgAbuseHandle: NETWO26-ARIN
+OrgAbuseName:   Network Abuse
+OrgAbusePhone:  +1-734-615-1475
+OrgAbuseEmail:  abuse@merit.edu
+
+-Hank
+
+
+
+
+
+  -Larry Blunk
+   Merit
+
+
+
+
+

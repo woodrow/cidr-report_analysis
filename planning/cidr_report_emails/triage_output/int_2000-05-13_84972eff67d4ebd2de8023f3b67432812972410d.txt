@@ -1,0 +1,89 @@
+# from /home/woodrow/proj/cidr-report_analysis/planning/cidr_report_emails/cidr_r_emails-old_index.txt:635
+# 2000-05-13 'RE: CIDR Report' from 'Owen DeLong'
+# http://www.merit.edu/mail.archives/nanog/2000-05/msg00241.html
+
+
+RE: CIDR Report
+From: Owen DeLong
+Date: Sat May 13 14:09:53 2000
+
+
+
+
+&gt; I've mentioned this before, so I'll just note it lightly.
+&gt; There are a growing number of companies (dot-coms are only one of them) that have small head-count (&lt;4000), but are spread out from Sydney to New York, with many &quot;lone eagles&quot; in the MST zone. They could probably do everything on a portable /24. However, with everyone filtering out announcements less than /20, such companies are encouraged to drop NAT, and use other methods to justify a /19, just so they can participate in peering (I won't say whom, one is a CTI development company). The VPN solution is cute, but the entire VP then becomes single-homed, at the VPN gateway (The alternative is that each location gets their own /24, linked by a VPN, to the other /24s, there are serious performance issues with this approach and hte /24 may only represent a single actual user). All of this burns IP addresses. 
+&gt; 
+Or you build a VPN with multiple gateways, and accept the consequences when a gateway
+drops and you are rerouted to another gateway.  This is usually rare, and most
+users will retry their HTTP request or other session at least once before calling
+for assistance.  It's not pretty, but it is feasible.
+
+(Each gateway has it's own NAT pool that it exchanges with the world.  Each office
+on the VPN is dynamically routed to the closest gateway.)
+
+&gt; The point: Filtering BGP announcements costs in IP space allocations. There is a mathmatical relationship between IP address allocations, table sizes, and routing policies. Also, part of the relationship is determined by client business requirements.
+&gt; 
+&gt; Organizations are becomeing more geophysically diffused, with many end-nodes actually participating in multiple organizations. This is only starting now (I still see over 100K nodes actually doing this), it will get much worse.
+&gt; 
+Yes, that is true.  I think the long term solution is bigger routing tables with
+faster lookups and longer prefixes.  CIDR was a hack to get us through a time
+when router memory and speed constraints were creating serious problems in
+routing the global internet.  I believe this problem is mostly solved, and that
+modern routers are capable of handling a much larger routing table.  As such,
+I think the need for optimization has shifted to IP space utilization and topological
+efficiency.  Deaggregating routes to be able to use effective MEDs would also
+benefit from this going forward.
+
+I know this doesn't fit with Randy's religion, but it's not the first time I
+have disagreed with Randy.
+
+Owen
+
+&gt; &gt; -----Original Message-----
+&gt; &gt; From: owner-nanog@merit.edu [mailto:owner-nanog@merit.edu]On Behalf Of
+&gt; &gt; Mikael Abrahamsson
+&gt; &gt; Sent: Saturday, May 13, 2000 2:10 AM
+&gt; &gt; To: nanog@nanog.org
+&gt; &gt; Subject: Re: CIDR Report
+&gt; &gt; 
+&gt; &gt; 
+&gt; &gt; 
+&gt; &gt; On Sat, 13 May 2000 pjnesser@Nesser.COM wrote:
+&gt; &gt; 
+&gt; &gt; &gt; But if you look at the last 250 days or so you see that the 
+&gt; &gt; table has
+&gt; &gt; &gt; grown by more than 16k routes.  So we are seeing growth at 
+&gt; &gt; 300% of what we
+&gt; &gt; &gt; saw for the last 5 plus years.  It also looks annoyingly 
+&gt; &gt; geometric or
+&gt; &gt; &gt; perhaps exponential, instead of the nice linear growth 
+&gt; &gt; since CIDR was
+&gt; &gt; &gt; introduced.  
+&gt; &gt; 
+&gt; &gt; If you just check from 01/01/99 to date then it looks linear 
+&gt; &gt; or at least
+&gt; &gt; close to linear.
+&gt; &gt;  
+&gt; &gt; I guess it *could* be that growing amount of new companies getting
+&gt; &gt; internet access is increasing. Is there any data that show &quot;CIDR GAIN&quot;
+&gt; &gt; from the cidr report, so we can see if the increase corresponds to an
+&gt; &gt; increase in (perhaps unneccessary) smaller announcements in 
+&gt; &gt; larger blocks,
+&gt; &gt; or if it is actually just a lot more blocks allocated that needs to be
+&gt; &gt; routed. Any stats on arin/ripe/apnic new allocations of 
+&gt; &gt; blocks in the same
+&gt; &gt; timeframe? Both in terms of IP adresses and in number of blocks of IP
+&gt; &gt; adresses. This would also give us some kind of hint as to 
+&gt; &gt; when IPv4 space
+&gt; &gt; will be exhausted (or are there already projections about this?)
+&gt; &gt; 
+&gt; &gt; -- 
+&gt; &gt; Mikael Abrahamsson    email: swmike@swm.pp.se
+&gt; &gt; 
+&gt; 
+&gt; 
+&gt; 
+
+
+
+

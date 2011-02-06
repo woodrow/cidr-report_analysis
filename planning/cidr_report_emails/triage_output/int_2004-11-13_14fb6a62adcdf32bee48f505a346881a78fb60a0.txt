@@ -1,0 +1,34 @@
+# from /home/woodrow/proj/cidr-report_analysis/planning/cidr_report_emails/cidr_r_emails-old_index.txt:314
+# 2004-11-13 'Re: The Cidr Report' from 'Joe Provo'
+# http://www.merit.edu/mail.archives/nanog/2004-11/msg00388.html
+
+
+Re: The Cidr Report
+From: Joe Provo
+Date: Sat Nov 13 08:46:08 2004
+
+
+
+On Sat, Nov 13, 2004 at 03:31:26AM +0000, Christopher L. Morrow wrote:
+[snip]
+&gt; Of these listed 4 are cable companies, is there something in the cable
+&gt; modem networking that requires deaggregated routes beyond their borders?
+
+No, for the general statement about 'cable modem networking'.
+
+&gt; Is the problem that they might have seperate 'networks' for their regional
+&gt; parts and leak more specifics for these parts along with 'backup' routes
+&gt; via aggregates?
+
+This is trivial to do only as far as your $s carry. Aggregate draws 
+the traffic, then NO_EXPORT-tagged longest-match carries the 
+regionalized traffic.  Folks do this as a 'best exit' approach between 
+peer netwworks all the time.  If you are suggesting disjoint, unconnected 
+islands, then they should be separate ASNs for sane paths; see charter's
+islands, the pre-271 refleif ILEC LATA-bound islands, etc.  
+
+-- 
+             RSUC / GweepNet / Spunk / FnB / Usenix / SAGE
+
+
+

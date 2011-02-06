@@ -1,0 +1,147 @@
+# from /home/woodrow/proj/cidr-report_analysis/planning/cidr_report_emails/cidr_r_emails-old_index.txt:862
+# 1996-11-26 'Re: The Cidr Report' from 'Tony Bates'
+# http://www.merit.edu/mail.archives/nanog/1996-11/msg00348.html
+
+
+Re: The Cidr Report
+From: Tony Bates
+Date: Tue Nov 26 19:53:25 1996
+
+
+
+ &quot;William Allen Simpson&quot; &lt;wsimpson@greendragon.com&gt; writes:
+  * &gt; From: randy@psg.com (Randy Bush)
+  * &gt;
+  * &gt; &gt; Date	Prefixes
+  * &gt; &gt; 171196	40844
+  * &gt; &gt; 171196	40868
+  * &gt; &gt; 181196	40933
+  * &gt; &gt; 191196	42076
+  * &gt; &gt; 201196	40674
+  * &gt; &gt; 211196	40583
+  * &gt; &gt; 221196	40525
+  * &gt;
+  * &gt; Tony, I suspect that you and your weekly report are, in a large part,
+  * &gt; responsible for this.  I thank you.  Our routers thank you.
+  * &gt;
+  *     Date        Prefixes
+  *     280996      42250
+  *     290996      42040
+  *     300996      42235
+  *     011096      42228
+  *     021096      42249
+  *     031096      42109
+  *     041096      41894
+  * 
+  * Yeah, me, too!  Comparing with nearly 2 months ago pasted in above, this
+  * is a fantastic trend!  Down 1700 routes (except sometimes).
+  * 
+Well - let's not get too excited. Check the last few days out. 
+
+Date    Prefixes
+201196  40674
+211196  40583
+221196  40525
+231196  40687
+241196  40908
+251196  40844
+261196  41043
+
+Soon creeps back up although some folks certainly have been cleaning
+up a fair bit recently. EMBRATEL and BBN Planet South Eastern Region
+are two that I noticed.
+
+I've added a little extra piece to the report which is a plot tracking
+the history since I've restarted this project. Check
+
+http://www.employees.org/~tbates/cidr.plot.xbm
+
+This will be updated on a daily basis. This will be referenced on the 
+weekly mail update as well as the main web page
+
+http://www.employees.org/~tbates/cidr-report.html
+
+  * 
+  * &gt; Frank, if you're out there, has the curve changed since Tony started
+  * &gt; publishing again?
+  * &gt;
+I'd be interested in this also ;-).
+
+  * One of the things that I'm curious about: have any of the &quot;interesting
+  * aggregates&quot; been acted upon?  The list seems to be getting _more_
+  * entries, instead of the fewer I'd expect.  Perhaps I don't understand
+  * the algorithm.
+  * 
+
+The algorithm just looks for prefixen which are subnets of old
+classful routes using the assumption that today there is little reason
+to be announcing these and in most cases with the ones it finds this
+seems to be the case. I'm not sure either why this list keep growing
+becuase even just eye-balling them, most dont seem to make sense.  The
+most common is /24s from a legacy Class B. 
+
+It also has the benefit of often pointing out obvious leaks (like /32s
+from time to time)
+
+  * I find it hard to compare and check by eye.  By simple diff, I can see
+  * that ANS and UUNET have been fixing them, since they've mostly
+  * disappeared from the list.  But others seem to pop in and out, and
+  * sometimes spawn many where there was only one line before, particularly
+  * AGIS, MSEN, PREPnet and PSInet, all of whom should know better.
+  * 
+
+As a start I've modified this to be sort by AS rather than prefix
+to perhaps help a little and added some description of the network
+name also (this was based on a suggestion from Mike Patton). This is
+not really how I'd like it but its a start. It now looks like this.
+
+
+            List of possibly interesting aggregates
+            ---------------------------------------
+
+         Aggregate | Origin | AS Description          | Netname                
+-------------------------------------------------------------------------------
+     154.11.1.0/24 | AS8013 | PSINET-CA               | Performance Systems Int
+     154.11.2.0/24 | AS8013 | PSINET-CA               | Performance Systems Int
+     154.11.8.0/24 | AS8013 | PSINET-CA               | Performance Systems Int
+    154.11.16.0/24 | AS8013 | PSINET-CA               | Performance Systems Int
+    154.11.24.0/24 | AS8013 | PSINET-CA               | Performance Systems Int
+    154.11.25.0/24 | AS8013 | PSINET-CA               | Performance Systems Int
+    154.11.32.0/24 | AS8013 | PSINET-CA               | Performance Systems Int
+    154.11.36.0/24 | AS8013 | PSINET-CA               | Performance Systems Int
+    154.11.37.0/24 | AS8013 | PSINET-CA               | Performance Systems Int
+    154.11.48.0/24 | AS8013 | PSINET-CA               | Performance Systems Int
+    154.11.64.0/24 | AS8013 | PSINET-CA               | Performance Systems Int
+    154.11.96.0/24 | AS8013 | PSINET-CA               | Performance Systems Int
+    154.11.97.0/24 | AS8013 | PSINET-CA               | Performance Systems Int
+    154.11.98.0/24 | AS8013 | PSINET-CA               | Performance Systems Int
+    154.11.99.0/24 | AS8013 | PSINET-CA               | Performance Systems Int
+   154.11.108.0/22 | AS8013 | PSINET-CA               | Performance Systems Int
+   154.11.108.0/24 | AS8013 | PSINET-CA               | Performance Systems Int
+   154.11.109.0/24 | AS8013 | PSINET-CA               | Performance Systems Int
+   154.11.110.0/24 | AS8013 | PSINET-CA               | Performance Systems Int
+   154.11.126.0/24 | AS8013 | PSINET-CA               | Performance Systems Int
+   154.11.127.0/24 | AS8013 | PSINET-CA               | Performance Systems Int
+   155.229.30.0/24 | AS7330 | INTERNETLABS            | Internet Atlanta, Inc. 
+  155.229.176.0/21 | AS7045 | WEATHER                 | *                      
+        12.0.0.0/9 | AS7018 | AT&amp;T worldnet network   | AT&amp;T ITS (NET-ATT)     
+  168.234.128.0/24 | AS6458 | EMPRESSA GUATEMALTECA D | Universidad del Valle d
+  168.234.135.0/24 | AS6458 | EMPRESSA GUATEMALTECA D | Universidad del Valle d
+  168.234.136.0/22 | AS6458 | EMPRESSA GUATEMALTECA D | Universidad del Valle d
+   170.119.27.0/24 | AS6335 | NTRNET                  | LG&amp;E Energy (NET-LGE-CO
+  170.119.229.0/24 | AS6335 | NTRNET                  | LG&amp;E Energy (NET-LGE-CO
+   149.236.92.0/24 | AS6292 | FCI                     | Bruker Analytische Mess
+[...]
+
+
+  * Could that be automatically added to the weekly summary?  &quot;Recent
+  * aggregations&quot;, just before Interesting?   A tally of successes that
+  * would be more clear than withdrawn route counts....
+  *
+Okay let me think about this a while.
+
+		--Tony
+- - - - - - - - - - - - - - - - -
+
+
+

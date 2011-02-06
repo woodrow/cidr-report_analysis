@@ -1,0 +1,40 @@
+# from /home/woodrow/proj/cidr-report_analysis/planning/cidr_report_emails/cidr_r_emails-old_index.txt:777
+# 1998-02-02 'Re: The Cidr Report' from 'Vince Fuller'
+# http://www.merit.edu/mail.archives/nanog/1998-02/msg00012.html
+
+
+Re: The Cidr Report
+From: Vince Fuller
+Date: Mon Feb 02 11:31:34 1998
+
+
+&gt; As you can see things are startng to move up recently. I'd suggest
+&gt; folks take a look at the &quot;Interesting Aggregates&quot; section on the web
+&gt; page as it appears there's been a large influx of routes
+&gt; here. Particularly AS719 who look like they may have a config error
+&gt; with many many /28s showing up. They aren't the only ones as there
+&gt; seems to be a lot of potential savings to be made here just by
+&gt; eye-balling the aggregates.
+
+It looks like AS 719 may have cleaned-up their act, but there is still a lot
+of garbage in that section of the report. Most of them seem to be subnets of
+/16's that all have the same AS path and therefore have no reason to not be
+aggregated. 168.108.x.y, 166.102.x.y, 152.166.x.y-152.172.x.y, 129.81.x.y,
+and 139.175.x.y are the most obvious offenders - all of the components of each
+are singly-homed to a single AS path (yes, AS 1 has a couple of small ones
+not listed above - I'll see about chasing those down). Others, like
+161.11.x.y, 138.87.x.y, 137.15.x.y, 137.98.x.y, and 143.233.x.y appear to
+be multi-homed but still shouldn't need to be propagated to the global
+Internet.
+
+If you're going to accept CIDR block subcomponents from your customers for
+load-balancing or other purposes, please set community &quot;no-advertise&quot; or
+otherwise prevent them from leaking out to the rest of the net - everyone
+else doesn't need to see your trash...
+
+	--Vince
+
+(note: from address modified to discourage spam)
+
+
+

@@ -1,0 +1,26 @@
+# from /home/woodrow/proj/cidr-report_analysis/planning/cidr_report_emails/cidr_r_emails-old_index.txt:395
+# 2003-11-07 'Re: The Cidr Report' from 'Adam Debus'
+# http://www.merit.edu/mail.archives/nanog/2003-11/msg00221.html
+
+
+Re: The Cidr Report
+From: Adam Debus
+Date: Fri Nov 07 12:05:50 2003
+
+
+
+&gt; AS209       1097      532      565    51.5%   ASN-QWEST Qwest
+
+    It's worth pointing out that Qwest had such a huge jump this week
+because they are moving from AS2908 to AS209 in their 14 state ILEC area.
+
+Thanks,
+
+Adam Debus
+Linux Certified Professional, Linux Certified Administrator #447641
+Network Engineer, ReachONE Internet
+adam@reachone.com
+
+
+
+

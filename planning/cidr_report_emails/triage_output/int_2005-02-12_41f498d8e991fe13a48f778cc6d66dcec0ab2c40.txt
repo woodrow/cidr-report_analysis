@@ -1,0 +1,57 @@
+# from /home/woodrow/proj/cidr-report_analysis/planning/cidr_report_emails/cidr_r_emails-old_index.txt:274
+# 2005-02-12 'Re: The Cidr Report' from 'Philip Smith'
+# http://www.merit.edu/mail.archives/nanog/2005-02/msg00187.html
+
+
+Re: The Cidr Report
+From: Philip Smith
+Date: Sat Feb 12 08:20:11 2005
+
+
+
+Neil J. McRae said the following on 12/02/2005 21:06:
+
+The issue we see is 
+bad aggregation - the root cause is bad practise and processes 
+that manifest into bad aggregation. I would argue that 
+networks with poor aggregation are also networks that will tend to 
+have more routeing issues and other outages although I have no
+data to back that claim up.
+
+I think it depends on which part of the world you look in. But I've 
+visited enough ISPs in the last 7 years in my part of the world (outside 
+US and Western Europe) to know that this is an accurate statement. 
+Again, no data to back this experience up.
+
+Neil J. McRae said the following on 12/02/2005 21:07:
+&gt;
+&gt;&gt;Commercial reasons? The traffic goes to the 32x/24 instead of
+&gt;&gt;the /19.
+&gt;
+&gt; If that's the reason why the table is growing so much then we
+&gt; are all in deep deep trouble.
+
+Quite often many service providers are de-aggregating without knowing 
+it. They receive their /20 or whatever from the RIR, but they consider 
+this to be 16 Class Cs - I'm not joking - and announce them as such to 
+the Internet. I spend a lot of time getting these folks to announce 
+aggregates, but it is hard work convincing people that this will even 
+work. Even if the RIR recommends that they announce their address block, 
+they still consider it as Class Cs - even Class Bs for some big 
+allocations. :(
+
+Solution is education, but the industry is such in many parts of the 
+world that education is not desired but considered a negative reflection 
+on people's abilities, whether they have the abilities or not. And the 
+lack of educators - there are several of us on the worldwide NOG trail 
+but it's very clear we are not enough. Nor do the NOGs cover the ISP 
+industry, but just those who are interested in participating. We are not 
+enough due to lack of time, lack of supportive employers, more focus on 
+making profit in these leaner times, etc...
+
+Where next I don't know...
+
+philip
+--
+
+

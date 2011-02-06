@@ -1,0 +1,56 @@
+# from /home/woodrow/proj/cidr-report_analysis/planning/cidr_report_emails/cidr_r_emails-old_index.txt:430
+# 2003-05-10 'Re: The Cidr Report' from 'Hank Nussbacher'
+# http://www.merit.edu/mail.archives/nanog/2003-05/msg00265.html
+
+
+Re: The Cidr Report
+From: Hank Nussbacher
+Date: Sat May 10 15:15:38 2003
+
+
+
+At 11:19 AM 09-05-03 -0400, Larry J. Blunk wrote:
+
+
+
+   Hmm, The USDA seems to be very active of late.
+CIDR Police (and UUnet) where are you?
+
+
+First email sent to USDA Feb 2001 when they had 277 prefixes.  No answer 
+ever to any emails.  I tried their upstream - UUnet - also with little 
+success. :-(
+
+-Hank
+
+
+
+&gt; ASnum    NetsNow NetsAggr  NetGain   % Gain   Description
+
+Feb 07
+&gt; AS4151       345       71      274    79.4%   USDA-1 USDA
+
+March 14
+&gt; AS4151       535      109      426    79.6%   USDA-1 USDA
+
+April 11
+&gt; AS4151       691       75      616    89.1%   USDA-1 USDA
+
+May 09
+&gt; AS4151      1083       77     1006    92.9%   USDA-1 USDA
+
+
+ SBC also seems to be moving up rapidly from out of nowhere.
+
+&gt; ASnum    NetsNow NetsAggr  NetGain   % Gain   Description
+
+April 11
+&gt; AS7132       802      414      388    48.4%   SBIS-AS SBC Internet Services
+
+May 09
+&gt; AS7132       963      208      755    78.4%   SBIS-AS SBC Internet Services
+
+
+
+
+

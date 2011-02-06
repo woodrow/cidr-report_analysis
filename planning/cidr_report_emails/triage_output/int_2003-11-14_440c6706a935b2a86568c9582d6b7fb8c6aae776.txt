@@ -1,0 +1,34 @@
+# from /home/woodrow/proj/cidr-report_analysis/planning/cidr_report_emails/cidr_r_emails-old_index.txt:388
+# 2003-11-14 'Re: The Cidr Report' from 'Joe Abley'
+# http://www.merit.edu/mail.archives/nanog/2003-11/msg00447.html
+
+
+Re: The Cidr Report
+From: Joe Abley
+Date: Fri Nov 14 14:54:29 2003
+
+
+
+
+On 14 Nov 2003, at 14:41, McBurnett, Jim wrote:
+
+
+just how bad is the auto-summarization at the upstream for the route 
+propagation
+via BGP in the large routers anyway?
+
+What auto-summarisation?
+
+If you're talking about the cisco &quot;auto-summary&quot; command, then the 
+answer is &quot;so bad that it's universally disabled&quot; (but then 
+&quot;auto-summary&quot; is concerned with aggregation on pre-CIDR, classful 
+boundaries which I don't think is what you were talking about).
+
+Absent a precise understanding of all the routing policies concerned, 
+proxy aggregation is dangerous and is hence generally not done.
+
+
+Joe
+
+
+

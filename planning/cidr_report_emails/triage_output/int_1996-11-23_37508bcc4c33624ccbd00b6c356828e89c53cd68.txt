@@ -1,0 +1,65 @@
+# from /home/woodrow/proj/cidr-report_analysis/planning/cidr_report_emails/cidr_r_emails-old_index.txt:863
+# 1996-11-23 'Re: The Cidr Report' from 'William Allen Simpson'
+# http://www.merit.edu/mail.archives/nanog/1996-11/msg00293.html
+
+
+Re: The Cidr Report
+From: William Allen Simpson
+Date: Sat Nov 23 22:45:39 1996
+
+
+&gt; From: randy@psg.com (Randy Bush)
+&gt;
+&gt; &gt; Date	Prefixes
+&gt; &gt; 171196	40844
+&gt; &gt; 171196	40868
+&gt; &gt; 181196	40933
+&gt; &gt; 191196	42076
+&gt; &gt; 201196	40674
+&gt; &gt; 211196	40583
+&gt; &gt; 221196	40525
+&gt;
+&gt; Tony, I suspect that you and your weekly report are, in a large part,
+&gt; responsible for this.  I thank you.  Our routers thank you.
+&gt;
+    Date        Prefixes
+    280996      42250
+    290996      42040
+    300996      42235
+    011096      42228
+    021096      42249
+    031096      42109
+    041096      41894
+
+Yeah, me, too!  Comparing with nearly 2 months ago pasted in above, this
+is a fantastic trend!  Down 1700 routes (except sometimes).
+
+
+&gt; Frank, if you're out there, has the curve changed since Tony started
+&gt; publishing again?
+&gt;
+One of the things that I'm curious about: have any of the &quot;interesting
+aggregates&quot; been acted upon?  The list seems to be getting _more_
+entries, instead of the fewer I'd expect.  Perhaps I don't understand
+the algorithm.
+
+I find it hard to compare and check by eye.  By simple diff, I can see
+that ANS and UUNET have been fixing them, since they've mostly
+disappeared from the list.  But others seem to pop in and out, and
+sometimes spawn many where there was only one line before, particularly
+AGIS, MSEN, PREPnet and PSInet, all of whom should know better.
+
+Could that be automatically added to the weekly summary?  &quot;Recent
+aggregations&quot;, just before Interesting?   A tally of successes that
+would be more clear than withdrawn route counts....
+
+But folks _are_ withdrawing routes by the hundreds!
+
+WSimpson@UMich.edu
+    Key fingerprint =  17 40 5E 67 15 6F 31 26  DD 0D B9 9B 6A 15 2C 32
+BSimpson@MorningStar.com
+    Key fingerprint =  2E 07 23 03 C5 62 70 D3  59 B1 4F 5E 1D C2 C1 A2
+- - - - - - - - - - - - - - - - -
+
+
+

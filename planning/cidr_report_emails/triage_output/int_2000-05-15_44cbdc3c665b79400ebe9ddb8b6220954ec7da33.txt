@@ -1,0 +1,54 @@
+# from /home/woodrow/proj/cidr-report_analysis/planning/cidr_report_emails/cidr_r_emails-old_index.txt:607
+# 2000-05-15 'RE: CIDR Report' from 'Rodney L Caston'
+# http://www.merit.edu/mail.archives/nanog/2000-05/msg00307.html
+
+
+RE: CIDR Report
+From: Rodney L Caston
+Date: Mon May 15 15:57:55 2000
+
+
+
+&gt; The real short-term answer is to universally allow /24 announcements (I
+&gt; disagree with going below /26). If router capabilities do not support
+&gt; this than then the vendors will have to be encouraged to beef up their
+&gt; equipment. (Having just bought three Cisco Catalyst 6509s, with 3524XL
+&gt; end nodes, in the past six months, another few $20K wouldn't send my CPA
+&gt; into a tail-spin.) However, no amount of hardware is going to change
+&gt; filtering policies and that's why I bring this up here. What are the
+&gt; operational alternatives?
+
+Since you mentioned your flame-suit earlier, you may want to lend it out
+to whoever goes to Verio next to ask that they listen to annoucements of
+networks smaller then /16.
+
+Better yet, let me borrow it for this next post. Hey I'd love it if the
+ISP's did listen'd to those annoucements. It would solve all our problems, 
+though it may create a new one. The real question to be asking is,
+can the net handle tables that large?, That would be an interesting way to
+ask an ISP why they refuse any annoucement for anything smaller then a
+/16, are they worried their hardware can't take it? If not, why isnt such
+hardware available? - So then the fingers no longer point at the ISP with
+the nazi filtering policy but at the evil router vendor for not giving us
+hardware that can handle about 16 million entries.
+
+As for operational alternatives, the only solution I ever see suggested is
+telling the person who is complaining that said ISP is being a big meanie
+and filtering out their /24 network (which happens to be in A-Space) is
+told that he/she should take it up with their own ISP and have them
+aggregate it properly. I do like this word 'properly' its proper when its
+not trying to be broken up over many areas, but when a customer has the issue 
+of being broken up all over (per the example given a few emails back on
+here), the customer is... well screwed. the only answer is to burn the IP
+blocks up., less IPs for the world, but hey, everyone's hardware has less
+routes to handle :), before I'm flamed for saying this, let me assure you
+I do not consider the situation ideal at all.
+
+
+Rodney Caston
+SBC Internet Services
+
+
+
+
+

@@ -1,0 +1,37 @@
+# from /home/woodrow/proj/cidr-report_analysis/planning/cidr_report_emails/cidr_r_emails-old_index.txt:251
+# 2005-02-13 'Re: The Cidr Report' from 'Aaron Hopkins'
+# http://www.merit.edu/mail.archives/nanog/2005-02/msg00212.html
+
+
+Re: The Cidr Report
+From: Aaron Hopkins
+Date: Sun Feb 13 19:22:05 2005
+
+
+
+On Sun, 13 Feb 2005, Jerry Pasker wrote:
+
+
+Until there's deep shame, or real financial incentive to not being listed as 
+a member of the dirty 30, nothing is going to happen in terms of aggregation.
+
+[...]
+
+
+Nothing is going to happen unless enough people (ASNs) take a simultaneous, 
+and  UNITED stand, and make it painful for those that don't care about the 
+routes they leak to the net.
+
+Similarly, &quot;enough people&quot; won't get involved until there is real financial
+incentive to do so.  Most people won't particularly care about the number of
+routes in a full table until their equipment becomes unable to handle it.
+
+Does anyone have any idea of the routing table size limits of old but still
+common equipment?  I suspect we'll see a lot more interest in routing table
+size when things start to break.
+
+                                    -- Aaron
+
+
+
+

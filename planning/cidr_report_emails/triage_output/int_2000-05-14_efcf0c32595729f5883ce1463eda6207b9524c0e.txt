@@ -1,0 +1,94 @@
+# from /home/woodrow/proj/cidr-report_analysis/planning/cidr_report_emails/cidr_r_emails-old_index.txt:625
+# 2000-05-14 'RE: CIDR Report' from 'Roeland M.J. Meyer'
+# http://www.merit.edu/mail.archives/nanog/2000-05/msg00255.html
+
+
+RE: CIDR Report
+From: Roeland M.J. Meyer
+Date: Sun May 14 06:08:45 2000
+
+
+
+&gt; Owen DeLong: Saturday, May 13, 2000 3:35 PM
+&gt; 
+&gt; &gt; I actually agree with you here as well. relying on infinite 
+&gt; router table growth is not a scalable strategy. We need 
+&gt; something else.
+&gt; &gt; 
+&gt; Just a small technicality here, noone is talking about 
+&gt; infinite routing
+&gt; table growth.  There are only 4 billion (roughly) possible prefixes
+&gt; if you route every node as a /32.  While 4 billion is a large number,
+&gt; it is far from infinity.
+
+Well, that statement was obviously not intended literally. But, since we're 
+throwing around numbers ...
+
+Simply taking addresses only, that comes out to ~16GB. At $100 per 64MB 
+this is about $25,000.00US in RAM, at current retail rates (prices may 
+vary by vendor). It's also about $16,000.00US of EMC disk-space. This 
+means that one full table would cost about $41KUS, just to store it. 
+But, what will this do to performance of such a router that's working 
+in a gig-E environment? The index table to access this puppy would be 
+larger than the prefix table. This could easily double the cost, say $82KUS?
+Considering that I just paid $98KUS for a Cisco Catalyst 6509, I guess 
+this isn't too bad. However, this is only IPv4 and it is a bunch more than
+the cost of the average BGP-capable router and every router on the backbone 
+would have to be upgraded. This is conservative since I have not yet allowed 
+for memory structure overhead. However, code-space would be relatively trivial,
+even Microsoft wouldn't be able to bloat it enough so anyone else would notice.
+
+&gt; If you believe the IPv4 will continue for many years to come, then
+&gt; the set of possible routes is very finite.
+
+Yes, RAM and Disk prices are also plummeting daily. By next year, we may even 
+be able to afford it. We just have to figure out whose budget it comes out of. 
+(How many BGP4 routers are there?)
+
+&gt; Of course, the number for IPv6 is much larger in theory, but when you
+&gt; consider that the last 6 octets are reserved for the MAC address
+&gt; (essentially), that leaves 80 bits, which is
+&gt; 1,208,925,819,614,629,174,706,176.  Again, a large number, but,
+&gt; far from infinity.  When you further consider that on the backbone,
+&gt; only the first eight octets are at all likely to be significant
+&gt; for routing, you come to 18,446,744,073,709,551,616 prefixes,
+&gt; which is still a large number, but even further from infinity.
+
+Let's see here ... that's 18,446,744T 6-byte addresses? That comes 
+out to 110,680,464TB. Whoops! my calculator just slipped into the 
+bankruptcy zone... $172.9TUS, for RAM and $110.0TUS, for DASD. In 
+addition, you'd need something just a hair short of a Cray to 
+process it.
+
+&gt; In my opinion, eventually, we will need to find a way that each
+&gt; organizational unit is issued a portable, non-renumberable prefix
+&gt; which stays with that organizational unit.  Some larger
+&gt; organizational units may need additional prefixes, depending on
+&gt; the size of the suffix.
+&gt; 
+&gt; Generally, it follows that most strategies for aggregating such
+&gt; prefixes will tend towards entropy as organizational units change
+&gt; their topological relationships with other organizational units.
+&gt; 
+&gt; Thus, the only way to preserve aggregation is to make the prefixes
+&gt; issued to organizational units a function of their topology, and
+&gt; force renumbering.  While this is a simple matter for topologies
+&gt; which involve only two organizational units as neighbors, it
+&gt; becomes n! (n factorial) complex for organizational units which
+&gt; have n neighbors.  Even with IPv6, I do not believe such a
+&gt; prefix numbering scheme is practical.
+
+Like I said, we need to do something different. The reason that I 
+wrote off routing table increases is not the calculus that I just 
+demonstrated, although that is an effector. It is the general concept 
+that there are practical limits to that approach (there be walls, there).
+In an IPv6 environment, that approach is simply unaffordable, with 
+present tech. Although, it would definitely stop-gap the problem, in 
+an IPv4 environment. Who will volunteer the cost of the first one of 
+these routers? At that cost factor, how long do you think it will 
+take to deploy them?
+
+
+
+
+

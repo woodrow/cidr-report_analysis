@@ -1,0 +1,390 @@
+# from /home/woodrow/proj/cidr-report_analysis/planning/cidr_report_emails/cidr_r_emails-old_index.txt:167
+# 2006-07-28 'The Cidr Report' from 'cidr-report'
+# http://www.merit.edu/mail.archives/nanog/2006-07/msg00358.html
+
+
+The Cidr Report
+From: cidr-report
+Date: Fri Jul 28 08:01:30 2006
+
+
+
+This report has been generated at Fri Jul 28 21:40:00 2006 AEST.
+The report analyses the BGP Routing Table of an AS4637 (Reach) router
+and generates a report on aggregation potential within the table.
+
+Check http://www.cidr-report.org/as4637 for a current version of this report.
+
+Recent Table History
+        Date      Prefixes    CIDR Agg
+        21-07-06    190425      124752
+        22-07-06    190526      124720
+        23-07-06    190511      124720
+        24-07-06  -1077937252      124720
+        25-07-06  -1077936760      124720
+        26-07-06  672037797      124720
+        27-07-06  -1077937324      124720
+        28-07-06  134555024      124720
+
+
+AS Summary
+             0  Number of ASes in routing system
+             0  Number of ASes announcing only one prefix
+          1451  Largest number of prefixes announced by an AS
+                AS7018 : ATT-INTERNET4 - AT&amp;T WorldNet Services
+             0  Largest address span announced by an AS (/32s)
+                p -  : 
+
+
+Aggregation Summary
+The algorithm used in this report proposes aggregation only
+when there is a precise match using the AS path, so as 
+to preserve traffic transit policies. Aggregation is also
+proposed across non-advertised address space ('holes').
+
+ --- 28Jul06 ---
+ASnum    NetsNow NetsAggr  NetGain   % Gain   Description
+
+Table     190511   124720    65791    34.5%   All ASes
+
+AS4134      1252      283      969    77.4%   CHINANET-BACKBONE
+                                               No.31,Jin-rong Street
+AS18566      950      139      811    85.4%   COVAD - Covad Communications
+                                               Co.
+AS4755       970      218      752    77.5%   VSNL-AS Videsh Sanchar Nigam
+                                               Ltd. Autonomous System
+AS721       1018      313      705    69.3%   DISA-ASNBLK - DoD Network
+                                               Information Center
+AS4323       955      273      682    71.4%   TWTC - Time Warner Telecom,
+                                               Inc.
+AS22773      673       47      626    93.0%   CCINET-2 - Cox Communications
+                                               Inc.
+AS9498       764      192      572    74.9%   BBIL-AP BHARTI BT INTERNET
+                                               LTD.
+AS6197      1017      486      531    52.2%   BATI-ATL - BellSouth Network
+                                               Solutions, Inc
+AS7018      1451      935      516    35.6%   ATT-INTERNET4 - AT&amp;T WorldNet
+                                               Services
+AS19916      563       65      498    88.5%   ASTRUM-0001 - OLM LLC
+AS19262      681      189      492    72.2%   VZGNI-TRANSIT - Verizon
+                                               Internet Services Inc.
+AS855        569       87      482    84.7%   CANET-ASN-4 - Aliant Telecom
+AS17488      519       54      465    89.6%   HATHWAY-NET-AP Hathway IP Over
+                                               Cable Internet
+AS11492      713      270      443    62.1%   CABLEONE - CABLE ONE
+AS3602       521      105      416    79.8%   AS3602-RTI - Rogers Telecom
+                                               Inc.
+AS18101      431       28      403    93.5%   RIL-IDC Reliance Infocom Ltd
+                                               Internet Data Centre,
+AS15270      442       55      387    87.6%   AS-PAETEC-NET - PaeTec.net -a
+                                               division of
+                                               PaeTecCommunications, Inc.
+AS17676      490      110      380    77.6%   JPNIC-JP-ASN-BLOCK Japan
+                                               Network Information Center
+AS6198       599      243      356    59.4%   BATI-MIA - BellSouth Network
+                                               Solutions, Inc
+AS4766       657      306      351    53.4%   KIXS-AS-KR Korea Telecom
+AS22047      433       86      347    80.1%   VTR BANDA ANCHA S.A.
+AS812        370       30      340    91.9%   ROGERS-CABLE - Rogers Cable
+                                               Inc.
+AS6467       389       49      340    87.4%   ESPIRECOMM - Xspedius
+                                               Communications Co.
+AS16852      362       51      311    85.9%   FOCAL-CHICAGO - Focal Data
+                                               Communications of Illinois
+AS16814      329       44      285    86.6%   NSS S.A.
+AS5668       532      256      276    51.9%   AS-5668 - CenturyTel Internet
+                                               Holdings, Inc.
+AS3352       305       33      272    89.2%   TELEFONICA-DATA-ESPANA
+                                               Internet Access Network of
+                                               TDE
+AS17849      415      144      271    65.3%   GINAMHANVIT-AS-KR hanvit ginam
+                                               broadcasting comm.
+AS8151       754      485      269    35.7%   Uninet S.A. de C.V.
+AS6517       409      141      268    65.5%   YIPESCOM - Yipes
+                                               Communications, Inc.
+
+Total      19533     5717    13816    70.7%   Top 30 total
+
+
+Possible Bogus Routes
+
+        24.246.0.0/17        AS7018  ATT-INTERNET4 - AT&amp;T WorldNet Services
+        24.246.128.0/18      AS7018  ATT-INTERNET4 - AT&amp;T WorldNet Services
+        61.4.64.0/20         AS9929  CNCNET-CN China Netcom Corp.
+        64.17.32.0/24        AS13488 CBWU-13488 - Continental Broadband Florida, Inc DBA WebUnited
+        64.17.33.0/24        AS13488 CBWU-13488 - Continental Broadband Florida, Inc DBA WebUnited
+        64.17.37.0/24        AS13488 CBWU-13488 - Continental Broadband Florida, Inc DBA WebUnited
+        66.11.32.0/20        AS6261  VISINET - Visionary Systems, Inc.
+        66.37.96.0/20        AS3764  IA-HOU-AS - Internet America, Inc.
+        66.96.0.0/20         AS3770  WORLDPATH-AS - WorldPath Internet Services
+        66.117.8.0/24        AS174   COGENT Cogent/PSI
+        66.163.96.0/20       AS25767 WAVEFORM - Waveform Technology, LLC
+        66.235.158.0/23      AS7018  ATT-INTERNET4 - AT&amp;T WorldNet Services
+        69.39.193.0/24       AS25973 MZIMA - Mzima Networks, Inc.
+        69.39.195.0/24       AS25973 MZIMA - Mzima Networks, Inc.
+        69.39.196.0/24       AS25973 MZIMA - Mzima Networks, Inc.
+        71.7.0.0/17          AS30160 IOWA-TELECOM - Iowa Telecom
+        87.76.0.0/16         AS39525 SPRITELINK SpriteLink Autonomous System
+        91.192.0.0/16        AS12654 RIPE-NCC-RIS-AS RIPE NCC RIS Project.
+        91.192.0.0/24        AS12654 RIPE-NCC-RIS-AS RIPE NCC RIS Project.
+        91.255.248.0/21      AS12654 RIPE-NCC-RIS-AS RIPE NCC RIS Project.
+        124.41.0.0/16        AS4134  CHINANET-BACKBONE No.31,Jin-rong Street
+        125.213.0.0/16       AS4134  CHINANET-BACKBONE No.31,Jin-rong Street
+        131.64.0.0/12        AS721   DISA-ASNBLK - DoD Network Information Center
+        132.0.0.0/10         AS721   DISA-ASNBLK - DoD Network Information Center
+        137.0.0.0/13         AS721   DISA-ASNBLK - DoD Network Information Center
+        138.136.0.0/13       AS721   DISA-ASNBLK - DoD Network Information Center
+        139.56.0.0/19        AS14956 BROADVISION-ASN - Broadvision Inc.
+        139.56.64.0/19       AS14956 BROADVISION-ASN - Broadvision Inc.
+        139.56.72.0/23       AS702   AS702 MCI EMEA - Commercial IP service provider in Europe
+        151.135.0.0/16       AS4763  TELSTRANZ-AS TelstraClear Ltd
+        158.0.0.0/13         AS721   DISA-ASNBLK - DoD Network Information Center
+        163.142.0.0/16       AS2500  JPNIC-ASBLOCK-AP JPNIC
+        183.206.196.0/24     AS2188  FR-RENATER-ASTER Reseau Regional ASTER
+        192.30.93.0/24       AS17757 HPAUS-AP HP Australia
+        192.30.94.0/24       AS17757 HPAUS-AP HP Australia
+        192.40.105.0/24      AS12582 TSF-DATANET-NGD-AS TSF MPLS VPN Services
+        192.69.107.0/24      AS5515  SONERA-GLOBAL-IP Sonera Solution Autonomous System
+        192.69.108.0/24      AS5515  SONERA-GLOBAL-IP Sonera Solution Autonomous System
+        192.69.177.0/24      AS5515  SONERA-GLOBAL-IP Sonera Solution Autonomous System
+        192.70.164.0/24      AS25689 NRCNET-AS - National Research Council of Canada
+        192.81.183.0/24      AS719   ELISA-AS Elisa Oyj
+        192.81.184.0/24      AS719   ELISA-AS Elisa Oyj
+        192.88.99.0/24       AS559   SWITCH SWITCH, Swiss Education and Research Network
+        192.96.36.0/24       AS5713  SAIX-NET
+        192.96.37.0/24       AS10474 NETACTIVE
+        192.96.135.0/24      AS2018  TENET-1
+        192.96.136.0/23      AS2018  TENET-1
+        192.96.140.0/24      AS2018  TENET-1
+        192.96.143.0/24      AS2018  TENET-1
+        192.96.145.0/24      AS2018  TENET-1
+        192.96.177.0/24      AS6083  POSIX-AFRICA
+        192.96.250.0/24      AS2018  TENET-1
+        192.107.104.0/24     AS6458  Telgua
+        192.122.212.0/24     AS209   ASN-QWEST - Qwest
+        192.124.252.0/22     AS680   DFN-IP service G-WiN
+        192.133.6.0/24       AS10282 EQUANT-CEEUR EQUANT AS for Central and Eastern Europe region
+        192.153.144.0/21     AS721   DISA-ASNBLK - DoD Network Information Center
+        192.172.0.0/19       AS721   DISA-ASNBLK - DoD Network Information Center
+        192.188.208.0/20     AS721   DISA-ASNBLK - DoD Network Information Center
+        193.36.1.0/24        AS8220  COLT COLT Telecommunications
+        193.37.69.0/24       AS2856  BT-UK-AS BTnet UK Regional network
+        193.110.77.0/24      AS3356  LEVEL3 Level 3 Communications
+        193.110.78.0/24      AS3356  LEVEL3 Level 3 Communications
+        193.110.79.0/24      AS3356  LEVEL3 Level 3 Communications
+        194.31.227.0/24      AS21461 TRANSFAIRNET Transfair-net GmbH Krefeld
+        194.59.176.0/20      AS1273  CW Cable &amp; Wireless
+        194.156.206.0/24     AS4589  EASYNET Easynet Group Plc
+        194.246.72.0/23      AS8893  ARTFILES-AS Artfiles New Media GmbH
+        195.246.216.0/22     AS15622 MEOCOM old meocom Autonomous System
+        196.6.108.0/24       AS5713  SAIX-NET
+        196.6.175.0/24       AS3741  IS
+        196.6.176.0/23       AS3741  IS
+        196.6.183.0/24       AS3741  IS
+        196.6.196.0/24       AS3741  IS
+        196.6.199.0/24       AS3741  IS
+        196.6.208.0/24       AS3741  IS
+        196.6.211.0/24       AS3741  IS
+        196.6.212.0/23       AS3741  IS
+        196.6.212.0/24       AS3741  IS
+        196.6.222.0/23       AS3741  IS
+        196.6.237.0/24       AS3741  IS
+        196.10.119.0/24      AS2018  TENET-1
+        196.10.122.0/23      AS2018  TENET-1
+        196.10.136.0/22      AS3741  IS
+        196.10.140.0/22      AS3741  IS
+        196.10.231.0/24      AS3741  IS
+        196.10.251.0/24      AS2018  TENET-1
+        196.10.252.0/23      AS2018  TENET-1
+        196.10.254.0/24      AS2018  TENET-1
+        196.11.0.0/20        AS3741  IS
+        196.11.40.0/21       AS3741  IS
+        196.11.135.0/24      AS3741  IS
+        196.11.188.0/23      AS3741  IS
+        196.11.190.0/24      AS3741  IS
+        196.11.251.0/24      AS3741  IS
+        196.13.101.0/24      AS2018  TENET-1
+        196.13.102.0/23      AS2018  TENET-1
+        196.13.104.0/24      AS2018  TENET-1
+        196.13.108.0/24      AS3741  IS
+        196.13.116.0/22      AS2018  TENET-1
+        196.13.121.0/24      AS2018  TENET-1
+        196.13.125.0/24      AS2018  TENET-1
+        196.13.126.0/24      AS2018  TENET-1
+        196.13.127.0/24      AS3741  IS
+        196.13.128.0/22      AS3741  IS
+        196.13.144.0/22      AS2905  TICSA-ASN
+        196.13.152.0/21      AS2905  TICSA-ASN
+        196.13.160.0/24      AS2905  TICSA-ASN
+        196.13.169.0/24      AS2018  TENET-1
+        196.13.174.0/23      AS2018  TENET-1
+        196.13.176.0/21      AS2018  TENET-1
+        196.13.188.0/22      AS2018  TENET-1
+        196.13.192.0/22      AS2018  TENET-1
+        196.13.196.0/24      AS2018  TENET-1
+        196.13.252.0/22      AS2018  TENET-1
+        196.98.17.0/24       AS1257  TELE2 AB
+        198.18.1.0/24        AS3301  TELIANET-SWEDEN TeliaNet Sweden
+        198.23.26.0/24       AS4390  BELLATLANTIC-COM - Bell Atlantic, Inc.
+        198.54.82.0/24       AS2018  TENET-1
+        198.54.92.0/24       AS2018  TENET-1
+        198.54.222.0/24      AS2018  TENET-1
+        198.54.249.0/24      AS2018  TENET-1
+        198.54.250.0/24      AS2018  TENET-1
+        198.54.251.0/24      AS2018  TENET-1
+        198.97.72.0/21       AS721   DISA-ASNBLK - DoD Network Information Center
+        198.97.80.0/20       AS721   DISA-ASNBLK - DoD Network Information Center
+        198.97.96.0/19       AS721   DISA-ASNBLK - DoD Network Information Center
+        198.97.240.0/20      AS721   DISA-ASNBLK - DoD Network Information Center
+        198.101.4.0/22       AS721   DISA-ASNBLK - DoD Network Information Center
+        198.136.32.0/20      AS19329 MCNET - Martin County Board of County Commissioners
+        198.161.87.0/24      AS6539  GT-BELL - Bell Canada
+        198.163.155.0/24     AS684   MTSAL-ASN - MTS Allstream Inc.
+        198.167.0.0/16       AS7456  INTERHOP - Interhop Network SERVICES Inc.
+        198.168.0.0/16       AS701   ALTERNET-AS - UUNET Technologies, Inc.
+        198.169.0.0/16       AS803   SASKTEL - SaskTel
+        198.199.198.0/24     AS13671 VRIS-AS-BLOCK-13661-13675 - Verizon Internet Services Inc.
+        199.9.128.0/17       AS668   ASN-ASNET-NET-AS - Defense Research and Engineering Network
+        199.10.0.0/16        AS721   DISA-ASNBLK - DoD Network Information Center
+        199.60.0.0/20        AS271   BCNET-AS - University of British Columbia
+        199.114.0.0/21       AS721   DISA-ASNBLK - DoD Network Information Center
+        199.114.128.0/18     AS721   DISA-ASNBLK - DoD Network Information Center
+        199.114.130.0/24     AS721   DISA-ASNBLK - DoD Network Information Center
+        199.114.132.0/24     AS721   DISA-ASNBLK - DoD Network Information Center
+        199.114.134.0/24     AS3541  ITSDN-U4 - DISA/UNRRA
+        199.114.136.0/24     AS27044 DDN-ASNBLK1 - DoD Network Information Center
+        199.114.138.0/24     AS721   DISA-ASNBLK - DoD Network Information Center
+        199.114.140.0/24     AS3544  ITSDN-U7 - DISA/UNRRA
+        199.114.142.0/24     AS721   DISA-ASNBLK - DoD Network Information Center
+        199.114.144.0/24     AS27064 DDN-ASNBLK1 - DoD Network Information Center
+        199.114.148.0/24     AS721   DISA-ASNBLK - DoD Network Information Center
+        199.114.150.0/24     AS721   DISA-ASNBLK - DoD Network Information Center
+        199.114.152.0/24     AS27033 DDN-ASNBLK1 - DoD Network Information Center
+        199.114.153.0/24     AS27034 DDN-ASNBLK1 - DoD Network Information Center
+        199.114.154.0/24     AS1733  CENTAF-SWA - AF DDN PMO
+        199.114.160.0/24     AS1733  CENTAF-SWA - AF DDN PMO
+        199.121.0.0/16       AS721   DISA-ASNBLK - DoD Network Information Center
+        199.123.0.0/18       AS721   DISA-ASNBLK - DoD Network Information Center
+        199.123.16.0/20      AS721   DISA-ASNBLK - DoD Network Information Center
+        199.123.80.0/21      AS721   DISA-ASNBLK - DoD Network Information Center
+        199.189.32.0/19      AS7332  IQUEST-AS - IQuest Internet
+        199.202.0.0/16       AS701   ALTERNET-AS - UUNET Technologies, Inc.
+        199.246.116.0/24     AS813   UUNET-AS1 - UUNET Technologies, Inc.
+        199.249.233.0/24     AS1239  SPRINTLINK - Sprint
+        199.249.234.0/24     AS1239  SPRINTLINK - Sprint
+        199.249.235.0/24     AS174   COGENT Cogent/PSI
+        202.9.64.0/19        AS9290  TPN-AS-AP Smart Global Network (M) Sdn Bhd
+        202.58.113.0/24      AS19161 INNOCOM-TELECOM - INNOCOM TELECOM
+        202.86.252.0/22      AS9304  HUTCHISON-AS-AP Hutchison Global Communications
+        202.86.253.0/24      AS9304  HUTCHISON-AS-AP Hutchison Global Communications
+        202.86.254.0/24      AS9304  HUTCHISON-AS-AP Hutchison Global Communications
+        202.86.255.0/24      AS9304  HUTCHISON-AS-AP Hutchison Global Communications
+        202.90.33.0/24       AS9830  SWIFTONLINE-AS-AP SWIFT ONLINE BORDER AS
+        202.90.40.0/24       AS9830  SWIFTONLINE-AS-AP SWIFT ONLINE BORDER AS
+        202.90.41.0/24       AS9830  SWIFTONLINE-AS-AP SWIFT ONLINE BORDER AS
+        202.90.42.0/24       AS9830  SWIFTONLINE-AS-AP SWIFT ONLINE BORDER AS
+        202.90.43.0/24       AS9830  SWIFTONLINE-AS-AP SWIFT ONLINE BORDER AS
+        202.90.44.0/24       AS9830  SWIFTONLINE-AS-AP SWIFT ONLINE BORDER AS
+        202.93.0.0/20        AS4134  CHINANET-BACKBONE No.31,Jin-rong Street
+        202.94.65.0/24       AS9723  ISEEK-AS-AP ISEEK Ltd
+        202.94.70.0/24       AS9837  POWERTEL-AP Powertel Ltd
+        202.94.74.0/24       AS9723  ISEEK-AS-AP ISEEK Ltd
+        202.94.75.0/24       AS9723  ISEEK-AS-AP ISEEK Ltd
+        202.94.77.0/24       AS9723  ISEEK-AS-AP ISEEK Ltd
+        202.94.83.0/24       AS9723  ISEEK-AS-AP ISEEK Ltd
+        202.94.85.0/24       AS9723  ISEEK-AS-AP ISEEK Ltd
+        202.94.87.0/24       AS9723  ISEEK-AS-AP ISEEK Ltd
+        202.94.95.0/24       AS9723  ISEEK-AS-AP ISEEK Ltd
+        202.124.192.0/24     AS17557 PKTELECOM-AS-AP Pakistan Telecom
+        202.124.193.0/24     AS17557 PKTELECOM-AS-AP Pakistan Telecom
+        202.124.194.0/24     AS17557 PKTELECOM-AS-AP Pakistan Telecom
+        202.124.195.0/24     AS17557 PKTELECOM-AS-AP Pakistan Telecom
+        202.124.196.0/24     AS17557 PKTELECOM-AS-AP Pakistan Telecom
+        202.124.197.0/24     AS17557 PKTELECOM-AS-AP Pakistan Telecom
+        202.124.198.0/24     AS17557 PKTELECOM-AS-AP Pakistan Telecom
+        202.124.199.0/24     AS17557 PKTELECOM-AS-AP Pakistan Telecom
+        202.124.200.0/22     AS15412 FLAG-AS Flag Telecom Global Internet AS
+        202.124.204.0/24     AS15412 FLAG-AS Flag Telecom Global Internet AS
+        202.124.205.0/24     AS15412 FLAG-AS Flag Telecom Global Internet AS
+        202.124.206.0/24     AS15412 FLAG-AS Flag Telecom Global Internet AS
+        202.124.207.0/24     AS17557 PKTELECOM-AS-AP Pakistan Telecom
+        202.131.64.0/19      AS9381  NEWTT-IP-AP Wharf T&amp;T Ltd.
+        202.138.64.0/24      AS17536 PRODIGY-AS-AP Prodidgy Telecommunications
+        202.148.32.0/20      AS17495 GATEWAY-AP BROADBAND WIRELESSS INTERNET SERVICE PROVIDER
+        202.160.128.0/23     AS10113 DATAFAST-AP DATAFAST TELECOMMUNICATIONS LTD
+        202.160.128.0/24     AS10113 DATAFAST-AP DATAFAST TELECOMMUNICATIONS LTD
+        202.160.131.0/24     AS10113 DATAFAST-AP DATAFAST TELECOMMUNICATIONS LTD
+        202.160.132.0/22     AS10113 DATAFAST-AP DATAFAST TELECOMMUNICATIONS LTD
+        202.160.136.0/22     AS10113 DATAFAST-AP DATAFAST TELECOMMUNICATIONS LTD
+        202.160.142.0/24     AS10113 DATAFAST-AP DATAFAST TELECOMMUNICATIONS LTD
+        202.160.144.0/24     AS10113 DATAFAST-AP DATAFAST TELECOMMUNICATIONS LTD
+        202.160.145.0/24     AS10113 DATAFAST-AP DATAFAST TELECOMMUNICATIONS LTD
+        202.160.146.0/24     AS10113 DATAFAST-AP DATAFAST TELECOMMUNICATIONS LTD
+        202.160.147.0/24     AS10113 DATAFAST-AP DATAFAST TELECOMMUNICATIONS LTD
+        202.160.152.0/22     AS10113 DATAFAST-AP DATAFAST TELECOMMUNICATIONS LTD
+        202.160.156.0/23     AS10113 DATAFAST-AP DATAFAST TELECOMMUNICATIONS LTD
+        202.160.157.0/24     AS10113 DATAFAST-AP DATAFAST TELECOMMUNICATIONS LTD
+        202.160.158.0/23     AS9837  POWERTEL-AP Powertel Ltd
+        202.164.100.0/24     AS18101 RIL-IDC Reliance Infocom Ltd Internet Data Centre,
+        203.13.171.0/24      AS1221  ASN-TELSTRA Telstra Pty Ltd
+        203.62.0.0/17        AS7575  AARNET-AS-AP Australian Academic and Reasearch Network (AARNet)
+        203.78.48.0/20       AS9299  IPG-AS-AP Philippine Long Distance Telephone Company
+        203.89.139.0/24      AS17911 BRAINPK-AS-AP Brain Telecommunication Ltd.
+        203.99.142.0/24      AS9826  ILINK-HK-AP iLink.net Ltd
+        203.111.192.0/20     AS7473  SINGTEL-AS-AP Singapore Telecom
+        204.48.58.0/24       AS4323  TWTC - Time Warner Telecom, Inc.
+        204.48.60.0/24       AS4323  TWTC - Time Warner Telecom, Inc.
+        204.48.118.0/23      AS29912 CITIZENS-PROPERTY-INSURANCE-CORPORATION - Citizens Property Insurance Corporation
+        204.48.119.0/24      AS29912 CITIZENS-PROPERTY-INSURANCE-CORPORATION - Citizens Property Insurance Corporation
+        204.153.104.0/24     AS10913 INTERNAP-BLK - Internap Network Services
+        204.153.106.0/24     AS10913 INTERNAP-BLK - Internap Network Services
+        204.153.107.0/24     AS10913 INTERNAP-BLK - Internap Network Services
+        204.154.125.0/24     AS3952  TELLABS-ASN - TELLABS Operations, Inc.
+        204.154.126.0/24     AS3952  TELLABS-ASN - TELLABS Operations, Inc.
+        204.154.127.0/24     AS3952  TELLABS-ASN - TELLABS Operations, Inc.
+        205.150.0.0/15       AS701   ALTERNET-AS - UUNET Technologies, Inc.
+        206.128.104.0/21     AS11709 VIC - VIRTUAL INTERACTIVE CENTER
+        206.167.57.0/24      AS376   RISQ-AS - Reseau Interordinateurs Scientique Quebecois (RISQ)
+        206.191.64.0/18      AS15290 ALLST-15290 - Allstream Corp. Corporation Allstream
+        206.191.96.0/19      AS15290 ALLST-15290 - Allstream Corp. Corporation Allstream
+        207.231.96.0/19      AS11194 NUNETPA - NuNet Inc
+        208.68.248.0/21      AS7911  LVLT-7911 - Level 3 Communications, Inc.
+        209.205.81.0/24      AS15066 SkyNet de Colombia S.A.
+        209.205.82.0/24      AS15066 SkyNet de Colombia S.A.
+        209.205.84.0/24      AS15066 SkyNet de Colombia S.A.
+        209.234.0.0/18       AS3845  STATE-NET - CS&amp;W, Inc.
+        216.71.224.0/20      AS23527 COTELLIGENCE - Cotelligence, Inc.
+        216.201.72.0/24      AS14709 Telefonica Moviles Panama S.A.
+        216.201.73.0/24      AS14709 Telefonica Moviles Panama S.A.
+        216.201.74.0/24      AS14709 Telefonica Moviles Panama S.A.
+        216.201.75.0/24      AS14709 Telefonica Moviles Panama S.A.
+        216.201.76.0/24      AS14709 Telefonica Moviles Panama S.A.
+        216.201.77.0/24      AS14709 Telefonica Moviles Panama S.A.
+        216.201.78.0/24      AS14709 Telefonica Moviles Panama S.A.
+        216.201.79.0/24      AS14709 Telefonica Moviles Panama S.A.
+        216.228.224.0/20     AS13674 VRIS-AS-BLOCK-13661-13675 - Verizon Internet Services Inc.
+        216.240.240.0/20     AS7018  ATT-INTERNET4 - AT&amp;T WorldNet Services
+        216.240.242.0/24     AS7018  ATT-INTERNET4 - AT&amp;T WorldNet Services
+        221.121.128.0/24     AS9723  ISEEK-AS-AP ISEEK Ltd
+        221.121.129.0/24     AS9723  ISEEK-AS-AP ISEEK Ltd
+        221.121.130.0/24     AS9723  ISEEK-AS-AP ISEEK Ltd
+        221.121.131.0/24     AS9723  ISEEK-AS-AP ISEEK Ltd
+        221.121.132.0/24     AS9723  ISEEK-AS-AP ISEEK Ltd
+        221.121.133.0/24     AS9723  ISEEK-AS-AP ISEEK Ltd
+        221.121.157.0/24     AS9723  ISEEK-AS-AP ISEEK Ltd
+        221.121.158.0/24     AS9723  ISEEK-AS-AP ISEEK Ltd
+        221.121.159.0/24     AS9723  ISEEK-AS-AP ISEEK Ltd
+
+
+Please see http://www.cidr-report.org for the full report
+
+------------------------------------
+Copies of this report are mailed to:
+  nanog@xxxxxxxxx
+  eof-list@xxxxxxxx
+  apops@xxxxxxxxx
+  routing-wg@xxxxxxxx
+  afnog@xxxxxxxxx
+  ausnog@xxxxxxxxxx
+
+

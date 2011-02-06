@@ -1,0 +1,42 @@
+# from /home/woodrow/proj/cidr-report_analysis/planning/cidr_report_emails/cidr_r_emails-old_index.txt:844
+# 1996-12-02 'Re: The Cidr Report' from 'Bill Manning'
+# http://www.merit.edu/mail.archives/nanog/1996-12/msg00012.html
+
+
+Re: The Cidr Report
+From: Bill Manning
+Date: Mon Dec 02 08:51:25 1996
+
+
+&gt; Bill et al,
+&gt; &gt; 	It may only be a trend as seen from the xara.net boxen.
+&gt; 
+&gt; is basically AGIS full table union Sprint full table union
+&gt; UUnet full table union 
+&gt; 
+&gt; For reasons two complicated to go into I've got entirely
+&gt; different full routing on a box in London, and yes, it's
+&gt; a different size (smaller actually last time I looked).
+&gt; 
+&gt; Alex Bligh
+&gt; Xara Networks
+
+	Does this call into question the idea that there is a
+	single &quot;default-free&quot; view of the Internet?
+
+	My box is attempting to collect a view of the routing
+	system as seen at a particular point in the topology.
+	While this may not be interesting to Randy, others
+	might find it useful.
+
+	I would be interested in tracking the views as seen at
+	a number of different places in the topology. The deltas
+	between the growth in the number of widely dispersed routes
+	vs the local varience would be an interesting number to 
+	track.
+
+--bill
+- - - - - - - - - - - - - - - - -
+
+
+

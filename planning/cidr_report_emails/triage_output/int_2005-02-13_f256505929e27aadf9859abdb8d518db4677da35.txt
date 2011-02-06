@@ -1,0 +1,39 @@
+# from /home/woodrow/proj/cidr-report_analysis/planning/cidr_report_emails/cidr_r_emails-old_index.txt:258
+# 2005-02-13 'Re: The Cidr Report' from 'Stephen J. Wilcox'
+# http://www.merit.edu/mail.archives/nanog/2005-02/msg00203.html
+
+
+Re: The Cidr Report
+From: Stephen J. Wilcox
+Date: Sun Feb 13 14:34:54 2005
+
+
+
+On Mon, 14 Feb 2005, Warren Kumari, Ph.D, CCIE# 9190 wrote:
+
+&gt; On Feb 13, 2005, at 2:31 AM, Christopher L. Morrow wrote:
+&gt; &gt;
+&gt; &gt; There are multiple reasons for deaggregation aside from 'dumb operator',
+&gt; &gt; some are even 'valid' if you look at them from the protection standpoint.
+&gt; 
+&gt; That and the &quot;I have 1 circuit to $good_provider and 1 circuit to
+&gt; $bad_provider and the only way I can make them balance is to split my space in
+&gt; half and announce more specifics out through each provider&quot;  argument. I have
+&gt; also often seen people do this without announcing the aggregate because &lt;some
+&gt; undefined bad thing&gt; will happen, usually justified with much hand-waving.  
+&gt; The people who do this can usually not be reasoned with....
+
+this just reinforces the argument that they are lacking in technical savvy. 
+
+i have a transit provider who i dont want to carry much traffic and i dont want
+to prepend my announcements.. by looking at that providers supported customer
+communities i just get them to prepend as they export to other major networks
+thus moving the main volume of the traffic to the desired ingress paths
+
+no deaggregation, no prepending..
+
+Steve
+
+
+
+

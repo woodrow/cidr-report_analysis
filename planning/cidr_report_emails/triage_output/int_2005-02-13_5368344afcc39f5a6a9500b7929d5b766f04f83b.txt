@@ -1,0 +1,105 @@
+# from /home/woodrow/proj/cidr-report_analysis/planning/cidr_report_emails/cidr_r_emails-old_index.txt:253
+# 2005-02-13 'Re: The Cidr Report' from 'Stephen J. Wilcox'
+# http://www.merit.edu/mail.archives/nanog/2005-02/msg00210.html
+
+
+Re: The Cidr Report
+From: Stephen J. Wilcox
+Date: Sun Feb 13 18:23:56 2005
+
+
+
+On Sun, 13 Feb 2005, Michael Smith wrote:
+
+&gt; &gt; From: &quot;Warren Kumari, Ph.D, CCIE# 9190&quot; &lt;warren@kumari.net&gt;
+&gt; &gt; Date: Mon, 14 Feb 2005 10:14:38 -0500
+&gt; &gt; To: &lt;nanog@merit.edu&gt;
+&gt; &gt; Subject: Re: The Cidr Report
+&gt; &gt; 
+&gt; &gt; -----BEGIN PGP SIGNED MESSAGE-----
+&gt; &gt; Hash: SHA1
+&gt; &gt; 
+&gt; &gt; 
+&gt; &gt; On Feb 13, 2005, at 2:31 AM, Christopher L. Morrow wrote:
+&gt; &gt; 
+&gt; &gt;&gt; On Sat, 12 Feb 2005, Alexander Koch wrote:
+&gt; &gt;&gt; 
+&gt; &gt;&gt;&gt; On Sat, 12 February 2005 14:58:42 +0000, Stephen J. Wilcox wrote:
+&gt; &gt;&gt;&gt;&gt; From: &quot;Stephen J. Wilcox&quot; &lt;steve@telecomplete.co.uk&gt;
+&gt; &gt;&gt;&gt;&gt; [...]   - would you agree that most of the poor deaggregating is not
+&gt; &gt;&gt;&gt;&gt; intentional
+&gt; &gt;&gt;&gt;&gt; ie that they're announcing their '16 class Cs' or historically had 2
+&gt; &gt;&gt;&gt;&gt; /21s and
+&gt; &gt;&gt;&gt; 
+&gt; &gt;&gt;&gt; Think about someone putting in a Null0 route and re-
+&gt; &gt;&gt;&gt; exporting stuff unconditionally, now after he originates
+&gt; &gt;&gt;&gt; his /19 he is then adding a /24 here, and a /25 there.
+&gt; &gt;&gt;&gt; Lack of experience, when you suggest to them they should
+&gt; &gt;&gt;&gt; remove these announcements they are afraid to change it,
+&gt; &gt;&gt;&gt; not understanding the implications, etc.
+&gt; &gt;&gt;&gt; 
+&gt; &gt;&gt;&gt; Not to mention ppl using cisco and prefix lists, it is
+&gt; &gt;&gt;&gt; way too easy with cisco to say '/19 le 24', and then they
+&gt; &gt;&gt;&gt; use outbound prefix lists to their transit supplier
+&gt; &gt;&gt;&gt; (different, but related as I see it). Some transit ISPs
+&gt; &gt;&gt;&gt; use that a lot, and encourage the table growth.
+&gt; &gt;&gt; 
+&gt; &gt;&gt; There are some business reasons to de-aggregate. Look at some outages
+&gt; &gt;&gt; caused by 'routing problems' (someone leaked my /24's to their peers,
+&gt; &gt;&gt; peers, peer and my traffic got blackholed, because the public net only
+&gt; &gt;&gt; knows me as a /20)
+&gt; &gt;&gt; 
+&gt; &gt;&gt; There are multiple reasons for deaggregation aside from 'dumb
+&gt; &gt;&gt; operator',
+&gt; &gt;&gt; some are even 'valid' if you look at them from the protection
+&gt; &gt;&gt; standpoint.
+&gt; &gt;&gt; 
+&gt; &gt;&gt; -Chris
+&gt; &gt; 
+&gt; &gt; That and the &quot;I have 1 circuit to $good_provider and 1 circuit to
+&gt; &gt; $bad_provider and the only way I can make them balance is to split my
+&gt; &gt; space in half and announce more specifics out through each provider&quot;
+&gt; &gt; argument. I have also often seen people do this without announcing the
+&gt; &gt; aggregate because   &lt;some undefined bad thing&gt; will happen, usually
+&gt; &gt; justified with much hand-waving.  The people who do this can usually
+&gt; &gt; not be reasoned with....
+&gt; &gt; 
+&gt; &gt; It happens all the time...
+&gt; &gt; 
+&gt; &gt; Warren.
+&gt; 
+&gt; So, say  I'm a provider that has received a /22 from UUNet (just for example
+&gt; Chris :-) ) and I now get another transit provider and announce the /22
+&gt; there.  So, I call UUNet and ask them to announce the /22 as a more specific
+&gt; because I don't want a de-facto asymmetric configuration.  I *want* to get a
+&gt; /20 from ARIN but my usage doesn't justify it yet, so I have to ride the /22
+&gt; for some time.
+
+Hi Mike,
+ this isnt the scenario being discussed. The scenario of issue is where you get 
+your /22 from UUNET and announce 4x /24 ie based on what ips you have you choose 
+to announce more than the minimum to make them routable
+
+&gt; By the long string of anecdotal attacks in the string to date, listing most or
+&gt; all such providers as &quot;bad&quot; or &quot;uninformed&quot; how do you separate out those
+&gt; providers who are legitimately interested in routing redundancy and not clue
+&gt; impaired?  Do we just say &quot;too bad, routing table bloat is more important than
+&gt; your need for redundancy small guy!&quot;?
+
+As I say this isnt the issue here, altho what you suggest would be an example
+of further aggregation that i personally think is extreme. Multihoming must be 
+possible and a hierarchical structure to the internet is not appropriate.
+
+&gt; I find it interesting that the general theme is one of &quot;we're smarter than
+&gt; they are because we aggregate more routes&quot; as if clue were directly correlated
+&gt; to aggregated routing announcements.
+
+Well, there does seem to be some loose correlation it cant be denied... (counter 
+examples not required, we know they exist)
+
+Steve
+
+
+
+
+

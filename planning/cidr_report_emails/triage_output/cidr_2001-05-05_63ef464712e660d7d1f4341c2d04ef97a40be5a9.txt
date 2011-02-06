@@ -1,0 +1,152 @@
+# from /home/woodrow/proj/cidr-report_analysis/planning/cidr_report_emails/cidr_r_emails-old_index.txt:541
+# 2001-05-05 'The Cidr Report' from 'Tony Bates'
+# http://www.merit.edu/mail.archives/nanog/2001-05/msg00091.html
+
+
+The Cidr Report
+From: Tony Bates
+Date: Sat May 05 02:12:08 2001
+
+
+
+
+This is an auto-generated mail on Fri May  4 23:00:00 PDT 2001
+It is not checked before it leaves my workstation.  However, hopefully 
+you will find this report interesting and will take the time to look 
+through this to see if you can improve the amount of aggregation you 
+perform.
+
+The report is split into sections:
+
+   0) General Status
+   
+      List the route table history for the last week, list any possibly
+      bogus routes seen and give some status on ASes.
+
+   1) Gains by aggregating at the origin AS level
+
+      This lists the &quot;Top 30&quot; players who if they decided to aggregate
+      their announced classful prefixes at the origin AS level could 
+      make a significant difference in the reduction of the current 
+      size of the Internet routing table. This calculation does not 
+      take into account the inclusion of holes when forming an aggregate
+      so it is possible even larger reduction should be possible.
+
+   2) Weekly Delta
+
+      A summary of the last weeks changes in terms of withdrawn and
+      added routes. Please note that this is only a snapshot but does 
+      give some indication of ASes participating in CIDR. Clearly,
+      it is generally a good thing to see a large amont of withdrawls.
+
+   3) Interesting aggregates
+
+      Interesting here means not an aggregate made as a set of 
+      classful routes.      
+
+Thanks to xara.net for giving me access to their routing tables once a
+day. 
+
+Please send any comments about this report directly to me.
+
+Check http://www.employees.org/~tbates/cidr-report.html for a daily
+update of this report.
+
+
+
+------------------------------------------------------------------------------
+
+                        CIDR REPORT for 04May01
+
+
+0) General Status
+
+Table History
+-------------
+
+Date	Prefixes
+270401	100797
+280401	102051
+290401	102329
+300401	102763
+010501	103252
+020501	104027
+030501	104798
+040501	104512
+
+Check http://www.employees.org/~tbates/cidr.plot.html for a plot
+of the table history.
+
+
+Possible Bogus Routes
+---------------------
+
+*** Bogus 218.6.128.0/17 from AS4134
+
+AS Summary
+----------
+
+Number of ASes in routing system:                10668
+
+Number of ASes announcing only one prefix:        6344 (3599 cidr, 2745 classful)
+
+Largest number of  cidr routes:                   2588 announced by AS2149
+Largest number of classful routes:                1404 announced by  AS701
+
+
+
+1) Gains by aggregating at the origin AS level
+
+ --- 04May01 ---
+ASnum    NetsNow NetsCIDR  NetGain  % Gain   Description
+
+AS1221      1396     1034      362   25.9%   TELSTRA-AS
+AS701       1404     1217      187   13.3%   Alternet
+AS2149       613      452      161   26.3%   PSINET-2
+AS705        380      250      130   34.2%   part of AS assignment AS701 - AS7
+AS4151       258      146      112   43.4%   part of AS assignment AS4151 - AS
+AS4293       392      283      109   27.8%   part of AS assignment AS4287 - AS
+AS6429       215      107      108   50.2%   ATT LA Internet Chile
+AS6595       164       62      102   62.2%   autonomous system number assigned
+AS13999      104        8       96   92.3%   autonomous system number assigned
+AS4755       235      145       90   38.3%   part of AS assignment AS4608 - AS
+AS8013       343      258       85   24.8%   autonomous system number assigned
+AS7018       701      617       84   12.0%   AT&amp;T WorldNet Service Backbone
+AS577        236      167       69   29.2%   autonomous system number assigned
+AS174        427      361       66   15.5%   Performance Systems International
+AS6471       113       49       64   56.6%   autonomous system number assigned
+AS5106       100       37       63   63.0%   autonomous system number assigned
+AS3464       153       91       62   40.5%   Alabama Research and Education Ne
+AS3749       119       58       61   51.3%   autonomous system number assigned
+AS3602       254      195       59   23.2%   Sprint Canada Inc.
+AS724        205      147       58   28.3%   part of AS assignment AS721 - AS7
+AS11252       91       33       58   63.7%   autonomous system number assigned
+AS1          609      551       58    9.5%   GTE Internetworking
+AS16758       63        6       57   90.5%   autonomous system number assigned
+AS6413        67       11       56   83.6%   autonomous system number assigned
+AS226        149       93       56   37.6%   Los Nettos
+AS4323       232      179       53   22.8%   Time Warner Telecom Internet
+AS17561      110       59       51   46.4%   UNKNOWN
+AS852        206      157       49   23.8%   autonomous system number assigned
+AS8151       183      137       46   25.1%   autonomous system number assigned
+AS13544       68       22       46   67.6%   autonomous system number assigned
+
+
+For the rest of the previous weeks gain information please see
+http://www.employees.org:80/~tbates/cidr-report.html
+
+2) Weekly Delta
+
+Please see
+http://www.employees.org:80/~tbates/cidr-report.html
+for this part of the report
+
+3) Interesting aggregates
+
+Please see
+http://www.employees.org:80/~tbates/cidr-report.html
+for this part of the report
+
+
+
+

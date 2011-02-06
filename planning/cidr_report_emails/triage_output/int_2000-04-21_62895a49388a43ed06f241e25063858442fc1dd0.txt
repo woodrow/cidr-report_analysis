@@ -1,0 +1,54 @@
+# from /home/woodrow/proj/cidr-report_analysis/planning/cidr_report_emails/cidr_r_emails-old_index.txt:644
+# 2000-04-21 'Re: The Cidr Report' from 'Randy Bush'
+# http://www.merit.edu/mail.archives/nanog/2000-04/msg00278.html
+
+
+Re: The Cidr Report
+From: Randy Bush
+Date: Fri Apr 21 15:12:26 2000
+
+
+
+boys and girls, over 2500 routes could be removed from the routing
+table just by a little cleanliness and responsibility.  this is pretty
+embarrassing for the operator community.
+
+randy
+
+
+&gt; ASnum    NetsNow NetsCIDR  NetGain  % Gain  Description
+&gt; 					      
+&gt; AS271        351      131      220   62.7%  BCnet Backbone
+&gt; AS7046       474      322      152   32.1%  COQUI-NET PRTC Internet
+&gt; AS9269       163       26      137   84.0%  Hong Kong CTI
+&gt; AS9706       153       30      123   80.4%  Pusan Metropolitan City Office of
+&gt; AS1221       468      357      111   23.7%  TELSTRA-AS
+&gt; AS2609       124       17      107   86.3%  EUnet-TN
+&gt; AS7657       268      170       98   36.6%  The Internet Group Limited
+&gt; AS7545       160       65       95   59.4%  TPG Internet Pty Ltd
+&gt; AS705        309      214       95   30.7%  ALTERNET-AS
+&gt; AS4293       305      215       90   29.5%  Internal ASN for C&amp;W
+&gt; AS174        558      470       88   15.8%  Performance Systems International
+&gt; AS7496       126       39       87   69.0%  Power Up
+&gt; AS6429       205      121       84   41.0%  RDC-INTERNET
+&gt; AS7029       153       72       81   52.9%  ALLTELNET
+&gt; AS9304       105       29       76   72.4%  Hutchcity
+&gt; AS577        250      174       76   30.4%  Bell Backbone
+&gt; AS209        458      385       73   15.9%  Qwest Communications
+&gt; AS9557        80       15       65   81.2%  Pakistan Telecommunication Compan
+&gt; AS1727       144       80       64   44.4%  MRMS-WEST
+&gt; AS724        205      143       62   30.2%  DLA-ASNBLOCK-AS
+&gt; AS3602       309      247       62   20.1%  Sprint Canada Inc.
+&gt; AS7260       109       49       60   55.0%  NORLIGHT
+&gt; AS701       1043      983       60    5.8%  Alternet
+&gt; AS7018       518      459       59   11.4%  AT&amp;T WorldNet Service Backbone
+&gt; AS3749       114       56       58   50.9%  TECNET
+&gt; AS816        333      277       56   16.8%  UUNET Canada (ASN-UUNETCA-AS4)
+&gt; AS4740       337      281       56   16.6%  Ozemail Pty Ltd (ASN-OZEMAIL)
+&gt; AS6595       101       48       53   52.5%  DODDSEUR
+&gt; AS7568        68       18       50   73.5%  C.S. Communications Co., Ltd.
+&gt; AS2563       125       76       49   39.2%  KoRean Education Network
+
+
+
+

@@ -1,0 +1,69 @@
+# from /home/woodrow/proj/cidr-report_analysis/planning/cidr_report_emails/cidr_r_emails-old_index.txt:269
+# 2005-02-12 'Re: The Cidr Report' from 'Alexander Koch'
+# http://www.merit.edu/mail.archives/nanog/2005-02/msg00192.html
+
+
+Re: The Cidr Report
+From: Alexander Koch
+Date: Sat Feb 12 14:39:54 2005
+
+
+
+On Sat, 12 February 2005 14:58:42 +0000, Stephen J. Wilcox wrote:
+&gt; From: &quot;Stephen J. Wilcox&quot; &lt;steve@telecomplete.co.uk&gt;
+&gt; [...]   - would you agree that most of the poor deaggregating is not intentional 
+&gt; ie that they're announcing their '16 class Cs' or historically had 2 /21s and 
+
+Think about someone putting in a Null0 route and re-
+exporting stuff unconditionally, now after he originates
+his /19 he is then adding a /24 here, and a /25 there.
+Lack of experience, when you suggest to them they should
+remove these announcements they are afraid to change it,
+not understanding the implications, etc.
+
+Not to mention ppl using cisco and prefix lists, it is
+way too easy with cisco to say '/19 le 24', and then they
+use outbound prefix lists to their transit supplier
+(different, but related as I see it). Some transit ISPs
+use that a lot, and encourage the table growth.
+
+Also I think a further problem is (from experience) some
+content hosters wanting to bleed (right word?) /24's to
+their providers, even though their ratio is 10:1 or more and
+inbound traffic is not exactly relevant.  Too often it makes
+no sense, and I am speaking of the '32* /24 is a /19'
+version, mind you, sometimes not even announcing the
+supernet...
+
+Seeing the larger DSL prefixes in Europe then in Europe
+what do we conclude? See for 3352 or 3269 (sorry)... But
+when we try to measure (de-) aggregation by continent it
+gets tricky... (and I believe I know winner and loser)
+
+I am not sure doing it the Swisscom way (they filter a lot)
+is the way to go, yet I would be curious how many routes
+they currently carry for a full route set. Ah, here it is:
+
+-&gt;
+route-views.oregon-ix.net&gt;sh ip bg su | incl 3303
+164.128.32.11   4  3303 3351176  140593 74037481    0    0 2w2d        69713
+&lt;-
+
+I have a hard time argueing this topic with customers, and I
+have the feeling I am not the only one. We are past that
+already, I feel.
+
+&gt; so to repeat my earlier suggestion - if transit providers, particularly the 
+&gt; larger ones setup scripts to notify their customers daily/weeks of routing 
+&gt; deaggregation do you think we might gain some traction in educating and fixing 
+&gt; this?
+
+That may be a way to go actually. Like the mail for what
+prefixes are lacking a route: object that one might just send
+to customers, not to peers... (5430 peers surely remember)
+
+Alexander
+
+
+
+

@@ -1,0 +1,50 @@
+# from /home/woodrow/proj/cidr-report_analysis/planning/cidr_report_emails/cidr_r_emails-old_index.txt:842
+# 1996-12-02 'Re: The Cidr Report' from 'Alex.Bligh'
+# http://www.merit.edu/mail.archives/nanog/1996-12/msg00014.html
+
+
+Re: The Cidr Report
+From: Alex.Bligh
+Date: Mon Dec 02 10:16:57 1996
+
+
+&gt; 	Does this call into question the idea that there is a
+&gt; 	single &quot;default-free&quot; view of the Internet?
+
+Of course. Contents of a default free routing table will
+depend on the filters on between you and who is originating
+the routes (incl. broken filters givin leaks of more
+specifics, deliberate filters cf Sprint on prefix
+length or those who build from the RA) and on any
+proxy aggregation that might happen on the way. As the
+original conjecture was that many routes &quot;didn't
+need to be there&quot; its hardly surprising that quite
+a lot of routes are carried by neither AGIS, Sprint
+or UUnet and things still carry on working (in general).
+ 
+&gt; 	My box is attempting to collect a view of the routing
+&gt; 	system as seen at a particular point in the topology.
+&gt; 	While this may not be interesting to Randy, others
+&gt; 	might find it useful.
+&gt; 
+&gt; 	I would be interested in tracking the views as seen at
+&gt; 	a number of different places in the topology. The deltas
+&gt; 	between the growth in the number of widely dispersed routes
+&gt; 	vs the local varience would be an interesting number to 
+&gt; 	track.
+
+There is a collector router at the LINX IXP in London UK which
+3 of us give transit to and everyone else there gives peer
+style routes to. You might ask Keith Mitchell (keith@linx.net)
+if you can have an EBGP multihop from that for collection
+purposes.
+
+Alex Bligh
+Xara Networks
+
+
+
+- - - - - - - - - - - - - - - - -
+
+
+

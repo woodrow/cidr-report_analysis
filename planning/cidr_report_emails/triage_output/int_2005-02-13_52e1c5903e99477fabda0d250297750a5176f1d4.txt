@@ -1,0 +1,75 @@
+# from /home/woodrow/proj/cidr-report_analysis/planning/cidr_report_emails/cidr_r_emails-old_index.txt:259
+# 2005-02-13 'RE: The Cidr Report' from 'Justin Ryburn'
+# http://www.merit.edu/mail.archives/nanog/2005-02/msg00202.html
+
+
+RE: The Cidr Report
+From: Justin Ryburn
+Date: Sun Feb 13 13:50:05 2005
+
+
+
+I have recently heard companies saying their reasoning for
+de-aggregation was 1) to protect against outages to their customer base
+when a more specific of their aggregate was announced somewhere else and
+2) if they are getting DDOS attacked on a given /24 they can just drop
+that advertisement and only affect part of their customer base.
+
+As technically savvy folks, we may not agree with this line of
+reasoning.  However, keep in mind that the technically savvy folks are
+not always the ones making the decisions within a company.  Just because
+someone has enable access and clue does not mean they have the authority
+to make certain decisions.  Most of those people probably spend a large
+amount of their time arguing with the decision makers to try and do the
+right thing but at some point they lose those arguments.
+
+-- 
+Justin Ryburn
+justin@ryburn.org 
+
+-----Original Message-----
+From: owner-nanog@merit.edu [mailto:owner-nanog@merit.edu] On Behalf Of
+Christopher L. Morrow
+Sent: Sunday, February 13, 2005 2:30 AM
+To: Alexander Koch
+Cc: nanog@merit.edu
+Subject: Re: The Cidr Report
+
+
+
+
+On Sun, 13 Feb 2005, Alexander Koch wrote:
+
+&gt; On Sun, 13 February 2005 07:31:16 +0000, Christopher L. Morrow wrote: 
+&gt; [..]
+&gt; &gt; There are some business reasons to de-aggregate. Look at some 
+&gt; &gt; outages caused by 'routing problems' (someone leaked my /24's to 
+&gt; &gt; their peers, peers, peer and my traffic got blackholed, because the 
+&gt; &gt; public net only knows me as a /20)
+&gt;
+&gt; I am surprised you bring such an argument up. While we can surely 
+&gt; agree on this happening on the net, I have yet to hear from someone 
+&gt; saying this is happening more than once a month or so. Maybe Todd from
+
+&gt; Renesys has other examples besides the Yahoo incident.^
+
+if it happens once to you and lasts long enough... I'm not condoning it,
+nor saying it's even a valid reason to do it, just pointing out that it
+does happen :(
+
+&gt;
+&gt; &gt; There are multiple reasons for deaggregation aside from 'dumb 
+&gt; &gt; operator', some are even 'valid' if you look at them from the 
+&gt; &gt; protection standpoint.
+&gt;
+&gt; I won't argue that, but how many ISPs are using this line
+&gt; of argument? I have not heard anyone yet telling me this,
+&gt; not in years.
+&gt;
+
+a few have... recently in fact.
+
+
+
+
+

@@ -1,0 +1,40 @@
+# from /home/woodrow/proj/cidr-report_analysis/planning/cidr_report_emails/cidr_r_emails-old_index.txt:839
+# 1996-12-05 'Re: The Cidr Report' from 'Curtis Villamizar'
+# http://www.merit.edu/mail.archives/nanog/1996-12/msg00062.html
+
+
+Re: The Cidr Report
+From: Curtis Villamizar
+Date: Thu Dec 05 13:31:59 1996
+
+
+
+In message &lt;199611300331.TAA06601@chimp.jnx.com&gt;, Tony Li writes:
+&gt; 
+&gt;    Hey, this looks pretty good. Let's hope the trend continues (if, in fact,
+&gt;    there *is* a trend).
+&gt; 
+&gt;    &gt;Date	Prefixes
+&gt;    &gt;231196	40687
+&gt;    &gt;241196	40908
+&gt;    &gt;251196	40844
+&gt;    &gt;261196	41043
+&gt;    &gt;271196	41074
+&gt;    &gt;281196	39803
+&gt;    &gt;291196	39735
+&gt; 
+&gt; I suspect that this is more due to the holiday than any real change.  ;-(
+&gt; 
+&gt; Someone could do a paper on periodic influences on the number of global
+&gt; prefixes.  I'd really love to know when triple-witching day is... ;-)
+&gt; 
+&gt; Tony
+
+
+People withdraw their prefix announcement due to the holidays?
+
+Curtis
+- - - - - - - - - - - - - - - - -
+
+
+

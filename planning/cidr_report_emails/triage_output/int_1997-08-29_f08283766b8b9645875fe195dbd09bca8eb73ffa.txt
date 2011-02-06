@@ -1,0 +1,43 @@
+# from /home/woodrow/proj/cidr-report_analysis/planning/cidr_report_emails/cidr_r_emails-old_index.txt:804
+# 1997-08-29 'Re: The Cidr Report' from 'Tony Bates'
+# http://www.merit.edu/mail.archives/nanog/1997-08/msg00526.html
+
+
+Re: The Cidr Report
+From: Tony Bates
+Date: Fri Aug 29 17:04:26 1997
+
+
+Nice one Telstra (AS1221) for re-looking at your aggregation.
+
+		--Tony
+
+ Tony Bates &lt;tbates@cisco.com&gt; writes:
+  * 
+[lots of stuff deleted below..]
+  * 
+  * 
+  * 0) General Status
+  * 
+  * Table History
+  * -------------
+  * 
+  * Date	Prefixes
+  * 220897	48000
+  * 230897	47464
+  * 240897	47481
+  * 250897	47522
+  * 260897	47364
+  * 270897	46374
+  * 280897	46213
+  * 290897	46311
+  * 
+  * Top 20 Withdrawn Classful Routes from 22Aug97 to 29Aug97
+  * 	-992 AS1221 AARNET-AS
+  * 
+  * Top 20 Withdrawn Classles Routes from 22Aug97 to 29Aug97
+  * 	-113 AS1221 AARNET-AS
+
+
+
+

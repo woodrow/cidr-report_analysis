@@ -1,0 +1,39 @@
+# from /home/woodrow/proj/cidr-report_analysis/planning/cidr_report_emails/cidr_r_emails-old_index.txt:734
+# 1998-09-13 'Re: The Cidr Report' from 'Jared Mauch'
+# http://www.merit.edu/mail.archives/nanog/1998-09/msg00280.html
+
+
+Re: The Cidr Report
+From: Jared Mauch
+Date: Sun Sep 13 20:38:56 1998
+
+
+On Sun, Sep 13, 1998 at 04:44:11AM -0400, Brian Wallingford wrote:
+&gt; John M. Brown wrote:
+&gt; &gt; 
+&gt; &gt; Why should they, there is no reason for them to.  Personally I wonder what
+&gt; &gt; would happen if we (the rest of us) started filtering on /19's or /20's :)
+&gt; 
+&gt; Not to rehash, but there are legitimate reasons to advertise /24's.  I'd
+&gt; say that filtering at that level would be reasonable.  What bothers me
+&gt; is seeing certain networks advertising an aggregate along with all or
+&gt; most subnetworks.  Being flexible with one's downstreams is one thing,
+&gt; irresponsible adverts are another.
+
+	I scan the Cidr report weekly as it comes to nanog, and
+look for particulary bad problems and e-mail their upstreams
+asking them to filter.
+
+	uunet is bad at taking care of these, but ANS has been
+great at filtering people (won't cite the cases) that are their
+customers and getting them to fix people who appear on the list.
+
+	I would recommend doing that, if they (The AS contacts) and
+providers get enough complaints (just like what needed to happen w/ spam),
+they will do something.
+
+	- jared
+
+
+
+

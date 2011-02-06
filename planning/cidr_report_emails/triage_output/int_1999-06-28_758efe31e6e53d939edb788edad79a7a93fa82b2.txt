@@ -1,0 +1,48 @@
+# from /home/woodrow/proj/cidr-report_analysis/planning/cidr_report_emails/cidr_r_emails-old_index.txt:688
+# 1999-06-28 'Re: The Cidr Report' from 'Peter Galbavy'
+# http://www.merit.edu/mail.archives/nanog/1999-06/msg00201.html
+
+
+Re: The Cidr Report
+From: Peter Galbavy
+Date: Mon Jun 28 04:34:02 1999
+
+
+
+On the subject of the general number of routes increasing, has
+everyone involved in the development or maintainence of their routers
+checked that the 2^16 (65536) limit is not going to hit them.
+
+I know that for those using PC routers, like my old colleagues at
+Demon, it is important that you make sure that your OS is upgraded
+to use a &gt;16 bit int for a &quot;reference count&quot; to an interface. Andrew
+Bangs @ Demon spotted this a while back and submitted patch to the
+*BSD groups, of which I know OpenBSD has changed the reference count
+to a 32 bit.
+
+Once you add some IGP routes the 2^16 is coming up fast.
+
+On Fri, Jun 25, 1999 at 12:00:02PM -0700, Tony Bates wrote:
+&gt; 0) General Status
+&gt; 
+&gt; Table History
+&gt; -------------
+&gt; 
+&gt; Date	Prefixes
+&gt; 180699	60164
+&gt; 190699	60219
+&gt; 200699	60266
+&gt; 210699	60373
+&gt; 220699	60763
+&gt; 230699	60904
+&gt; 240699	61044
+&gt; 250699	61068
+
+-- 
+Peter Galbavy
+Knowledge Matters Ltd
+http://www.knowledge.com/
+
+
+
+

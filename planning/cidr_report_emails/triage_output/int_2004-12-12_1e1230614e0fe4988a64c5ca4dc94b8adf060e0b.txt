@@ -1,0 +1,92 @@
+# from /home/woodrow/proj/cidr-report_analysis/planning/cidr_report_emails/cidr_r_emails-old_index.txt:300
+# 2004-12-12 'Re: The Cidr Report' from 'Joe Provo'
+# http://www.merit.edu/mail.archives/nanog/2004-12/msg00410.html
+
+
+Re: The Cidr Report
+From: Joe Provo
+Date: Sun Dec 12 13:34:44 2004
+
+
+
+[This was started last month. been a little busy. unsuprisingly I 
+only had to *add* an incident and it still works.]
+
+On Fri, Nov 12, 2004 at 02:47:30PM -0800, Randy Bush wrote:
+[snip]
+
+Yes it means what you think.
+No, I don't see anyone giving a rat's patootie about aggregation.
+
+I was starting to think I was the only one still reading the reports.
+Had a half-written rant each time interesting events happened, just
+been too busy. In recent months:
+- on the 4th-&gt;5th of November, the (reported) table bloated by ~9k 
+  pfefixes overnight. not an eyebrow raised.
+- when the table bloated over 140k, just this last July, the report 
+  was hosed at the end of a cycle obviously hit its own MAXINT. Not 
+  a comment from regular report readers, nor even a mocking Nelson 
+  &quot;Ha-Haw&quot; post by those taking the actions.
+- this month, another knee was at 150k [Dec 4th] and similarly 
+  garbled results came out. Again, no response.
+...in this one year we've seen the shape of the climb return to the 
+curve characterized by two years 99-01. Going for e?  I'm not quite 
+sure what the current point of the report is if no-one responds to
+even it breaking.
+
+I never saw a single post following up to to the actual purpose 
+and policy issues from October's &quot;aggregation &amp; table entries&quot; 
+thread. Other than the specifics of multihomed customers and RPF 
+issues, my point about segregation of internal and externaal 
+policies and the reflection in the &quot;announce used&quot; vs &quot;announce 
+allocated&quot; was neither agreed, refuted, nor even commented further.
+I have seen deaggregators claim 'security' [shred the routing table 
+in response to windows worms scanning their classical-B], or 
+assume that if Some Other Company can base their entire business 
+plan on moving the costs of 'optimized' deaggregation onto the 
+global community (beyond their providers), then why can't they.
+
+When I'm feeling conspiracy-minded, it seems that those of a 
+certain size are trying to squeeze the smaller folks out of the 
+business by encouraging the behavior of bloat.  But then I correct 
+the angle of my tinfoil beanie and realize they are just lazy.  
+Their laziness does directly cost any newly-multihoming enterprises; 
+some of the networks who are contributing to the garbage still 
+tell customers that full tables will fit into 128M on a cisco.
+(eg, http://www.sprintlink.net/support/bgp_request.html)
+
+It is disappointing and frankly I can't see a way past it.  When 
+2914 finally slid down to the lowest common denominator, the last 
+'big stick' was gone.  1239 is unapologetically violating their 
+own customer bgp policies in this regard (point 9 on
+http://www.sprintlink.net/policy/bgp.html). The list goes on and 
+on.
+
+Otherwise reasonable people have refuted logic and claim adding 
+more data into the system doesn't increase churn effect and thereby 
+degrade stability. Control theory and structured programming be 
+damned, they say &quot;it hasn't melted yet.&quot; Perhaps they want to see 
+if they can make Metcalfe's predict come true, just 10 years too
+early?  
+
+The baseline expectation is that the DFZ carries rechability data.
+Any more-specific data of interest is exchanged between parties who 
+want it, request it, or pay for it. &quot;Being conservative in what you 
+send&quot; also applies to anticipating *others* not being liberal in 
+what they receive.  There's a whole lot of non-conservative senders 
+out there, and when they have reachability problems of their own 
+making, with simple and trivial fixes if they had only thought 
+things through in the first place, they have no-one but themselves 
+to blame.
+
+Those believing otherwise are encouraged to send real, hard data.
+There is no meaningful data I can find since the Bellovin/Bush/
+Griffin/Rexford 2001 paper.
+
+Joe
+
+-- 
+             RSUC / GweepNet / Spunk / FnB / Usenix / SAGE
+
+
+

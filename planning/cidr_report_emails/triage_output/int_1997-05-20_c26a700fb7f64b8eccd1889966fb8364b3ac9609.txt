@@ -1,0 +1,44 @@
+# from /home/woodrow/proj/cidr-report_analysis/planning/cidr_report_emails/cidr_r_emails-old_index.txt:821
+# 1997-05-20 'Re: The Cidr Report' from 'Tony Bates'
+# http://www.merit.edu/mail.archives/nanog/1997-05/msg00439.html
+
+
+Re: The Cidr Report
+From: Tony Bates
+Date: Tue May 20 19:17:40 1997
+
+
+Yes I think we have Telstra to thank for this.
+		
+		--Tony
+
+ Curtis Villamizar &lt;curtis@brookfield.ans.net&gt; writes:
+  * 
+  * In message &lt;199705161900.MAA00796@lovefm.cisco.com&gt;, Tony Bates writes:
+  * &gt; 
+  * &gt; Table History
+  * &gt; -------------
+  * &gt; 
+  * &gt; Date	Prefixes
+  * &gt; 090597	46149
+  * &gt; 100597	45492
+  * &gt; 110597	45272
+  * &gt; 120597	45039
+  * &gt; 130597	43921
+  * &gt; 140597	43899
+  * &gt; 150597	43945
+  * &gt; 160597	43287
+  * &gt; 
+  * &gt; Check http://www.employees.org/~tbates/cidr.plot.html for a plot
+  * &gt; of the table history.
+  * 
+  * 
+  * We managed to drop almost 3,000 prefixes from the routing table in the
+  * last week.  A 6% drop.  Not bad.
+  * 
+  * Curtis
+  * 
+- - - - - - - - - - - - - - - - -
+
+
+
