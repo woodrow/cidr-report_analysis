@@ -3,7 +3,8 @@
 bgp_modules
 rib_dumps
 cidr_analysis/bin/cidr_env/
+libbgpdump/libbgpdump-1.4.99.13/simpledump
 *~
-oct22/
-nov12/
+oct22*/
+nov12*/
 optimization/
