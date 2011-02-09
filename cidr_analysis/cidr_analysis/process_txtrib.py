@@ -45,7 +45,7 @@ def postprocess_rib(rib_filename, norm_filename, peers_filename,
                 print("NULL AS_PATH: replacing '{0}' with {1}".format(
                     line.strip(), raw_as_path))
             norm_path = aspath.normalize_as_path(raw_as_path)
-            raw_as_path.reverse()
+            norm_path.reverse()
         except StandardError as e:
             norm_path = None
 
