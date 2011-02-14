@@ -98,9 +98,9 @@
     - pricing and capacity history of ASBR-class routers
     - difference in incentives and equity compared to interconneciton
 - dictatorial control by market power and thought leadership (i.e. VZ policy on /32s)
-- technical solutions 
+- technical solutions
     - outside of BGP: i.e. LISP, other things from IRTF RRG etc.
-    - within BGP (i.e. forgetful routing tables, in-router aggregation, etc.)
+    - within BGP (i.e. forgetful routing tables, in-router aggregation, route filtering, etc.)
 
 ## Interesting things in my notebook
 - p. 17 -- illustration of disparity in routing tables from various RouteViews peers
@@ -114,4 +114,4 @@
 - p. 44 -- description of my new approach of aggregation within the router
 - p. 50 -- more optimization and debugging -- i like the "FACTS. HYPOTHESES. FACTS. ..."  pattern
 - p. 51 -- realization that Geoff Huston must be adding unannounced, "virtual prefixes" in order to maximize aggregation
-- 
+-
