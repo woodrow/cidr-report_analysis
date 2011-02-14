@@ -8,3 +8,7 @@ libbgpdump/libbgpdump-1.4.99.13/simpledump
 oct22*/
 nov12*/
 optimization/
+*.pdf
+*.ps
+*.gz
+*.dot
