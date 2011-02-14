@@ -1,3 +1,5 @@
+#!/usr/bin/python2.6
+
 import sys
 import datetime
 import os.path
@@ -47,7 +49,7 @@ def main(file_paths=[]):
             dup_count += 1
             print("DUPLICATE DATA for week {0}".format(week))
             print("    existing:\n    date: {0}\n    file: {1}".format(
-                data[week]['date'], data[week]['file']))
+                data[week].date, data[week].file))
             print("    new:\n    date: {0}\n    file: {1}".format(date, fp))
     if dup_count:
         print("-----\nTOTAL DUPES: {0}\n-----".format(dup_count))
@@ -108,15 +110,68 @@ if __name__ == '__main__':
                 e, len(as_dict[e[0]]), rwfreq_dict[e[0]]))
         f.close()
 
+
+        import pickle
+        f = open('peer_counts.pickle')
+        table_totals = [None]*len(data)
+        count_list = pickle.load(f)
+        for item in count_list:
+            date = datetime.datetime.strptime(item[0], '%Y-%m-%d').date()
+            week = (date - EPOCH).days // 7
+            table_totals[week] = item[2] # 1 is median, 2 is max
+        i = 0
+        start_interp = -1
+        end_interp = -1
+        while i <= len(table_totals):
+            if i == len(table_totals) or table_totals[i]:
+                if start_interp > -1:
+                    end_interp = i - 1
+            else:
+                if start_interp == -1:
+                    start_interp = i
+            if -1 < start_interp <= end_interp:
+                if start_interp == 0:
+                    for j in xrange(start_interp, end_interp+1):
+                        table_totals[j] = table_totals[end_interp+1]
+                        print("start", j, table_totals[j])
+                elif end_interp == len(table_totals) - 1:
+                    for j in xrange(start_interp, end_interp+1):
+                        table_totals[j] = table_totals[start_interp-1]
+                        print("end", j, table_totals[j])
+                else:
+                    start_val = table_totals[start_interp - 1]
+                    delta = ((table_totals[end_interp + 1] - start_val) /
+                        (end_interp - start_interp + 2))
+                    print(start_val, table_totals[end_interp + 1], delta)
+                    if delta > 0:
+                        for j in xrange(start_interp, end_interp+1):
+                            table_totals[j] = start_val + delta*(j - start_interp)
+                            print("middle", j, table_totals[j])
+                    else:
+                        for j in xrange(start_interp, end_interp+1):
+                            table_totals[j] = start_val
+                            print("middle-fake", j, table_totals[j])
+
+                start_interp = -1
+                end_interp = -1
+            i += 1
+
+
         print("Dumping raw data containing rank, netgain, and netsnow: peras.csv")
         f = open('peras.csv', 'w')
         numweeks = len(peras_data.itervalues().next())
-        f.write("week")
+        f.write("week,table_netsnow,cr_netsnow,cr_netgain")
         for asn in peras_data:
             f.write(",as{0}_rank,as{0}_netgain,as{0}_netsnow".format(asn))
         f.write("\n")
         for i in xrange(numweeks):
-            f.write("{0}".format(i))
+            if data[i]:
+                cr_netsnow = sum((x.netsnow for x in data[i].rank_list))
+                cr_netgain = sum((x.netgain for x in data[i].rank_list))
+            else:
+                cr_netsnow = -1
+                cr_netgain = -1
+            f.write("{0},{1},{2},{3}".format(i, table_totals[i], cr_netsnow if cr_netsnow > -1 else '', cr_netgain if cr_netgain > -1 else''))
             for asn in peras_data:
                 if peras_data[asn][i]:
                     f.write(",{0.rank},{0.netgain},{0.netsnow}".format(
@@ -222,6 +277,27 @@ if __name__ == '__main__':
                 df.write('week{0}row0 [label="Week {0}", shape=box, style=filled, fillcolor=tomato, pos="{1},{2}", pin=true];\n'.format(i, i*COL_SPACE+59, rows*ROW_SPACE+22))
         df.write('}\n')
         df.close()
+
+        print("Creating R file: as_plots.r")
+        f = open('as_plots.r', 'w')
+
+        f.write(
+"""library("zoo")
+cidr_report <- read.csv("peras.csv")
+pdf("as_plots.pdf", paper="USr", width=10, height=7.5)
+par(mfrow=c(20,1), mar=c(0,4,0,0))
+""")
+        for (asn,wfreq) in wfreq_list:
+            f.write('plot(cidr_report$as{0}_rank, xlab="", ylab="{0}",   type="h", ylim=c(0,30), yaxt="n", col="grey")\n'.format(asn))
+            f.write('par(new=TRUE)\n')
+            f.write('plot(rollapply(zoo(cidr_report$as{0}_netgain/cidr_report$as{0}_netsnow), 4, (mean)), xlab="", ylab="", yaxt="n", xaxt="n",   type="l", ylim=c(0,1), col="red", lwd=2)\n'.format(asn))
+            f.write('par(new=TRUE)\n')
+            f.write('plot(rollapply(zoo(cidr_report$as{0}_netgain/cidr_report$cr_netgain), 4, (mean)), xlab="", ylab="", yaxt="n", xaxt="n",  type="l", ylim=c(0,1), col="blue", lwd=2)\n'.format(asn))
+            f.write('par(new=TRUE)\n')
+            f.write('plot(rollapply(zoo(cidr_report$as{0}_netsnow/cidr_report$cr_netsnow), 4, (mean)), xlab="", ylab="", yaxt="n", xaxt="n",  type="l", ylim=c(0,1), col="green", lwd=2)\n'.format(asn))
+            f.write('par(new=FALSE)\n')
+        f.write("dev.off()\n")
+        f.close()
 
     else:
         print("USAGE: ...")
