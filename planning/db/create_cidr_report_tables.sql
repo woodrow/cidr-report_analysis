@@ -1,3 +1,5 @@
+BEGIN;
+
 -- email_cidr_reports: official CIDR report data gathered from the NANOG list
 --
 -- row size: 32 bytes (+ netname)
@@ -31,6 +33,17 @@ CREATE TABLE gen_cidr_reports (
     notes               text                  -- i.e. MOAS notes
 );
 
+-- peers: allows unique peer (as, ip) combinations to be referenced via a
+-- single value
+--
+-- row size: 16 bytes
+-- table size: 193 rows
+CREATE TABLE peers (
+    id                  serial      PRIMARY KEY,
+    peer_as             bigint      NOT NULL,
+    peer_ip             ip4         NOT NULL
+);
+
 -- peer_table_summaries: number of prefixes originated by each AS visible from
 -- each Route Views peer (i.e. PPAPP data)
 --
@@ -59,16 +72,7 @@ CREATE TABLE prefix_origins (
     raw_as_path         text        NOT NULL,
     date_effective      date        NOT NULL,
 --  weeks_seen: 1 = visible, 0 = not visible; MSB = week 0 ... LSB = week N
-    weeks_seen          bit_varying NOT NULL
+    weeks_seen          bit varying NOT NULL
 );
 
--- peers: allows unique peer (as, ip) combinations to be referenced via a
--- single value
--- 
--- row size: 16 bytes
--- table size: 193 rows
-CREATE TABLE peers (
-    id                  serial      PRIMARY KEY,
-    peer_as             bigint      NOT NULL,
-    peer_ip             ip4         NOT NULL
-);
+COMMIT;
