@@ -92,15 +92,21 @@ def add_report_to_db(data, conn):
 
 if __name__ == '__main__':
     if len(sys.argv) > 1:
-        file_paths = sys.argv[1:]
+        if sys.argv[1] == '--db':
+            use_db = True
+            file_paths = sys.argv[2:]
+        else:
+            use_db = False
+            file_paths = sys.argv[1:]
         (data, peras_data) = parse_report(file_paths)
 
-        print("Inserting results into postgres.")
-        conn = psycopg2.connect(database='woodrow',
-            user='woodrow', password='woodrow$mitas-2@2011',
-            host='mitas-2.csail.mit.edu')
-        add_report_to_db(data, conn)
-        conn.close()
+        if use_db:
+            print("Inserting results into postgres.")
+            conn = psycopg2.connect(database='woodrow',
+                user='woodrow', password='woodrow$mitas-2@2011',
+                host='mitas-2.csail.mit.edu')
+            add_report_to_db(data, conn)
+            conn.close()
 
         none_list = [i for i in xrange(len(data)) if data[i] is None]
         non_none_count = sum((1 for x in data if x is not None))
