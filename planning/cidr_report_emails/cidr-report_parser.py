@@ -6,17 +6,20 @@ import os.path
 import re
 import collections
 import pydoc
+import psycopg2
 
 EPOCH = datetime.date(1996, 9, 13) #datetime.date(2000, 12, 22)
-CRRow = collections.namedtuple('CRRow', 'asnum netsnow netsaggr netgain rank')
-CRWeek = collections.namedtuple('CRWeek', 'date week file rank_list')
+CRRow = collections.namedtuple('CRRow',
+    'asnum netsnow netsaggr netgain rank netname')
+CRWeek = collections.namedtuple('CRWeek',
+    'date week file table_total rank_list')
 
 MAX_WEEKS_PLOT = 751 # 800
 MAX_ROWS_PLOT = 30 # 30
 ROW_SPACE = 98
 COL_SPACE = 150
 
-def main(file_paths=[]):
+def parse_report(file_paths=[]):
     num_weeks = ((datetime.date(2011, 01, 31) - EPOCH).days // 7) + 1
     data = [None]*num_weeks
     peras_data = collections.defaultdict(lambda: [None]*num_weeks)
@@ -30,21 +33,29 @@ def main(file_paths=[]):
         date = datetime.datetime.strptime(table.groups()[0], '%d%b%y').date()
         week = (date - EPOCH).days // 7
         rank = 0
+        table_total = None
         rank_list = [None]*30
         for line in aggr_table:
             components = line.split()
-            if len(components) > 0 and re.match('AS\d+', components[0]):
-                assert rank < 30
-                rank_list[rank] = CRRow(asnum=int(components[0][2:]),
-                    netsnow=int(components[1]), netsaggr=int(components[2]),
-                    netgain=int(components[3]), rank=30-rank)
-                peras_data[rank_list[rank].asnum][week] = rank_list[rank]
-                rank += 1
+            if len(components) > 0:
+                if re.match('AS\d+', components[0]):
+                    assert rank < 30
+                    rank_list[rank] = CRRow(asnum=int(components[0][2:]),
+                        netsnow=int(components[1]), netsaggr=int(components[2]),
+                        netgain=int(components[3]), rank=30-rank,
+                        netname=' '.join(components[5:]))
+                    peras_data[rank_list[rank].asnum][week] = rank_list[rank]
+                    rank += 1
+                else:
+                    if re.match('^Table', components[0]):
+                        table_total  = CRRow(asnum=None,
+                        netsnow=int(components[1]), netsaggr=int(components[2]),
+                        netgain=int(components[3]), rank=None, netname='Table')
         if rank < 30: # why isn't the rank 30? take a closer look
             print(fp)
             print("UNEXPECTED RANK: {0}".format(rank))
         if not data[week]:
-            data[week] = CRWeek(date, week, fp, rank_list)
+            data[week] = CRWeek(date, week, fp, table_total, rank_list)
         else:
             dup_count += 1
             print("DUPLICATE DATA for week {0}".format(week))
@@ -56,10 +67,41 @@ def main(file_paths=[]):
     return (data, peras_data)
 
 
+def add_report_to_db(data, conn):
+    cursor = conn.cursor()
+    for week in data:
+        if week:
+            for row in week.rank_list:
+                cursor.execute(
+                    ('INSERT INTO email_cidr_reports (date, '
+                     'origin_as, rank, netsnow, netgain, netname, insert_date) '
+                     'VALUES (%s, %s, %s, %s, %s, %s, %s)'),
+                    (week.date, row.asnum, row.rank, row.netsnow, row.netgain,
+                        row.netname, datetime.datetime.utcnow().isoformat(' ')))
+            if week.table_total:
+                row = week.table_total
+                cursor.execute(
+                    ('INSERT INTO email_cidr_reports (date, '
+                     'origin_as, rank, netsnow, netgain, netname, insert_date) '
+                     'VALUES (%s, %s, %s, %s, %s, %s, %s)'),
+                    (week.date, -3, 0, row.netsnow, row.netgain, row.netname,
+                        datetime.datetime.utcnow().isoformat(' ')))
+                    # magic as -3 = total
+            conn.commit()
+
+
 if __name__ == '__main__':
     if len(sys.argv) > 1:
         file_paths = sys.argv[1:]
-        (data, peras_data) = main(file_paths)
+        (data, peras_data) = parse_report(file_paths)
+
+        print("Inserting results into postgres.")
+        conn = psycopg2.connect(database='woodrow',
+            user='woodrow', password='woodrow$mitas-2@2011',
+            host='mitas-2.csail.mit.edu')
+        add_report_to_db(data, conn)
+        conn.close()
+
         none_list = [i for i in xrange(len(data)) if data[i] is None]
         non_none_count = sum((1 for x in data if x is not None))
         total = len(data)
