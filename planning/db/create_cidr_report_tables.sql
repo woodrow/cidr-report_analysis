@@ -8,6 +8,8 @@ CREATE TABLE email_cidr_reports (
     id                  serial      PRIMARY KEY,
     date                date        NOT NULL,
     origin_as           bigint      NOT NULL,
+--  rank: higher is worse aggregator than lower
+    rank                integer     NOT NULL,
     netsnow             integer     NOT NULL,
     netgain             integer     NOT NULL,
     insert_date         timestamp   NOT NULL, -- UTC
