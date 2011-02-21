@@ -190,7 +190,6 @@ def process_txtrib_mp(txtrib_files, num_processes, output_dir, use_db):
     if use_db:
         manager = Manager()
         peer_map = manager.dict()
-        output_dir = "/home/woodrow/proj/cidr-report_analysis/mptest"
     workers = [
         Process(target=process_txtrib_worker,
         args=(worker_files[i], output_dir, peer_map, use_db))
