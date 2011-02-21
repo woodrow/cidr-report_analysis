@@ -41,7 +41,7 @@ CREATE TABLE gen_cidr_reports (
 -- row size: 16 bytes
 -- table size: 193 rows
 CREATE TABLE peers (
-    id                  serial      PRIMARY KEY,
+    id                  int         PRIMARY KEY,
     peer_as             bigint      NOT NULL,
     peer_ip             ip4         NOT NULL
 );
