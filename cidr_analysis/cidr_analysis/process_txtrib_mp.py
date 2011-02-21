@@ -127,7 +127,7 @@ def process_txtrib_worker(txtrib_paths, output_dir, master_peer_map, use_db):
                 norm_path = aspath.normalize_as_path(raw_as_path)
                 if norm_path:
                     norm_path.reverse()
-            except ValueError as e:
+            except (AttributeError,LookupError,ValueError) as e:
                 norm_path = None
 
             if norm_path:
