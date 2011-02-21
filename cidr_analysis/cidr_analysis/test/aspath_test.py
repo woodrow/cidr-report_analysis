@@ -84,8 +84,8 @@ class TestExtractASN(unittest.TestCase):
         self.assertEqual(345, aspath.extract_asn('{ 345 }'))
 
     def test_multiple_as_set(self):
-        self.assertEqual(0, aspath.extract_asn('{123,345}'))
-        self.assertEqual(0, aspath.extract_asn('{123, 345}'))
+        self.assertEqual(-1, aspath.extract_asn('{123,345}'))
+        self.assertEqual(-1, aspath.extract_asn('{123, 345}'))
 
 
 class TestDeprependASPath(unittest.TestCase):
@@ -134,13 +134,13 @@ class TestNormalizeASPath(unittest.TestCase):
 
     def test_composed_cases(self):
         path = ['1','1','{1}', '2', '3', '3', '2', '3', '{2}', '{2,3}']
-        norm_path = [1, 2, 0]
+        norm_path = [1, 2, -1]
         self.assertEqual(norm_path, aspath.normalize_as_path(path))
         path = ['1','1','{1}', '2', '3', '3', '2', '3', '{3}', '{2,3}']
         norm_path = None
         self.assertEqual(norm_path, aspath.normalize_as_path(path))
         path = ['{2,3}', '{3,4}', '{4,5}', '{5,6}']
-        norm_path = [0]
+        norm_path = [-1]
         self.assertEqual(norm_path, aspath.normalize_as_path(path))
         # confed_set & confed_seq
         path = ['1','1','{1}', '2', '3', '3', '(65000', '65001)', '2']
