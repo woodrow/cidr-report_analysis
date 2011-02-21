@@ -78,7 +78,7 @@ def extract_asn(s):
     """A helper function to extract AS numbers from AS_PATH string elements that
     may contain AS_SETs (denoted by '{ASN1, ASN2, ...}'). If the string does not
     contain an AS_SET or if the AS_SET contains only one AS number, the AS
-    number is returned. If the AS_SET contains two or more ASNs, 0 is returned.
+    number is returned. If the AS_SET contains two or more ASNs, -1 is returned.
     If an unparsable AS_PATH element is passed, a ValueError will be raised.
 
     """
@@ -95,7 +95,7 @@ def extract_asn(s):
             if len(components) == 1:
                 return int(components[0].strip())
             else:
-                return 0
+                return -1  # MAGIC collapsed AS_SET number (p.95 of notebook)
         else:
             raise ValueError
     else:
