@@ -13,7 +13,7 @@ finally:
 
 
 def usage():
-    print("USAGE: {0} [--db] RIB_FILE.txt".format(
+    print("USAGE: {0} [--db] [--numprocs N] [--outdir PATH] RIB_FILE.txt ...".format(
         os.path.basename(sys.argv[0])))
     print("""  Preprocesses the specified intermediate text-based routing table
   (.txt) produced by the process_rib tool to normalize AS_PATHs, including
@@ -23,20 +23,33 @@ def usage():
   number of prefixes per AS seen by each peer (.ppapp), to allow discovery of
   any cases of significant deviation amongst the routeviews peers.
 
-  Optional --db argument outputs files appropriate for database ingestion.""")
+  Optional --db argument outputs files appropriate for database ingestion.
+  --numprocs allows the number of parallel processes to be specified.
+  --outdir allows the path to the database file outputs to be specified.""")
 
 
 def main():
     txtrib_paths = None
-    if len(sys.argv) >= 2:
-        if sys.argv[1] == '--db':
-            use_db = True
-            txtrib_paths = sys.argv[2:]
-        else:
-            use_db = False
-            txtrib_paths = sys.argv[1:]
+    first_path_index = 1
+    num_switches = 5
+    use_db = False
+    numprocs = 2
+    outdir = './'
+    if len(sys.argv) > 1:
+        for i in xrange(1,min(len(sys.argv), 1+num_switches)):
+            if sys.argv[i] == '--db':
+                use_db = True
+                first_path_index = i+1
+            if sys.argv[i] == '--outdir':
+                outdir = sys.argv[i+1]
+                first_path_index = i+2
+            if sys.argv[i] == '--numprocs':
+                numprocs = int(sys.argv[i+1])
+                first_path_index = i+2
+        txtrib_paths = sys.argv[first_path_index:]
     if txtrib_paths:
-        process_txtrib_mp.process_txtrib_mp(txtrib_paths, use_db=use_db)
+        process_txtrib_mp.process_txtrib_mp(txtrib_paths,
+            num_processes=numprocs, output_dir=outddir, use_db=use_db)
     else:
         usage()
 

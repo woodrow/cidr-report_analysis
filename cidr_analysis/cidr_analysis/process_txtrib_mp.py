@@ -7,6 +7,7 @@ import re
 import math
 import aspath
 import pickle
+import subprocess
 
 class PrefixOrigin(object):
     def __init__(self, origin_as, date_effective, weeks_seen):
@@ -177,7 +178,7 @@ def process_txtrib_worker(txtrib_paths, output_dir, master_peer_map, use_db):
         origins_file.close()
 
 
-def process_txtrib_mp(txtrib_files, num_processes=2, use_db=False):
+def process_txtrib_mp(txtrib_files, num_processes, output_dir, use_db):
     txtrib_files.sort(key=extract_rib_date)
     worker_files = [None]*num_processes
     files_per = int(math.ceil(len(txtrib_files)/float(num_processes)))
