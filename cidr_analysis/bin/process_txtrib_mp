@@ -1,0 +1,44 @@
+#!/usr/bin/env python2.6
+
+import sys
+import os
+# hack for uninstalled packages
+try:
+    import cidr_analysis
+except ImportError:
+    sys.path.append(os.path.realpath('../../cidr_analysis'))
+finally:
+    from cidr_analysis import process_txtrib_mp
+# /hack
+
+
+def usage():
+    print("USAGE: {0} [--db] RIB_FILE.txt".format(
+        os.path.basename(sys.argv[0])))
+    print("""  Preprocesses the specified intermediate text-based routing table
+  (.txt) produced by the process_rib tool to normalize AS_PATHs, including
+  removal of AS prepends and loops. The normalized text-based routing table
+  is output with a '.normrib' extension. This tool also produces statistical
+  files containing the number of prefixes seen by each peer (.peers) and the
+  number of prefixes per AS seen by each peer (.ppapp), to allow discovery of
+  any cases of significant deviation amongst the routeviews peers.
+
+  Optional --db argument outputs files appropriate for database ingestion.""")
+
+
+def main():
+    txtrib_paths = None
+    if len(sys.argv) >= 2:
+        if sys.argv[1] == '--db':
+            use_db = True
+            txtrib_paths = sys.argv[2:]
+        else:
+            use_db = False
+            txtrib_paths = sys.argv[1:]
+    if txtrib_paths:
+        process_txtrib_mp.process_txtrib_mp(txtrib_paths, use_db=use_db)
+    else:
+        usage()
+
+if __name__ == '__main__':
+    main()
