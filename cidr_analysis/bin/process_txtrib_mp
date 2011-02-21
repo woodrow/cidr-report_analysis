@@ -49,7 +49,7 @@ def main():
         txtrib_paths = sys.argv[first_path_index:]
     if txtrib_paths:
         process_txtrib_mp.process_txtrib_mp(txtrib_paths,
-            num_processes=numprocs, output_dir=outddir, use_db=use_db)
+            num_processes=numprocs, output_dir=outdir, use_db=use_db)
     else:
         usage()
 
