@@ -186,7 +186,6 @@ def process_txtrib_mp(txtrib_files, num_processes, output_dir, use_db):
         worker_files[wi] = [os.path.abspath(path) for path in
             txtrib_files[wi*files_per:(wi+1)*files_per]]
     peer_map = None
-    output_dir = None
     if use_db:
         manager = Manager()
         peer_map = manager.dict()
