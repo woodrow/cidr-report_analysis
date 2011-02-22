@@ -25,6 +25,7 @@ def chunk_sort_worker(in_queue, out_queue):
         out_path = path + '-sorted'
         subprocess.check_call("sort -T /home/cidr_analysis/tmp/ " +
             "-t ',' -s -k 1,1 -o {1} {0}".format(path, out_path), shell=True)
+        subprocess.check_call('rm {0}'.format(path), shell=True)
         out_queue.put_nowait(out_path)
     except Queue.Empty:
         return
