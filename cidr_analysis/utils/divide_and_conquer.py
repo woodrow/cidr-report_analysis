@@ -1,6 +1,6 @@
 #!/usr/bin/python2.7
 
-from multiprocessing import Queue, Pool
+from multiprocessing import Queue, Process
 import os
 import sys
 import subprocess
