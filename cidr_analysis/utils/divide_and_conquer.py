@@ -54,7 +54,7 @@ def main():
     done_queue = Queue()
 
     chunk_list = subprocess.check_output('ls ' +
-        ' '.join(('{0}_chunk*'.format(x) for x in input_paths)), shell=True)
+        ' '.join(('{0}-chunk*'.format(x) for x in input_paths)), shell=True)
     chunk_path_list = [os.path.abspath(x) for x in chunk_list.split()]
     for chunk_path in chunk_path_list:
         sort_queue.put_nowait(chunk_path)
