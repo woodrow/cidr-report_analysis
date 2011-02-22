@@ -25,7 +25,7 @@ def chunk_sort_worker(in_queue, out_queue):
         out_path = path + '-sorted'
         subprocess.check_call("sort -T /home/cidr_analysis/tmp/ " +
             "-t ',' -s -k 1,1 -o {1} {0}".format(path, out_path), shell=True)
-        subprocess.check_call('rm {0}'.format(path), shell=True)
+#        subprocess.check_call('rm {0}'.format(path), shell=True)
         out_queue.put_nowait(out_path)
     except Queue.Empty:
         return
@@ -78,8 +78,11 @@ def main():
     sort_queue = multiprocessing.Queue()
     done_queue = multiprocessing.Queue()
 
-    chunk_list = subprocess.check_output('ls ' +
-        ' '.join(('{0}-chunk*'.format(x) for x in input_paths)), shell=True)
+#    chunk_list = subprocess.check_output('ls ' +
+#        ' '.join(('{0}-chunk*'.format(x) for x in input_paths)), shell=True)
+    chunk_list = subprocess.Popen('ls ' +
+        ' '.join(('{0}-chunk*'.format(x) for x in input_paths)), shell=True,
+        stdout=subprocess.PIPE).communicate()[0]
     chunk_path_list = [os.path.abspath(x) for x in chunk_list.split()]
     for chunk_path in chunk_path_list:
         sort_queue.put_nowait(chunk_path)
