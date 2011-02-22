@@ -7,6 +7,8 @@ import subprocess
 import hashlib
 import time
 
+NUM_PROCESSES = 10
+
 def chunk_sort_worker(in_queue, out_queue):
     try:
         path = in_queue.get_nowait()
@@ -61,10 +63,13 @@ def main():
 
     print("Sorting chunks...")
     t1 = time.time()
-    pool = Pool(processes=10)
-    pool.apply_async(chunk_sort_worker, (sort_queue, done_queue))
-    pool.close()
-    pool.join()
+    processes = []
+    for i in xrange(NUM_PROCESSES):
+        p = Process(target=chunk_sort_worker, args=(sort_queue, done_queue))
+        p.start()
+        processes.append(p)
+    for p in processes:
+        p.join()
     t2 = time.time()
     print_deltat("Sorting chunks", t1, t2)
 
@@ -74,10 +79,14 @@ def main():
         print(print_str)
         (merge_queue, done_queue) = (done_queue, merge_queue)
         t1 = time.time()
-        pool = Pool(processes=10)
-        pool.apply_async(chunk_merge_worker, (merge_queue, done_queue))
-        pool.close()
-        pool.join()
+        processes = []
+        for i in xrange(NUM_PROCESSES):
+            p = Process(target=chunk_merge_worker,
+                args=(merge_queue, done_queue))
+            p.start()
+            processes.append(p)
+        for p in processes:
+            p.join()
         t2 = time.time()
         print_deltat(print_str, t1, t2)
 
