@@ -1,6 +1,7 @@
 #!/usr/bin/python2.7
 
-from multiprocessing import Queue, Process
+import multiprocessing
+import Queue
 import os
 import sys
 import subprocess
@@ -52,8 +53,8 @@ def main():
     t2 = time.time()
     print_deltat("Splitting input files", t1, t2)
 
-    sort_queue = Queue()
-    done_queue = Queue()
+    sort_queue = multiprocessing.Queue()
+    done_queue = multiprocessing.Queue()
 
     chunk_list = subprocess.check_output('ls ' +
         ' '.join(('{0}-chunk*'.format(x) for x in input_paths)), shell=True)
@@ -65,7 +66,8 @@ def main():
     t1 = time.time()
     processes = []
     for i in xrange(NUM_PROCESSES):
-        p = Process(target=chunk_sort_worker, args=(sort_queue, done_queue))
+        p = multiprocessing.Process(target=chunk_sort_worker,
+            args=(sort_queue, done_queue))
         p.start()
         processes.append(p)
     for p in processes:
@@ -73,7 +75,7 @@ def main():
     t2 = time.time()
     print_deltat("Sorting chunks", t1, t2)
 
-    merge_queue = Queue()
+    merge_queue = multiprocessing.Queue()
     while done_queue.qsize() > 1:
         print_str = "Merging {0} chunks".format(done_queue.qsize())
         print(print_str)
@@ -81,7 +83,7 @@ def main():
         t1 = time.time()
         processes = []
         for i in xrange(NUM_PROCESSES):
-            p = Process(target=chunk_merge_worker,
+            p = multiprocessing.Process(target=chunk_merge_worker,
                 args=(merge_queue, done_queue))
             p.start()
             processes.append(p)
