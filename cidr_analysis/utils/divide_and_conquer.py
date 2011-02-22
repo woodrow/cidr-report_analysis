@@ -10,6 +10,15 @@ import time
 
 NUM_PROCESSES = 10
 
+def chunk_split_worker(in_queue):
+    try:
+        path = in_queue.get_nowait()
+        subprocess.check_call('split -l 25000000 {0} {0}-chunk_'.format(path),
+            shell=True)
+    except Queue.Empty:
+        return
+
+
 def chunk_sort_worker(in_queue, out_queue):
     try:
         path = in_queue.get_nowait()
@@ -45,11 +54,20 @@ def print_deltat(msg, t1, t2):
 
 def main():
     input_paths = [os.path.abspath(x) for x in sys.argv[1:]]
+    split_queue = multiprocessing.Queue()
+    for path in input_paths:
+        split_queue.put_nowait(path)
+
     print("Splitting input files...")
     t1 = time.time()
-    for path in input_paths:
-        subprocess.check_call('split -l 25000000 {0} {0}-chunk_'.format(path),
-            shell=True)
+    processes = []
+    for i in xrange(NUM_PROCESSES):
+        p = multiprocessing.Process(target=chunk_split_worker,
+            args=(split_queue,))
+        p.start()
+        processes.append(p)
+    for p in processes:
+        p.join()
     t2 = time.time()
     print_deltat("Splitting input files", t1, t2)
 
@@ -93,11 +111,10 @@ def main():
         print_deltat(print_str, t1, t2)
 
     merged_path = done_queue.get_nowait()
-    print(merged_path)
     output_path = os.path.join(os.path.dirname(merged_path),
         'prefix_origins-merged.csv')
-    print(output_path)
-    subprocess.check_call("mv {0} {1}".format(merged_path, output_path))
+    subprocess.check_call("mv {0} {1}".format(merged_path, output_path),
+        shell=True)
 
 if __name__ == '__main__':
     main()
