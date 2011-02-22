@@ -93,9 +93,11 @@ def main():
         print_deltat(print_str, t1, t2)
 
     merged_path = done_queue.get_nowait()
+    print(merged_path)
     output_path = os.path.join(os.path.dirname(merged_path),
         'prefix_origins-merged.csv')
-    subprocess.check_call('mv {0} {1}'.format(merged_path, output_path))
+    print(output_path)
+    subprocess.check_call("mv {0} {1}".format(merged_path, output_path))
 
 if __name__ == '__main__':
     main()
