@@ -61,14 +61,17 @@ def main():
 
     print("Splitting input files...")
     t1 = time.time()
-    processes = []
-    for i in xrange(NUM_PROCESSES):
-        p = multiprocessing.Process(target=chunk_split_worker,
-            args=(split_queue,))
-        p.start()
-        processes.append(p)
-    for p in processes:
-        p.join()
+    for path in input_paths:
+        subprocess.check_call('split -l 25000000 {0} {0}-chunk_'.format(path),
+            shell=True)
+#    processes = []
+#    for i in xrange(NUM_PROCESSES):
+#        p = multiprocessing.Process(target=chunk_split_worker,
+#            args=(split_queue,))
+#        p.start()
+#        processes.append(p)
+#    for p in processes:
+#        p.join()
     t2 = time.time()
     print_deltat("Splitting input files", t1, t2)
 
