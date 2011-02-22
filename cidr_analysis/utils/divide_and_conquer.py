@@ -86,6 +86,9 @@ def main():
         'prefix_origins-merged.csv')
     subprocess.check_call('mv {0} {1}'.format(merged_path, output_path))
 
+if __name__ == '__main__':
+    main()
+
 # create pool of sorters
 # let pool loose on queue, returning output queue
 # let new workers loose on output queue
