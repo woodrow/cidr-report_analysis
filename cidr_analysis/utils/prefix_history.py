@@ -74,8 +74,10 @@ def gen_prefix_origin_records(path, end_date):
         components = line.strip().split(',')
         if len(components) == 5:
             if components[0] != current_prefix:
-                # record = process_prefix
-                process_prefix(current_prefix, current_prefix_lines, end_date)
+                if current_prefix_lines:
+                    # record = process_prefix
+                    process_prefix(
+                        current_prefix, current_prefix_lines, end_date)
                 current_prefix = components[0]
                 current_prefix_lines = []
 
