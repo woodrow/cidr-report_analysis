@@ -67,7 +67,7 @@ def process_prefix(prefix, prefix_lines, end_date):
 
 
 def gen_prefix_origin_records(path, end_date):
-    f = open(path, 'r')
+    f = open(path)
     current_prefix = None
     current_prefix_lines = []
     for line in f:
@@ -88,12 +88,18 @@ def gen_prefix_origin_records(path, end_date):
     process_prefix(current_prefix, current_prefix_lines, end_date)
 
 
+def usage():
+    print("USAGE " + sys.argv[0] + " end_date FILE")
+    print("""  end date (YYYY-MM-DD format)""")
+
+
 def main():
-    end_date = None
-    path = os.path.abspath(sys.argv[1])
-    if len(sys.argv) == 4:
-        end_date = datetime.datetime.strptime(sys.argv[3], '%Y-%m-%d').date()
-    gen_prefix_origin_records(path, end_date)
+    if len(sys.argv) == 3:
+        end_date = datetime.datetime.strptime(sys.argv[1], '%Y-%m-%d').date()
+        path = os.path.abspath(sys.argv[2])
+        gen_prefix_origin_records(path, end_date)
+    else:
+        usage()
 
 
 if __name__ == '__main__':
