@@ -78,7 +78,7 @@ def main():
     merge_queue = multiprocessing.Queue()
     while done_queue.qsize() > 1:
         print_str = "Merging {0} chunks".format(done_queue.qsize())
-        print(print_str)
+        print(print_str + '...')
         (merge_queue, done_queue) = (done_queue, merge_queue)
         t1 = time.time()
         processes = []
