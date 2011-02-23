@@ -23,7 +23,7 @@ def process_prefix(prefix, prefix_lines, end_date):
     prefix_lines.sort(key=lambda x: x.peerid * 1e6 + x.ord_date)
     current_porecord = PORecord(
         prefix, prefix_lines[0].peerid, prefix_lines[0].origin_as,
-        datetime.date.fromordinal(prefix_lines[0].ord_date))
+        datetime.date.fromordinal(prefix_lines[0].ord_date), weeks_seen='1')
     complete_porecord = None
 
     for p in prefix_lines[1:]:
