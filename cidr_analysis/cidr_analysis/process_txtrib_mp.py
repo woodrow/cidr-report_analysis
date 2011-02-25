@@ -296,7 +296,7 @@ def process_txtrib_worker(txtrib_queue, peermap, peermap_lock, stdout_lock):
 
 
 
-def process_txtrib_mp(txtrib_files, num_processes, output_dir, use_db):
+def process_txtrib_mp(txtrib_files, num_processes, output_dir):
     txtrib_queue = multiprocessing.Queue()
     for txtrib_file in txtrib_files:
         txtrib_queue.put_nowait(os.path.abspath(txtrib_file))
@@ -309,7 +309,7 @@ def process_txtrib_mp(txtrib_files, num_processes, output_dir, use_db):
     workers = [
         multiprocessing.Process(
             target=process_txtrib_worker, args=(txtrib_queue, peermap,
-            peermap_lock, stdout_lock, use_db))
+            peermap_lock, stdout_lock))
         for _ in xrange(num_processes)]
     for process in workers:
         process.start()

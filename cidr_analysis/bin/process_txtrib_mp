@@ -13,7 +13,7 @@ finally:
 
 
 def usage():
-    print("USAGE: {0} [--db] [--numprocs N] [--outdir PATH] RIB_FILE.txt ...".format(
+    print("USAGE: {0} [--numprocs N] [--outdir PATH] RIB_FILE.txt ...".format(
         os.path.basename(sys.argv[0])))
     print("""  Preprocesses the specified intermediate text-based routing table
   (.txt) produced by the process_rib tool to normalize AS_PATHs, including
@@ -31,15 +31,11 @@ def usage():
 def main():
     txtrib_paths = None
     first_path_index = 1
-    num_switches = 5
-    use_db = False
+    num_switches = 4
     numprocs = 2
     outdir = './'
     if len(sys.argv) > 1:
         for i in xrange(1,min(len(sys.argv), 1+num_switches)):
-            if sys.argv[i] == '--db':
-                use_db = True
-                first_path_index = i+1
             if sys.argv[i] == '--outdir':
                 outdir = sys.argv[i+1]
                 first_path_index = i+2
@@ -49,7 +45,7 @@ def main():
         txtrib_paths = sys.argv[first_path_index:]
     if txtrib_paths:
         process_txtrib_mp.process_txtrib_mp(txtrib_paths,
-            num_processes=numprocs, output_dir=outdir, use_db=use_db)
+            num_processes=numprocs, output_dir=outdir)
     else:
         usage()
 
