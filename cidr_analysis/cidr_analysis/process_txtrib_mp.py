@@ -151,22 +151,31 @@ def process_txtrib_worker(txtrib_queue, peermap, peermap_lock, stdout_lock):
                 single_asn = int(single_asn)
                 raw_as_path = [single_asn]
 
-            if is_null or single_asn == peer_asns.get(peer_ip):
-            # the single_asn is the peer ASN
-                origin_set = prefix_origin_map.get(prefix)
-                if origin_set:
-                    if single_asn in origin_set:  # tie-breaker chooses same AS
-                        origin_as = single_asn
-                    else:
-                        origin_as = min(origin_set)
+            origin_set = prefix_origin_map.get(prefix)
+            if origin_set:
+                if single_asn in origin_set:  # tie-breaker chooses same AS
+                    origin_as = single_asn
+                else:
+                    origin_as = min(origin_set)
+            else:
+                origin_as = None
+            peer_as = peer_asns.get(peer_ip)
+
+            if is_null:
+                if peer_as:
+                    raw_as_path.append(peer_as)
+                if origin_as:
                     raw_as_path.append(origin_as)
-            elif is_null or single_asn in prefix_origin_map.get(peer_ip):
+            elif single_asn == peer_as:
+            # the single_asn is the peer ASN
+                if origin_as:
+                    raw_as_path.append(origin_as)
+            elif single_asn == origin_as:
             # the single_asn is the origin ASN
-                peer_as = peer_asns.get(peer_ip)
                 if peer_as:
                     raw_as_path.insert(0, peer_as)
 
-            if len(raw_as_path) <= 1 and not single_asn == peer_asns.get(peer_ip):
+            if len(raw_as_path) <= 1 and single_asn != peer_as:
                 debug_output.append(
                     "AMBIGUOUS AS_PATH: dropping '{0}'".format(line.strip()))
             else:
