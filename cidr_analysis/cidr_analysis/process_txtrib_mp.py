@@ -250,53 +250,6 @@ def process_txtrib_worker(txtrib_queue, peermap, peermap_lock, stdout_lock):
         stdout_lock.release()
 
 
-#def unresolved_dealwithit()
-#    # find observer and peer ASNs -- we'll need these later
-#    try:
-#        if components[0] not in origin_as_cache:
-#            output = subprocess.Popen(
-#                "grep -P -m 1 '{0} (\d+\.)+\d+ \d+' {1}".format(
-#                components[0], txtrib_path), shell=True,
-#                stdout=subprocess.PIPE).communicate()[0]
-#            origin_as_cache[components[0]] = output.split()[-1]
-#        origin_as = origin_as_cache[components[0]]
-#    except IndexError:
-#        origin_as = None
-#    try:
-#        if peer_ip not in peer_as_cache:
-#            output = subprocess.Popen(
-#                "grep -P -m 1 '{0} \d+' {1}".format(
-#                peer_ip, txtrib_path), shell=True,
-#                stdout=subprocess.PIPE).communicate()[0]
-#            peer_as_cache[peer_ip] = output.split()[2]
-#        peer_as = peer_as_cache[peer_ip]
-#    except IndexError:
-#        peer_as = None
-#
-#    if raw_as_path[0] == '-' and peer_as and origin_as:
-#        # '-' is a null AS_PATH in cisco terminology
-#        raw_as_path = [peer_as, origin_as]
-#        debug_output.append(
-#            "NULL AS_PATH: replacing '{0}' with {1}".format(
-#            line.strip(), raw_as_path))
-#    elif peer_as and raw_as_path[0] == peer_as:
-#        raw_as_path.append(origin_as)
-#        debug_output.append(
-#            "ORIGIN ASN ADDED: replacing '{0}' with {1}".format(
-#            line.strip(), raw_as_path))
-#    elif origin_as and raw_as_path[0] == origin_as:
-#        raw_as_path.insert(0, peer_as)
-#        debug_output.append(
-#            "PEER ASN ADDED: replacing '{0}' with {1}".format(
-#            line.strip(), raw_as_path))
-#    else:
-#        debug_output.append(
-#            "UNKNOWN AS_PATH: ignoring '{0}".format(
-#            line.strip()))
-#        raise ValueError
-
-
-
 def process_txtrib_mp(txtrib_files, num_processes, output_dir):
     txtrib_queue = multiprocessing.Queue()
     for txtrib_file in txtrib_files:
