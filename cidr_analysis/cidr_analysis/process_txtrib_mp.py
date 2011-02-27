@@ -153,10 +153,10 @@ def process_txtrib_worker(txtrib_queue, peermap, peermap_lock, stdout_lock):
 
             if is_null or single_asn == peer_asns.get(peer_ip):
             # the single_asn is the peer ASN
-                origin_set = prefix_origin_map.get(peer_ip)
+                origin_set = prefix_origin_map.get(prefix)
                 if origin_set:
                     if single_asn in origin_set:  # tie-breaker chooses same AS
-                        origin_as = origin_set
+                        origin_as = single_asn
                     else:
                         origin_as = min(origin_set)
                     raw_as_path.append(origin_as)
@@ -166,10 +166,11 @@ def process_txtrib_worker(txtrib_queue, peermap, peermap_lock, stdout_lock):
                 if peer_as:
                     raw_as_path.insert(0, peer_as)
 
-            if len(raw_as_path) <= 1:
+            if len(raw_as_path) <= 1 and not single_asn == peer_asns.get(peer_ip):
                 debug_output.append(
                     "AMBIGUOUS AS_PATH: dropping '{0}'".format(line.strip()))
             else:
+                raw_as_path = [str(x) for x in raw_as_path]
                 ##### DUPLICATE FROM ABOVE -- FIND A BETTER WAY ################
                 try:
                     # TODO capture notes/output from normalize_as_path
