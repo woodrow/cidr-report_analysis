@@ -1,4 +1,4 @@
-#!/usr/bin/python2.7
+#!/usr/bin/python2.6
 
 import multiprocessing
 import Queue
@@ -8,7 +8,7 @@ import subprocess
 import hashlib
 import time
 
-NUM_PROCESSES = 10
+NUM_PROCESSES = 8
 
 def chunk_split_worker(in_queue):
     while True:
@@ -60,15 +60,15 @@ def print_deltat(msg, t1, t2):
 
 def main():
     input_paths = [os.path.abspath(x) for x in sys.argv[1:]]
-    split_queue = multiprocessing.Queue()
-    for path in input_paths:
-        split_queue.put_nowait(path)
-
-    print("Splitting input files...")
-    t1 = time.time()
-    for path in input_paths:
-        subprocess.check_call('split -l 25000000 {0} {0}-chunk_'.format(path),
-            shell=True)
+#    split_queue = multiprocessing.Queue()
+#    for path in input_paths:
+#        split_queue.put_nowait(path)
+#
+#    print("Splitting input files...")
+#    t1 = time.time()
+#    for path in input_paths:
+#        subprocess.check_call('split -l 25000000 {0} {0}-chunk_'.format(path),
+#            shell=True)
 #######################################
 #    processes = []
 #    for i in xrange(NUM_PROCESSES):
@@ -79,20 +79,23 @@ def main():
 #    for p in processes:
 #        p.join()
 #######################################
-    t2 = time.time()
-    print_deltat("Splitting input files", t1, t2)
+#    t2 = time.time()
+#    print_deltat("Splitting input files", t1, t2)
 
     sort_queue = multiprocessing.Queue()
     done_queue = multiprocessing.Queue()
 
 #    chunk_list = subprocess.check_output('ls ' +
 #        ' '.join(('{0}-chunk*'.format(x) for x in input_paths)), shell=True)
-    chunk_list = subprocess.Popen('ls ' +
-        ' '.join(('{0}-chunk*'.format(x) for x in input_paths)), shell=True,
-        stdout=subprocess.PIPE).communicate()[0]
-    chunk_path_list = [os.path.abspath(x) for x in chunk_list.split()]
-    for chunk_path in chunk_path_list:
-        sort_queue.put_nowait(chunk_path)
+#    ls_str = 'ls ' + ' '.join(('{0}-chunk*'.format(x) for x in input_paths))
+#    print(ls_str)
+#    chunk_list = subprocess.Popen(ls_str, shell=True,
+#        stdout=subprocess.PIPE).communicate()[0]
+#    chunk_path_list = [os.path.abspath(x) for x in chunk_list.split()]
+#    for chunk_path in chunk_path_list:
+#        sort_queue.put_nowait(chunk_path)
+    for input_path in input_paths:
+        sort_queue.put_nowait(input_path)
 
     print("Sorting chunks...")
     t1 = time.time()
