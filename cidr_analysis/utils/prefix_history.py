@@ -21,7 +21,7 @@ class PORecord(object):
 
 
 #def process_prefix(prefix, prefix_lines, end_date, path):
-def process_prefix(prefix, prefix_lines, end_date):
+def process_prefix(prefix, prefix_lines, end_date, row_serial):
     prefix_lines.sort(key=lambda x: x.peerid * 1e6 + x.ord_date)
     current_porecord = PORecord(
         prefix, prefix_lines[0].peerid, prefix_lines[0].origin_as,
@@ -45,8 +45,9 @@ def process_prefix(prefix, prefix_lines, end_date):
 
         if complete_porecord:
             print(
-                ("{0.prefix},{0.peerid},{0.origin_as},{0.date_effective},"
-                "B'{0.weeks_seen}'").format(complete_porecord))
+                ("{1[0]},{0.prefix},{0.peerid},{0.origin_as},{0.date_effective},"
+                "{0.weeks_seen}").format(complete_porecord, row_serial))
+            row_serial[0] += 1
 #            weeks_seen = sum((1 for x in complete_porecord.weeks_seen if x == '1'))
 #            weeks_grepped = int(subprocess.Popen(
 #                "grep '{0.prefix},{0.peerid},{0.origin_as}' {1} | wc -l".format(
@@ -71,8 +72,9 @@ def process_prefix(prefix, prefix_lines, end_date):
         ((end_date - current_porecord.date_effective).days // 7 + 1) -
         len(current_porecord.weeks_seen))
     print(
-        ("{0.prefix},{0.peerid},{0.origin_as},{0.date_effective},"
-        "B'{0.weeks_seen}'").format(current_porecord))
+        ("{1[0]},{0.prefix},{0.peerid},{0.origin_as},{0.date_effective},"
+        "{0.weeks_seen}").format(current_porecord, row_serial))
+    row_serial[0] += 1
 #    weeks_seen = sum((1 for x in current_porecord.weeks_seen if x == '1'))
 #    weeks_grepped = int(subprocess.Popen(
 #        "grep '{0.prefix},{0.peerid},{0.origin_as}' {1} | wc -l".format(
@@ -86,6 +88,7 @@ def gen_prefix_origin_records(path, end_date):
     f = open(path)
     current_prefix = None
     current_prefix_lines = []
+    row_serial = [1]
     for line in f:
         components = line.strip().split(',')
         if len(components) == 4:
@@ -93,7 +96,7 @@ def gen_prefix_origin_records(path, end_date):
                 if current_prefix_lines:
                     # record = process_prefix
                     process_prefix(
-                        current_prefix, current_prefix_lines, end_date)
+                        current_prefix, current_prefix_lines, end_date, row_serial)
                 current_prefix = components[0]
                 current_prefix_lines = []
 
@@ -103,7 +106,7 @@ def gen_prefix_origin_records(path, end_date):
                 ord_date=int(components[3])))
 
     # handle last partially incomplete object
-    process_prefix(current_prefix, current_prefix_lines, end_date)
+    process_prefix(current_prefix, current_prefix_lines, end_date, row_serial)
 
 
 def usage():
