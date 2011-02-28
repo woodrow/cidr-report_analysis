@@ -5,6 +5,7 @@ import sys
 import os.path
 import collections
 import datetime
+import subprocess
 
 POweek = collections.namedtuple('POweek', 'peerid origin_as ord_date')
 
@@ -19,6 +20,7 @@ class PORecord(object):
         self.weeks_seen = weeks_seen
 
 
+#def process_prefix(prefix, prefix_lines, end_date, path):
 def process_prefix(prefix, prefix_lines, end_date):
     prefix_lines.sort(key=lambda x: x.peerid * 1e6 + x.ord_date)
     current_porecord = PORecord(
@@ -45,17 +47,24 @@ def process_prefix(prefix, prefix_lines, end_date):
             print(
                 ("{0.prefix},{0.peerid},{0.origin_as},{0.date_effective},"
                 "B'{0.weeks_seen}'").format(complete_porecord))
+#            weeks_seen = sum((1 for x in complete_porecord.weeks_seen if x == '1'))
+#            weeks_grepped = int(subprocess.Popen(
+#                "grep '{0.prefix},{0.peerid},{0.origin_as}' {1} | wc -l".format(
+#                complete_porecord, path), shell=True,
+#                stdout=subprocess.PIPE).communicate()[0].strip())
+#            if weeks_seen != weeks_grepped:
+#                print("ERROR in above prefix!!!")
             current_porecord = PORecord(
                 prefix, p.peerid, p.origin_as,
                 datetime.date.fromordinal(p.ord_date))
             complete_porecord = None
 
-        # replace with bitstring?
-        current_porecord.weeks_seen += '0' * (
-            ((datetime.date.fromordinal(p.ord_date) -
-            current_porecord.date_effective).days // 7) -
+        weeks_since_last_record = (
+            (p.ord_date - current_porecord.date_effective.toordinal()) // 7 -
             len(current_porecord.weeks_seen))
-        current_porecord.weeks_seen += '1'
+        if weeks_since_last_record + 1 >= 0:
+            current_porecord.weeks_seen += '0' * weeks_since_last_record
+            current_porecord.weeks_seen += '1'
 
     # handle last partially incomplete object
     current_porecord.weeks_seen += '0' * (
@@ -64,6 +73,13 @@ def process_prefix(prefix, prefix_lines, end_date):
     print(
         ("{0.prefix},{0.peerid},{0.origin_as},{0.date_effective},"
         "B'{0.weeks_seen}'").format(current_porecord))
+#    weeks_seen = sum((1 for x in current_porecord.weeks_seen if x == '1'))
+#    weeks_grepped = int(subprocess.Popen(
+#        "grep '{0.prefix},{0.peerid},{0.origin_as}' {1} | wc -l".format(
+#        current_porecord, path), shell=True,
+#        stdout=subprocess.PIPE).communicate()[0].strip())
+#    if weeks_seen != weeks_grepped:
+#        print("ERROR in above prefix!!!")
 
 
 def gen_prefix_origin_records(path, end_date):
