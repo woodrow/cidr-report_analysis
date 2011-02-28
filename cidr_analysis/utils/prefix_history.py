@@ -72,7 +72,7 @@ def gen_prefix_origin_records(path, end_date):
     current_prefix_lines = []
     for line in f:
         components = line.strip().split(',')
-        if len(components) == 5:
+        if len(components) == 4:
             if components[0] != current_prefix:
                 if current_prefix_lines:
                     # record = process_prefix
