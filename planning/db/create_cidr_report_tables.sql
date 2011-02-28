@@ -70,11 +70,11 @@ CREATE TABLE prefix_origins (
     prefix              ip4r        NOT NULL,
     peer_id             integer     NOT NULL    REFERENCES peers(id),
     origin_as           bigint      NOT NULL,
-    norm_as_path        text        NOT NULL,
-    raw_as_path         text        NOT NULL,
     date_effective      date        NOT NULL,
---  weeks_seen: 1 = visible, 0 = not visible; MSB = week 0 ... LSB = week N
-    weeks_seen          bit varying NOT NULL
+    last_seen           date        NOT NULL,
+--  weeks_visible: 1 = visible, 0 = not visible; MSB = week 0 ... LSB = week N
+    weeks_visible       bit varying NOT NULL,
+    total_weeks_visible integer     NOT NULL
 );
 
 COMMIT;
