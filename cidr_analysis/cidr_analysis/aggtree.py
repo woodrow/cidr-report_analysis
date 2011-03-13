@@ -4,11 +4,33 @@
 
 """
 
-import os
+import datetime
 
 import ipv4
 from prefix_classes import PREFIX_CLASSES
 import plot_tree
+
+
+class GCRrow(object):
+    def __init__(self, origin_as):
+        self.origin_as = origin_as
+        self.nets_current = 0
+        self.nets_withdrawn = 0
+        self.nets_aggregated = 0
+        self.nets_announced = 0
+        self.nets_reduced = 0
+
+    def __str__(self):
+        return "as{0}: ncr={1}, nwd={2}, nag={3}, nan={4}, nrd={5}".format(
+            self.origin_as,
+            self.nets_current,
+            self.nets_withdrawn,
+            self.nets_aggregated,
+            self.nets_announced,
+            self.nets_reduced)
+
+    def __repr__(self):
+        return self.__str__()
 
 
 class PrefixAttr(object):
@@ -81,52 +103,21 @@ def debug_print(string):
 #    print(string)
 
 
-def aggregate_table(infile):
+def aggregate_table(infile, dbfile_path, rib_date):
     """Top-level function that accepts a properly formatted text-based routing
     table as infile, performs the Cidr Report aggregation on it, and outputs
     a Cidr Report-like output table.
 
     """
-    as_aggcount_dict = {}
-    as_netsnow_dict = {}
+    gen_date = str(datetime.datetime.utcnow())
+    crrow_dict = {}
     for root in process_table(infile):
         # update_netsnow_count also sets CidrPrefix.origin_as
         # attributes appropriately
         # TODO should origin_as be a separate function?
         classify_prefixes(root)
-        update_netsnow_count(as_netsnow_dict, root)
-        prefix_agg_list = []
-        prefix_adv_list = []
-        gather_prefixes(root, prefix_agg_list, prefix_adv_list)
-        as_agg_dict = group_prefixes_by_origin(prefix_agg_list)
-        update_aggcount(as_aggcount_dict, as_agg_dict)
-
-        ## debugging/verbose stuff:
-        debug_print(prefix_agg_list)
-        debug_print(len(prefix_agg_list))
-        debug_print(prefix_adv_list)
-        debug_print(len(prefix_adv_list))
-        best_agg_list = []
-        for k in root.attrs:
-            best_agg_list.append((k, root.attrs[k].as_path[-1],
-                root.attrs[k].agg_children, root.attrs[k].adv_children))
-        best_agg_list.sort(key=lambda x: x[2], reverse=True)
-        for t in best_agg_list:
-            debug_print("{0[1]}\t(-{0[2]}, +{0[3]})\t{0[0]}".format(t))
-        debug_print(root.agg_children)
-        debug_print(root.adv_children)
-#        if root.prefix >> 24 == 17:
-#            print prefix_agg_list
-#            print as_agg_dict
-#            netsnow = [x for x in as_netsnow_dict.iteritems()]
-#            netsnow.sort(key=lambda x: x[1], reverse=True)
-#            for k in xrange(len(netsnow)):
-#                print netsnow[k]
-#            plot_tree.plot_tree(root, os.path.realpath('./plots/'),
-#                os.path.basename(infile.name))
-#            break
-    debug_print(as_agg_dict)
-    print_new_cidr_report(as_aggcount_dict, as_netsnow_dict)
+        update_crrow_dict(crrow_dict, root)
+    generate_db_format_cidr_report(crrow_dict, dbfile_path, rib_date, gen_date)
 
 
 def process_table(infile):
@@ -450,6 +441,90 @@ def update_netsnow_count(as_netsnow_dict, root):
         update_netsnow_count(as_netsnow_dict, root.ms_0)
     if root.ms_1:
         update_netsnow_count(as_netsnow_dict, root.ms_1)
+
+
+def update_crrow_dict(crrow_dict, root):
+    """Add all of the prefixes in the prefix tree rooted at root to the
+    netsnow dict. The netsnow dict contains a count of the total prefixes
+    currently in the routing table originated by each AS number.
+
+    This function also determines the origin_as attribute of each CidrPrefix
+    object it encounters, setting it to the origin AS if the prefix is
+    originated by a single AS from all available vantage points, or -1 if it
+    is originated by multiple AS numbers (i.e the prefix has multiple origin
+    ASes, or 'MOAS')
+
+    """
+    if root.attrs:
+        origin_set = set()
+        for attr in root.attrs.itervalues():
+            origin_set.add(attr.as_path[0])
+        if len(origin_set) == 1:
+            root.origin_as = origin_set.__iter__().next()
+        else:  # MOAS -- TODO find a better solution
+            # TODO consider origin_as = set/list of origins, instead of -1
+            root.origin_as = -2
+
+        for origin_as in origin_set:
+            # handling the MOAS problem in a totally different way --
+            # attribution to all origins; seems to work fine
+            # ALSO
+            # should we be looking at per-peer observed behavior here, instead
+            # of simply looking at the root's attributes?
+            try:
+                crrow = crrow_dict[origin_as]
+            except KeyError:
+                crrow = crrow_dict[origin_as] = GCRrow(origin_as)
+            if root.is_intable:
+                crrow.nets_current += 1
+                if not root.is_advertised:
+                    crrow.nets_withdrawn += 1
+            else:
+                if root.is_advertised:
+                    crrow.nets_aggregated += 1
+
+    if root.ms_0:
+        update_crrow_dict(crrow_dict, root.ms_0)
+    if root.ms_1:
+        update_crrow_dict(crrow_dict, root.ms_1)
+
+
+def generate_db_format_cidr_report(crrow_dict, db_file, rib_date, gen_date):
+    crrow_list = [x for x in crrow_dict.itervalues()]
+    for crrow in crrow_list:
+        crrow.nets_announced = (
+            crrow.nets_current - crrow.nets_withdrawn + crrow.nets_aggregated)
+        crrow.nets_reduced = crrow.nets_current - crrow.nets_announced
+    crrow_list.sort(key=lambda x: x.origin_as)
+    crrow_list.sort(key=lambda x: x.nets_current, reverse=True)
+    rank_netsnow = len(crrow_list)
+    rank_netsnow_dict = {}
+    for crrow in crrow_list:
+        rank_netsnow_dict[crrow.origin_as] = rank_netsnow
+        rank_netsnow -= 1
+    crrow_list.sort(key=lambda x: x.nets_reduced, reverse=True)
+
+    db_file.write("# generated on {0} UTC\n".format(datetime.datetime.utcnow()))
+    db_file.write(
+        "# date,origin_as,rank_netgain,rank_netsnow,nets_current,"
+        "nets_withdrawn,nets_aggregated,nets_announced,nets_reduced,"
+        "gen_date\n")
+    rank_netgain = len(crrow_list)
+    for crrow in crrow_list:
+        db_file.write(
+            "{0},{1},{2},{3},{4},{5},{6},{7},{8},{9}\n".format(
+            rib_date,
+            crrow.origin_as,
+            rank_netgain,
+            rank_netsnow_dict[crrow.origin_as],
+            crrow.nets_current,
+            crrow.nets_withdrawn,
+            crrow.nets_aggregated,
+            crrow.nets_announced,
+            crrow.nets_reduced,
+            gen_date
+            ))
+        rank_netgain -= 1
 
 
 def print_new_cidr_report(as_aggcount_dict, as_netsnow_dict, top_n=30):

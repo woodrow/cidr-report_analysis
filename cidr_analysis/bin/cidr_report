@@ -2,6 +2,8 @@
 
 import sys
 import os
+import datetime
+import re
 # hack for uninstalled packages
 try:
     import cidr_analysis
@@ -17,17 +19,29 @@ def usage():
     print("""  Generate CIDR report.""")
 
 
+def extract_rib_date(rib_path):
+    rib_name = os.path.basename(rib_path)
+    try:
+        return datetime.datetime.strptime(
+            re.search('(\d{4}\-\d{2}\-\d{2})', rib_name).groups()[0],
+            '%Y-%m-%d').date()
+    except AttributeError:
+        return datetime.datetime.strptime(
+            re.search('(\d{8})', rib_name).groups()[0], '%Y%m%d').date()
+
+
 def main():
     if len(sys.argv) == 2:
-        full_path = os.path.realpath(sys.argv[1])
+        normrib_path = os.path.abspath(sys.argv[1])
+        dbfile_path = (
+            normrib_path[:normrib_path.rindex('.normrib')] +  '.cidrreport')
+        rib_date = extract_rib_date(normrib_path)
         print("Starting processing table.")
-        f = open(full_path, 'r')
-        #f = open('../nov12/3356-rib.20101113.0400.txt')
-        #f = open('../nov12/rib.20101113.0400-origin_714.txt')
-        #f = open('../nov12/rib_174-86.txt')
-        #f = open('../nov12/rib_68.txt')
-        aggtree.aggregate_table(f)
+        f = open(normrib_path, 'r')
+        dbf = open(dbfile_path, 'w')
+        aggtree.aggregate_table(f, dbf, rib_date)
         f.close()
+        dbf.close()
         print("Ending processing table.")
     else:
         usage()
