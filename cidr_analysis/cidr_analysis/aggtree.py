@@ -236,7 +236,12 @@ def insert_prefix_into_tree(root, new):
         if test_mask & new.prefix > 0:
             if i == new.prefix_len:
                 if cursor.ms_1:
-                    assert not cursor.ms_1.attrs
+                    try:
+                        assert not cursor.ms_1.attrs
+                    except AssertionError as e:
+                        print(cursor.ms_1.attrs)
+                        print(new.attrs)
+                        raise e
                     new.ms_0 = cursor.ms_1.ms_0
                     new.ms_1 = cursor.ms_1.ms_1
                 cursor.ms_1 = new
