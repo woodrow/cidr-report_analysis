@@ -210,7 +210,10 @@ def add_cidrprefix_to_tree(root, cidrprefix):
     """
     if cidrprefix:
         if cidrprefix.prefix_len == 8:
-            assert root is None  # otherwise we need to merge this
+            assert root is None or not root.attrs
+            if root:
+                cidrprefix.ms_0 = root.ms_0
+                cidrprefix.ms_1 = root.ms_1
             root = cidrprefix
         elif cidrprefix.prefix_len > 8:
             if not root:  # create virtual /8 node
