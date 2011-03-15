@@ -305,13 +305,20 @@ if __name__ == '__main__':
         for i in xrange(len(rwfreq_list)):
             color_map[rwfreq_list[i][0]] = contrast_color_list[i % listlen]
 
-        df = open('dotfile_out.dot', 'w')
+        # temporary rename for netsnow plot
+        # df = open('dotfile_out.dot', 'w')
+        df = open('netsnow_plot.dot', 'w')
+        # END temporary
         df.write('strict graph {\ngraph[ordering=out, outputorder=edgesfirst, splines=false];\n')
         last_week = -1
         for i in xrange(min(len(data), MAX_WEEKS_PLOT)):
             rows = min(len(data), MAX_WEEKS_PLOT)
             if data[i]:
                 df.write('week{0}row0 [label="Week {0}\\n{1}", shape=box, style=filled, fillcolor=white, pos="{2},{3}", pin=true];\n'.format(i, data[i].date, i*COL_SPACE+59, rows*ROW_SPACE+22))
+                # temporary for sort by netsnow instead of default (netsgain)
+                # sort
+                data[i].rank_list.sort(key=lambda x: x.netsnow, reverse=True)
+                # END temporary
                 for r in xrange(min(len(data[i].rank_list), MAX_ROWS_PLOT)):
                     df.write('week{0}row{1} [label="AS {2.asnum}\\n{2.netgain}/{2.netsnow}", shape=ellipse, style=filled, fillcolor=white, pos="{3},{4}", pin=true, color="{5}", penwidth=12];\n'.format(i, r+1, data[i].rank_list[r], i*COL_SPACE+59, (rows-r-1)*ROW_SPACE+22, color_map[data[i].rank_list[r].asnum]))
                     df.write('week{0}row{1} -- week{0}row{2} [style=invis];\n'.format(i, r, r+1))
