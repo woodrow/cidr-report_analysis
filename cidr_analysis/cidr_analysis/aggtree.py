@@ -11,6 +11,10 @@ from prefix_classes import PREFIX_CLASSES
 import plot_tree
 
 
+AGGREGATE_ADJACENT_BLOCKS = True
+AGGREGATE_ADJACENT_HOLES = False  # requires AGGREGATE_ADJACENT_BLOCKS = True
+REQUIRE_AGG_CONSENSUS = False
+
 class GCRrow(object):
     def __init__(self, origin_as):
         self.origin_as = origin_as
@@ -301,8 +305,7 @@ def classify_prefixes(prefix, parent=None, ancestor_attrs=None):
     # here's the base case -- we've hit bottom and are working back up the tree
 
     # combine children into new virtual prefixes
-    allow_aggregation = True  # TODO debug tool -- move to function arg, etc.
-    if allow_aggregation:
+    if AGGREGATE_ADJACENT_BLOCKS:
         if not prefix.attrs and prefix.ms_0 and prefix.ms_1:
             for k in ancestor_attrs:
                 try:
@@ -332,6 +335,51 @@ def classify_prefixes(prefix, parent=None, ancestor_attrs=None):
                         prefix.ms_1.prefix_class = PREFIX_CLASSES.DEAGG
                 except KeyError:
                     pass
+        # there's an adjacent hole (ms_1); let's aggregate over it
+        elif not prefix.attrs and prefix.ms_0 and AGGREGATE_ADJACENT_HOLES:
+            for k in prefix.ms_0.attrs:
+                try:
+                    ms_attr = prefix.ms_0.attrs[k]
+                    prefix.add_route(k, ms_attr.as_path)
+                    # prefix.attrs[k].prefix_class as well as prefix.*
+                    # attributes should be handled by the next recursive
+                    # iteration?
+                    prefix.attrs[k].is_intable = False
+                    prefix.attrs[k].agg_children = ms_attr.agg_children + 1
+                    prefix.attrs[k].adv_children = ms_attr.adv_children
+                    ms_attr.is_advertised = False
+                    ms_attr.prefix_class = PREFIX_CLASSES.DEAGG
+
+                    # TODO better comment here about why this is okay to do
+                    # for the entire prefix instead of just for peer k
+                    prefix.is_intable = False
+                    prefix.ms_0.is_advertised = False
+                    prefix.ms_0.prefix_class = PREFIX_CLASSES.DEAGG
+                except KeyError:
+                    pass
+        # there's an adjacent hole (ms_0); let's aggregate over it
+        elif not prefix.attrs and prefix.ms_1 and AGGREGATE_ADJACENT_HOLES:
+            for k in prefix.ms_1.attrs:
+                try:
+                    ms_attr = prefix.ms_1.attrs[k]
+                    prefix.add_route(k, ms_attr.as_path)
+                    # prefix.attrs[k].prefix_class as well as prefix.*
+                    # attributes should be handled by the next recursive
+                    # iteration?
+                    prefix.attrs[k].is_intable = False
+                    prefix.attrs[k].agg_children = ms_attr.agg_children + 1
+                    prefix.attrs[k].adv_children = ms_attr.adv_children
+                    ms_attr.is_advertised = False
+                    ms_attr.prefix_class = PREFIX_CLASSES.DEAGG
+
+                    # TODO better comment here about why this is okay to do
+                    # for the entire prefix instead of just for peer k
+                    prefix.is_intable = False
+                    prefix.ms_1.is_advertised = False
+                    prefix.ms_1.prefix_class = PREFIX_CLASSES.DEAGG
+                except KeyError:
+                    pass
+
 
     # classify
     if parent and prefix.attrs:
@@ -365,8 +413,8 @@ def classify_prefixes(prefix, parent=None, ancestor_attrs=None):
 
         # time to make a generalization about the prefix based on each
         # table's view of that prefix
-#        if fully_aggregable
-        if aggregation_visible:
+        if ((REQUIRE_AGG_CONSENSUS and fully_aggregable) or
+            (not REQUIRE_AGG_CONSENSUS and aggregation_visible)):
             prefix.is_advertised = False
             parent.agg_children += 1
         else:
