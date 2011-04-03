@@ -10,5 +10,3 @@ def extract_rib_date(rib_path):
     except AttributeError:
         return datetime.datetime.strptime(
             re.search('(\d{8})', rib_name).groups()[0], '%Y%m%d').date()
-
-
