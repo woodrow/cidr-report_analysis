@@ -550,11 +550,11 @@ def generate_db_format_cidr_report(crrow_dict, db_file, rib_date, gen_date):
         crrow.nets_reduced = crrow.nets_current - crrow.nets_announced
     crrow_list.sort(key=lambda x: x.origin_as)
     crrow_list.sort(key=lambda x: x.nets_current, reverse=True)
-    rank_netsnow = len(crrow_list)
+    rank_netsnow = 0
     rank_netsnow_dict = {}
     for crrow in crrow_list:
         rank_netsnow_dict[crrow.origin_as] = rank_netsnow
-        rank_netsnow -= 1
+        rank_netsnow += 1
     crrow_list.sort(key=lambda x: x.nets_reduced, reverse=True)
 
     db_file.write("# generated on {0} UTC\n".format(datetime.datetime.utcnow()))
@@ -562,7 +562,7 @@ def generate_db_format_cidr_report(crrow_dict, db_file, rib_date, gen_date):
         "# date,origin_as,rank_netgain,rank_netsnow,nets_current,"
         "nets_withdrawn,nets_aggregated,nets_announced,nets_reduced,"
         "gen_date\n")
-    rank_netgain = len(crrow_list)
+    rank_netgain = 0
     for crrow in crrow_list:
         db_file.write(
             "{0},{1},{2},{3},{4},{5},{6},{7},{8},{9}\n".format(
@@ -577,7 +577,7 @@ def generate_db_format_cidr_report(crrow_dict, db_file, rib_date, gen_date):
             crrow.nets_reduced,
             gen_date
             ))
-        rank_netgain -= 1
+        rank_netgain += 1
 
 
 def print_new_cidr_report(as_aggcount_dict, as_netsnow_dict, top_n=30):
