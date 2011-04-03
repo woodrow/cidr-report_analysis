@@ -121,6 +121,9 @@ def aggregate_table(infile, dbfile_path, rib_date):
         # TODO should origin_as be a separate function?
         classify_prefixes(root)
         update_crrow_dict(crrow_dict, root)
+#        if (root.prefix >> 24) == 71:
+#            plot_tree.plot_tree(root, '/home/woodrow/tmp/plots/', str(rib_date),
+#                origin_set=[7018, 19262])
     generate_db_format_cidr_report(crrow_dict, dbfile_path, rib_date, gen_date)
 
 
