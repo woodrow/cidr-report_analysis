@@ -3,25 +3,18 @@ import Queue
 import os.path
 import datetime
 import re
-import aspath
 import subprocess
+
+# same-module imports
+import aspath
+import utils
+
 
 class PrefixOrigin(object):
     def __init__(self, origin_as, date_effective, weeks_seen):
         self.origin_as = origin_as
         self.date_effective = date_effective
         self.weeks_seen = weeks_seen
-
-
-def extract_rib_date(rib_path):
-    rib_name = os.path.basename(rib_path)
-    try:
-        return datetime.datetime.strptime(
-            re.search('(\d{4}\-\d{2}\-\d{2})', rib_name).groups()[0],
-            '%Y-%m-%d').date()
-    except AttributeError:
-        return datetime.datetime.strptime(
-            re.search('(\d{8})', rib_name).groups()[0], '%Y%m%d').date()
 
 
 def get_peerid_factory(peermap, peermap_lock, local_peermap):
@@ -82,8 +75,8 @@ def process_txtrib_worker(txtrib_queue, peermap, peermap_lock, stdout_lock):
         prefix_origin_set = set()
         save_prefix_origin_set = False
 
-        date_sort = extract_rib_date(txtrib_path).toordinal()
-        date_str = extract_rib_date(txtrib_path).strftime('%Y-%m-%d')
+        date_sort = utils.extract_rib_date(txtrib_path).toordinal()
+        date_str = utils.extract_rib_date(txtrib_path).strftime('%Y-%m-%d')
 
         debug_output.append((
             "Postprocessing RIB and generating .normrib, "

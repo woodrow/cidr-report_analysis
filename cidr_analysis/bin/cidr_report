@@ -11,6 +11,7 @@ except ImportError:
     sys.path.append(os.path.realpath('../../cidr_analysis'))
 finally:
     from cidr_analysis import aggtree
+    from cidr_analysis import utils
 # /hack
 
 
@@ -19,23 +20,12 @@ def usage():
     print("""  Generate CIDR report.""")
 
 
-def extract_rib_date(rib_path):
-    rib_name = os.path.basename(rib_path)
-    try:
-        return datetime.datetime.strptime(
-            re.search('(\d{4}\-\d{2}\-\d{2})', rib_name).groups()[0],
-            '%Y-%m-%d').date()
-    except AttributeError:
-        return datetime.datetime.strptime(
-            re.search('(\d{8})', rib_name).groups()[0], '%Y%m%d').date()
-
-
 def main():
     if len(sys.argv) == 2:
         normrib_path = os.path.abspath(sys.argv[1])
         dbfile_path = (
             normrib_path[:normrib_path.rindex('.normrib')] +  '.cidrreport')
-        rib_date = extract_rib_date(normrib_path)
+        rib_date = utils.extract_rib_date(normrib_path)
         print("Starting processing table.")
         f = open(normrib_path, 'r')
         dbf = open(dbfile_path, 'w')
