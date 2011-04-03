@@ -307,7 +307,7 @@ def classify_prefixes(prefix, parent=None, ancestor_attrs=None):
     # combine children into new virtual prefixes
     if AGGREGATE_ADJACENT_BLOCKS:
         if not prefix.attrs and prefix.ms_0 and prefix.ms_1:
-            for k in ancestor_attrs:
+            for k in set(prefix.ms_0.attrs.keys() + prefix.ms_1.attrs.keys()):
                 try:
                     ms_0_attr = prefix.ms_0.attrs[k]
                     ms_1_attr = prefix.ms_1.attrs[k]
