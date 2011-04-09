@@ -17,7 +17,7 @@ def plot_tree(root, plot_dir, rib_name='', origin_set=None):
     nowstr = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
     find_all_peers(root, peer_set, as_map)
     for peer in peer_set:
-        dotfile = open(os.path.join(plot_dir,'plot-' + str(peer) +'.dot'), 'w')
+        dotfile = open(os.path.join(plot_dir,'plot-' + str(peer) + rib_name + '.dot'), 'w')
         dotfile.write('strict digraph {\n'
             '\tordering=out;\n')
         dotfile.write('\tlabel="' + '  /  '.join([
