@@ -1,3 +1,5 @@
+#!/usr/bin/python2.6
+
 import cidr_report
 import psycopg2
 import collections
