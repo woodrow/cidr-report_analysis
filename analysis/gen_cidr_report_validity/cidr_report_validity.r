@@ -22,7 +22,7 @@ plot_cr_error <- function() {
 #### SETUP PLOT
     #par(mar=c(5,4,4,4)+0.1)
     layout(
-        matrix(c(1,2), 2, 1, byrow = TRUE)
+        matrix(c(1,2), 2, 1, byrow = TRUE),
         widths=c(1),
         heights=c(2,4))
     ylims = c(
