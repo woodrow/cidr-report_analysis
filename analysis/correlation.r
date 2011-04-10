@@ -1,4 +1,5 @@
 UNIX_EPOCH = as.Date('1970-01-01')
+DATA_IMAGE_NAME = "_correlation.RData"
 
 get.ecr <- function() {
     library(RdbiPgSQL)
@@ -13,6 +14,7 @@ get.ecr <- function() {
     res = dbSendQuery(conn, paste(
         "SELECT date, origin_as, rank",
         "FROM email_cidr_reports",
+        "WHERE date >= '1997-11-14'",
         "ORDER BY origin_as, date;"))
     email_cidr_report <<- dbGetResult(res)
     email_cidr_report$date = as.Date(email_cidr_report$date, '%m-%d-%Y')
@@ -83,12 +85,22 @@ find.appearances <- function(pattern, dates) {
                 if(start > 0) {
                     apcount = apcount + 1
                     appearances[['date']][apcount] = dates[start]
+                    appearances[['date_index']][apcount] = start
                     appearances[['duration']][apcount] = duration
                     duration = 0
                     start = 0
                 }
             }
         }
+    }
+    # handle the last partially-complete appearance
+    if(start > 0) {
+        apcount = apcount + 1
+        appearances[['date']][apcount] = dates[start]
+        appearances[['date_index']][apcount] = start
+        appearances[['duration']][apcount] = duration
+        duration = 0
+        start = 0
     }
 
     if(apcount > 0) {
@@ -132,14 +144,6 @@ get.gcr <- function(origin_ases) {
     return(gcr)
 }
 
-################################################################################
-################################################################################
-# NOTES TO SELF
-#
-# - USE DATA FRAMES INSTEAD OF LISTS TO ALLOW ROW INDEXING
-#
-################################################################################
-################################################################################
 
 preprocess.gcr <- function(gcr) {
     dates = as.Date(seq(as.numeric(epoch), as.numeric(end_epoch)),
@@ -148,7 +152,6 @@ preprocess.gcr <- function(gcr) {
     date_weeks = as.Date((weeks-1)*7, origin=epoch)
     cgcr = list()#(weeks=date_weeks)  # canonical ECR, by week
     for(origin_as in names(gcr)) {
-        print(origin_as)
         as_data = data.frame(
             rank_netgain=as.integer(NA),
             rank_netsnow=as.integer(NA),
@@ -178,35 +181,102 @@ preprocess.gcr <- function(gcr) {
     return(cgcr)
 }
 
-do.stuff <- function() {
-    print("cecr")
-    if(!exists('cecr')) {
-        ecr = get.ecr()
-        cecr <<- preprocess.ecr(ecr)
+load.data <- function() {
+    print("loading email cidr report data")
+    ecr = get.ecr()
+    cecr <<- preprocess.ecr(ecr)
+
+    print("constructing appearances list")
+    appearances = list()
+    for(origin_as in names(cecr)) {
+        appearance = find.appearances(
+            cecr[[origin_as]], cecr[['weeks']])
+        if(length(appearance) > 1 || !is.na(appearance)) {
+            appearances[[origin_as]] = appearance
+        }
     }
-    print("cecr done")
-    print("appearances")
-    if(!exists('appearances')) {
-        appearances = list()
-        for(origin_as in names(cecr)) {
-            appearance = find.appearances(
-                cecr[[origin_as]], cecr[['weeks']])
-            if(length(appearance) > 1 || !is.na(appearance)) {
-                appearances[[origin_as]] = appearance
+    appearances <<- appearances
+
+    print("loading generated cidr report data")
+    gcr <<- get.gcr(
+        names(appearances)[is.nottrue(as.integer(names(appearances)) > 0)])
+    cgcr <<- preprocess.gcr(gcr)
+
+    print("data load complete")
+    data_loaded <<- T
+}
+
+do.stuff <- function(reload=F) {
+    if(!exists('data_loaded') || !data_loaded) {
+        if(!reload && file_test('-f', DATA_IMAGE_NAME)) {
+            load(DATA_IMAGE_NAME, .GlobalEnv)
+            print("data loaded from RData file")
+        } else {
+            load.data()
+            save.image(DATA_IMAGE_NAME)
+        }
+    }
+    print("ready")
+
+    row_delta_days = c(30, 60, 90, 180, 365, 547, 730)
+    row_names = c("initial", paste("delta_", row_delta_days, sep=""))
+    as_deltas = list()
+
+    for (origin_as in
+        names(appearances)[is.nottrue(as.integer(names(appearances)) > 0)]) {
+        appearance_list = amalgamate.appearances(appearances[[origin_as]])
+        appearance_deltas = list()
+        ad_index = 1
+        for(i in c(1:length(appearance_list$date))) {
+            if(!is.na(appearance_list$date_index[i])) {
+                idx = appearance_list$date_index[i]
+                deltas = data.frame(
+                    rank_netgain=rep(NA,length(row_names)),
+                    rank_netsnow=rep(NA,length(row_names)),
+                    netgain=rep(NA,length(row_names)),
+                    netsnow=rep(NA,length(row_names)),
+                    weeknum=rep(NA,length(row_names)),
+                    row.names=row_names
+                )
+                deltas['initial',][1:4] = cgcr[[origin_as]][idx,]
+                deltas['initial',]$weeknum = idx
+                for(d in row_delta_days) {
+                    dw = round(d/7)
+                    rn = paste("delta_", d, sep="")
+                    deltas[rn,][1:4] = cgcr[[origin_as]][idx+dw,]
+                    deltas[rn,]$weeknum = idx+dw
+                }
+                appearance_deltas[[ad_index]] = deltas
+                ad_index = ad_index + 1
             }
         }
-        appearances <<- appearances
+        as_deltas[[origin_as]] = appearance_deltas
+        print(as_deltas)
+        break
     }
-    print("appearances done")
-    print("cgcr")
-    if(!exists('cgcr')) {
-        gcr <<- get.gcr(
-            names(appearances)[is.nottrue(as.integer(names(appearances)) > 0)])
-        cgcr <<- preprocess.gcr(gcr)
-    }
-    print("cgcr done")
-    # extract.data(appearances, cgcr)
 }
+
+amalgamate.appearances <- function(appearance_list) {
+    if (length(appearance_list$date) > 1) {
+        last_date = appearance_list$date[1]
+        for(i in c(2:length(appearance_list$date))) {
+            if((appearance_list$date[i] - last_date) < 730) {
+                appearance_list$date[i] = NA
+                appearance_list$date_index[i] = NA
+                appearance_list$duration[i] = NA
+            } else {
+                last_date = appearance_list$date[i]
+            }
+        }
+    }
+    return(appearance_list)
+}
+
+
+# 1. amalgamate appearances overlapping within 1-2 years?
+# 2. for each appearance, collect and store deltas in a structure like
+#    deltas[['701']][1,]${delta_30, delta_60, delta_90, delta_180, delta_365, delta_547, delta_730}
+# 3. iterate through and collect into an array, and then plot
 
 
 
