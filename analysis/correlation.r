@@ -129,7 +129,7 @@ get.gcr <- function(origin_ases) {
     ########################################################################
     res = dbSendQuery(conn, paste(
         "SELECT date, origin_as, rank_netgain, rank_netsnow,",
-            "nets_current, nets_reduced",
+            "nets_reduced as netgain, nets_current as netsnow",
         "FROM gen_cidr_reports",
         "WHERE id >= 12415379",
         "AND origin_as in (", paste(origin_ases, collapse=","), ")",
@@ -155,8 +155,8 @@ preprocess.gcr <- function(gcr) {
         as_data = data.frame(
             rank_netgain=as.integer(NA),
             rank_netsnow=as.integer(NA),
-            netsnow=as.integer(NA),
-            netgain=as.integer(NA))[rep(NA,length(weeks)),]
+            netgain=as.integer(NA),
+            netsnow=as.integer(NA))[rep(NA,length(weeks)),]
         for(ri in c(1:nrow(gcr[[origin_as]]))) {
             row = gcr[[origin_as]][ri,]
             as_data[ceiling((row$date-epoch)/7),] = row[3:6]
@@ -214,6 +214,7 @@ do.stuff <- function(reload=F) {
         } else {
             load.data()
             save.image(DATA_IMAGE_NAME)
+            print("data saved to RData file")
         }
     }
     print("ready")
@@ -221,6 +222,8 @@ do.stuff <- function(reload=F) {
     row_delta_days = c(30, 60, 90, 180, 365, 547, 730)
     row_names = c("initial", paste("delta_", row_delta_days, sep=""))
     as_deltas = list()
+
+    total_appearances = 0
 
     for (origin_as in
         names(appearances)[is.nottrue(as.integer(names(appearances)) > 0)]) {
@@ -243,17 +246,127 @@ do.stuff <- function(reload=F) {
                 for(d in row_delta_days) {
                     dw = round(d/7)
                     rn = paste("delta_", d, sep="")
-                    deltas[rn,][1:4] = cgcr[[origin_as]][idx+dw,]
-                    deltas[rn,]$weeknum = idx+dw
+                    deltas[rn,][1:4] = (
+                        cgcr[[origin_as]][idx+dw,] - deltas['initial',][1:4])
+                    deltas[rn,]$weeknum = dw
                 }
                 appearance_deltas[[ad_index]] = deltas
                 ad_index = ad_index + 1
+                total_appearances = total_appearances + 1
             }
         }
         as_deltas[[origin_as]] = appearance_deltas
-        print(as_deltas)
-        break
     }
+    as_deltas <<- as_deltas
+
+    delta_dists = list()
+    for (colname in  paste("delta_", row_delta_days, sep="")) {
+        delta_dists[[colname]] = data.frame(
+            rank_netgain = rep(NA,total_appearances),
+            rank_netsnow = rep(NA,total_appearances),
+            netgain      = rep(NA,total_appearances),
+            netsnow      = rep(NA,total_appearances),
+            weeknum      = rep(NA,total_appearances),
+            origin_as    = rep(NA,total_appearances),
+            rel_netgain  = rep(NA,total_appearances),
+            rel_netsnow  = rep(NA,total_appearances),
+            frac_deagg   = rep(NA,total_appearances)
+        )
+    }
+
+    aix = 1
+    for(origin_as in names(as_deltas)) {
+        for(ai in c(1:length(as_deltas[[origin_as]]))) {
+            for (colname in paste("delta_", row_delta_days, sep="")) {
+                delta_dists[[colname]][aix,][1:5] = (
+                    as_deltas[[origin_as]][[ai]][colname,])
+                delta_dists[[colname]][aix,]$origin_as = as.integer(origin_as)
+                delta_dists[[colname]][aix,]$rel_netgain = (
+                    as_deltas[[origin_as]][[ai]][colname,]$netgain /
+                    as_deltas[[origin_as]][[ai]]['initial',]$netgain)
+                delta_dists[[colname]][aix,]$rel_netsnow = (
+                    as_deltas[[origin_as]][[ai]][colname,]$netsnow /
+                    as_deltas[[origin_as]][[ai]]['initial',]$netsnow)
+                delta_dists[[colname]][aix,]$frac_deagg = ((
+                    as_deltas[[origin_as]][[ai]][colname,]$netgain +
+                    as_deltas[[origin_as]][[ai]]['initial',]$netgain) / (
+                    as_deltas[[origin_as]][[ai]][colname,]$netsnow +
+                    as_deltas[[origin_as]][[ai]]['initial',]$netsnow))
+            }
+            aix = aix + 1
+        }
+    }
+
+    delta_dists <<- delta_dists
+}
+
+
+plot.densities <- function(typename='netgain') {
+#    densities = list()
+#    xlims = c(0,0)
+#    ylims = c(0,0)
+#    for(name in names(delta_dists)) {
+#        d = density(
+#        delta_dists[[name]]$rel_netsnow[!is.na(delta_dists[[name]]$rel_netsnow)])
+#        densities[[name]] = d
+#        xlims = c(min(xlims, d$x), max(xlims, d$x))
+#        ylims = c(min(ylims, d$y), max(ylims, d$y))
+#    }
+#    xlims=c(-5,5)
+#    print(xlims)
+#    print(ylims)
+#    ylims[1] = ylims[1] + 1e-20
+#    colors = rainbow(7)
+#    index = 1
+#    for(name in names(densities)) {
+#        plot(densities[[name]], xlim=xlims, ylim=ylims, col=colors[index])
+#        par(new=T)
+#        index = index + 1
+#    }
+#    legend(
+#        'topright',
+#        names(densities),
+#        col=colors,
+#        lty=1,
+#        lwd=1,
+#        bg="white",
+#        inset=0.02
+#    )
+
+#    x11() #####################################################################
+    cdfs = list()
+    xlims = c(0,0)
+    #ylims = c(0,0)
+    for(name in names(delta_dists)) {
+        cdf = ecdf(
+        delta_dists[[name]][[typename]][!is.na(delta_dists[[name]][[typename]])])
+        cdfs[[name]] = cdf
+        xlims = c(min(xlims, knots(cdf)), max(xlims, knots(cdf)))
+    }
+    #xlims=c(-2000,2000)
+    print(xlims)
+    #print(ylims)
+    #ylims[1] = ylims[1] + 1e-20
+    colors = rainbow(7)
+    index = 1
+    for(name in names(cdfs)) {
+        plot(cdfs[[name]], col=colors[index], xlim=xlims)
+        par(new=T)
+        index = index + 1
+    }
+    legend(
+        'bottomright',
+        names(cdfs),
+        col=colors,
+        lty=1,
+        lwd=1,
+        bg="white",
+        inset=0.02
+    )
+
+
+    ####################################################################
+    ## NEXT STEPS; PLOT OTHER FACTORS AND PLOT RELATIVE (%AGE) MEASURES
 }
 
 amalgamate.appearances <- function(appearance_list) {
