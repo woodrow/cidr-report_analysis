@@ -197,7 +197,6 @@ get.control.gcr <- function(ecr_ases, min_date=EPOCH, max_date=END_EPOCH) {
                 ceiling((control_candidates$datemax[i]-730-EPOCH)/7)
             start = sample(start_range, 1)
             end = ceiling((control_candidates$datemax[i]-EPOCH)/7)
-            apcount = apcount + 1
             appearances[['date']][1] = as.Date(EPOCH + 7*start, UNIX_EPOCH)
             appearances[['date_index']][1] = start
             appearances[['duration']][1] = end-start
