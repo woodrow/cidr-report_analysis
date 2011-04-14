@@ -13,9 +13,9 @@ END_EPOCH = END_EPOCH - as.POSIXlt(END_EPOCH)$wday
 
 get.ecr <- function(min_date=EPOCH, max_date=END_EPOCH, min_rank=MIN_RANK,
     max_rank=MAX_RANK) {
-    library(RdbiPgSQL)
+    library(RPostgreSQL)
     conn <- dbConnect(
-        PgSQL(),
+        PostgreSQL(),
         host="mitas-2.csail.mit.edu",
         dbname="woodrow",
         user="woodrow",
@@ -27,7 +27,7 @@ get.ecr <- function(min_date=EPOCH, max_date=END_EPOCH, min_rank=MIN_RANK,
         "WHERE date BETWEEN '", min_date, "' AND '", max_date, "'",
         "AND rank BETWEEN '", min_rank, "' AND '", max_rank, "'",
         "ORDER BY origin_as, date;"))
-    email_cidr_report <<- dbGetResult(res)
+    email_cidr_report <<- fetch(res,n=-1)
     email_cidr_report$date = as.Date(email_cidr_report$date, '%m-%d-%Y')
     ecr = split(email_cidr_report,
         factor(email_cidr_report$origin_as,
@@ -129,9 +129,9 @@ is.trulytrue <- function(x) {
 
 get.control.gcr <- function(ecr_ases, min_date=EPOCH, max_date=END_EPOCH) {
     max_date = max_date + 730
-    library(RdbiPgSQL)
+    library(RPostgreSQL)
     conn <- dbConnect(
-        PgSQL(),
+        PostgreSQL(),
         host="mitas-2.csail.mit.edu",
         dbname="woodrow",
         user="woodrow",
@@ -183,7 +183,7 @@ get.control.gcr <- function(ecr_ases, min_date=EPOCH, max_date=END_EPOCH) {
         ") as tmp",
         "WHERE (tmp.datemax - tmp.datemin) >= 730",
         "ORDER BY origin_as, datemin;"))
-    control_candidates = dbGetResult(res)
+    control_candidates = fetch(res,n=-1)
     print('progress1')
 
     candidate_ases = control_candidates$origin_as[
@@ -207,7 +207,7 @@ get.control.gcr <- function(ecr_ases, min_date=EPOCH, max_date=END_EPOCH) {
         "AND date BETWEEN '", min_date, "' AND '", max_date, "'",
         "AND origin_as in (", paste(candidate_ases, collapse=","), ")",
         "ORDER BY origin_as, date;"))
-    control_gen_cidr_report <<- dbGetResult(res)
+    control_gen_cidr_report <<- fetch(res,n=-1)
     control_gen_cidr_report$date = as.Date(
         control_gen_cidr_report$date, '%m-%d-%Y')
     congcr = split(control_gen_cidr_report,
@@ -221,9 +221,9 @@ get.control.gcr <- function(ecr_ases, min_date=EPOCH, max_date=END_EPOCH) {
 
 get.gcr <- function(origin_ases, min_date=EPOCH, max_date=END_EPOCH) {
     max_date = max_date + 730
-    library(RdbiPgSQL)
+    library(RPostgreSQL)
     conn <- dbConnect(
-        PgSQL(),
+        PostgreSQL(),
         host="mitas-2.csail.mit.edu",
         dbname="woodrow",
         user="woodrow",
@@ -237,7 +237,7 @@ get.gcr <- function(origin_ases, min_date=EPOCH, max_date=END_EPOCH) {
         "AND date BETWEEN '", min_date, "' AND '", max_date, "'",
         "AND origin_as in (", paste(origin_ases, collapse=","), ")",
         "ORDER BY origin_as, date;"))
-    gen_cidr_report <<- dbGetResult(res)
+    gen_cidr_report <<- fetch(res,n=-1)
     gen_cidr_report$date = as.Date(gen_cidr_report$date, '%m-%d-%Y')
     gcr = split(gen_cidr_report,
         factor(gen_cidr_report$origin_as,
