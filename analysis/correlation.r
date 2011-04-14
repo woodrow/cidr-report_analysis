@@ -200,12 +200,11 @@ get.control.gcr <- function(ecr_ases, min_date=EPOCH, max_date=END_EPOCH) {
             appearances[['date']][1] = as.Date(EPOCH + 7*start, UNIX_EPOCH)
             appearances[['date_index']][1] = start
             appearances[['duration']][1] = end-start
-            control_appearances[[control_candidates$origin_as[i]]] = appearances
+            control_appearances[[paste(control_candidates$origin_as[i])]] = appearances
         }
     }
     control_appearances <<- control_appearances
     print('progress2')
-    return()
 
 #    print(paste(
 #    "SELECT date, origin_as, rank_netgain, rank_netsnow,",
@@ -471,8 +470,8 @@ do.stuff <- function(reload=F) {
     total_appearances = 0
 
     for (origin_as in
-        names(appearances)[is.trulytrue(as.integer(names(appearances)) > 0)]) {
-        appearance_list = amalgamate.appearances(appearances[[origin_as]])
+        names(control_appearances)[is.trulytrue(as.integer(names(control_appearances)) > 0)]) {
+        appearance_list = control_appearances[[origin_as]]
         appearance_deltas = list()
         ad_index = 1
         for(i in c(1:length(appearance_list$date))) {
@@ -486,13 +485,13 @@ do.stuff <- function(reload=F) {
                     weeknum=rep(NA,length(row_names)),
                     row.names=row_names
                 )
-                deltas['initial',][1:4] = cgcr[[origin_as]][idx,]
+                deltas['initial',][1:4] = concgcr[[origin_as]][idx,]
                 deltas['initial',]$weeknum = idx
                 for(d in row_delta_days) {
                     dw = round(d/7)
                     rn = paste("delta_", d, sep="")
                     deltas[rn,][1:4] = (
-                        cgcr[[origin_as]][idx+dw,] - deltas['initial',][1:4])
+                        concgcr[[origin_as]][idx+dw,] - deltas['initial',][1:4])
                     deltas[rn,]$weeknum = dw
                 }
                 appearance_deltas[[ad_index]] = deltas
@@ -502,7 +501,7 @@ do.stuff <- function(reload=F) {
         }
         as_deltas[[origin_as]] = appearance_deltas
     }
-    as_deltas <<- as_deltas
+    con_as_deltas <<- as_deltas
 
     delta_dists = list()
     for (colname in  paste("delta_", row_delta_days, sep="")) {
@@ -542,8 +541,10 @@ do.stuff <- function(reload=F) {
         }
     }
 
-    delta_dists <<- delta_dists
+    con_delta_dists <<- delta_dists
 
+    save.image(paste('_complete', DATA_IMAGE_NAME, sep=''))
+    print("saved complete data to RData file")
 }
 
 
@@ -591,6 +592,43 @@ plot.densities <- function(typename='netgain') {
     }
     #xlims=c(-2000,2000)
     print(xlims)
+    if(grep('rel', typename)) {
+        xlims = c(max(min(xlims), -1), min(max(xlims), 5))
+    }
+    #print(ylims)
+    #ylims[1] = ylims[1] + 1e-20
+    colors = rainbow(7)
+    index = 1
+    for(name in names(cdfs)) {
+        plot(cdfs[[name]], col=colors[index], xlim=xlims)
+        par(new=T)
+        index = index + 1
+    }
+    legend(
+        'bottomright',
+        names(cdfs),
+        col=colors,
+        lty=1,
+        lwd=1,
+        bg="white",
+        inset=0.02
+    )
+    #####################################################################
+    x11()
+    cdfs = list()
+    xlims = c(0,0)
+    #ylims = c(0,0)
+    for(name in names(con_delta_dists)) {
+        cdf = ecdf(
+        con_delta_dists[[name]][[typename]][!is.na(con_delta_dists[[name]][[typename]])])
+        cdfs[[name]] = cdf
+        xlims = c(min(xlims, knots(cdf)), max(xlims, knots(cdf)))
+    }
+    #xlims=c(-2000,2000)
+    print(xlims)
+    if(grep('rel', typename)) {
+        xlims = c(max(min(xlims), -1), min(max(xlims), 5))
+    }
     #print(ylims)
     #ylims[1] = ylims[1] + 1e-20
     colors = rainbow(7)
