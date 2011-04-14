@@ -247,6 +247,7 @@ get.gcr <- function(origin_ases, min_date=EPOCH, max_date=END_EPOCH) {
 
 
 preprocess.gcr <- function(gcr, no_nas=F) {
+    END_EPOCH = END_EPOCH + 730
     dates = as.Date(seq(as.numeric(EPOCH), as.numeric(END_EPOCH)),
         origin=UNIX_EPOCH)
     weeks = seq(1, ceiling((END_EPOCH-EPOCH)/7))
