@@ -204,6 +204,7 @@ get.control.gcr <- function(ecr_ases, min_date=EPOCH, max_date=END_EPOCH) {
             "nets_reduced as netgain, nets_current as netsnow",
         "FROM gen_cidr_reports",
         "WHERE id >= 12415379",
+        "AND date BETWEEN '", min_date, "' AND '", max_date, "'",
         "AND origin_as in (", paste(candidate_ases, collapse=","), ")",
         "ORDER BY origin_as, date;"))
     control_gen_cidr_report <<- dbGetResult(res)
