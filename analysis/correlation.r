@@ -186,6 +186,23 @@ get.control.gcr <- function(ecr_ases, min_date=EPOCH, max_date=END_EPOCH) {
     control_candidates = fetch(res,n=-1)
     print('progress1')
 
+    control_appearances = list()
+    apcount = 0
+
+    for(i in c(1:nrow(control_candidates))) {
+        start_range = (ceiling((control_candidates$datemin[i]-EPOCH)/7)):
+            ceiling((control_candidates$datemax[i]-730-EPOCH)/7)
+        start = sample(start_range, 1)
+        end = ceiling((control_candidates$datemax[i]-EPOCH)/7)
+        apcount = apcount + 1
+        control_appearances[['date']][apcount] = EPOCH + 7*start
+        control_appearances[['date_index']][apcount] = start
+        control_appearances[['duration']][apcount] = end-start
+    }
+    control_appearances <<- control_appearances
+    print('progress2')
+    return()
+
     candidate_ases = control_candidates$origin_as[
         sample(1:length(control_candidates$origin_as), length(ecr_ases))]
 
