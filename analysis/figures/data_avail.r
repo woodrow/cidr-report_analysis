@@ -1,3 +1,5 @@
+cex = 0.75
+
 get_cr_data <- function() {
     library(RPostgreSQL)
     conn <- dbConnect(
@@ -34,7 +36,8 @@ plot_cr_data_availability <- function() {
 #        max(ecr.dates$date, gcr.dates$date))
     xlims = c(as.Date(paste(c('19', as.POSIXlt(min(ecr.dates$date))$year, '-01-01'), collapse='')),
     as.Date(paste(c('20', (as.POSIXlt(max(ecr.dates$date))$year+1)%%100, '-01-01'), collapse='')))
-    par(mar=c(5,5,5,5))
+    par(cex=cex)
+    par(mar=c(5,3,2,2))
     plot(
         x=gcr.dates$date,
         y=rep(-1,times=length(gcr.dates$date)),
@@ -42,12 +45,13 @@ plot_cr_data_availability <- function() {
         xlim=xlims,
         col="darkgray",
         ylim=c(-1,1),
-        ylab="Weeks present",
+        ylab="",
         xlab="Date",
         yaxt='n',
         xaxt='n'
     )
-    axis.Date(1, at=seq(min(xlims), max(xlims), "2 years"))
+    mtext("GCR weeks avail.     ACR weeks avail.", cex=cex, side=2, line=1)
+    axis.Date(1, at=seq(min(xlims), max(xlims), "1 years"))
     par(new=T)
     plot(
         x=ecr.dates$date,
@@ -62,7 +66,7 @@ plot_cr_data_availability <- function() {
 }
 
 pdf_cr_data_availability <- function() {
-    pdf("data_avail.pdf", paper="us", width=6.5, height=3.5)
+    pdf("data_avail.pdf", width=6.5, height=3.5)
     plot_cr_data_availability()
     dev.off()
 }

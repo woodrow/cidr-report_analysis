@@ -10,13 +10,14 @@ if(!exists('gcr')) {
 
 #xrange=c(min(gcr$date),max(gcr$date))
 xrange = c(as.Date('2005-01-01'),as.Date('2009-01-01'))
+cex = 0.75
 
 plot_as <- function(origin_as) {
     origin_as <- as.character(origin_as)
     if(origin_as %in% names(gcr.split)) {
         cr <- gcr.split[[origin_as]]
-
-        par(mar=c(5,4,2,4)+0.1)
+        par(cex=cex)
+        par(mar=c(5,5,2,4))
         #plot(cr$date, (cr$rank < 30), xlab="", xaxt="n", type="h", ylim=c(0,1),
         #    yaxt="n", ylab="", col="lightskyblue", xlim=xrange)
         #par(new=TRUE)
@@ -26,7 +27,7 @@ plot_as <- function(origin_as) {
         axis.Date(1, at=seq(min(xrange), max(xrange), "1 year"))
         plot_labels = pretty(c(1,30),6)
         axis(4, plot_labels, rev(plot_labels))
-        mtext("CIDR Report Rank", side=4, line=2)
+        mtext("CIDR Report Rank", side=4, line=2, cex=cex)
         par(new=TRUE)
         #plot(cr$date, cr$netsnow, xlab="", ylab="", type="l",
         #    ylim=c(0,max(cr$netsnow, cr$netgain)), col="black", xlim=xrange)
@@ -70,7 +71,7 @@ plot_as <- function(origin_as) {
 }
 
 pdf_plot_measurment_example <- function() {
-    pdf("single_as.pdf", paper="us", width=6.5, height=4)
+    pdf("single_as.pdf", width=6.5, height=4)
     plot_as(3602)
     dev.off()
 }
