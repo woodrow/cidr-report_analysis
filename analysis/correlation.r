@@ -548,7 +548,7 @@ do.stuff <- function(reload=F) {
 }
 
 
-plot.densities <- function(typename='netgain') {
+plot.densities <- function(typename='netgain', plotname='') {
 #    densities = list()
 #    xlims = c(0,0)
 #    ylims = c(0,0)
@@ -585,6 +585,12 @@ plot.densities <- function(typename='netgain') {
     xlims = c(0,0)
     #ylims = c(0,0)
     for(name in names(delta_dists)) {
+        for(i in c(1:length(delta_dists[[name]][[typename]]))) {
+            v = delta_dists[[name]][[typename]][i]
+            if(is.na(v) || is.infinite(v) || is.nan(v)) {
+                delta_dists[[name]][[typename]][i] = 0
+            }
+        }
         cdf = ecdf(
         delta_dists[[name]][[typename]][!is.na(delta_dists[[name]][[typename]])])
         cdfs[[name]] = cdf
@@ -592,7 +598,7 @@ plot.densities <- function(typename='netgain') {
     }
     #xlims=c(-2000,2000)
     print(xlims)
-    if(grep('rel', typename)) {
+    if(length(grep('rel', typename)) > 0) {
         xlims = c(max(min(xlims), -1), min(max(xlims), 5))
     }
     #print(ylims)
@@ -600,7 +606,8 @@ plot.densities <- function(typename='netgain') {
     colors = rainbow(7)
     index = 1
     for(name in names(cdfs)) {
-        plot(cdfs[[name]], col=colors[index], xlim=xlims)
+        plot(cdfs[[name]], col=colors[index], xlim=xlims,
+            main=paste(typename, '\n', plotname))
         par(new=T)
         index = index + 1
     }
@@ -613,12 +620,18 @@ plot.densities <- function(typename='netgain') {
         bg="white",
         inset=0.02
     )
+    par(new=F)
     #####################################################################
-    x11()
     cdfs = list()
     xlims = c(0,0)
     #ylims = c(0,0)
     for(name in names(con_delta_dists)) {
+        for(i in c(1:length(con_delta_dists[[name]][[typename]]))) {
+            v = con_delta_dists[[name]][[typename]][i]
+            if(is.na(v) || is.infinite(v) || is.nan(v)) {
+                con_delta_dists[[name]][[typename]][i] = 0
+            }
+        }
         cdf = ecdf(
         con_delta_dists[[name]][[typename]][!is.na(con_delta_dists[[name]][[typename]])])
         cdfs[[name]] = cdf
@@ -626,7 +639,7 @@ plot.densities <- function(typename='netgain') {
     }
     #xlims=c(-2000,2000)
     print(xlims)
-    if(grep('rel', typename)) {
+    if(length(grep('rel', typename)) > 0) {
         xlims = c(max(min(xlims), -1), min(max(xlims), 5))
     }
     #print(ylims)
@@ -634,7 +647,8 @@ plot.densities <- function(typename='netgain') {
     colors = rainbow(7)
     index = 1
     for(name in names(cdfs)) {
-        plot(cdfs[[name]], col=colors[index], xlim=xlims)
+        plot(cdfs[[name]], col=colors[index], xlim=xlims,
+        main=paste(typename, 'control', '\n', plotname))
         par(new=T)
         index = index + 1
     }
@@ -647,7 +661,7 @@ plot.densities <- function(typename='netgain') {
         bg="white",
         inset=0.02
     )
-
+    par(new=F)
 
     ####################################################################
     ## NEXT STEPS; PLOT OTHER FACTORS AND PLOT RELATIVE (%AGE) MEASURES
