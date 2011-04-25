@@ -23,6 +23,9 @@ FROM (
             (ecr.netgain - gcr.nets_reduced) else 0 end)
             as ecr_greater_netgain,
 
+        min(case when gcr.rank_netgain >= 30 then ecr.rank else 999999 end)
+            as min_missing_rank,
+
         sum(case when gcr.rank_netgain >= 30 then 1 else 0 end)
             as not_in_top30,
         sum(case when gcr.rank_netgain >= 30 then ecr.rank else 0 end)
