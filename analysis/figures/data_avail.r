@@ -50,7 +50,8 @@ plot_cr_data_availability <- function() {
         yaxt='n',
         xaxt='n'
     )
-    mtext("GCR weeks avail.     ACR weeks avail.", cex=cex, side=2, line=1)
+    mtext("data available", cex=cex, side=2, line=1)
+    mtext("GCR    ACR", cex=cex, side=2, line=0)
     axis.Date(1, at=seq(min(xlims), max(xlims), "1 years"))
     par(new=T)
     plot(
@@ -66,7 +67,7 @@ plot_cr_data_availability <- function() {
 }
 
 pdf_cr_data_availability <- function() {
-    pdf("data_avail.pdf", width=6.5, height=3.5)
+    pdf("data_avail.pdf", width=6.5, height=2)
     plot_cr_data_availability()
     dev.off()
 }
