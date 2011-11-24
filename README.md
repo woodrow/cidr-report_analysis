@@ -20,14 +20,14 @@ effectiveness of the CIDR Report.
 
 ## License
 
-### contents of /libbgpdump and /rv2atoms directories
+### contents of `/libbgpdump` and `/rv2atoms` directories
 
-The software in /libbgpdump and /rv2atoms are copyrighted by their respective
-authors and licensed in accordance with the included license, readme, or source files.
+The software in `/libbgpdump` and `/rv2atoms` are copyrighted by their respective
+authors and licensed in accordance with the included license, README, or source files.
 
-### contents of /cidr_analysis and other directories
+### contents of `/cidr_analysis` and other directories
 
-The software located in /cidr_analysis and the other directories not already identified are licensed under the following license:
+The software located in `/cidr_analysis` and the other directories not already identified are licensed under the following license:
 
 Copyright (c) 2010-2011 Stephen Woodrow
 
