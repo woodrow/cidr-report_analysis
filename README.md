@@ -27,7 +27,7 @@ authors and licensed in accordance with the included license, README, or source 
 
 ### contents of `/cidr_analysis` and other directories
 
-The software located in `/cidr_analysis` and the other directories not already identified are licensed under the following license:
+The software located in `/cidr_analysis` and the other directories not already identified are licensed under the following license (the "MIT License"):
 
 Copyright (c) 2010-2011 Stephen Woodrow
 
